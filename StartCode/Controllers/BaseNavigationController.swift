@@ -17,7 +17,7 @@ class BaseNavigationController: UINavigationController {
         super.viewWillAppear(animated)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
 }
 

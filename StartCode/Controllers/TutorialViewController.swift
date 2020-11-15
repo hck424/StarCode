@@ -41,9 +41,9 @@ class TutorialViewController: UIViewController {
         if sender == btnStart
             || sender == btnClose {
          
-            UserDefaults.standard .setValue("Y", forKey: IsShowTutorial)
-            UserDefaults.standard.synchronize()
-            AppDelegate.instance()?.callMainVc()
+//            UserDefaults.standard .setValue("Y", forKey: IsShowTutorial)
+//            UserDefaults.standard.synchronize()
+//            AppDelegate.instance()?.callMainVc()
         }
     }
 }

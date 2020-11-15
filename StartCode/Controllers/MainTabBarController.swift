@@ -11,40 +11,54 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let homeVc = HomeViewController.init(nibName: "HomeViewController", bundle: nil)
-        let chartVc = ChartViewController.init(nibName: "ChartViewController", bundle: nil)
-        let communityVc = TalkViewController.init(nibName: "TalkViewController", bundle: nil)
+        let homeVc = HomeViewController.init()
+        let expertVc = ExpertViewController.init()
+        let qnaVc = QnaViewController.init()
+        let communityVc = CommunityViewController.init()
+        let settingVc = SettingViewController.init()
         
-        let homeNaviCtrl = BaseNavigationController.init(rootViewController: homeVc)
-        let chartNaviCtrl = BaseNavigationController.init(rootViewController: chartVc)
-        let communityNaviCtrl = BaseNavigationController.init(rootViewController: communityVc)
+//        let homNaviCtrl = BaseNavigationController.init(rootViewController: homeVc)
+//        let expertNaviCtrl = BaseNavigationController.init(rootViewController: expertVc)
+//        let qnaNaviCtrl = BaseNavigationController.init(rootViewController: qnaVc)
+//        let communityNaviCtrl = BaseNavigationController.init(rootViewController: communityVc)
+//        let settingNaviCtrl = BaseNavigationController.init(rootViewController: settingVc)
         
-        self.viewControllers = [homeNaviCtrl, chartNaviCtrl, communityNaviCtrl]
+        self.viewControllers = [homeVc, expertVc, qnaVc, communityVc, settingVc]
 
-        let imgHome = UIImage(named: "tab_home")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let imgHomeSel = UIImage(named: "tab_home_s")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let imgHome = UIImage(named: "ic_tabbar_home_off")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let imgHomeSel = UIImage(named: "ic_tabbar_home_on")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
 
-        let imgChart = UIImage(named: "tab_chart")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let imgChartSel = UIImage(named: "tab_chart_s")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let imgExpert = UIImage(named: "ic_tabbar_star_off")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let imgExpertSel = UIImage(named: "ic_tabbar_star_on")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
-        let imgCommunity = UIImage(named: "tab_community")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let imgCommunitySel = UIImage(named: "tab_community_s")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let imgQna = UIImage(named: "ic_tabbar_qna_off")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let imgQnaSel = UIImage(named: "ic_tabbar_qna_on")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
-        let item1 = UITabBarItem(title: "홈", image: imgHome, selectedImage: imgHomeSel)
-        let item2 = UITabBarItem(title: "차트", image: imgChart, selectedImage: imgChartSel)
-        let item3 = UITabBarItem(title: "커뮤니티", image: imgCommunity, selectedImage: imgCommunitySel)
+        let imgCommunity = UIImage(named: "ic_tabbar_community_off")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let imgCommunitySel = UIImage(named: "ic_tabbar_community_on")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: RGB(233, 95, 94)], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: RGB(233, 95, 94)], for: .selected)
+        let imgSetting = UIImage(named: "ic_tabbar_mypage_off")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let imgSettingSel = UIImage(named: "ic_tabbar_mypage_on")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        let item1 = UITabBarItem(title: nil, image: imgHome, selectedImage: imgHomeSel)
+        let item2 = UITabBarItem(title: nil, image: imgExpert, selectedImage: imgExpertSel)
+        let item3 = UITabBarItem(title: nil, image: imgQna, selectedImage: imgQnaSel)
+        let item4 = UITabBarItem(title: nil, image: imgCommunity, selectedImage: imgCommunitySel)
+        let item5 = UITabBarItem(title: nil, image: imgSetting, selectedImage: imgSettingSel)
+        
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: RGB(233, 95, 94)], for: .normal)
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: RGB(233, 95, 94)], for: .selected)
         
         homeVc.tabBarItem = item1
-        chartVc.tabBarItem = item2
-        communityVc.tabBarItem = item3
+        expertVc.tabBarItem = item2
+        qnaVc.tabBarItem = item3
+        communityVc.tabBarItem = item4
+        settingVc.tabBarItem = item5
         
 //        UITabBar.appearance().tintColor = RGB(233, 95, 94)
-        UITabBar.appearance().barTintColor = RGB(255, 255, 255)
-        
+//        UITabBar.appearance().barTintColor = RGB(255, 255, 255)
         self.hidesBottomBarWhenPushed = true
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
