@@ -1,5 +1,5 @@
 //
-//  ShadowView.swift
+//  CView.swift
 //  CustomViewExample
 //
 //  Created by 김학철 on 2020/06/25.
@@ -8,7 +8,27 @@
 
 import UIKit
 @IBDesignable
-class ShadowView: UIView {
+class CView: UIView {
+    @IBInspectable var borderWidth: CGFloat = 0.0 {
+        didSet {
+            if borderWidth > 0 {setNeedsLayout()}
+        }
+    }
+    @IBInspectable var borderColor: UIColor? {
+        didSet {
+            if borderColor != nil { setNeedsLayout()}
+        }
+    }
+    @IBInspectable var halfCornerRadius:Bool = false {
+        didSet {
+            if halfCornerRadius {setNeedsLayout()}
+        }
+    }
+    @IBInspectable var cornerRadius: CGFloat = 0.0 {
+        didSet {
+            if cornerRadius > 0 { setNeedsLayout()}
+        }
+    }
     
     @IBInspectable var sdColor: UIColor? {
         didSet {
@@ -33,6 +53,22 @@ class ShadowView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
+        if borderWidth > 0 && borderColor != nil {
+            self.clipsToBounds = true
+            layer.borderColor = borderColor?.cgColor
+            layer.borderWidth = borderWidth
+        }
+        
+        if halfCornerRadius {
+            self.clipsToBounds = true
+            self.layer.cornerRadius = self.bounds.height/2
+        }
+        else if cornerRadius > 0 {
+            self.clipsToBounds = true
+            self.layer.cornerRadius = cornerRadius
+        }
+        
         
         if let sColor = sdColor {
             layer.masksToBounds = false

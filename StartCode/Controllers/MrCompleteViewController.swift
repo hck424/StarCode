@@ -1,13 +1,13 @@
 //
-//  CommunityViewController.swift
+//  MrCompleteViewController.swift
 //  StartCode
 //
-//  Created by 김학철 on 2020/11/13.
+//  Created by 김학철 on 2020/11/15.
 //
 
 import UIKit
 
-class CommunityViewController: BaseViewController {
+class MrCompleteViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
