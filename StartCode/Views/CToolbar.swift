@@ -22,9 +22,9 @@ class CToolbar: UIToolbar {
     var btnUp:UIBarButtonItem?
     var btnDown:UIBarButtonItem?
     
-    convenience init(barItems:[BarItem], itemColor:UIColor = UIColor.systemBlue) {
+    convenience init(barItems:[BarItem], itemColor:UIColor = RGB(139, 0, 255)) {
         self.init()
-        
+    
         self.itemColor = itemColor
         self.barItems = barItems
     }

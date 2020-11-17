@@ -7,10 +7,17 @@
 
 import Foundation
 import UIKit
+
+enum AppType {
+    case user, expert
+}
+
 #if Cust
 let baseUrl = "Dev base url"
+let appType:AppType = .user
 #else
 let baseUrl = "Pro base url"
+let appType:AppType = .expert
 #endif
 
 
@@ -25,3 +32,15 @@ let ColorAppDefault = RGB(139, 0, 255)
 let IsShowTutorial = "IsShowTutorial"
 let kJoinType = "JoinType"
 let kUserId = "UserId"
+
+
+enum SectionType {
+    case button
+    case makeupExport
+    case popularPost
+    case ad
+    case exportDailyLife
+    case myFaq
+    case makeupDiagnosis
+    case beautyQna
+}

@@ -11,6 +11,9 @@ enum JoinType {
 }
 
 class MrJoinViewController: BaseViewController {
+    @IBOutlet weak var svUserId: UIStackView!
+    @IBOutlet weak var svPassword: UIStackView!
+    @IBOutlet weak var svPasswordConfirm: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfEmail: CTextField!
     @IBOutlet weak var btnCheckId: UIButton!
@@ -59,9 +62,11 @@ class MrJoinViewController: BaseViewController {
         
         if type == .normal {
             self.arrFocuce = [tfEmail, tfPassword, tfPasswordConfirm, tfNickName, tvEssay]
-            
         }
         else {
+            svUserId.isHidden = true
+            svPassword.isHidden = true
+            svPasswordConfirm.isHidden = true
             self.arrFocuce = [tfNickName, tvEssay]
         }
         
@@ -148,6 +153,7 @@ class MrJoinViewController: BaseViewController {
             sender.isSelected = true
         }
         else if sender == btnBirthDay {
+            self.view.endEditing(true)
             let todaysDate = Date()
             let minDate = todaysDate.getStartDate(withYear: -70)
             let maxDate = todaysDate
@@ -163,12 +169,13 @@ class MrJoinViewController: BaseViewController {
         }
         else if sender == btnOk {
             lbHintId.isHidden = true
+            lbHintNickName.isHidden = true
             lbHintPassword.isHidden = true
             lbHintPasswordConfirm.isHidden = true
             lbHintBirthday.isHidden = true
             
             
-            var isOk = false
+            var isOk = true
             if type == .normal {
                 if tfEmail.text?.isEmpty == true || (tfEmail.text?.validateEmail() == false) {
                     isOk = false
@@ -196,7 +203,12 @@ class MrJoinViewController: BaseViewController {
                     lbHintNickName.text = "닉네임을 입력해주세요."
                     isOk = false
                 }
-                
+                if btnCheckNickName.isSelected == false {
+                    lbHintNickName.isHidden = false
+                    lbHintNickName.text = "닉네임 중복 확인을 해주세요."
+                    isOk = false
+                }
+
                 if tfBirthday.text?.isEmpty == true {
                     lbHintBirthday.isHidden = false
                     isOk = false
@@ -221,7 +233,13 @@ class MrJoinViewController: BaseViewController {
                     lbHintNickName.text = "닉네임을 입력해주세요."
                     isOk = false
                 }
-                
+
+                if btnCheckNickName.isSelected == false {
+                    lbHintNickName.isHidden = false
+                    lbHintNickName.text = "닉네임 체크를 해주세요."
+                    isOk = false
+                }
+
                 if btnMail.isSelected == false && btnFemail.isSelected == false {
                     self.view.makeToast("성별을 선택해주세요.")
                     isOk = false
@@ -236,6 +254,9 @@ class MrJoinViewController: BaseViewController {
                     return
                 }
             }
+            
+            let vc = MrCompleteViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

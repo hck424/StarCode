@@ -11,18 +11,23 @@ public let TAG_NAVI_TITLE: Int = 10001
 public let TAG_NAVI_USER: Int = 10002
 
 class CNavigationBar: UINavigationBar {
-
-    class func drawBackButton(_ controller: UIViewController, _ title: Any?, _ selctor:Selector) {
-        
+    class func drawBackButton(_ controller: UIViewController, _ info: Any?, _ selector:Selector?) {
+        CNavigationBar.drawBackButton(controller, info, true, selector)
+    }
+    class func drawBackButton(_ controller: UIViewController,_ info: Any?, _ showBackImg:Bool, _ selector:Selector?) {
+     
+        controller.navigationController?.setNavigationBarHidden(false, animated: true)
         let button: UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.tag = TAG_NAVI_BACK
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         button.titleLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
-        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = UIColor.label
-        if let title = title as? String {
-            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
-            button.setTitle(title, for: .normal)
+        if let info = info as? String {
+            if showBackImg {
+                button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+                button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+            }
+            button.setTitle(info, for: .normal)
             button.setTitleColor(UIColor.label, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
             var width: CGFloat = button.sizeThatFits(CGSize.init(width: CGFloat.greatestFiniteMagnitude, height: button.frame.size.height)).width
@@ -32,9 +37,13 @@ class CNavigationBar: UINavigationBar {
             
             button.frame = CGRect.init(x: 0, y: 0, width: width + button.titleEdgeInsets.left, height: button.frame.size.height)
         }
-        else if let title = title as? NSAttributedString {
-            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
-            button.setAttributedTitle(title, for: .normal)
+        else if let info = info as? NSAttributedString {
+            if showBackImg {
+                button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+                button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+            }
+            
+            button.setAttributedTitle(info, for: .normal)
             
             var width: CGFloat = button.sizeThatFits(CGSize.init(width: CGFloat.greatestFiniteMagnitude, height: button.frame.size.height)).width
             if width > 250.0 {
@@ -42,20 +51,31 @@ class CNavigationBar: UINavigationBar {
             }
             button.frame = CGRect.init(x: 0, y: 0, width: width + button.titleEdgeInsets.left, height: button.frame.size.height)
         }
-        
-        button.addTarget(controller, action: selctor, for: .touchUpInside)
+        else if let info = info as? UIImage {
+            button.setImage(info, for: .normal)
+            
+            var width: CGFloat = button.sizeThatFits(CGSize.init(width: CGFloat.greatestFiniteMagnitude, height: button.frame.size.height)).width
+            if width > 250.0 {
+                width = 250
+            }
+            button.frame = CGRect.init(x: 0, y: 0, width: width + button.titleEdgeInsets.left, height: button.frame.size.height)
+        }
+       
+        if let selctor = selector {
+            button.addTarget(controller, action: selctor, for: .touchUpInside)
+        }
         
         let barBtn = UIBarButtonItem.init(customView: button)
         controller.navigationItem.setLeftBarButton(barBtn, animated: false)
         
         let naviBar = controller.navigationController?.navigationBar
         naviBar?.isTranslucent = true
-//        let img = UIImage.image(from: UIColor.white)!
+        let img = UIImage.image(from: UIColor.systemBackground)!
         naviBar?.tintColor = UIColor.systemBackground
         naviBar?.barTintColor = UIColor.systemBackground
-//        naviBar?.setBackgroundImage(img, for: UIBarMetrics.default)
-//        naviBar?.shadowImage = UIImage.init()
-//        UINavigationBar.appearance().shadowImage = UIImage.init()
+        naviBar?.setBackgroundImage(img, for: UIBarMetrics.default)
+        naviBar?.shadowImage = UIImage.init()
+        UINavigationBar.appearance().shadowImage = UIImage.init()
     }
     
     class func drawTitle(_ controller: UIViewController, _ title: Any?, _ selctor:Selector?) {
@@ -105,9 +125,10 @@ class CNavigationBar: UINavigationBar {
         }
         
         if let title = title {
-            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
-            let attr = NSAttributedString.init(string: title, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .medium)])
-            button.setAttributedTitle(attr, for: .normal)
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 4)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+            button.setTitleColor(UIColor.label, for: .normal)
+            button.setTitle(title, for: .normal)
             
             var width: CGFloat = button.sizeThatFits(CGSize.init(width: CGFloat.greatestFiniteMagnitude, height: button.frame.size.height)).width
             if width > 250.0 {
@@ -116,8 +137,7 @@ class CNavigationBar: UINavigationBar {
             else if width < 44 {
                 width = 44
             }
-            
-            button.frame = CGRect.init(x: 0, y: 0, width: width + button.titleEdgeInsets.left, height: button.frame.size.height)
+            button.frame = CGRect.init(x: 0, y: 0, width: width + 8, height: button.frame.size.height)
         }
 //        button.layer.borderWidth = 1.0
 //        button.layer.borderColor = UIColor.white.cgColor

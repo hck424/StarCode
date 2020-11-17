@@ -46,20 +46,18 @@ class CButton: UIButton {
     
     override func draw(_ rect: CGRect) {
         
-        self.clipsToBounds = true
-        var raduis:CGFloat = 0.0
         if borderWidth > 0 && borderColor != nil {
             layer.borderColor = borderColor?.cgColor
             layer.borderWidth = borderWidth
         }
         if halfCornerRadius {
-            raduis = self.layer.bounds.height/2
+            self.clipsToBounds = true
+            self.layer.cornerRadius = self.bounds.height/2
         }
         else if cornerRadius > 0 {
-            raduis = cornerRadius
+            self.clipsToBounds = true
+            self.layer.cornerRadius = cornerRadius
         }
-        
-        self.layer.cornerRadius = raduis
     }
 
 }

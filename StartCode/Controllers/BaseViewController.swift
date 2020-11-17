@@ -13,14 +13,19 @@ import Toast_Swift
 //import Lightbox
 //import Photos
 
+
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
  
-    @objc func actionPopViewCtrl() {
+    @objc public func actionPopViewCtrl() {
         self.navigationController?.popViewController(animated: true)
+    }
+    @objc public func actionShowChuVc() {
+        let vc = ChuPurchaseViewController.init()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     func addTapGestureKeyBoardDown() {
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapGestureHandler(_ :)))
@@ -39,9 +44,43 @@ class BaseViewController: UIViewController {
             self.view.endEditing(true)
         }
     }
-    @objc func notificationHandler(_ notification: NSNotification) {
+    
+    func findBottomConstraint(_ view: UIView) -> NSLayoutConstraint? {
         
+        var findConst:NSLayoutConstraint? = nil
+        for const in view.constraints {
+            if const.identifier == "bottom" {
+                findConst = const
+                break
+            }
+        }
+        return findConst
     }
+    //키보드 노티 피케이션 핸들러
+    @objc func notificationHandler(_ notification: NSNotification) {
+        let heightKeyboard = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size.height
+        let duration = CGFloat((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.floatValue ?? 0.0)
+ 
+        //scrollView bottom constraint identyfier "bottom" 정의해야한다.
+        let findConst = self.findBottomConstraint(self.view)
+        guard let bottomContainer = findConst else {
+            return
+        }
+        
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            bottomContainer.constant = heightKeyboard - (AppDelegate.instance()?.window?.safeAreaInsets.bottom ?? 0) - (self.navigationController?.toolbar.bounds.height ?? 0)
+            UIView.animate(withDuration: TimeInterval(duration), animations: { [self] in
+                self.view.layoutIfNeeded()
+            })
+        }
+        else if notification.name == UIResponder.keyboardWillHideNotification {
+            bottomContainer.constant = 0
+            UIView.animate(withDuration: TimeInterval(duration)) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
 }
 
 extension BaseViewController: UIGestureRecognizerDelegate {

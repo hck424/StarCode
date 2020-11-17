@@ -14,16 +14,16 @@ class MainTabBarController: UITabBarController {
         let homeVc = HomeViewController.init()
         let expertVc = ExpertViewController.init()
         let qnaVc = QnaViewController.init()
-        let communityVc = CommunityViewController.init()
+        let communityVc = TalkListViewController.init()
         let settingVc = SettingViewController.init()
         
-//        let homNaviCtrl = BaseNavigationController.init(rootViewController: homeVc)
-//        let expertNaviCtrl = BaseNavigationController.init(rootViewController: expertVc)
-//        let qnaNaviCtrl = BaseNavigationController.init(rootViewController: qnaVc)
-//        let communityNaviCtrl = BaseNavigationController.init(rootViewController: communityVc)
-//        let settingNaviCtrl = BaseNavigationController.init(rootViewController: settingVc)
+        let homNaviCtrl = BaseNavigationController.init(rootViewController: homeVc)
+        let expertNaviCtrl = BaseNavigationController.init(rootViewController: expertVc)
+        let qnaNaviCtrl = BaseNavigationController.init(rootViewController: qnaVc)
+        let communityNaviCtrl = BaseNavigationController.init(rootViewController: communityVc)
+        let settingNaviCtrl = BaseNavigationController.init(rootViewController: settingVc)
         
-        self.viewControllers = [homeVc, expertVc, qnaVc, communityVc, settingVc]
+        self.viewControllers = [homNaviCtrl, expertNaviCtrl, qnaNaviCtrl, communityNaviCtrl, settingNaviCtrl]
 
         let imgHome = UIImage(named: "ic_tabbar_home_off")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         let imgHomeSel = UIImage(named: "ic_tabbar_home_on")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
@@ -55,8 +55,8 @@ class MainTabBarController: UITabBarController {
         communityVc.tabBarItem = item4
         settingVc.tabBarItem = item5
         
-//        UITabBar.appearance().tintColor = RGB(233, 95, 94)
-//        UITabBar.appearance().barTintColor = RGB(255, 255, 255)
+        UITabBar.appearance().tintColor = UIColor.systemBackground
+        UITabBar.appearance().barTintColor = UIColor.systemBackground
         self.hidesBottomBarWhenPushed = true
         
     }

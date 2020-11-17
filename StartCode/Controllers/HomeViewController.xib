@@ -11,26 +11,33 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="tblView" destination="V3Y-RU-eH7" id="a43-cb-2BO"/>
+                <outlet property="view" destination="zml-wm-2pl" id="L3N-yo-6DQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="zml-wm-2pl">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3r-F7-U41">
-                    <rect key="frame" x="197" y="476" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V3Y-RU-eH7">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
-                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="FzF-8i-muK"/>
+                        <outlet property="dataSource" destination="-1" id="wgc-j7-41B"/>
+                        <outlet property="delegate" destination="-1" id="cfh-xp-3ZF"/>
                     </connections>
-                </button>
+                </tableView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <viewLayoutGuide key="safeArea" id="WLf-QS-zuc"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="-180" y="84"/>
+            <constraints>
+                <constraint firstItem="V3Y-RU-eH7" firstAttribute="top" secondItem="WLf-QS-zuc" secondAttribute="top" id="4T9-Uh-sNA"/>
+                <constraint firstItem="WLf-QS-zuc" firstAttribute="bottom" secondItem="V3Y-RU-eH7" secondAttribute="bottom" id="LTF-dz-lno"/>
+                <constraint firstItem="V3Y-RU-eH7" firstAttribute="leading" secondItem="WLf-QS-zuc" secondAttribute="leading" id="Pbd-u4-E87"/>
+                <constraint firstItem="WLf-QS-zuc" firstAttribute="trailing" secondItem="V3Y-RU-eH7" secondAttribute="trailing" id="kVf-8T-K0K"/>
+            </constraints>
+            <point key="canvasLocation" x="515" y="81"/>
         </view>
     </objects>
     <resources>

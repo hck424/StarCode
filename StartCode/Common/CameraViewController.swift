@@ -21,7 +21,7 @@ class CameraViewController: UIViewController {
     var imagePicker: UIImagePickerController? = nil
     var overlayView: CameraOverlayView? = nil
     var delegate: CameraViewControllerDelegate?
-
+    var maxCount = 1
     var originImg: UIImage?
     var isFirst:Bool = false
     override func viewDidLoad() {
@@ -111,7 +111,7 @@ class CameraViewController: UIViewController {
 //            imagePicker?.allowsEditing = false
 //            imagePicker?.sourceType = UIImagePickerController.SourceType.photoLibrary
             let imagePicker = ImagePickerController()
-            imagePicker.settings.selection.max = 5
+            imagePicker.settings.selection.max = maxCount
             imagePicker.settings.theme.selectionStyle = .numbered
             imagePicker.settings.fetch.assets.supportedMediaTypes = [.image]
             imagePicker.settings.selection.unselectOnReachingMax = true
@@ -172,6 +172,14 @@ extension CameraViewController: CameraOverlayViewDelegate {
     }
     func cameraOverlayViewShotAction() {
         self.imagePicker?.takePicture()
+    }
+    func cameraOverlayViewRotationAction() {
+        if self.imagePicker?.cameraDevice == UIImagePickerController.CameraDevice.rear {
+            self.imagePicker?.cameraDevice = .front
+        }
+        else {
+            self.imagePicker?.cameraDevice = .rear
+        }
     }
 }
 

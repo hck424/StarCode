@@ -9,12 +9,10 @@ import UIKit
 
 class HomeSectionView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var btnTitle: UIButton!
+    var section = 0
+    var didSelectedClosure:((_ index:Int) -> Void)?
+    @IBAction func onClickedBtnAction(_ sender: UIButton) {
+        didSelectedClosure?(section)
     }
-    */
-
 }

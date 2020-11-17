@@ -70,6 +70,10 @@ class TalkListViewController: BaseViewController {
         else if sender == btnSearch {
             
         }
+        else if sender == btnWrite {
+            let vc = TalkWriteViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }
@@ -85,9 +89,9 @@ extension TalkListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tblView.dequeueReusableCell(withIdentifier: "CommunityCell") as? CommunityCell
+        var cell = tblView.dequeueReusableCell(withIdentifier: "TalkCell") as? TalkCell
         if cell == nil {
-            cell = Bundle.main.loadNibNamed("CommunityCell", owner: self, options: nil)?.first as? CommunityCell
+            cell = Bundle.main.loadNibNamed("TalkCell", owner: self, options: nil)?.first as? TalkCell
         }
         
         if let listData = listData, let item = listData[indexPath.row] as? [String:Any] {

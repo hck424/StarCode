@@ -11,19 +11,494 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QnaViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
+                <outlet property="btnAddPhoto" destination="3Bz-lf-UjI" id="691-JY-Yhl"/>
+                <outlet property="btnArtist" destination="4Qq-Sl-YTP" id="cdU-i2-S85"/>
+                <outlet property="btnCeleb" destination="Mpr-Jn-RVR" id="se4-L1-uaX"/>
+                <outlet property="btnRegist" destination="rFY-Bb-bAk" id="UFd-Zk-8xN"/>
+                <outlet property="lbSelectTitle" destination="yS3-2a-oTf" id="ax9-Y2-7q1"/>
+                <outlet property="lbTitle" destination="d9x-uM-BMQ" id="u6y-n0-KeF"/>
+                <outlet property="scrollViewPhototo" destination="mmD-7j-wVp" id="nRy-Zy-buf"/>
+                <outlet property="svPhoto" destination="NcA-Bo-CgG" id="TUQ-cv-S8o"/>
+                <outlet property="svQna1" destination="Xca-Ay-Gwb" id="xwW-aP-YSF"/>
+                <outlet property="svQna2" destination="Wge-JG-UTc" id="jZo-qp-0vV"/>
+                <outlet property="svQna3" destination="bgM-Tb-kj4" id="qPv-og-u4Z"/>
+                <outlet property="svSelectedContainer" destination="evf-O2-gAB" id="YHH-VE-8sP"/>
+                <outlet property="tfTitle" destination="VpY-Wh-jhe" id="WbO-yu-70u"/>
+                <outlet property="tvContent" destination="Li4-WZ-Nbh" id="BKv-qj-REM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="arrBtnTab" destination="ZlI-Pi-RQE" collectionClass="NSMutableArray" id="7tQ-n5-Yc4"/>
+                <outletCollection property="arrBtnTab" destination="GIZ-ww-VnK" collectionClass="NSMutableArray" id="Lxj-1U-BUc"/>
+                <outletCollection property="arrBtnTab" destination="TSc-96-mhh" collectionClass="NSMutableArray" id="cNt-VS-ECI"/>
+                <outletCollection property="arrBtnTab" destination="7wK-jZ-VnJ" collectionClass="NSMutableArray" id="b8A-yl-dlD"/>
+                <outletCollection property="arrMakeupQna" destination="667-mB-D4F" collectionClass="NSMutableArray" id="jeC-nG-c0z"/>
+                <outletCollection property="arrMakeupQna" destination="b2q-Pp-T1P" collectionClass="NSMutableArray" id="CeG-ae-vib"/>
+                <outletCollection property="arrMakeupQna" destination="8Rr-kS-48G" collectionClass="NSMutableArray" id="Uoe-IG-RiS"/>
+                <outletCollection property="arrMakeupQna" destination="EtC-nI-VBa" collectionClass="NSMutableArray" id="gvM-Ir-rLP"/>
+                <outletCollection property="arrMakeupQna" destination="2Op-Iv-cye" collectionClass="NSMutableArray" id="GZW-Nx-Kaw"/>
+                <outletCollection property="arrMakeupQna" destination="ogU-44-g2t" collectionClass="NSMutableArray" id="aOg-ky-z7B"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oN9-XF-4gW">
+                    <rect key="frame" x="20" y="44" width="374" height="36"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7g7-Ov-mcz">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
+                            <subviews>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlI-Pi-RQE" customClass="SelectedButton" customModule="StartCode" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="메이크업 진단">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="selBorderColor">
+                                            <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="tl" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="tr" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bl" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="br" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIZ-ww-VnK" customClass="SelectedButton" customModule="StartCode" customModuleProvider="target">
+                                    <rect key="frame" x="126.5" y="0.0" width="79.5" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="뷰티 질문">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="selBorderColor">
+                                            <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="tl" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="tr" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bl" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="br" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSc-96-mhh" customClass="SelectedButton" customModule="StartCode" customModuleProvider="target">
+                                    <rect key="frame" x="216" y="0.0" width="61.5" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="Ai 진단">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="selBorderColor">
+                                            <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="tl" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="tr" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bl" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="br" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wK-jZ-VnJ" customClass="SelectedButton" customModule="StartCode" customModuleProvider="target">
+                                    <rect key="frame" x="287.5" y="0.0" width="86.5" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="1:1 질문">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="selBorderColor">
+                                            <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="tl" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="tr" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bl" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="br" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="7g7-Ov-mcz" secondAttribute="bottom" id="0Ag-QI-6HS"/>
+                        <constraint firstItem="7g7-Ov-mcz" firstAttribute="height" secondItem="oN9-XF-4gW" secondAttribute="height" id="8go-8g-aYm"/>
+                        <constraint firstItem="7g7-Ov-mcz" firstAttribute="width" secondItem="oN9-XF-4gW" secondAttribute="width" id="9rk-TJ-6VM"/>
+                        <constraint firstItem="7g7-Ov-mcz" firstAttribute="top" secondItem="oN9-XF-4gW" secondAttribute="top" id="Fl5-aS-aCe"/>
+                        <constraint firstAttribute="trailing" secondItem="7g7-Ov-mcz" secondAttribute="trailing" id="Ifi-yr-6Zf"/>
+                        <constraint firstAttribute="height" constant="36" id="YUd-oI-M1z"/>
+                        <constraint firstItem="7g7-Ov-mcz" firstAttribute="leading" secondItem="oN9-XF-4gW" secondAttribute="leading" id="kBe-2d-vLr"/>
+                    </constraints>
+                </scrollView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYt-JQ-SYa">
+                    <rect key="frame" x="0.0" y="80" width="414" height="782"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rtU-mR-LIc">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="782"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9x-uM-BMQ">
+                                    <rect key="frame" x="20" y="20" width="374" height="50.5"/>
+                                    <string key="text">전문가에게 1:1로 상담 받을 수 있습니다.
+단, 욕설/비방글 등은 신고를 통해 고객님에게 불이익이 발생할 수 있습니다.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XZ5-Pz-XOy">
+                                    <rect key="frame" x="20" y="70.5" width="374" height="294.5"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목을 입력해주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VpY-Wh-jhe" customClass="CTextField" customModule="StartCode" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="16" width="374" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="999" constant="40" id="Qd6-Ie-XxD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetTB">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetLR">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="borderAll" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Li4-WZ-Nbh" customClass="CTextView" customModule="StartCode" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="64" width="374" height="160"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="160" id="BeL-HZ-Ucg"/>
+                                            </constraints>
+                                            <color key="textColor" systemColor="labelColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetTop">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetBottom">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetRigth">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="500자 이내로 작성해주세요."/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                    <color key="value" systemColor="placeholderTextColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="6xY-5u-5mi"/>
+                                            </connections>
+                                        </textView>
+                                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmD-7j-wVp">
+                                            <rect key="frame" x="0.0" y="228" width="374" height="0.0"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NcA-Bo-CgG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NcA-Bo-CgG" firstAttribute="top" secondItem="mmD-7j-wVp" secondAttribute="top" id="294-c7-AUs"/>
+                                                <constraint firstAttribute="trailing" secondItem="NcA-Bo-CgG" secondAttribute="trailing" id="NFi-Rp-Bqu"/>
+                                                <constraint firstAttribute="bottom" secondItem="NcA-Bo-CgG" secondAttribute="bottom" id="ezl-2A-Zju"/>
+                                                <constraint firstItem="NcA-Bo-CgG" firstAttribute="height" secondItem="mmD-7j-wVp" secondAttribute="height" id="fuZ-mZ-Zjc"/>
+                                                <constraint firstItem="NcA-Bo-CgG" firstAttribute="leading" secondItem="mmD-7j-wVp" secondAttribute="leading" id="iKI-h7-aTd"/>
+                                                <constraint firstItem="NcA-Bo-CgG" firstAttribute="width" secondItem="mmD-7j-wVp" secondAttribute="width" priority="1" id="t3u-kj-KNu"/>
+                                                <constraint firstAttribute="height" priority="999" constant="104" id="tsY-mx-hhv"/>
+                                            </constraints>
+                                        </scrollView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bz-lf-UjI" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="232" width="374" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="EMU-ni-RCd"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="사진등록" image="ic_file_upload">
+                                                <color key="titleColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="9cx-iH-Uzq"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※ 이미지는 최대 10장 등록 가능합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAE-0y-zql">
+                                            <rect key="frame" x="0.0" y="280" width="374" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="16" left="0.0" bottom="0.0" right="0.0"/>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="evf-O2-gAB" userLabel="svSelectedContainer">
+                                    <rect key="frame" x="20" y="365" width="374" height="212"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OZZ-8h-FOb">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2b2-NC-ouh">
+                                                    <rect key="frame" x="0.0" y="20" width="374" height="1"/>
+                                                    <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" priority="999" constant="1" id="dyy-TY-ZBm"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="20" left="0.0" bottom="20" right="0.0"/>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="솔루션을 받고 싶은 전문가를 선택하세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yS3-2a-oTf" userLabel="lbSelectTitle">
+                                            <rect key="frame" x="0.0" y="41" width="374" height="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Xca-Ay-Gwb" userLabel="svQna1">
+                                            <rect key="frame" x="0.0" y="58" width="374" height="36"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="667-mB-D4F">
+                                                    <rect key="frame" x="0.0" y="10" width="124.5" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="화장 방법" image="check_box_off">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                    </state>
+                                                    <state key="selected" image="check_box_on"/>
+                                                </button>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2q-Pp-T1P">
+                                                    <rect key="frame" x="124.5" y="10" width="125" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="화장품 추천" image="check_box_off">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                    </state>
+                                                    <state key="selected" image="check_box_on"/>
+                                                </button>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Rr-kS-48G">
+                                                    <rect key="frame" x="249.5" y="10" width="124.5" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="닮은 연예인" image="check_box_off">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                    </state>
+                                                    <state key="selected" image="check_box_on"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="999" constant="36" id="FY0-QD-gza"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="10" left="0.0" bottom="0.0" right="0.0"/>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Wge-JG-UTc" userLabel="svQna2">
+                                            <rect key="frame" x="0.0" y="94" width="374" height="36"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EtC-nI-VBa">
+                                                    <rect key="frame" x="0.0" y="10" width="124.5" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="퍼스널 컬러" image="check_box_off">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                    </state>
+                                                    <state key="selected" image="check_box_on"/>
+                                                </button>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Op-Iv-cye">
+                                                    <rect key="frame" x="124.5" y="10" width="125" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="피부관리" image="check_box_off">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                    </state>
+                                                    <state key="selected" image="check_box_on"/>
+                                                </button>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogU-44-g2t">
+                                                    <rect key="frame" x="249.5" y="10" width="124.5" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="기타" image="check_box_off">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                    </state>
+                                                    <state key="selected" image="check_box_on"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="999" constant="36" id="xcz-fg-E3L"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="10" left="0.0" bottom="0.0" right="0.0"/>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bgM-Tb-kj4" userLabel="svQna3">
+                                            <rect key="frame" x="0.0" y="130" width="374" height="82"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qq-Sl-YTP">
+                                                    <rect key="frame" x="0.0" y="10" width="374" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" priority="999" constant="36" id="8hf-6P-I1X"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="아티스트 (메이크업 전공자, 메이크업 아티스트 등)" image="check_box_off">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                    </state>
+                                                    <state key="selected" image="check_box_on"/>
+                                                    <connections>
+                                                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="3aO-A9-bat"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpr-Jn-RVR">
+                                                    <rect key="frame" x="0.0" y="46" width="374" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" priority="999" constant="36" id="RVw-wE-Jd2"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="셀럽 (뷰티유투버,  SNS스타, 연예인 등)" image="check_box_off">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                    </state>
+                                                    <state key="selected" image="check_box_on"/>
+                                                    <connections>
+                                                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="Y6D-pp-D1e"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="10" left="0.0" bottom="0.0" right="0.0"/>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQv-Ty-sTp">
+                                    <rect key="frame" x="20" y="577" width="374" height="125"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VWc-v9-yZv">
+                                    <rect key="frame" x="20" y="702" width="374" height="60"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFY-Bb-bAk">
+                                            <rect key="frame" x="0.0" y="20" width="374" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="sej-j6-eu3"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title="질문 등록" backgroundImage="btn_rectangle"/>
+                                            <connections>
+                                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="i49-aw-7Sx"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="20" left="0.0" bottom="0.0" right="0.0"/>
+                                </stackView>
+                            </subviews>
+                            <edgeInsets key="layoutMargins" top="20" left="20" bottom="20" right="20"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="rtU-mR-LIc" secondAttribute="bottom" id="2vW-jp-8Kn"/>
+                        <constraint firstItem="rtU-mR-LIc" firstAttribute="height" secondItem="gYt-JQ-SYa" secondAttribute="height" priority="2" id="61B-zi-z85"/>
+                        <constraint firstAttribute="trailing" secondItem="rtU-mR-LIc" secondAttribute="trailing" id="GJ4-cl-a8W"/>
+                        <constraint firstItem="rtU-mR-LIc" firstAttribute="leading" secondItem="gYt-JQ-SYa" secondAttribute="leading" id="LAM-Sp-I87"/>
+                        <constraint firstItem="rtU-mR-LIc" firstAttribute="top" secondItem="gYt-JQ-SYa" secondAttribute="top" id="NIs-ac-deb"/>
+                        <constraint firstAttribute="bottom" secondItem="rtU-mR-LIc" secondAttribute="bottom" id="Ojd-Sd-byT"/>
+                        <constraint firstItem="rtU-mR-LIc" firstAttribute="leading" secondItem="gYt-JQ-SYa" secondAttribute="leading" id="PKE-Mv-oXz"/>
+                        <constraint firstItem="rtU-mR-LIc" firstAttribute="top" secondItem="gYt-JQ-SYa" secondAttribute="top" id="Uko-B7-Ych"/>
+                        <constraint firstAttribute="trailing" secondItem="rtU-mR-LIc" secondAttribute="trailing" id="bGC-hH-isI"/>
+                        <constraint firstItem="rtU-mR-LIc" firstAttribute="width" secondItem="gYt-JQ-SYa" secondAttribute="width" id="hwx-38-psk"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="gYt-JQ-SYa" firstAttribute="top" secondItem="oN9-XF-4gW" secondAttribute="bottom" id="1Vg-QT-Eb8"/>
+                <constraint firstItem="gYt-JQ-SYa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7MD-Of-DzN"/>
+                <constraint firstItem="oN9-XF-4gW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="EOu-Ri-ogx"/>
+                <constraint firstItem="oN9-XF-4gW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="NfE-iy-0fl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oN9-XF-4gW" secondAttribute="trailing" constant="20" id="ThL-0e-zPg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gYt-JQ-SYa" secondAttribute="trailing" id="ulH-6P-M9s"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gYt-JQ-SYa" secondAttribute="bottom" identifier="bottom" id="xfE-Va-vDL"/>
+            </constraints>
             <point key="canvasLocation" x="-25" y="98"/>
         </view>
     </objects>
+    <designables>
+        <designable name="VpY-Wh-jhe">
+            <size key="intrinsicContentSize" width="117" height="18.5"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="btn_rectangle" width="300" height="40"/>
+        <image name="check_box_off" width="20" height="20"/>
+        <image name="check_box_on" width="20" height="20"/>
+        <image name="ic_file_upload" width="18" height="18"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

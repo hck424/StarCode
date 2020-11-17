@@ -228,7 +228,7 @@ extension CDatePickerView: UIPickerViewDelegate, UIPickerViewDataSource {
         if type == .year {
             if cell == nil {
                 let lbCol = UILabel.init(frame:CGRect.init(x: 0, y: 0, width: pickerView.bounds.width, height: 44))
-                lbCol.textColor = UIColor.black
+                lbCol.textColor = UIColor.label
                 lbCol.font = UIFont.systemFont(ofSize: 15)
                 lbCol.textAlignment = NSTextAlignment.center
                 cell = lbCol
@@ -238,7 +238,7 @@ extension CDatePickerView: UIPickerViewDelegate, UIPickerViewDataSource {
         else if type == .month {
             if cell == nil {
                 let lbCol = UILabel.init(frame:CGRect.init(x: 0, y: 0, width: pickerView.bounds.width, height: 44))
-                lbCol.textColor = UIColor.black
+                lbCol.textColor = UIColor.label
                 lbCol.font = UIFont.systemFont(ofSize: 15)
                 lbCol.textAlignment = NSTextAlignment.center
                 cell = lbCol
@@ -252,14 +252,14 @@ extension CDatePickerView: UIPickerViewDelegate, UIPickerViewDataSource {
                 let width:CGFloat = (pickerView.bounds.width - 2*lr - space)/2
                 if component == 0 {
                     let lbCol = UILabel.init(frame:CGRect.init(x: lr, y: 0, width: width, height: 44))
-                    lbCol.textColor = UIColor.black
+                    lbCol.textColor = UIColor.label
                     lbCol.font = UIFont.systemFont(ofSize: 15)
                     lbCol.textAlignment = NSTextAlignment.right
                     cell = lbCol
                 }
                 else {
                     let lbCol = UILabel.init(frame:CGRect.init(x:width+lr+space, y: 0, width: width, height: 44))
-                    lbCol.textColor = UIColor.black
+                    lbCol.textColor = UIColor.label
                     lbCol.font = UIFont.systemFont(ofSize: 15)
                     lbCol.textAlignment = NSTextAlignment.left
                     cell = lbCol

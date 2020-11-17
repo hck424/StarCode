@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func callMainVc() {
         let mainTabVc = MainTabBarController.init()
-        window?.rootViewController = BaseNavigationController.init(rootViewController: mainTabVc)
+        window?.rootViewController = mainTabVc
         window?.makeKeyAndVisible()
     }
     

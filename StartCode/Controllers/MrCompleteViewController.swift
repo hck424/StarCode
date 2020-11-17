@@ -9,21 +9,21 @@ import UIKit
 
 class MrCompleteViewController: BaseViewController {
 
+    @IBOutlet weak var btnOk: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        CNavigationBar.drawBackButton(self, "가입완료", #selector(onClickedBtnActions(_:)))
+        
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func onClickedBtnActions(_ sender: UIButton) {
+        if sender.tag == TAG_NAVI_BACK {
+            self.navigationController?.popViewController(animated: true)
+        }
+        else if sender == btnOk {
+            //save user 정보 및
+            SharedData.setObjectForKey(key: kUserId, value: "TEEST")
+            AppDelegate.instance()?.callMainVc()
+        }
     }
-    */
-
 }

@@ -257,6 +257,21 @@ extension String {
         }
         return result
     }
+    func addComma() ->String {
+        let nf = NumberFormatter.init()
+        nf.numberStyle = .decimal
+        nf.locale = Locale(identifier: "en_US")
+        let number = NSNumber.init(value: Double(self)!)
+        let result = nf.string(from: number)
+        return result ?? ""
+    }
+    func delComma() ->String {
+        var result = self
+        result = self.replacingOccurrences(of: " ", with: "")
+        result = self.replacingOccurrences(of: ",", with: "")
+        result = self.replacingOccurrences(of: ".", with: "")
+        return result
+    }
 }
 
 extension NSAttributedString {

@@ -68,7 +68,7 @@ class MrTermsViewController: BaseViewController {
                 return
             }
             let vc = MrJoinViewController.init()
-            vc.type = .normal
+            vc.type = .sns
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
