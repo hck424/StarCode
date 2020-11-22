@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
                 <outlet property="btnLogout" destination="Fq2-dy-tcV" id="AQP-ri-gi7"/>
+                <outlet property="footerView" destination="8Jl-Oo-MaK" id="JW4-Jv-3KF"/>
                 <outlet property="haderView" destination="8vI-3J-Yaf" id="0QS-JT-xdt"/>
                 <outlet property="lbUserName" destination="JKS-pm-YYa" id="JyV-mL-LvJ"/>
                 <outlet property="tblView" destination="DVg-xj-JYL" id="abE-7b-27b"/>
@@ -23,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DVg-xj-JYL">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DVg-xj-JYL">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                     <connections>
@@ -105,9 +106,33 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="876.08695652173924" y="-131.91964285714286"/>
         </view>
+        <view contentMode="scaleToFill" id="8Jl-Oo-MaK">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8q-5O-Cpc">
+                    <rect key="frame" x="20" y="0.0" width="374" height="0.5"/>
+                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.29999999999999999" id="Pen-0N-ib2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="X8q-5O-Cpc" firstAttribute="leading" secondItem="8Jl-Oo-MaK" secondAttribute="leading" constant="20" id="AGl-vR-y7G"/>
+                <constraint firstAttribute="trailing" secondItem="X8q-5O-Cpc" secondAttribute="trailing" constant="20" id="ROp-5p-Zdl"/>
+                <constraint firstItem="X8q-5O-Cpc" firstAttribute="top" secondItem="8Jl-Oo-MaK" secondAttribute="top" id="saR-gY-WaS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="835" y="273"/>
+        </view>
     </objects>
     <resources>
         <image name="ic_mypage_logout" width="24" height="20"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

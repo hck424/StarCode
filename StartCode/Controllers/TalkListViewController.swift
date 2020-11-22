@@ -21,7 +21,8 @@ class TalkListViewController: BaseViewController {
     var listData:Array<[String:Any]>?
     var searchTxt:String?
     let accoryView = CToolbar.init(barItems: [.keyboardDown])
-    
+    let arrCategory = ["연애인", "패션", "헤어", "픽!쳐톡", "화장법", "기타"]
+    var selCategory = "화장법"
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "전문가", false, nil)
@@ -31,6 +32,10 @@ class TalkListViewController: BaseViewController {
         accoryView.addTarget(self, selctor: #selector(onClickedBtnActions(_:)))
         
         btnMakup.sendActions(for: .touchUpInside)
+        
+        if let lbCategory = btnCategory.viewWithTag(100) as? UILabel {
+            lbCategory.text = selCategory
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -70,6 +75,22 @@ class TalkListViewController: BaseViewController {
         else if sender == btnSearch {
             
         }
+        else if sender == btnCategory {
+            self.view.endEditing(true)
+            let vc = PopupViewController.init(type: .list, data: arrCategory, keys: nil)
+            vc.didSelectRowAtItem = {(vcs, selData, index) -> Void in
+                vcs.dismiss(animated: false, completion: nil)
+                guard let selData = selData as? String else {
+                    return
+                }
+                guard let lbCategory = self.btnCategory.viewWithTag(100) as? UILabel else {
+                    return
+                }
+                lbCategory.text = selData
+                self.selCategory = selData
+            }
+            self.present(vc, animated: false, completion: nil)
+        }
         else if sender == btnWrite {
             let vc = TalkWriteViewController.init()
             self.navigationController?.pushViewController(vc, animated: true)
@@ -104,6 +125,8 @@ extension TalkListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tblView.deselectRow(at: indexPath, animated: true)
         
+        let vc = TalkDetailViewController.init()
+        self.navigationController?.pushViewController(vc, animated:true)
     }
 }
 

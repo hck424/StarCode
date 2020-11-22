@@ -36,7 +36,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="insetTB">
                                                     <real key="value" value="3"/>
@@ -45,6 +45,10 @@
                                                     <real key="value" value="16"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textFieldEdtingChanged:" destination="-1" eventType="editingDidBegin" id="6T7-T8-Itj"/>
+                                                <outlet property="delegate" destination="-1" id="Ha7-NV-uyT"/>
+                                            </connections>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-DV-IxC">
                                             <rect key="frame" x="328" y="0.0" width="46" height="40"/>
@@ -53,6 +57,9 @@
                                                 <constraint firstAttribute="width" constant="46" id="UAX-Z7-bwO"/>
                                             </constraints>
                                             <state key="normal" image="ic_search"/>
+                                            <connections>
+                                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="Pfw-v4-unu"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>

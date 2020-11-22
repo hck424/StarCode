@@ -10,15 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="222" id="KGk-i7-Jjw" customClass="EventCell" customModule="StartCode" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="378" height="222"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="211" id="KGk-i7-Jjw" customClass="EventCell" customModule="StartCode" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="211"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="378" height="222"/>
+                <rect key="frame" x="0.0" y="0.0" width="378" height="211"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NlR-0e-nFG">
-                        <rect key="frame" x="0.0" y="0.0" width="378" height="222"/>
+                        <rect key="frame" x="0.0" y="0.0" width="378" height="211"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-y6-WYF">
                                 <rect key="frame" x="20" y="16" width="338" height="120"/>
@@ -27,25 +27,25 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RkL-ju-6gf">
-                                <rect key="frame" x="20" y="148" width="338" height="58"/>
+                                <rect key="frame" x="20" y="148" width="338" height="47"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="스타코드 이벤트 리스트 페이지입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5No-9k-5Ac">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="스타코드 이벤트 리스트 페이지입니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5No-9k-5Ac">
                                         <rect key="frame" x="0.0" y="0.0" width="338" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtJ-Eq-vse">
-                                        <rect key="frame" x="0.0" y="17" width="338" height="41"/>
+                                        <rect key="frame" x="0.0" y="17" width="338" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020.10.20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ8-6J-atr">
-                                                <rect key="frame" x="0.0" y="0.0" width="293" height="41"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWh-ms-hlG" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                                <rect key="frame" x="293" y="0.0" width="45" height="41"/>
+                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWh-ms-hlG" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                                                <rect key="frame" x="293" y="0.0" width="45" height="30"/>
                                                 <color key="backgroundColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="3" maxX="8" maxY="3"/>
@@ -70,7 +70,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="8.6956521739130448" y="60.267857142857139"/>
+            <connections>
+                <outlet property="btnState" destination="YWh-ms-hlG" id="avH-xU-NFg"/>
+                <outlet property="ivThumb" destination="uOU-y6-WYF" id="ki6-Hp-Jyp"/>
+                <outlet property="lbDate" destination="IJ8-6J-atr" id="laI-Qp-C0x"/>
+                <outlet property="lbTitle" destination="5No-9k-5Ac" id="aRj-67-yDw"/>
+            </connections>
+            <point key="canvasLocation" x="8.6956521739130448" y="56.584821428571423"/>
         </tableViewCell>
     </objects>
 </document>

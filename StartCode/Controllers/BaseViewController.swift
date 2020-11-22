@@ -20,6 +20,9 @@ class BaseViewController: UIViewController {
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
  
+    func addRightNaviMyChuButton() {
+        CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
+    }
     @objc public func actionPopViewCtrl() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -44,7 +47,9 @@ class BaseViewController: UIViewController {
             self.view.endEditing(true)
         }
     }
-    
+    @objc func actionKeybardDown() {
+        self.view.endEditing(true)
+    }
     func findBottomConstraint(_ view: UIView) -> NSLayoutConstraint? {
         
         var findConst:NSLayoutConstraint? = nil
@@ -68,7 +73,13 @@ class BaseViewController: UIViewController {
         }
         
         if notification.name == UIResponder.keyboardWillShowNotification {
-            bottomContainer.constant = heightKeyboard - (AppDelegate.instance()?.window?.safeAreaInsets.bottom ?? 0) - (self.navigationController?.toolbar.bounds.height ?? 0)
+            var tabBarHeight:CGFloat = 0.0
+            if self.navigationController?.tabBarController?.tabBar.isHidden == false {
+                tabBarHeight = self.navigationController?.toolbar.bounds.height ?? 0.0
+            }
+            
+            let safeBottom:CGFloat = self.view.window?.safeAreaInsets.bottom ?? 0
+            bottomContainer.constant = heightKeyboard - safeBottom - tabBarHeight
             UIView.animate(withDuration: TimeInterval(duration), animations: { [self] in
                 self.view.layoutIfNeeded()
             })

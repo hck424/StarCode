@@ -13,8 +13,10 @@ class ExpertViewController: BaseViewController {
     @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var tfSearch: CTextField!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    let accessoryView = CToolbar.init(barItems: [.keyboardDown])
     var listData:Array<[String:Any]>?
+    var searchTxt:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBgView.layer.cornerRadius = 8.0
@@ -27,12 +29,23 @@ class ExpertViewController: BaseViewController {
         self.view.layoutIfNeeded()
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: collectionView.bounds.width/3.0, height: 150)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width/3, height: 150)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         self.collectionView.collectionViewLayout = layout
+        tfSearch.inputAccessoryView = accessoryView
+        accessoryView.addTarget(self, selctor: #selector(actionKeybardDown))
         
         requestExpertList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addKeyboardNotification()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardNotification()
     }
     
     func makeTestData() {
@@ -62,7 +75,21 @@ class ExpertViewController: BaseViewController {
         self.collectionView.reloadData()
     }
     
+    @IBAction func textFieldEdtingChanged(_ sender: UITextField) {
+        self.searchTxt = sender.text
+        
+        if let searchTxt = searchTxt, searchTxt.isEmpty == false {
+            
+        }
+        else {
+            
+        }
+    }
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
+        if sender == btnSearch {
+            self.view.endEditing(true)
+            self.dateReset()
+        }
         
     }
 }
@@ -87,7 +114,20 @@ extension ExpertViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        
+     
+        let vc = ExpertDetailViewController.init()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
+}
+
+extension ExpertViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTxt = textField.text
+        if let searchtxt = searchTxt, searchtxt.isEmpty == false {
+            self.dateReset()
+            self.view.endEditing(true)
+        }
+        return true
+    }
 }

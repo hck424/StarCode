@@ -137,7 +137,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="zQY-cj-dpv"/>
+                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="IQU-76-Anj"/>
                             </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUn-3g-76P" customClass="CView" customModule="StartCode" customModuleProvider="target">

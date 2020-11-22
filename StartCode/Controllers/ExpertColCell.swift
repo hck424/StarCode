@@ -19,7 +19,7 @@ class ExpertColCell: UICollectionViewCell {
     let colorArtist = RGB(212, 3, 156)
     let colorCeleb = RGB(245, 85, 111)
     
-    var data:[String:Any] = [:]
+    var data:[String:Any]?
     var didSelectedClosure:((_ selData: [String:Any]?, _ actionIndex:Int) ->())?
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +28,7 @@ class ExpertColCell: UICollectionViewCell {
 //        self.selectedBackgroundView = selectedBgView
     }
 
-    func configurationData(_ data:[String:Any]) {
+    func configurationData(_ data:[String:Any]?) {
         self.data = data
         
         ivProfile.layer.cornerRadius = ivProfile.bounds.height/2

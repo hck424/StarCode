@@ -6,24 +6,66 @@
 //
 
 import UIKit
-
+enum CellId:String {
+    case myPost = "myPost"
+    case myQna = "myQna"
+    case chuUsingHistory = "chuUsingHistory"
+    case myPick = "myPick"
+    case myScrap = "myScrap"
+    case accountManage = "accountManage"
+    case configuration = "configuration"
+    case notice = "notice"
+    case event = "event"
+    case contactus = "contactus"
+    case faq = "faq"
+    
+    func displayName() ->String {
+        if self.rawValue == "myPost" {
+            return "내 게시글"
+        }
+        else if self.rawValue == "myQna" {
+            return "나의 문의 내역"
+        }
+        else if self.rawValue == "chuUsingHistory" {
+            return "CHU 사용 내역"
+        }
+        else if self.rawValue == "myPick" {
+            return "내 픽"
+        }
+        else if self.rawValue == "myScrap" {
+            return "스크랩"
+        }
+        else if self.rawValue == "accountManage" {
+            return "계정관리"
+        }
+        else if self.rawValue == "configuration" {
+            return "환경설정"
+        }
+        else if self.rawValue == "notice" {
+            return "공지사항"
+        }
+        else if self.rawValue == "event" {
+            return "이벤트"
+        }
+        else if self.rawValue == "contactus" {
+            return "고객센터"
+        }
+        else if self.rawValue == "faq" {
+            return "FAQ"
+        }
+        else {
+            return ""
+        }
+    }
+}
 class SettingViewController: BaseViewController {
     @IBOutlet var haderView: UIView!
+    @IBOutlet var footerView: UIView!
     @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var lbUserName: UILabel!
     @IBOutlet weak var tblView: UITableView!
     
-    let listData = [["title":"내 게시글", "count": 1],
-                    ["title":"나의 문의 내역", "count": 5],
-                    ["title":"CHU 사용 내역", "count": 12],
-                    ["title":"내 픽"],
-                    ["title":"스크랩"],
-                    ["title":"계정관리"],
-                    ["title":"환경설정"],
-                    ["title":"공지사항"],
-                    ["title":"이벤트"],
-                    ["title":"고객센터"],
-                    ["title":"FAQ"]]
+    let listData:[CellId] = [.myPost, .myQna, .chuUsingHistory, .myPick, .myScrap, .accountManage, .configuration, .notice, .event, .contactus, .faq]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +73,7 @@ class SettingViewController: BaseViewController {
         CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
         
         tblView.tableHeaderView = haderView
+        tblView.tableFooterView = footerView
         let userName = "장유리"
         let result = "\(userName)님\n환영합니다."
         let attr = NSMutableAttributedString.init(string: result)
@@ -48,6 +91,7 @@ class SettingViewController: BaseViewController {
             header.frame = CGRect(x: header.frame.origin.x, y: header.frame.origin.y, width: header.bounds.width, height: height)
         }
     }
+    
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         
     }
@@ -64,18 +108,65 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             cell = Bundle.main.loadNibNamed("SettingCell", owner: self, options: nil)?.first as? SettingCell
         }
         
-        if let item = listData[indexPath.row] as? [String:Any] {
-            let title = item["title"] as! String
-            cell?.lbTitle.text = title
+        if let cellId = listData[indexPath.row] as? CellId {
+            cell?.lbTitle.text = cellId.displayName()
             cell?.btnNoticeCnt.isHidden = true
-            if let count = item["count"] as? Int {
-                cell?.btnNoticeCnt.isHidden = false
-                cell?.btnNoticeCnt.setTitle("\(count)", for: .normal)
-            }
+//            if let count = item["count"] as? Int {
+//                cell?.btnNoticeCnt.isHidden = false
+//                cell?.btnNoticeCnt.setTitle("\(count)", for: .normal)
+//            }
         }
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let cellId = listData[indexPath.row] as? CellId else {
+            return
+        }
+        
+        if cellId == .myPost {
+            let vc = MyPostListViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .myQna {
+            let vc = MyQnaViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .chuUsingHistory {
+            let vc = ChuHistoryViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .myPick {
+            let vc = MyPickHistoryViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .myScrap {
+            let vc = MyScrapViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .accountManage {
+            let vc = MyInfoViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .configuration {
+            let vc = ConfigurationViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .notice {
+            let vc = NoticeListViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .event {
+            let vc = EventListViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cellId == .contactus {
+            
+        }
+        else if cellId == .faq {
+            
+        }
         
     }
 }

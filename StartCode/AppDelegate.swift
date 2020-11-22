@@ -15,20 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     class func instance() -> AppDelegate? {
         return UIApplication.shared.delegate as? AppDelegate
     }
-//    func mainTabbarCtrl() -> MainTabBarController? {
-//        return self.window?.rootViewController as? MainTabBarController
-//    }
+    func mainTabbarCtrl() -> MainTabBarController? {
+        return self.window?.rootViewController as? MainTabBarController
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
         let dfs = UserDefaults.standard
-        if let showTutorial = dfs.object(forKey: IsShowTutorial) as? String, showTutorial == "Y" {
-            self.callTutorialVc()
-            dfs.setValue("Y", forKey: IsShowTutorial)
-            dfs.synchronize()
-        }
-        else {
+//        if let showTutorial = dfs.object(forKey: IsShowTutorial) as? String {
+//            self.callTutorialVc()
+//            dfs.setValue("Y", forKey: IsShowTutorial)
+//            dfs.synchronize()
+//        }
+//        else {
             //첫째 멤버에 id가 있으면 메인으로 간다.
             if let userId = dfs.object(forKey: kUserId) as? String {
                 self.callMainVc()
@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.callLgoinSelectVc()
                 }
             }
-        }
+//        }
         
         return true
     }

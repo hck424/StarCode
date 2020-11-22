@@ -24,7 +24,7 @@ class CNavigationBar: UINavigationBar {
         button.tintColor = UIColor.label
         if let info = info as? String {
             if showBackImg {
-                button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+                button.setImage(UIImage(named: "ic_arrow_back"), for: .normal)
                 button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
             }
             button.setTitle(info, for: .normal)
@@ -39,7 +39,7 @@ class CNavigationBar: UINavigationBar {
         }
         else if let info = info as? NSAttributedString {
             if showBackImg {
-                button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+                button.setImage(UIImage(named: "ic_arrow_back"), for: .normal)
                 button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
             }
             

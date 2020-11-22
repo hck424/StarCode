@@ -21,12 +21,14 @@ class TalkWriteViewController: BaseViewController {
     @IBOutlet weak var btnAddPhoto: CButton!
     @IBOutlet weak var btnRegist: UIButton!
     
-    
+    let arrCategory = ["연예", "패션", "헤어", "픽!쳐톡", "화장법", "다이어트"]
+    var selCategory = "화장법"
     override func viewDidLoad() {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "글 등록", #selector(actionPopViewCtrl))
         CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
+        tfCategory.text = selCategory
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,12 +46,9 @@ class TalkWriteViewController: BaseViewController {
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnAddPhoto {
             let list = ["갤러리에서 사진 가져오기", "카메라로 사진 촬영하기"]
-            let vc = PopupViewController.init(type: .list, data: list, keys: nil) { (vcs, selData, index) in
-                
-                vcs.dismiss(animated: true, completion: nil)
-                guard let selData = selData else {
-                    return
-                }
+            let vc = PopupViewController.init(type: .list, data: list)
+            vc.didSelectRowAtItem = {(vcs, selData, index) ->Void in
+                vcs.dismiss(animated: false, completion: nil)
                 if index == 0 {
                     self.showCamera(.photoLibrary)
                 }
@@ -57,23 +56,18 @@ class TalkWriteViewController: BaseViewController {
                     self.showCamera(.camera)
                 }
             }
-            
-            vc.modalPresentationStyle = .overFullScreen
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
+            self.present(vc, animated: false, completion: nil)
         }
         else if sender == btnCategory {
-            let popList = ["연예", "패션", "헤어", "픽!쳐톡", "화장법", "다이어트"];
-            let vc = PopupViewController.init(type: .list, data: popList, keys: nil) { (vcs, selData, index) in
-                vcs.dismiss(animated: true, completion: nil)
+            let vc = PopupViewController.init(type: .list, data: arrCategory)
+            vc.didSelectRowAtItem = {(vcs, selData, index) ->Void in
+                vcs.dismiss(animated: false, completion: nil)
                 guard let selData = selData as? String else {
                     return
                 }
                 self.tfCategory.text = selData
+                self.selCategory = selData
             }
-
-            vc.modalPresentationStyle = .overFullScreen
-            vc.modalTransitionStyle = .crossDissolve
             self.present(vc, animated: false, completion: nil)
         }
     }

@@ -8,22 +8,39 @@
 import UIKit
 
 class MyPickHistoryDetailViewController: BaseViewController {
-
+    @IBOutlet weak var lbEmpty: UILabel!
+    
+    @IBOutlet weak var tblView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        CNavigationBar.drawBackButton(self, "내 픽", #selector(actionPopViewCtrl))
+        self.addRightNaviMyChuButton()
+        
+        self.requestMyPickHistoryDetail()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func requestMyPickHistoryDetail() {
+        self.tblView.reloadData()
     }
-    */
+    
+}
 
+extension MyPickHistoryDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: "MyQnaCell") as? MyQnaCell
+        if cell == nil {
+            cell = Bundle.main.loadNibNamed("MyQnaCell", owner: self, options: nil)?.first as? MyQnaCell
+        }
+        cell?.configurationData(nil, .type5, indexPath.row)
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }

@@ -45,10 +45,12 @@ class LoginViewController: BaseViewController {
             sender.isSelected = !sender.isSelected
         }
         else if sender == btnFindId {
-            
+            let vc = MrInfoModifyViewController.init(type: .findId)
+            self.present(vc, animated: false, completion: nil)
         }
         else if sender == btnFindPw {
-            
+            let vc = MrInfoModifyViewController.init(type: .findPw)
+            self.present(vc, animated: false, completion: nil)
         }
         else if sender == btnAndroid {
             

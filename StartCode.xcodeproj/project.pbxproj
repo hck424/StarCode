@@ -9,6 +9,30 @@
 /* Begin PBXBuildFile section */
 		4D06374B2234AB30E6D326AE /* Pods_StartCodePro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E25541A2FD0246F6A6CB2C /* Pods_StartCodePro.framework */; };
 		E4F15490B769D05AC90DBD44 /* Pods_StartCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FD5E827CD27D2DE6B45490 /* Pods_StartCode.framework */; };
+		E907AA47256427E300EFFB0E /* ExpertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA45256427E300EFFB0E /* ExpertDetailViewController.swift */; };
+		E907AA48256427E300EFFB0E /* ExpertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA45256427E300EFFB0E /* ExpertDetailViewController.swift */; };
+		E907AA49256427E300EFFB0E /* ExpertDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA46256427E300EFFB0E /* ExpertDetailViewController.xib */; };
+		E907AA4A256427E300EFFB0E /* ExpertDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA46256427E300EFFB0E /* ExpertDetailViewController.xib */; };
+		E907AA4F2564A3A700EFFB0E /* ExpertImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA4D2564A3A700EFFB0E /* ExpertImageCell.swift */; };
+		E907AA502564A3A700EFFB0E /* ExpertImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA4E2564A3A700EFFB0E /* ExpertImageCell.xib */; };
+		E907AA532564A3AC00EFFB0E /* ExpertImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA4D2564A3A700EFFB0E /* ExpertImageCell.swift */; };
+		E907AA542564A3AC00EFFB0E /* ExpertImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA4E2564A3A700EFFB0E /* ExpertImageCell.xib */; };
+		E907AA592564A3E100EFFB0E /* ExpertCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA572564A3E100EFFB0E /* ExpertCommentCell.swift */; };
+		E907AA5A2564A3E100EFFB0E /* ExpertCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA572564A3E100EFFB0E /* ExpertCommentCell.swift */; };
+		E907AA5B2564A3E100EFFB0E /* ExpertCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA582564A3E100EFFB0E /* ExpertCommentCell.xib */; };
+		E907AA5C2564A3E100EFFB0E /* ExpertCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA582564A3E100EFFB0E /* ExpertCommentCell.xib */; };
+		E907AA612564A43100EFFB0E /* ExpertImgColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA5F2564A43100EFFB0E /* ExpertImgColCell.swift */; };
+		E907AA622564A43100EFFB0E /* ExpertImgColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA5F2564A43100EFFB0E /* ExpertImgColCell.swift */; };
+		E907AA632564A43100EFFB0E /* ExpertImgColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA602564A43100EFFB0E /* ExpertImgColCell.xib */; };
+		E907AA642564A43100EFFB0E /* ExpertImgColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA602564A43100EFFB0E /* ExpertImgColCell.xib */; };
+		E907AA722564E50900EFFB0E /* ExpertDailyLifeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA6F2564E50900EFFB0E /* ExpertDailyLifeListViewController.xib */; };
+		E907AA732564E50900EFFB0E /* ExpertDailyLifeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA6F2564E50900EFFB0E /* ExpertDailyLifeListViewController.xib */; };
+		E907AA792564E66F00EFFB0E /* ExpertDailyLifeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA782564E66F00EFFB0E /* ExpertDailyLifeListViewController.swift */; };
+		E907AA7E2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA7C2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.swift */; };
+		E907AA7F2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA7C2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.swift */; };
+		E907AA802564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA7D2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.xib */; };
+		E907AA812564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA7D2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.xib */; };
+		E907AA842564EC6F00EFFB0E /* ExpertDailyLifeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA782564E66F00EFFB0E /* ExpertDailyLifeListViewController.swift */; };
 		E945C487255E535200C1C334 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C486255E535200C1C334 /* Constant.swift */; };
 		E945C48E255E58D800C1C334 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C48C255E58D800C1C334 /* HomeViewController.swift */; };
 		E945C48F255E58D800C1C334 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E945C48D255E58D800C1C334 /* HomeViewController.xib */; };
@@ -58,6 +82,90 @@
 		E945C4F6255E808700C1C334 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C4F3255E808700C1C334 /* Extension.swift */; };
 		E945C4F7255E808700C1C334 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C4F4255E808700C1C334 /* SharedData.swift */; };
 		E945C4F8255E808700C1C334 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C4F4255E808700C1C334 /* SharedData.swift */; };
+		E94DFD802569EAB0009FD953 /* MrInfoModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFD7E2569EAAF009FD953 /* MrInfoModifyViewController.swift */; };
+		E94DFD812569EAB0009FD953 /* MrInfoModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFD7E2569EAAF009FD953 /* MrInfoModifyViewController.swift */; };
+		E94DFD822569EAB0009FD953 /* MrInfoModifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFD7F2569EAAF009FD953 /* MrInfoModifyViewController.xib */; };
+		E94DFD832569EAB0009FD953 /* MrInfoModifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFD7F2569EAAF009FD953 /* MrInfoModifyViewController.xib */; };
+		E94DFD88256A387B009FD953 /* TalkDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFD86256A387B009FD953 /* TalkDetailCell.swift */; };
+		E94DFD89256A387B009FD953 /* TalkDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFD86256A387B009FD953 /* TalkDetailCell.swift */; };
+		E94DFD8A256A387B009FD953 /* TalkDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFD87256A387B009FD953 /* TalkDetailCell.xib */; };
+		E94DFD8B256A387B009FD953 /* TalkDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFD87256A387B009FD953 /* TalkDetailCell.xib */; };
+		E94DFDA7256A4E02009FD953 /* MyPostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDA5256A4E02009FD953 /* MyPostListViewController.swift */; };
+		E94DFDA8256A4E02009FD953 /* MyPostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDA5256A4E02009FD953 /* MyPostListViewController.swift */; };
+		E94DFDA9256A4E02009FD953 /* MyPostListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDA6256A4E02009FD953 /* MyPostListViewController.xib */; };
+		E94DFDAA256A4E02009FD953 /* MyPostListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDA6256A4E02009FD953 /* MyPostListViewController.xib */; };
+		E94DFDAF256A4F48009FD953 /* MyQnaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDAD256A4F48009FD953 /* MyQnaCell.swift */; };
+		E94DFDB0256A4F48009FD953 /* MyQnaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDAD256A4F48009FD953 /* MyQnaCell.swift */; };
+		E94DFDB1256A4F48009FD953 /* MyQnaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDAE256A4F48009FD953 /* MyQnaCell.xib */; };
+		E94DFDB2256A4F48009FD953 /* MyQnaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDAE256A4F48009FD953 /* MyQnaCell.xib */; };
+		E94DFDD0256A5BCE009FD953 /* MyQnaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDCE256A5BCE009FD953 /* MyQnaViewController.swift */; };
+		E94DFDD1256A5BCE009FD953 /* MyQnaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDCE256A5BCE009FD953 /* MyQnaViewController.swift */; };
+		E94DFDD2256A5BCE009FD953 /* MyQnaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDCF256A5BCE009FD953 /* MyQnaViewController.xib */; };
+		E94DFDD3256A5BCE009FD953 /* MyQnaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDCF256A5BCE009FD953 /* MyQnaViewController.xib */; };
+		E94DFDD8256A6697009FD953 /* ChuHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDD6256A6697009FD953 /* ChuHistoryViewController.swift */; };
+		E94DFDD9256A6697009FD953 /* ChuHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDD6256A6697009FD953 /* ChuHistoryViewController.swift */; };
+		E94DFDDA256A6697009FD953 /* ChuHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDD7256A6697009FD953 /* ChuHistoryViewController.xib */; };
+		E94DFDDB256A6697009FD953 /* ChuHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDD7256A6697009FD953 /* ChuHistoryViewController.xib */; };
+		E94DFDE0256A6851009FD953 /* MyPickHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDDE256A6851009FD953 /* MyPickHistoryViewController.swift */; };
+		E94DFDE1256A6851009FD953 /* MyPickHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDDE256A6851009FD953 /* MyPickHistoryViewController.swift */; };
+		E94DFDE2256A6851009FD953 /* MyPickHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDDF256A6851009FD953 /* MyPickHistoryViewController.xib */; };
+		E94DFDE3256A6851009FD953 /* MyPickHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDDF256A6851009FD953 /* MyPickHistoryViewController.xib */; };
+		E94DFDE8256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDE6256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift */; };
+		E94DFDE9256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDE6256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift */; };
+		E94DFDEA256A6A6D009FD953 /* MyPickHistoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDE7256A6A6D009FD953 /* MyPickHistoryDetailViewController.xib */; };
+		E94DFDEB256A6A6D009FD953 /* MyPickHistoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDE7256A6A6D009FD953 /* MyPickHistoryDetailViewController.xib */; };
+		E94DFDF0256A6BDC009FD953 /* MyScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDEE256A6BDC009FD953 /* MyScrapViewController.swift */; };
+		E94DFDF1256A6BDC009FD953 /* MyScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDEE256A6BDC009FD953 /* MyScrapViewController.swift */; };
+		E94DFDF2256A6BDC009FD953 /* MyScrapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDEF256A6BDC009FD953 /* MyScrapViewController.xib */; };
+		E94DFDF3256A6BDC009FD953 /* MyScrapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDEF256A6BDC009FD953 /* MyScrapViewController.xib */; };
+		E94DFDF8256A6EA4009FD953 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDF6256A6EA4009FD953 /* MyInfoViewController.swift */; };
+		E94DFDF9256A6EA4009FD953 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDF6256A6EA4009FD953 /* MyInfoViewController.swift */; };
+		E94DFDFA256A6EA4009FD953 /* MyInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDF7256A6EA4009FD953 /* MyInfoViewController.xib */; };
+		E94DFDFB256A6EA4009FD953 /* MyInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDF7256A6EA4009FD953 /* MyInfoViewController.xib */; };
+		E94DFE00256A75D2009FD953 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDFE256A75D2009FD953 /* ConfigurationViewController.swift */; };
+		E94DFE01256A75D2009FD953 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFDFE256A75D2009FD953 /* ConfigurationViewController.swift */; };
+		E94DFE02256A75D2009FD953 /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDFF256A75D2009FD953 /* ConfigurationViewController.xib */; };
+		E94DFE03256A75D2009FD953 /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFDFF256A75D2009FD953 /* ConfigurationViewController.xib */; };
+		E94DFE08256A760E009FD953 /* NoticeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE06256A760E009FD953 /* NoticeListViewController.swift */; };
+		E94DFE09256A760E009FD953 /* NoticeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE06256A760E009FD953 /* NoticeListViewController.swift */; };
+		E94DFE0A256A760E009FD953 /* NoticeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE07256A760E009FD953 /* NoticeListViewController.xib */; };
+		E94DFE0B256A760E009FD953 /* NoticeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE07256A760E009FD953 /* NoticeListViewController.xib */; };
+		E94DFE10256A7624009FD953 /* ConfiguraitonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE0E256A7624009FD953 /* ConfiguraitonCell.swift */; };
+		E94DFE11256A7624009FD953 /* ConfiguraitonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE0E256A7624009FD953 /* ConfiguraitonCell.swift */; };
+		E94DFE12256A7624009FD953 /* ConfiguraitonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE0F256A7624009FD953 /* ConfiguraitonCell.xib */; };
+		E94DFE13256A7624009FD953 /* ConfiguraitonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE0F256A7624009FD953 /* ConfiguraitonCell.xib */; };
+		E94DFE17256A7979009FD953 /* TableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE16256A7979009FD953 /* TableFooterView.swift */; };
+		E94DFE18256A7979009FD953 /* TableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE16256A7979009FD953 /* TableFooterView.swift */; };
+		E94DFE1C256A798B009FD953 /* TableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE1B256A798B009FD953 /* TableFooterView.xib */; };
+		E94DFE1D256A798B009FD953 /* TableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE1B256A798B009FD953 /* TableFooterView.xib */; };
+		E94DFE22256A7AE1009FD953 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE20256A7AE1009FD953 /* NoticeCell.swift */; };
+		E94DFE23256A7AE1009FD953 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE20256A7AE1009FD953 /* NoticeCell.swift */; };
+		E94DFE24256A7AE1009FD953 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE21256A7AE1009FD953 /* NoticeCell.xib */; };
+		E94DFE25256A7AE1009FD953 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE21256A7AE1009FD953 /* NoticeCell.xib */; };
+		E94DFE2A256A7C39009FD953 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE28256A7C39009FD953 /* NoticeDetailViewController.swift */; };
+		E94DFE2B256A7C39009FD953 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE28256A7C39009FD953 /* NoticeDetailViewController.swift */; };
+		E94DFE2C256A7C39009FD953 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE29256A7C39009FD953 /* NoticeDetailViewController.xib */; };
+		E94DFE2D256A7C39009FD953 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE29256A7C39009FD953 /* NoticeDetailViewController.xib */; };
+		E94DFE32256A7F0C009FD953 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE30256A7F0C009FD953 /* EventListViewController.swift */; };
+		E94DFE33256A7F0C009FD953 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE30256A7F0C009FD953 /* EventListViewController.swift */; };
+		E94DFE34256A7F0C009FD953 /* EventListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE31256A7F0C009FD953 /* EventListViewController.xib */; };
+		E94DFE35256A7F0C009FD953 /* EventListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE31256A7F0C009FD953 /* EventListViewController.xib */; };
+		E94DFE3A256A7F50009FD953 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE38256A7F50009FD953 /* EventCell.swift */; };
+		E94DFE3B256A7F50009FD953 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE38256A7F50009FD953 /* EventCell.swift */; };
+		E94DFE3C256A7F50009FD953 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE39256A7F50009FD953 /* EventCell.xib */; };
+		E94DFE3D256A7F50009FD953 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE39256A7F50009FD953 /* EventCell.xib */; };
+		E94DFE42256A8210009FD953 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE40256A8210009FD953 /* EventDetailViewController.swift */; };
+		E94DFE43256A8210009FD953 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE40256A8210009FD953 /* EventDetailViewController.swift */; };
+		E94DFE44256A8210009FD953 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE41256A8210009FD953 /* EventDetailViewController.xib */; };
+		E94DFE45256A8210009FD953 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE41256A8210009FD953 /* EventDetailViewController.xib */; };
+		E94DFE4A256A83C8009FD953 /* ContactUsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE48256A83C8009FD953 /* ContactUsListViewController.swift */; };
+		E94DFE4B256A83C8009FD953 /* ContactUsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE48256A83C8009FD953 /* ContactUsListViewController.swift */; };
+		E94DFE4C256A83C8009FD953 /* ContactUsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE49256A83C8009FD953 /* ContactUsListViewController.xib */; };
+		E94DFE4D256A83C8009FD953 /* ContactUsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE49256A83C8009FD953 /* ContactUsListViewController.xib */; };
+		E94DFE52256A86EA009FD953 /* ContactUsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE50256A86EA009FD953 /* ContactUsDetailViewController.swift */; };
+		E94DFE53256A86EA009FD953 /* ContactUsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE50256A86EA009FD953 /* ContactUsDetailViewController.swift */; };
+		E94DFE54256A86EA009FD953 /* ContactUsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE51256A86EA009FD953 /* ContactUsDetailViewController.xib */; };
+		E94DFE55256A86EA009FD953 /* ContactUsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE51256A86EA009FD953 /* ContactUsDetailViewController.xib */; };
 		E956528D25615682000E3CE8 /* PopularPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E956528B25615682000E3CE8 /* PopularPostCell.swift */; };
 		E956528E25615682000E3CE8 /* PopularPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E956528B25615682000E3CE8 /* PopularPostCell.swift */; };
 		E956528F25615682000E3CE8 /* PopularPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E956528C25615682000E3CE8 /* PopularPostCell.xib */; };
@@ -198,6 +306,18 @@
 		81579197FF6CDD22D0197CEE /* Pods-StartCodePro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartCodePro.release.xcconfig"; path = "Target Support Files/Pods-StartCodePro/Pods-StartCodePro.release.xcconfig"; sourceTree = "<group>"; };
 		95FD5E827CD27D2DE6B45490 /* Pods_StartCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StartCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E016DB063DBA159E395D6671 /* Pods-StartCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StartCode.release.xcconfig"; path = "Target Support Files/Pods-StartCode/Pods-StartCode.release.xcconfig"; sourceTree = "<group>"; };
+		E907AA45256427E300EFFB0E /* ExpertDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertDetailViewController.swift; sourceTree = "<group>"; };
+		E907AA46256427E300EFFB0E /* ExpertDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertDetailViewController.xib; sourceTree = "<group>"; };
+		E907AA4D2564A3A700EFFB0E /* ExpertImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertImageCell.swift; sourceTree = "<group>"; };
+		E907AA4E2564A3A700EFFB0E /* ExpertImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertImageCell.xib; sourceTree = "<group>"; };
+		E907AA572564A3E100EFFB0E /* ExpertCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertCommentCell.swift; sourceTree = "<group>"; };
+		E907AA582564A3E100EFFB0E /* ExpertCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertCommentCell.xib; sourceTree = "<group>"; };
+		E907AA5F2564A43100EFFB0E /* ExpertImgColCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertImgColCell.swift; sourceTree = "<group>"; };
+		E907AA602564A43100EFFB0E /* ExpertImgColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertImgColCell.xib; sourceTree = "<group>"; };
+		E907AA6F2564E50900EFFB0E /* ExpertDailyLifeListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertDailyLifeListViewController.xib; sourceTree = "<group>"; };
+		E907AA782564E66F00EFFB0E /* ExpertDailyLifeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertDailyLifeListViewController.swift; sourceTree = "<group>"; };
+		E907AA7C2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertDailyLifeDetailViewController.swift; sourceTree = "<group>"; };
+		E907AA7D2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertDailyLifeDetailViewController.xib; sourceTree = "<group>"; };
 		E945C486255E535200C1C334 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		E945C48C255E58D800C1C334 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E945C48D255E58D800C1C334 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -222,6 +342,48 @@
 		E945C4E2255E7CF000C1C334 /* Clabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clabel.swift; sourceTree = "<group>"; };
 		E945C4F3255E808700C1C334 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E945C4F4255E808700C1C334 /* SharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		E94DFD7E2569EAAF009FD953 /* MrInfoModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrInfoModifyViewController.swift; sourceTree = "<group>"; };
+		E94DFD7F2569EAAF009FD953 /* MrInfoModifyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MrInfoModifyViewController.xib; sourceTree = "<group>"; };
+		E94DFD86256A387B009FD953 /* TalkDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkDetailCell.swift; sourceTree = "<group>"; };
+		E94DFD87256A387B009FD953 /* TalkDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkDetailCell.xib; sourceTree = "<group>"; };
+		E94DFDA5256A4E02009FD953 /* MyPostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostListViewController.swift; sourceTree = "<group>"; };
+		E94DFDA6256A4E02009FD953 /* MyPostListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostListViewController.xib; sourceTree = "<group>"; };
+		E94DFDAD256A4F48009FD953 /* MyQnaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQnaCell.swift; sourceTree = "<group>"; };
+		E94DFDAE256A4F48009FD953 /* MyQnaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQnaCell.xib; sourceTree = "<group>"; };
+		E94DFDCE256A5BCE009FD953 /* MyQnaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQnaViewController.swift; sourceTree = "<group>"; };
+		E94DFDCF256A5BCE009FD953 /* MyQnaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQnaViewController.xib; sourceTree = "<group>"; };
+		E94DFDD6256A6697009FD953 /* ChuHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuHistoryViewController.swift; sourceTree = "<group>"; };
+		E94DFDD7256A6697009FD953 /* ChuHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChuHistoryViewController.xib; sourceTree = "<group>"; };
+		E94DFDDE256A6851009FD953 /* MyPickHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPickHistoryViewController.swift; sourceTree = "<group>"; };
+		E94DFDDF256A6851009FD953 /* MyPickHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPickHistoryViewController.xib; sourceTree = "<group>"; };
+		E94DFDE6256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPickHistoryDetailViewController.swift; sourceTree = "<group>"; };
+		E94DFDE7256A6A6D009FD953 /* MyPickHistoryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPickHistoryDetailViewController.xib; sourceTree = "<group>"; };
+		E94DFDEE256A6BDC009FD953 /* MyScrapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScrapViewController.swift; sourceTree = "<group>"; };
+		E94DFDEF256A6BDC009FD953 /* MyScrapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyScrapViewController.xib; sourceTree = "<group>"; };
+		E94DFDF6256A6EA4009FD953 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		E94DFDF7256A6EA4009FD953 /* MyInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyInfoViewController.xib; sourceTree = "<group>"; };
+		E94DFDFE256A75D2009FD953 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		E94DFDFF256A75D2009FD953 /* ConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
+		E94DFE06256A760E009FD953 /* NoticeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeListViewController.swift; sourceTree = "<group>"; };
+		E94DFE07256A760E009FD953 /* NoticeListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeListViewController.xib; sourceTree = "<group>"; };
+		E94DFE0E256A7624009FD953 /* ConfiguraitonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguraitonCell.swift; sourceTree = "<group>"; };
+		E94DFE0F256A7624009FD953 /* ConfiguraitonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfiguraitonCell.xib; sourceTree = "<group>"; };
+		E94DFE16256A7979009FD953 /* TableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableFooterView.swift; sourceTree = "<group>"; };
+		E94DFE1B256A798B009FD953 /* TableFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableFooterView.xib; sourceTree = "<group>"; };
+		E94DFE20256A7AE1009FD953 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
+		E94DFE21256A7AE1009FD953 /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
+		E94DFE28256A7C39009FD953 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
+		E94DFE29256A7C39009FD953 /* NoticeDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeDetailViewController.xib; sourceTree = "<group>"; };
+		E94DFE30256A7F0C009FD953 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
+		E94DFE31256A7F0C009FD953 /* EventListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventListViewController.xib; sourceTree = "<group>"; };
+		E94DFE38256A7F50009FD953 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		E94DFE39256A7F50009FD953 /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
+		E94DFE40256A8210009FD953 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		E94DFE41256A8210009FD953 /* EventDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
+		E94DFE48256A83C8009FD953 /* ContactUsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsListViewController.swift; sourceTree = "<group>"; };
+		E94DFE49256A83C8009FD953 /* ContactUsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactUsListViewController.xib; sourceTree = "<group>"; };
+		E94DFE50256A86EA009FD953 /* ContactUsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsDetailViewController.swift; sourceTree = "<group>"; };
+		E94DFE51256A86EA009FD953 /* ContactUsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactUsDetailViewController.xib; sourceTree = "<group>"; };
 		E956528B25615682000E3CE8 /* PopularPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostCell.swift; sourceTree = "<group>"; };
 		E956528C25615682000E3CE8 /* PopularPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularPostCell.xib; sourceTree = "<group>"; };
 		E956529525615C9B000E3CE8 /* ExpertDailyLifeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertDailyLifeCell.swift; sourceTree = "<group>"; };
@@ -369,6 +531,8 @@
 				E99870492560C6320067CD44 /* MrCompleteViewController.xib */,
 				E998704E2560C7A20067CD44 /* MrPhoneAuthViewController.swift */,
 				E998704F2560C7A20067CD44 /* MrPhoneAuthViewController.xib */,
+				E94DFD7E2569EAAF009FD953 /* MrInfoModifyViewController.swift */,
+				E94DFD7F2569EAAF009FD953 /* MrInfoModifyViewController.xib */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -403,6 +567,18 @@
 			children = (
 				E945C4AE255E5ADA00C1C334 /* ExpertViewController.swift */,
 				E945C4AF255E5ADA00C1C334 /* ExpertViewController.xib */,
+				E907AA45256427E300EFFB0E /* ExpertDetailViewController.swift */,
+				E907AA46256427E300EFFB0E /* ExpertDetailViewController.xib */,
+				E907AA4D2564A3A700EFFB0E /* ExpertImageCell.swift */,
+				E907AA4E2564A3A700EFFB0E /* ExpertImageCell.xib */,
+				E907AA5F2564A43100EFFB0E /* ExpertImgColCell.swift */,
+				E907AA602564A43100EFFB0E /* ExpertImgColCell.xib */,
+				E907AA572564A3E100EFFB0E /* ExpertCommentCell.swift */,
+				E907AA582564A3E100EFFB0E /* ExpertCommentCell.xib */,
+				E907AA782564E66F00EFFB0E /* ExpertDailyLifeListViewController.swift */,
+				E907AA6F2564E50900EFFB0E /* ExpertDailyLifeListViewController.xib */,
+				E907AA7C2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.swift */,
+				E907AA7D2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.xib */,
 			);
 			name = Expert;
 			sourceTree = "<group>";
@@ -418,6 +594,8 @@
 				E982A6F3256403F10019CB09 /* TalkDetailViewController.xib */,
 				E982A6FA256404290019CB09 /* TalkDetailHeaderView.swift */,
 				E982A6FF256404300019CB09 /* TalkDetailHeaderView.xib */,
+				E94DFD86256A387B009FD953 /* TalkDetailCell.swift */,
+				E94DFD87256A387B009FD953 /* TalkDetailCell.xib */,
 				E982A70425640A210019CB09 /* TalkWriteViewController.swift */,
 				E982A70525640A210019CB09 /* TalkWriteViewController.xib */,
 			);
@@ -442,6 +620,44 @@
 				E945C4CC255E68A400C1C334 /* SettingViewController.xib */,
 				E982A71E25641B130019CB09 /* SettingCell.swift */,
 				E982A71F25641B130019CB09 /* SettingCell.xib */,
+				E94DFDA5256A4E02009FD953 /* MyPostListViewController.swift */,
+				E94DFDA6256A4E02009FD953 /* MyPostListViewController.xib */,
+				E94DFDAD256A4F48009FD953 /* MyQnaCell.swift */,
+				E94DFDAE256A4F48009FD953 /* MyQnaCell.xib */,
+				E94DFDCE256A5BCE009FD953 /* MyQnaViewController.swift */,
+				E94DFDCF256A5BCE009FD953 /* MyQnaViewController.xib */,
+				E94DFDD6256A6697009FD953 /* ChuHistoryViewController.swift */,
+				E94DFDD7256A6697009FD953 /* ChuHistoryViewController.xib */,
+				E94DFDDE256A6851009FD953 /* MyPickHistoryViewController.swift */,
+				E94DFDDF256A6851009FD953 /* MyPickHistoryViewController.xib */,
+				E94DFDE6256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift */,
+				E94DFDE7256A6A6D009FD953 /* MyPickHistoryDetailViewController.xib */,
+				E94DFDEE256A6BDC009FD953 /* MyScrapViewController.swift */,
+				E94DFDEF256A6BDC009FD953 /* MyScrapViewController.xib */,
+				E94DFDF6256A6EA4009FD953 /* MyInfoViewController.swift */,
+				E94DFDF7256A6EA4009FD953 /* MyInfoViewController.xib */,
+				E94DFDFE256A75D2009FD953 /* ConfigurationViewController.swift */,
+				E94DFDFF256A75D2009FD953 /* ConfigurationViewController.xib */,
+				E94DFE0E256A7624009FD953 /* ConfiguraitonCell.swift */,
+				E94DFE0F256A7624009FD953 /* ConfiguraitonCell.xib */,
+				E94DFE06256A760E009FD953 /* NoticeListViewController.swift */,
+				E94DFE07256A760E009FD953 /* NoticeListViewController.xib */,
+				E94DFE20256A7AE1009FD953 /* NoticeCell.swift */,
+				E94DFE21256A7AE1009FD953 /* NoticeCell.xib */,
+				E94DFE28256A7C39009FD953 /* NoticeDetailViewController.swift */,
+				E94DFE29256A7C39009FD953 /* NoticeDetailViewController.xib */,
+				E94DFE30256A7F0C009FD953 /* EventListViewController.swift */,
+				E94DFE31256A7F0C009FD953 /* EventListViewController.xib */,
+				E94DFE40256A8210009FD953 /* EventDetailViewController.swift */,
+				E94DFE41256A8210009FD953 /* EventDetailViewController.xib */,
+				E94DFE38256A7F50009FD953 /* EventCell.swift */,
+				E94DFE39256A7F50009FD953 /* EventCell.xib */,
+				E94DFE48256A83C8009FD953 /* ContactUsListViewController.swift */,
+				E94DFE49256A83C8009FD953 /* ContactUsListViewController.xib */,
+				E94DFE50256A86EA009FD953 /* ContactUsDetailViewController.swift */,
+				E94DFE51256A86EA009FD953 /* ContactUsDetailViewController.xib */,
+				E94DFE16256A7979009FD953 /* TableFooterView.swift */,
+				E94DFE1B256A798B009FD953 /* TableFooterView.xib */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -694,23 +910,35 @@
 			files = (
 				E99870512560C7A20067CD44 /* MrPhoneAuthViewController.xib in Resources */,
 				E945C4BB255E680000C1C334 /* QnaViewController.xib in Resources */,
+				E94DFE34256A7F0C009FD953 /* EventListViewController.xib in Resources */,
+				E94DFE0A256A760E009FD953 /* NoticeListViewController.xib in Resources */,
+				E94DFD8A256A387B009FD953 /* TalkDetailCell.xib in Resources */,
 				E945C4A8255E59F300C1C334 /* LoginSelectViewController.xib in Resources */,
+				E94DFDB1256A4F48009FD953 /* MyQnaCell.xib in Resources */,
+				E94DFDA9256A4E02009FD953 /* MyPostListViewController.xib in Resources */,
 				E945C496255E590200C1C334 /* LoginViewController.xib in Resources */,
 				E964053D25623C66003A4759 /* PopupCell.xib in Resources */,
 				E9640530256231F2003A4759 /* PopupViewController.xib in Resources */,
 				E982A70825640A210019CB09 /* TalkWriteViewController.xib in Resources */,
+				E907AA502564A3A700EFFB0E /* ExpertImageCell.xib in Resources */,
 				E945C4CF255E68A400C1C334 /* SettingViewController.xib in Resources */,
+				E94DFDFA256A6EA4009FD953 /* MyInfoViewController.xib in Resources */,
 				E95652C425618662000E3CE8 /* HomeSectionView.xib in Resources */,
 				E956528F25615682000E3CE8 /* PopularPostCell.xib in Resources */,
 				E95652A325616482000E3CE8 /* HomeHeaderView.xib in Resources */,
 				E982A6EE2563F6D00019CB09 /* ChuPurchaseViewController.xib in Resources */,
+				E94DFE1C256A798B009FD953 /* TableFooterView.xib in Resources */,
+				E907AA802564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.xib in Resources */,
+				E94DFE02256A75D2009FD953 /* ConfigurationViewController.xib in Resources */,
 				E95652B325617F7B000E3CE8 /* MakeupExportCell.xib in Resources */,
 				E945C4B2255E5ADA00C1C334 /* ExpertViewController.xib in Resources */,
+				E907AA722564E50900EFFB0E /* ExpertDailyLifeListViewController.xib in Resources */,
 				E99870A9256102860067CD44 /* README-OBJECTIVE-C.md in Resources */,
 				E998704B2560C6320067CD44 /* MrCompleteViewController.xib in Resources */,
 				E9626A15255F877C0080FE97 /* MrTermsViewController.xib in Resources */,
 				E945C4C5255E686A00C1C334 /* TalkListViewController.xib in Resources */,
 				E956529925615C9B000E3CE8 /* ExpertDailyLifeCell.xib in Resources */,
+				E94DFE3C256A7F50009FD953 /* EventCell.xib in Resources */,
 				E99870D9256109FE0067CD44 /* BannerCell.xib in Resources */,
 				E9988B65255E139C00D60D68 /* LaunchScreen.storyboard in Resources */,
 				E95652AB25617D40000E3CE8 /* ButtonCell.xib in Resources */,
@@ -719,17 +947,32 @@
 				E9988B99255E1CD200D60D68 /* TutorialViewController.xib in Resources */,
 				E9988B60255E139C00D60D68 /* Main.storyboard in Resources */,
 				E998A5DF2562BD3A004A09DF /* ImgPickerView.xib in Resources */,
+				E94DFE24256A7AE1009FD953 /* NoticeCell.xib in Resources */,
+				E94DFE54256A86EA009FD953 /* ContactUsDetailViewController.xib in Resources */,
 				E982A700256404300019CB09 /* TalkDetailHeaderView.xib in Resources */,
+				E94DFE44256A8210009FD953 /* EventDetailViewController.xib in Resources */,
+				E94DFE2C256A7C39009FD953 /* NoticeDetailViewController.xib in Resources */,
 				E99870A7256102860067CD44 /* LICENSE in Resources */,
+				E907AA5B2564A3E100EFFB0E /* ExpertCommentCell.xib in Resources */,
+				E907AA49256427E300EFFB0E /* ExpertDetailViewController.xib in Resources */,
 				E9988BA0255E268C00D60D68 /* InfoPro.plist in Resources */,
 				E945C48F255E58D800C1C334 /* HomeViewController.xib in Resources */,
 				E998A5BD2562A69B004A09DF /* CameraOverlayView.xib in Resources */,
 				E982A72225641B130019CB09 /* SettingCell.xib in Resources */,
+				E94DFDD2256A5BCE009FD953 /* MyQnaViewController.xib in Resources */,
+				E94DFE12256A7624009FD953 /* ConfiguraitonCell.xib in Resources */,
+				E94DFDE2256A6851009FD953 /* MyPickHistoryViewController.xib in Resources */,
+				E94DFDEA256A6A6D009FD953 /* MyPickHistoryDetailViewController.xib in Resources */,
 				E9626A34255F9AC30080FE97 /* MrJoinViewController.xib in Resources */,
 				E9626A3F255FCF4B0080FE97 /* CDatePickerView.xib in Resources */,
+				E907AA632564A43100EFFB0E /* ExpertImgColCell.xib in Resources */,
+				E94DFD822569EAB0009FD953 /* MrInfoModifyViewController.xib in Resources */,
 				E982A6F6256403F10019CB09 /* TalkDetailViewController.xib in Resources */,
 				E982A6E62563E8C80019CB09 /* TalkCell.xib in Resources */,
+				E94DFDF2256A6BDC009FD953 /* MyScrapViewController.xib in Resources */,
+				E94DFDDA256A6697009FD953 /* ChuHistoryViewController.xib in Resources */,
 				E9988BC5255E2E7200D60D68 /* GoogleService-Info.plist in Resources */,
+				E94DFE4C256A83C8009FD953 /* ContactUsListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,37 +981,64 @@
 			buildActionMask = 2147483647;
 			files = (
 				E945C497255E590200C1C334 /* LoginViewController.xib in Resources */,
+				E94DFD832569EAB0009FD953 /* MrInfoModifyViewController.xib in Resources */,
+				E94DFE13256A7624009FD953 /* ConfiguraitonCell.xib in Resources */,
 				E945C4BC255E680000C1C334 /* QnaViewController.xib in Resources */,
+				E94DFDFB256A6EA4009FD953 /* MyInfoViewController.xib in Resources */,
 				E982A70925640A210019CB09 /* TalkWriteViewController.xib in Resources */,
 				E9988B75255E194100D60D68 /* LaunchScreen.storyboard in Resources */,
 				E9988BC1255E2E6000D60D68 /* GoogleService-Info.plist in Resources */,
 				E998A5BE2562A69B004A09DF /* CameraOverlayView.xib in Resources */,
+				E94DFE1D256A798B009FD953 /* TableFooterView.xib in Resources */,
 				E945C4C6255E686A00C1C334 /* TalkListViewController.xib in Resources */,
+				E94DFDDB256A6697009FD953 /* ChuHistoryViewController.xib in Resources */,
 				E99870DA256109FE0067CD44 /* BannerCell.xib in Resources */,
 				E982A6E72563E8C80019CB09 /* TalkCell.xib in Resources */,
+				E907AA5C2564A3E100EFFB0E /* ExpertCommentCell.xib in Resources */,
+				E94DFE03256A75D2009FD953 /* ConfigurationViewController.xib in Resources */,
+				E94DFDB2256A4F48009FD953 /* MyQnaCell.xib in Resources */,
 				E956529A25615C9B000E3CE8 /* ExpertDailyLifeCell.xib in Resources */,
 				E945C4A0255E591700C1C334 /* TutorialViewController.xib in Resources */,
 				E9626A16255F877C0080FE97 /* MrTermsViewController.xib in Resources */,
+				E94DFE55256A86EA009FD953 /* ContactUsDetailViewController.xib in Resources */,
+				E907AA542564A3AC00EFFB0E /* ExpertImageCell.xib in Resources */,
 				E945C4A9255E59F300C1C334 /* LoginSelectViewController.xib in Resources */,
 				E982A72325641B130019CB09 /* SettingCell.xib in Resources */,
 				E99870A8256102860067CD44 /* LICENSE in Resources */,
+				E94DFE2D256A7C39009FD953 /* NoticeDetailViewController.xib in Resources */,
+				E94DFE0B256A760E009FD953 /* NoticeListViewController.xib in Resources */,
 				E9640534256231F8003A4759 /* PopupViewController.xib in Resources */,
 				E99870E725613B7F0067CD44 /* ExpertColCell.xib in Resources */,
 				E99870AA256102860067CD44 /* README-OBJECTIVE-C.md in Resources */,
+				E94DFE4D256A83C8009FD953 /* ContactUsListViewController.xib in Resources */,
 				E945C4D0255E68A400C1C334 /* SettingViewController.xib in Resources */,
 				E982A6F7256403F10019CB09 /* TalkDetailViewController.xib in Resources */,
+				E907AA732564E50900EFFB0E /* ExpertDailyLifeListViewController.xib in Resources */,
+				E94DFDD3256A5BCE009FD953 /* MyQnaViewController.xib in Resources */,
 				E9988B76255E194100D60D68 /* Assets.xcassets in Resources */,
+				E94DFD8B256A387B009FD953 /* TalkDetailCell.xib in Resources */,
 				E982A701256404300019CB09 /* TalkDetailHeaderView.xib in Resources */,
+				E94DFDEB256A6A6D009FD953 /* MyPickHistoryDetailViewController.xib in Resources */,
 				E9988B77255E194100D60D68 /* Main.storyboard in Resources */,
+				E94DFDAA256A4E02009FD953 /* MyPostListViewController.xib in Resources */,
 				E95652B425617F7B000E3CE8 /* MakeupExportCell.xib in Resources */,
 				E95652A425616482000E3CE8 /* HomeHeaderView.xib in Resources */,
 				E964053E25623C66003A4759 /* PopupCell.xib in Resources */,
+				E94DFE45256A8210009FD953 /* EventDetailViewController.xib in Resources */,
 				E945C49D255E590D00C1C334 /* HomeViewController.xib in Resources */,
 				E95652AC25617D40000E3CE8 /* ButtonCell.xib in Resources */,
 				E956529025615682000E3CE8 /* PopularPostCell.xib in Resources */,
+				E907AA4A256427E300EFFB0E /* ExpertDetailViewController.xib in Resources */,
+				E94DFE25256A7AE1009FD953 /* NoticeCell.xib in Resources */,
+				E94DFDF3256A6BDC009FD953 /* MyScrapViewController.xib in Resources */,
+				E907AA812564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.xib in Resources */,
+				E94DFE35256A7F0C009FD953 /* EventListViewController.xib in Resources */,
+				E907AA642564A43100EFFB0E /* ExpertImgColCell.xib in Resources */,
 				E998A5E32562BD3E004A09DF /* ImgPickerView.xib in Resources */,
 				E95652C525618662000E3CE8 /* HomeSectionView.xib in Resources */,
 				E982A6EF2563F6D00019CB09 /* ChuPurchaseViewController.xib in Resources */,
+				E94DFDE3256A6851009FD953 /* MyPickHistoryViewController.xib in Resources */,
+				E94DFE3D256A7F50009FD953 /* EventCell.xib in Resources */,
 				E945C4B3255E5ADA00C1C334 /* ExpertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -880,10 +1150,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E99870B3256102860067CD44 /* FSPageViewLayout.swift in Sources */,
+				E94DFDD8256A6697009FD953 /* ChuHistoryViewController.swift in Sources */,
 				E95652B125617F7B000E3CE8 /* MakeupExportCell.swift in Sources */,
+				E94DFDE8256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift in Sources */,
 				E945C4B0255E5ADA00C1C334 /* ExpertViewController.swift in Sources */,
+				E94DFE32256A7F0C009FD953 /* EventListViewController.swift in Sources */,
 				E9988B97255E1CD200D60D68 /* BaseNavigationController.swift in Sources */,
 				E99870502560C7A20067CD44 /* MrPhoneAuthViewController.swift in Sources */,
+				E94DFDD0256A5BCE009FD953 /* MyQnaViewController.swift in Sources */,
 				E9626A40255FCF4B0080FE97 /* CDatePickerView.swift in Sources */,
 				E945C4B9255E680000C1C334 /* QnaViewController.swift in Sources */,
 				E9626A33255F9AC30080FE97 /* MrJoinViewController.swift in Sources */,
@@ -891,6 +1165,7 @@
 				E9626A0D255F70F20080FE97 /* CToolbar.swift in Sources */,
 				E99870B1256102860067CD44 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				E945C4CD255E68A400C1C334 /* SettingViewController.swift in Sources */,
+				E94DFE00256A75D2009FD953 /* ConfigurationViewController.swift in Sources */,
 				E998704A2560C6320067CD44 /* MrCompleteViewController.swift in Sources */,
 				E945C4EB255E7CF000C1C334 /* SelectedButton.swift in Sources */,
 				E982A70625640A210019CB09 /* TalkWriteViewController.swift in Sources */,
@@ -898,20 +1173,29 @@
 				E982A6F4256403F10019CB09 /* TalkDetailViewController.swift in Sources */,
 				E964053B25623C66003A4759 /* PopupCell.swift in Sources */,
 				E9988B59255E139C00D60D68 /* AppDelegate.swift in Sources */,
+				E94DFDAF256A4F48009FD953 /* MyQnaCell.swift in Sources */,
 				E99870B9256102860067CD44 /* FSPagerCollectionView.swift in Sources */,
+				E907AA792564E66F00EFFB0E /* ExpertDailyLifeListViewController.swift in Sources */,
 				E9988B98255E1CD200D60D68 /* MainTabBarController.swift in Sources */,
 				E945C4A6255E59F300C1C334 /* LoginSelectViewController.swift in Sources */,
+				E94DFE08256A760E009FD953 /* NoticeListViewController.swift in Sources */,
 				E998A5DB2562BD2E004A09DF /* ImgPickerView.swift in Sources */,
 				E9626A39255FCF410080FE97 /* CDateFormatter.swift in Sources */,
 				E99870B7256102860067CD44 /* FSPagerViewObjcCompat.m in Sources */,
+				E94DFD802569EAB0009FD953 /* MrInfoModifyViewController.swift in Sources */,
+				E94DFDE0256A6851009FD953 /* MyPickHistoryViewController.swift in Sources */,
 				E95652A925617D40000E3CE8 /* ButtonCell.swift in Sources */,
 				E982A6E42563E8C80019CB09 /* TalkCell.swift in Sources */,
+				E94DFE17256A7979009FD953 /* TableFooterView.swift in Sources */,
 				E95652BF25618656000E3CE8 /* HomeSectionView.swift in Sources */,
+				E94DFDF8256A6EA4009FD953 /* MyInfoViewController.swift in Sources */,
 				E99870AB256102860067CD44 /* FSPagerView.swift in Sources */,
 				E998A5B92562A69B004A09DF /* CameraOverlayView.swift in Sources */,
 				E945C4E7255E7CF000C1C334 /* CButton.swift in Sources */,
 				E956529725615C9B000E3CE8 /* ExpertDailyLifeCell.swift in Sources */,
+				E94DFE10256A7624009FD953 /* ConfiguraitonCell.swift in Sources */,
 				E99870B5256102860067CD44 /* FSPageControl.swift in Sources */,
+				E907AA592564A3E100EFFB0E /* ExpertCommentCell.swift in Sources */,
 				E945C4F5255E808700C1C334 /* Extension.swift in Sources */,
 				E9988B96255E1CD200D60D68 /* TutorialViewController.swift in Sources */,
 				E99870AF256102860067CD44 /* FSPagerViewCell.swift in Sources */,
@@ -920,21 +1204,34 @@
 				E956528D25615682000E3CE8 /* PopularPostCell.swift in Sources */,
 				E945C4E3255E7CF000C1C334 /* CTextView.swift in Sources */,
 				E9626A13255F877C0080FE97 /* MrTermsViewController.swift in Sources */,
+				E907AA7E2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.swift in Sources */,
 				E964052F256231F2003A4759 /* PopupViewController.swift in Sources */,
 				E982A6FB256404290019CB09 /* TalkDetailHeaderView.swift in Sources */,
+				E94DFE22256A7AE1009FD953 /* NoticeCell.swift in Sources */,
+				E94DFDF0256A6BDC009FD953 /* MyScrapViewController.swift in Sources */,
+				E94DFD88256A387B009FD953 /* TalkDetailCell.swift in Sources */,
 				E945C4C3255E686A00C1C334 /* TalkListViewController.swift in Sources */,
 				E956529E2561647A000E3CE8 /* HomeHeaderView.swift in Sources */,
 				E99870D7256109FE0067CD44 /* BannerCell.swift in Sources */,
+				E94DFE3A256A7F50009FD953 /* EventCell.swift in Sources */,
+				E94DFE2A256A7C39009FD953 /* NoticeDetailViewController.swift in Sources */,
 				E945C4EF255E7CF000C1C334 /* Clabel.swift in Sources */,
 				E982A72025641B130019CB09 /* SettingCell.swift in Sources */,
 				E998A5BB2562A69B004A09DF /* CameraViewController.swift in Sources */,
+				E907AA4F2564A3A700EFFB0E /* ExpertImageCell.swift in Sources */,
 				E945C4E9255E7CF000C1C334 /* CNavigationBar.swift in Sources */,
+				E907AA47256427E300EFFB0E /* ExpertDetailViewController.swift in Sources */,
 				E9988B95255E1CD200D60D68 /* BaseViewController.swift in Sources */,
+				E94DFDA7256A4E02009FD953 /* MyPostListViewController.swift in Sources */,
 				E99870AD256102860067CD44 /* FSPageViewTransformer.swift in Sources */,
+				E94DFE4A256A83C8009FD953 /* ContactUsListViewController.swift in Sources */,
+				E94DFE52256A86EA009FD953 /* ContactUsDetailViewController.swift in Sources */,
 				E9626A3A255FCF410080FE97 /* DateExtension.swift in Sources */,
 				E945C4F7255E808700C1C334 /* SharedData.swift in Sources */,
 				E945C4ED255E7CF000C1C334 /* CTextField.swift in Sources */,
 				E945C48E255E58D800C1C334 /* HomeViewController.swift in Sources */,
+				E907AA612564A43100EFFB0E /* ExpertImgColCell.swift in Sources */,
+				E94DFE42256A8210009FD953 /* EventDetailViewController.swift in Sources */,
 				E945C487255E535200C1C334 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -947,34 +1244,56 @@
 				E99870D8256109FE0067CD44 /* BannerCell.swift in Sources */,
 				E95652C025618656000E3CE8 /* HomeSectionView.swift in Sources */,
 				E945C4A7255E59F300C1C334 /* LoginSelectViewController.swift in Sources */,
+				E94DFE11256A7624009FD953 /* ConfiguraitonCell.swift in Sources */,
 				E9626A0E255F70F20080FE97 /* CToolbar.swift in Sources */,
+				E94DFE2B256A7C39009FD953 /* NoticeDetailViewController.swift in Sources */,
 				E9988BCC255E2F2D00D60D68 /* BaseNavigationController.swift in Sources */,
 				E998A5BC2562A69B004A09DF /* CameraViewController.swift in Sources */,
+				E94DFE18256A7979009FD953 /* TableFooterView.swift in Sources */,
 				E964053C25623C66003A4759 /* PopupCell.swift in Sources */,
 				E945C4E8255E7CF000C1C334 /* CButton.swift in Sources */,
 				E956528E25615682000E3CE8 /* PopularPostCell.swift in Sources */,
 				E99870BA256102860067CD44 /* FSPagerCollectionView.swift in Sources */,
 				E982A6E52563E8C80019CB09 /* TalkCell.swift in Sources */,
+				E907AA48256427E300EFFB0E /* ExpertDetailViewController.swift in Sources */,
 				E945C4A1255E591700C1C334 /* TutorialViewController.swift in Sources */,
 				E998A5E22562BD3E004A09DF /* ImgPickerView.swift in Sources */,
 				E99870E525613B7F0067CD44 /* ExpertColCell.swift in Sources */,
+				E94DFDE1256A6851009FD953 /* MyPickHistoryViewController.swift in Sources */,
+				E94DFE53256A86EA009FD953 /* ContactUsDetailViewController.swift in Sources */,
+				E907AA842564EC6F00EFFB0E /* ExpertDailyLifeListViewController.swift in Sources */,
 				E95652B225617F7B000E3CE8 /* MakeupExportCell.swift in Sources */,
+				E94DFDE9256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift in Sources */,
 				E9988B72255E194100D60D68 /* AppDelegate.swift in Sources */,
 				E99870AC256102860067CD44 /* FSPagerView.swift in Sources */,
 				E982A72125641B130019CB09 /* SettingCell.swift in Sources */,
 				E956529F2561647A000E3CE8 /* HomeHeaderView.swift in Sources */,
+				E94DFDD9256A6697009FD953 /* ChuHistoryViewController.swift in Sources */,
+				E94DFE33256A7F0C009FD953 /* EventListViewController.swift in Sources */,
+				E94DFE4B256A83C8009FD953 /* ContactUsListViewController.swift in Sources */,
 				E9640533256231F8003A4759 /* PopupViewController.swift in Sources */,
+				E94DFE23256A7AE1009FD953 /* NoticeCell.swift in Sources */,
+				E94DFE09256A760E009FD953 /* NoticeListViewController.swift in Sources */,
 				E945C4F0255E7CF000C1C334 /* Clabel.swift in Sources */,
 				E9626A14255F877C0080FE97 /* MrTermsViewController.swift in Sources */,
 				E982A6FC256404290019CB09 /* TalkDetailHeaderView.swift in Sources */,
+				E94DFD812569EAB0009FD953 /* MrInfoModifyViewController.swift in Sources */,
+				E907AA7F2564EC6500EFFB0E /* ExpertDailyLifeDetailViewController.swift in Sources */,
+				E94DFDF1256A6BDC009FD953 /* MyScrapViewController.swift in Sources */,
 				E9988BCA255E2F2D00D60D68 /* BaseViewController.swift in Sources */,
+				E94DFDD1256A5BCE009FD953 /* MyQnaViewController.swift in Sources */,
 				E945C4E4255E7CF000C1C334 /* CTextView.swift in Sources */,
+				E94DFD89256A387B009FD953 /* TalkDetailCell.swift in Sources */,
 				E99870B6256102860067CD44 /* FSPageControl.swift in Sources */,
 				E945C4EE255E7CF000C1C334 /* CTextField.swift in Sources */,
 				E945C4EA255E7CF000C1C334 /* CNavigationBar.swift in Sources */,
 				E99870B0256102860067CD44 /* FSPagerViewCell.swift in Sources */,
+				E94DFDA8256A4E02009FD953 /* MyPostListViewController.swift in Sources */,
+				E94DFDB0256A4F48009FD953 /* MyQnaCell.swift in Sources */,
 				E945C4E6255E7CF000C1C334 /* CView.swift in Sources */,
+				E907AA622564A43100EFFB0E /* ExpertImgColCell.swift in Sources */,
 				E945C495255E590200C1C334 /* LoginViewController.swift in Sources */,
+				E94DFE43256A8210009FD953 /* EventDetailViewController.swift in Sources */,
 				E9988BCB255E2F2D00D60D68 /* MainTabBarController.swift in Sources */,
 				E945C4B1255E5ADA00C1C334 /* ExpertViewController.swift in Sources */,
 				E99870AE256102860067CD44 /* FSPageViewTransformer.swift in Sources */,
@@ -982,13 +1301,18 @@
 				E99870B4256102860067CD44 /* FSPageViewLayout.swift in Sources */,
 				E945C4F8255E808700C1C334 /* SharedData.swift in Sources */,
 				E956529825615C9B000E3CE8 /* ExpertDailyLifeCell.swift in Sources */,
+				E94DFE3B256A7F50009FD953 /* EventCell.swift in Sources */,
+				E94DFDF9256A6EA4009FD953 /* MyInfoViewController.swift in Sources */,
 				E99870B8256102860067CD44 /* FSPagerViewObjcCompat.m in Sources */,
 				E945C4F6255E808700C1C334 /* Extension.swift in Sources */,
 				E945C4C4255E686A00C1C334 /* TalkListViewController.swift in Sources */,
+				E907AA5A2564A3E100EFFB0E /* ExpertCommentCell.swift in Sources */,
+				E907AA532564A3AC00EFFB0E /* ExpertImageCell.swift in Sources */,
 				E982A6F5256403F10019CB09 /* TalkDetailViewController.swift in Sources */,
 				E982A70725640A210019CB09 /* TalkWriteViewController.swift in Sources */,
 				E982A6ED2563F6D00019CB09 /* ChuPurchaseViewController.swift in Sources */,
 				E945C4EC255E7CF000C1C334 /* SelectedButton.swift in Sources */,
+				E94DFE01256A75D2009FD953 /* ConfigurationViewController.swift in Sources */,
 				E998A5BA2562A69B004A09DF /* CameraOverlayView.swift in Sources */,
 				E945C4BA255E680000C1C334 /* QnaViewController.swift in Sources */,
 				E945C4CE255E68A400C1C334 /* SettingViewController.swift in Sources */,

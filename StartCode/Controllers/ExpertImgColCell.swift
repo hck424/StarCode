@@ -6,12 +6,19 @@
 //
 
 import UIKit
-
+enum ExpertImgCellType {
+    case expertDetail, talkDetail
+}
 class ExpertImgColCell: UICollectionViewCell {
 
+    @IBOutlet weak var ivThumb: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    func configurationData(type: ExpertImgCellType, _ url: String) {
+        if type == .expertDetail {
+            ivThumb.layer.cornerRadius = 16
+        }
+        ivThumb.image = UIImage(named: url)
+    }
 }

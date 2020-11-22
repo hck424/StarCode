@@ -9,6 +9,10 @@ import UIKit
 
 class EventCell: UITableViewCell {
 
+    @IBOutlet weak var ivThumb: UIImageView!
+    @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
+    @IBOutlet weak var btnState: CButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,7 +21,9 @@ class EventCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
+    func configurationData(_ data: [String:Any]?) {
+        
+    }
 }

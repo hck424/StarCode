@@ -169,12 +169,9 @@ class QnaViewController: BaseViewController {
         }
         else if sender == btnAddPhoto {
             let list = ["갤러리에서 사진 가져오기", "카메라로 사진 촬영하기"]
-            let vc = PopupViewController.init(type: .list, data: list, keys: nil) { (vcs, selData, index) in
-                
-                vcs.dismiss(animated: true, completion: nil)
-                guard let selData = selData else {
-                    return
-                }
+            let vc = PopupViewController.init(type: .list, data: list)
+            vc.didSelectRowAtItem = {(vcs, selData, index) ->Void in
+                vcs.dismiss(animated: false, completion: nil)
                 if index == 0 {
                     self.showCamera(.photoLibrary)
                 }
@@ -182,11 +179,7 @@ class QnaViewController: BaseViewController {
                     self.showCamera(.camera)
                 }
             }
-            
-            vc.modalPresentationStyle = .overFullScreen
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
-            
+            self.present(vc, animated: false, completion: nil)
         }
     }
     func showCamera(_ sourceType: UIImagePickerController.SourceType) {

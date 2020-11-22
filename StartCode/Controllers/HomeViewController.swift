@@ -171,31 +171,34 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let selData = selData else {
                     return
                 }
-                let hasMoney = false
+                let hasMoney = true
                 if hasMoney {
                     let list = ["메이크업 진단 받기", "뷰티고민 질문하기", "Ai 진단 받기"]
-                    let vc = PopupViewController.init(type: .list, data: list, keys: nil, completion: { (vcs, selData, index) in
-                        
+                    let vc = PopupViewController.init(type: .list, data: list, keys: nil)
+                    self.present(vc, animated: true, completion: nil)
+                    vc.didSelectRowAtItem = {(vcs, selItem, index)-> Void in
                         vcs.dismiss(animated: false, completion: nil)
-                        guard let selData = selData else {
-                            return
-                        }
-                        print(selData)
-                    })
-                    
-                    vc.modalPresentationStyle = .overFullScreen
-                    vc.modalTransitionStyle = .crossDissolve
-                    self.present(vc, animated: false, completion: nil)
+                        print(selItem)
+                    }
                 }
                 else {
-                    let vc = PopupViewController.init(type: .balance, data: ["coin": 2000]) { (vcs, selData, index) in
-                        vcs.dismiss(animated: false, completion: nil)
-                        if index == 1 { //구매하기로 가기
-                            print("coint 구매하기로 가기")
-                        }
+                    let coin = 2000
+                    let tmpStr = "ea"
+                    let coinStr = "\(coin)".addComma()
+                    let result = "\(coinStr) \(tmpStr)"
+        
+                    let attr = NSMutableAttributedString.init(string: result)
+                    attr.addAttribute(.foregroundColor, value: RGB(139, 0, 255), range: (result as NSString).range(of: coinStr))
+                    attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 24, weight: .bold), range: (result as NSString).range(of: coinStr))
+                    attr.addAttribute(.foregroundColor, value: UIColor.label, range: (result as NSString).range(of: tmpStr))
+                    attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 24, weight: .regular), range: (result as NSString).range(of: tmpStr))
+        
+                    let vc = PopupViewController.init(type: .alert, title: "잔여 CHU", message: attr)
+                    vc.addAction("CHU 구매하기", style: .ok) { (action) in
+                        vc.dismiss(animated: true, completion: nil)
+                        
+                        print("CHU 구매하기")
                     }
-                    vc.modalPresentationStyle = .overFullScreen
-                    vc.modalTransitionStyle = .crossDissolve
                     self.present(vc, animated: false, completion: nil)
                 }
             }
@@ -215,7 +218,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let selData = selData else {
                     return
                 }
-                print(selData)
+                let vc = ExpertDetailViewController.init()
+                vc.passDic = selData
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
         else if secType == .popularPost {
@@ -289,12 +294,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 let type = secInfo["sec_type"] as! SectionType
                 if type == .makeupExport {
                     print("메이크업 전문가")
+                    AppDelegate.instance()?.mainTabbarCtrl()?.selectedIndex = 1
                 }
                 else if type == .popularPost {
                     print("실시간 인기글")
+                    AppDelegate.instance()?.mainTabbarCtrl()?.selectedIndex = 3
                 }
                 else if type == .exportDailyLife {
                     print("전문가의 일상")
+                    let vc = ExpertDailyLifeListViewController.init()
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
         }
@@ -312,8 +321,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let type = secInfo["sec_type"] as! SectionType
-        if type == .popularPost || type == .exportDailyLife  {
-            print(item)
+        if type == .popularPost {
+            let vc = TalkDetailViewController.init()
+            vc.passData = item
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if type == .exportDailyLife {
+            let vc = ExpertDailyLifeDetailViewController.init()
+            vc.passData = item
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
