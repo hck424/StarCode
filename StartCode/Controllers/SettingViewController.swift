@@ -162,10 +162,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if cellId == .contactus {
-            
+            let vc = ContactUsListViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if cellId == .faq {
-            
+            let vc = FAQListViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }

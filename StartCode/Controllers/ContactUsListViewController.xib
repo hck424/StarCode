@@ -40,11 +40,15 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="72A-iO-9vm">
                     <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="5R1-hv-Wyg"/>
+                        <outlet property="delegate" destination="-1" id="z52-nd-hqX"/>
+                    </connections>
                 </tableView>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDl-3j-2Zm" customClass="CButton" customModule="StartCode" customModuleProvider="target">
                     <rect key="frame" x="20" y="802" width="374" height="40"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                    <state key="normal" title="변경하기" backgroundImage="btn_rectangle">
+                    <state key="normal" title="질문하기" backgroundImage="btn_rectangle">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -69,7 +73,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FDl-3j-2Zm" secondAttribute="bottom" constant="20" id="oWl-Im-pEk"/>
                 <constraint firstItem="72A-iO-9vm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="saP-cz-14s"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="74"/>
+            <point key="canvasLocation" x="137.68115942028987" y="73.660714285714278"/>
         </view>
     </objects>
     <resources>

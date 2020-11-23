@@ -15,12 +15,24 @@ class ContactUsListViewController: BaseViewController {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "고객센터", #selector(actionPopViewCtrl))
         self.addRightNaviMyChuButton()
+      
+        let footerView = Bundle.main.loadNibNamed("TableFooterView", owner: nil, options: nil)?.first as! TableFooterView
+        footerView.frame = CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: 200)
+        self.tblView.tableFooterView = footerView
+        
+        self.requestContactUsList()
+    }
+    
+    func requestContactUsList() {
+        self.tblView.reloadData()
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        
+        if sender == btnWrtite {
+            let vc = ContactWriteViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    
 }
 
 extension ContactUsListViewController: UITableViewDelegate, UITableViewDataSource {
