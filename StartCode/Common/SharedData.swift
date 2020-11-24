@@ -30,13 +30,13 @@ class SharedData: NSObject {
 //        }
 //        return token
 //    }
-    class func objectForKey(key: String)-> Any? {
+    class func objectForKey(_ key: String)-> Any? {
         guard let object = UserDefaults.standard.object(forKey: key) else {
             return nil
         }
         return object
     }
-    class func setObjectForKey(key: String?, value: Any?) {
+    class func setObjectForKey(_ value: Any?, _ key: String?) {
         guard let key = key, let value = value else {
             return
         }
@@ -44,7 +44,7 @@ class SharedData: NSObject {
         UserDefaults.standard.synchronize()
     }
     
-    class func removeObjectForKey(key: String) {
+    class func removeObjectForKey(_ key: String) {
         UserDefaults.standard.removeObject(forKey: key)
         UserDefaults.standard.synchronize()
     }

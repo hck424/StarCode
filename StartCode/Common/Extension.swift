@@ -76,7 +76,7 @@ extension UIView {
     }
     
     func startAnimation(raduis: CGFloat) {
-        let imageName = "ico_loading"
+        let imageName = "ic_loading"
 
         let indicator = viewWithTag(TAG_LOADING_IMG) as? UIImageView
         if indicator != nil {

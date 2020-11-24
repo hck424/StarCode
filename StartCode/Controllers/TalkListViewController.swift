@@ -25,7 +25,7 @@ class TalkListViewController: BaseViewController {
     var selCategory = "화장법"
     override func viewDidLoad() {
         super.viewDidLoad()
-        CNavigationBar.drawBackButton(self, "전문가", false, nil)
+        CNavigationBar.drawBackButton(self, "커뮤니티", false, nil)
         CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
         
         tfSearch.inputAccessoryView = accoryView

@@ -36,11 +36,9 @@ class MakeupExportCell: UITableViewCell {
         layout.minimumInteritemSpacing = 0
         
         self.collectionVeiw.collectionViewLayout = layout
-        guard let arrData = arrData else {
-            return
+        DispatchQueue.main.async {
+            self.collectionVeiw.reloadData()
         }
-        
-        self.collectionVeiw.reloadData()
     }
 }
 
@@ -56,7 +54,7 @@ extension MakeupExportCell:UICollectionViewDelegate, UICollectionViewDataSource 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExpertColCell", for: indexPath) as! ExpertColCell
         
-        if let arrData = arrData, let item = arrData[indexPath.section] as?[String:Any] {
+        if let arrData = arrData, let item = arrData[indexPath.row] as?[String:Any] {
             cell.configurationData(item)
         }
         return cell

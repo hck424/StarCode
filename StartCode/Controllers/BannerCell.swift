@@ -27,7 +27,6 @@ class BannerCell: UICollectionViewCell {
         self.shadowView.layer.shadowOffset = CGSize(width: 3, height: 3)
         self.shadowView.layer.shadowOpacity = 0.75
         self.shadowView.layer.shadowOffset = .zero
-        
     }
 
     func configurationData(_ data: [String:Any]) {
@@ -37,11 +36,11 @@ class BannerCell: UICollectionViewCell {
         lbTitle.text = nil
         lbSubTitle.text = nil
         
-        if let url = data["img_url"] as? String {
-            ivThumb.image = UIImage(named: url)
+        if let thumb_url = data["thumb_url"] as? String {
+            ivThumb.setImageCache(url: thumb_url, placeholderImgName: nil)
         }
-        if let title = data["title"] as? String {
-            lbTitle.text = title
+        if let ban_title = data["ban_title"] as? String {
+            lbTitle.text = ban_title
         }
         if let sub = data["content"] as? String {
             lbSubTitle.text = sub

@@ -46,7 +46,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="textFieldEdtingChanged:" destination="-1" eventType="editingDidBegin" id="6T7-T8-Itj"/>
+                                                <action selector="textFieldEdtingChanged:" destination="-1" eventType="editingChanged" id="epw-5b-wPU"/>
                                                 <outlet property="delegate" destination="-1" id="Ha7-NV-uyT"/>
                                             </connections>
                                         </textField>

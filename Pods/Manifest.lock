@@ -100,6 +100,7 @@ PODS:
   - nanopb/decode (2.30906.0)
   - nanopb/encode (2.30906.0)
   - PromisesObjC (1.2.11)
+  - SwiftyJSON (4.3.0)
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
@@ -111,6 +112,7 @@ DEPENDENCIES:
   - Firebase/Crashlytics
   - Firebase/Messaging
   - Mantis (~> 1.4.1)
+  - SwiftyJSON (~> 4.0)
   - Toast-Swift (~> 5.0.1)
 
 SPEC REPOS:
@@ -134,6 +136,7 @@ SPEC REPOS:
     - Mantis
     - nanopb
     - PromisesObjC
+    - SwiftyJSON
     - Toast-Swift
 
 SPEC CHECKSUMS:
@@ -156,8 +159,9 @@ SPEC CHECKSUMS:
   Mantis: 294d1576cabdaacfc178c6586993abfa508f4de2
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 495796cfb1a26861e3247024f1bb3ea23e24a8de
+PODFILE CHECKSUM: 696c9cc284d13db73cbe839637622522a462c767
 
 COCOAPODS: 1.9.3

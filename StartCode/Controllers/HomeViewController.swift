@@ -14,12 +14,17 @@ class HomeViewController: BaseViewController {
    
     var listData:[Any] = []
     var arrBanner:[[String:Any]] = []
-    
+    var arrExpert:[[String:Any]] = []
+    var arrAskBtn:[[String:Any]] = []
+    var arrPopular:[[String:Any]] = []
+    var arrDailyLife:[[String:Any]] = []
     
     var headerView:HomeHeaderView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        arrAskBtn.append(["title":"전문가의 명쾌한 솔루션", "sub_title":"메이크업 진단 받기", "image_name":"btn_makeup_diag"])
+        arrAskBtn.append(["title":"뷰티 전문가의 고민해결", "sub_title":"뷰티 고민 질문하기", "image_name":"btn_main_beauty_qna"])
         
         CNavigationBar.drawBackButton(self, UIImage(named: "logo_header"), nil)
         CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
@@ -29,9 +34,9 @@ class HomeViewController: BaseViewController {
         tblView.tableHeaderView = headerView!
         tblView.tableFooterView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: 100))
         self.reqeustBannerList()
-    
-        self.requestMainData()
-        
+        self.reqeustExpertMainTop()
+        self.requestTalkListPopular()
+        self.requestTalkListExpertDailyLife()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -49,71 +54,103 @@ class HomeViewController: BaseViewController {
     func reqeustBannerList() {
         //Api 요청
         arrBanner.removeAll()
-        let item1 = ["img_url":"img_bn_example", "title":"LOVE YOUR SELF\nCAMPAIGN", "content":"자신을 사랑하기1"]
-        let item2 = ["img_url":"img_bn_example", "title":"LOVE YOUR SELF\nCAMPAIGN", "content":"자신을 사랑하기2"]
-        let item3 = ["img_url":"img_bn_example", "title":"LOVE YOUR SELF\nCAMPAIGN", "content":"자신을 사랑하기3"]
-        let item4 = ["img_url":"img_bn_example", "title":"LOVE YOUR SELF\nCAMPAIGN", "content":"자신을 사랑하기4"]
-        arrBanner.append(item1)
-        arrBanner.append(item2)
-        arrBanner.append(item3)
-        arrBanner.append(item4)
-        
-        self.tblView.reloadData {
-            self.headerView?.configurationData(self.arrBanner)
+        let param = ["akey":akey]
+        ApiManager.shared.requestAdvertisement(param: param) { (response) in
+            if let response = response,
+               let banner = response["banner"] as?[String:Any],
+               let list = banner["list"] as? Array<[String:Any]>,
+               list.count > 0 {
+                self.arrBanner.append(contentsOf: list)
+                self.tblView.reloadData {
+                    self.headerView?.configurationData(self.arrBanner)
+                }
+            }
+        } failure: { (error) in
+            self.showErrorAlertView(error)
         }
     }
-    
-    func requestMainData() {
-        self.listData = []
-        self.makeSectionData()
+    func reqeustExpertMainTop() {
+        arrExpert.removeAll()
+        let param:[String:Any] = ["akey":akey, "page":1, "per_page":5]
+        ApiManager.shared.requestExpertMainTop(param: param) { (response) in
+            guard let response = response else {
+                return
+            }
+            
+            if let data1 = response["data1"] as? [String:Any], let list = data1["list"] as? Array<[String:Any]>, list.isEmpty == false {
+                self.arrExpert.append(contentsOf: list)
+            }
+            if let data2 = response["data2"] as? [String:Any], let list = data2["list"] as? Array<[String:Any]>, list.isEmpty == false {
+                self.arrExpert.append(contentsOf: list)
+            }
+            
+            self.makeSectionData()
+            
+        } failure: { (error) in
+            self.showErrorAlertView(error)
+        }
     }
-    
+    func requestTalkListPopular() {
+        var param:[String:Any] = ["page":1, "per_page":10, "findex":"desc"]
+        if let token = SharedData.instance.pToken {
+            param["token"] = token
+        }
+        arrPopular.removeAll()
+        ApiManager.shared.requestTalkList(param: param) { (response) in
+            guard let response = response else {
+                return
+            }
+            if let data = response["data"] as? [String:Any], let list = data["list"] as? Array<[String:Any]>, list.isEmpty == false {
+                self.arrPopular = list
+            }
+            self.makeSectionData()
+        } failure: { (error) in
+            self.showErrorAlertView(error)
+        }
+    }
+    func requestTalkListExpertDailyLife() {
+        var param:[String:Any] = ["page":1, "per_page":10, "findex":"post_like"]
+        if let token = SharedData.instance.pToken {
+            param["token"] = token
+        }
+        ApiManager.shared.requestTalkList(param: param) { (response) in
+            guard let response = response else {
+                return
+            }
+            if let data = response["data"] as? [String:Any], let list = data["list"] as? Array<[String:Any]>, list.isEmpty == false {
+                self.arrDailyLife = list
+            }
+            self.makeSectionData()
+        } failure: { (error) in
+            self.showErrorAlertView(error)
+        }
+    }
     func makeSectionData() {
         if appType == .user {
             //버튼
-            var list = [["title":"전문가의 명쾌한 솔루션", "sub_title":"메이크업 진단 받기", "image_name":"btn_makeup_diag"],
-                        ["title":"뷰티 전문가의 고민해결", "sub_title":"뷰티 고민 질문하기", "image_name":"btn_main_beauty_qna"]]
+            listData.removeAll()
             
-            var section: [String : Any] = ["sec_title":"", "sec_type":SectionType.button, "sec_list":list]
-            
+            let section: [String : Any] = ["sec_title":"", "sec_type":SectionType.button, "sec_list":arrAskBtn]
             listData.append(section)
-            
-            //전문가
-            list.removeAll()
-            section.removeAll()
-            let item = ["img_url":"img_bn_example", "title":"LOVE YOUR SELF\nCAMPAIGN", "content":"자신을 사랑하기1"]
-            for _ in 0..<20 {
-                list.append(item)
+
+            if arrExpert.isEmpty == false {
+                let section:[String : Any] = ["sec_title":"메이크업 전문가", "sec_type":SectionType.makeupExport, "sec_list":arrExpert]
+                listData.append(section)
             }
-            
-            section = ["sec_title":"메이크업 전문가", "sec_type":SectionType.makeupExport, "sec_list":list]
-            listData.append(section)
-            
-            list.removeAll()
-            section.removeAll()
-            for _ in 0..<20 {
-                list.append(item)
+
+            if arrPopular.isEmpty == false {
+                let section = ["sec_title":"실시간 인기글", "sec_type":SectionType.popularPost, "sec_list":arrPopular] as [String : Any]
+                listData.append(section)
             }
+
+            let list = [["title":"Skin Cosmetic", "sub_title":"블라인드 테스트 테스터 모집", "image_name":"img_main_ad"]]
+            let adSection = ["sec_title":"", "sec_type":SectionType.ad, "sec_list":list] as [String : Any]
+            listData.append(adSection)
             
-            section = ["sec_title":"실시간 인기글", "sec_type":SectionType.popularPost, "sec_list":list]
-            listData.append(section)
-            
-            list.removeAll()
-            section.removeAll()
-            list = [["title":"Skin Cosmetic", "sub_title":"블라인드 테스트 테스터 모집", "image_name":"img_main_ad"]]
-            
-            section = ["sec_title":"", "sec_type":SectionType.ad, "sec_list":list]
-            listData.append(section)
-            
-            list.removeAll()
-            section.removeAll()
-            for _ in 0..<15 {
-                list.append(item)
+            if arrDailyLife.isEmpty == false {
+                let section = ["sec_title":"전문가 일상", "sec_type":SectionType.exportDailyLife, "sec_list":arrDailyLife] as [String : Any]
+                listData.append(section)
             }
-            
-            section = ["sec_title":"전문가 일상", "sec_type":SectionType.exportDailyLife, "sec_list":list]
-            listData.append(section)
-            
             
             self.tblView.reloadData {
                 self.tblView.reloadData()

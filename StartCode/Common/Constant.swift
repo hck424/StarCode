@@ -12,11 +12,14 @@ enum AppType {
     case user, expert
 }
 
+let baseUrl = "https://api.ohguohgu.com/api"
+let akey = "5XpADsQTqF8hXqnekIKpyKamGUNdui1p"
+
 #if Cust
-let baseUrl = "Dev base url"
+let hostUrl = "/v1"
 let appType:AppType = .user
 #else
-let baseUrl = "Pro base url"
+let hostUrl = "/a1"
 let appType:AppType = .expert
 #endif
 
@@ -32,8 +35,8 @@ let ColorAppDefault = RGB(139, 0, 255)
 let IsShowTutorial = "IsShowTutorial"
 let kJoinType = "JoinType"
 let kUserId = "UserId"
-
-
+let kPushSetting = "PushSetting"
+let kPushUserData = "PushUserData"
 enum SectionType {
     case button
     case makeupExport
@@ -44,3 +47,5 @@ enum SectionType {
     case makeupDiagnosis
     case beautyQna
 }
+
+

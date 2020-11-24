@@ -178,6 +178,10 @@
 		E94DFE5B256A8AC5009FD953 /* ContactWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94DFE58256A8AC5009FD953 /* ContactWriteViewController.swift */; };
 		E94DFE5C256A8AC5009FD953 /* ContactWriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE59256A8AC5009FD953 /* ContactWriteViewController.xib */; };
 		E94DFE5D256A8AC5009FD953 /* ContactWriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94DFE59256A8AC5009FD953 /* ContactWriteViewController.xib */; };
+		E953B331256B48C700BA77B5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953B330256B48C700BA77B5 /* NetworkManager.swift */; };
+		E953B332256B48C700BA77B5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953B330256B48C700BA77B5 /* NetworkManager.swift */; };
+		E953B338256B48DD00BA77B5 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953B337256B48DD00BA77B5 /* ApiManager.swift */; };
+		E953B339256B48DD00BA77B5 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953B337256B48DD00BA77B5 /* ApiManager.swift */; };
 		E956528D25615682000E3CE8 /* PopularPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E956528B25615682000E3CE8 /* PopularPostCell.swift */; };
 		E956528E25615682000E3CE8 /* PopularPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E956528B25615682000E3CE8 /* PopularPostCell.swift */; };
 		E956528F25615682000E3CE8 /* PopularPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E956528C25615682000E3CE8 /* PopularPostCell.xib */; };
@@ -402,6 +406,8 @@
 		E94DFE51256A86EA009FD953 /* ContactUsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactUsDetailViewController.xib; sourceTree = "<group>"; };
 		E94DFE58256A8AC5009FD953 /* ContactWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactWriteViewController.swift; sourceTree = "<group>"; };
 		E94DFE59256A8AC5009FD953 /* ContactWriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactWriteViewController.xib; sourceTree = "<group>"; };
+		E953B330256B48C700BA77B5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E953B337256B48DD00BA77B5 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		E956528B25615682000E3CE8 /* PopularPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostCell.swift; sourceTree = "<group>"; };
 		E956528C25615682000E3CE8 /* PopularPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularPostCell.xib; sourceTree = "<group>"; };
 		E956529525615C9B000E3CE8 /* ExpertDailyLifeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertDailyLifeCell.swift; sourceTree = "<group>"; };
@@ -743,6 +749,8 @@
 			isa = PBXGroup;
 			children = (
 				E9988B58255E139C00D60D68 /* AppDelegate.swift */,
+				E953B330256B48C700BA77B5 /* NetworkManager.swift */,
+				E953B337256B48DD00BA77B5 /* ApiManager.swift */,
 				E9988B61255E139C00D60D68 /* Assets.xcassets */,
 				E9988B8C255E1BC700D60D68 /* Views */,
 				E9988B8D255E1BDC00D60D68 /* Common */,
@@ -1182,7 +1190,9 @@
 				E99870B3256102860067CD44 /* FSPageViewLayout.swift in Sources */,
 				E94DFDD8256A6697009FD953 /* ChuHistoryViewController.swift in Sources */,
 				E95652B125617F7B000E3CE8 /* MakeupExportCell.swift in Sources */,
+				E953B338256B48DD00BA77B5 /* ApiManager.swift in Sources */,
 				E94DFDE8256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift in Sources */,
+				E953B331256B48C700BA77B5 /* NetworkManager.swift in Sources */,
 				E945C4B0255E5ADA00C1C334 /* ExpertViewController.swift in Sources */,
 				E94DFE32256A7F0C009FD953 /* EventListViewController.swift in Sources */,
 				E9988B97255E1CD200D60D68 /* BaseNavigationController.swift in Sources */,
@@ -1273,6 +1283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E953B332256B48C700BA77B5 /* NetworkManager.swift in Sources */,
 				E99870B2256102860067CD44 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				E99870D8256109FE0067CD44 /* BannerCell.swift in Sources */,
 				E95652C025618656000E3CE8 /* HomeSectionView.swift in Sources */,
@@ -1326,6 +1337,7 @@
 				E94DFDA8256A4E02009FD953 /* MyPostListViewController.swift in Sources */,
 				E94DFDB0256A4F48009FD953 /* MyQnaCell.swift in Sources */,
 				E945C4E6255E7CF000C1C334 /* CView.swift in Sources */,
+				E953B339256B48DD00BA77B5 /* ApiManager.swift in Sources */,
 				E907AA622564A43100EFFB0E /* ExpertImgColCell.swift in Sources */,
 				E945C495255E590200C1C334 /* LoginViewController.swift in Sources */,
 				E94DFE43256A8210009FD953 /* EventDetailViewController.swift in Sources */,

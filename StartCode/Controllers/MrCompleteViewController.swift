@@ -22,7 +22,7 @@ class MrCompleteViewController: BaseViewController {
         }
         else if sender == btnOk {
             //save user 정보 및
-            SharedData.setObjectForKey(key: kUserId, value: "TEEST")
+            SharedData.setObjectForKey("TEST", kUserId)
             AppDelegate.instance()?.callMainVc()
         }
     }

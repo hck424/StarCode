@@ -8,7 +8,6 @@
 import UIKit
 
 class PopularPostCell: UITableViewCell {
-    @IBOutlet weak var btnCell: UIButton!
     @IBOutlet weak var btnBest: CButton!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var heightTitle: NSLayoutConstraint!
@@ -27,12 +26,12 @@ class PopularPostCell: UITableViewCell {
     
     func configurationData(_ data: [String:Any]) {
         self.data = data
+        
+        lbTitle.text = ""
+        if let title = data["post_title"] as? String {
+            lbTitle.text = title
+        }
         let height = lbTitle.sizeThatFits(CGSize(width: lbTitle.bounds.width, height: CGFloat.greatestFiniteMagnitude)).height
         heightTitle.constant = height
     }
-    
-    @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        self.didSelectedClosure?(data, 0)
-    }
-
 }
