@@ -11,7 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MrPhoneAuthViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
+                <outlet property="btnAuth" destination="gaL-Q3-G9t" id="EY0-iV-dg6"/>
+                <outlet property="btnAuthComfirm" destination="o3F-1S-mXK" id="32h-8C-iqN"/>
                 <outlet property="btnOk" destination="0QL-sc-1Yx" id="0vl-uV-6yP"/>
+                <outlet property="lbHitAuthNum" destination="qlx-ks-caz" id="3q1-f5-o2g"/>
+                <outlet property="lbHitPhone" destination="xyv-xM-n7P" id="zmh-GI-Dv3"/>
+                <outlet property="tfAuthNumber" destination="xQK-aX-jYI" id="7uy-nb-BgR"/>
+                <outlet property="tfPhone" destination="dGw-V2-zLA" id="Db4-KE-UfM"/>
                 <outlet property="view" destination="KOL-M6-8bH" id="XzG-5l-OV5"/>
             </connections>
         </placeholder>
@@ -20,23 +26,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_res_cert" translatesAutoresizingMaskIntoConstraints="NO" id="gMd-ha-8oN">
-                    <rect key="frame" x="177" y="303" width="60" height="90"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴대전화 인증을 진행해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBL-p5-nIW">
-                    <rect key="frame" x="110.5" y="433" width="193" height="20"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfk-F4-eli">
-                    <rect key="frame" x="67" y="461" width="280" height="29"/>
-                    <string key="text">고객님의 회원가입여부 확인 및 명의도용을 예방하기 위해서
-본인 인증절차를 시행하고있습니다.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QL-sc-1Yx">
                     <rect key="frame" x="20" y="802" width="374" height="40"/>
                     <constraints>
@@ -44,27 +33,183 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="휴대폰 인증" backgroundImage="btn_rectangle"/>
+                    <connections>
+                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="wrv-A9-71x"/>
+                    </connections>
                 </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5OE-IY-IJG">
+                    <rect key="frame" x="0.0" y="44" width="414" height="211"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DN3-nC-oge">
+                            <rect key="frame" x="20" y="30" width="374" height="80.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴대폰 번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3S-by-fLJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ktP-8K-xJ4">
+                                    <rect key="frame" x="0.0" y="14.5" width="374" height="45"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="휴대폰 번호를 입력하세요" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dGw-V2-zLA" customClass="CTextField" customModule="StartCode" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="324" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="ghN-Ti-OYE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetTB">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetLR">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="textFiledViewEdtingChanged:" destination="-1" eventType="editingChanged" id="MnN-YF-bCb"/>
+                                                <outlet property="delegate" destination="-1" id="JBs-5R-bzS"/>
+                                            </connections>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaL-Q3-G9t">
+                                            <rect key="frame" x="332" y="0.0" width="42" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="인증번호">
+                                                <color key="titleColor" red="0.5450980392" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="3OS-NW-IoX"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nh3-5l-YFD">
+                                    <rect key="frame" x="0.0" y="59.5" width="374" height="1"/>
+                                    <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="TMH-QH-KdP"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noO-iT-AsL">
+                                    <rect key="frame" x="0.0" y="60.5" width="374" height="20"/>
+                                    <subviews>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴대폰 형식이 아닙니다." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyv-xM-n7P">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.85098039219999999" green="0.2784313725" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="xyv-xM-n7P" secondAttribute="bottom" id="8kF-QL-Cgd"/>
+                                        <constraint firstAttribute="trailing" secondItem="xyv-xM-n7P" secondAttribute="trailing" id="KCV-vJ-RWv"/>
+                                        <constraint firstItem="xyv-xM-n7P" firstAttribute="leading" secondItem="noO-iT-AsL" secondAttribute="leading" id="Vlh-b4-Re0"/>
+                                        <constraint firstItem="xyv-xM-n7P" firstAttribute="top" secondItem="noO-iT-AsL" secondAttribute="top" id="fn4-nw-0gS"/>
+                                        <constraint firstAttribute="height" constant="20" id="vdQ-m3-OPN"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tzH-ca-8Jy">
+                            <rect key="frame" x="20" y="110.5" width="374" height="80.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인증번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMg-4E-KzW">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-cd-KgT">
+                                    <rect key="frame" x="0.0" y="14.5" width="374" height="45"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="인증번호를 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xQK-aX-jYI" customClass="CTextField" customModule="StartCode" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="4W4-HX-tEj"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetTB">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetLR">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="mW0-hK-wdE"/>
+                                            </connections>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3F-1S-mXK">
+                                            <rect key="frame" x="308" y="0.0" width="66" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="인증번호 확인">
+                                                <color key="titleColor" red="0.5450980392" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="Hvl-L4-RAD"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffG-hg-faU">
+                                    <rect key="frame" x="0.0" y="59.5" width="374" height="1"/>
+                                    <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="lkX-fk-egi"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcf-1P-X6x">
+                                    <rect key="frame" x="0.0" y="60.5" width="374" height="20"/>
+                                    <subviews>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="휴대폰 형식이 아닙니다." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlx-ks-caz">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.85098039219999999" green="0.2784313725" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="qlx-ks-caz" firstAttribute="leading" secondItem="rcf-1P-X6x" secondAttribute="leading" id="HRK-Mj-0nf"/>
+                                        <constraint firstAttribute="height" constant="20" id="OUF-W8-sb1"/>
+                                        <constraint firstAttribute="trailing" secondItem="qlx-ks-caz" secondAttribute="trailing" id="cCl-OF-drw"/>
+                                        <constraint firstAttribute="bottom" secondItem="qlx-ks-caz" secondAttribute="bottom" id="k0x-SM-Kbb"/>
+                                        <constraint firstItem="qlx-ks-caz" firstAttribute="top" secondItem="rcf-1P-X6x" secondAttribute="top" id="pHt-dV-GGd"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <edgeInsets key="layoutMargins" top="30" left="20" bottom="20" right="20"/>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="jS6-5k-lLe"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="sBL-p5-nIW" firstAttribute="top" secondItem="gMd-ha-8oN" secondAttribute="bottom" constant="40" id="50K-oW-d7h"/>
-                <constraint firstItem="Cfk-F4-eli" firstAttribute="top" secondItem="sBL-p5-nIW" secondAttribute="bottom" constant="8" id="B1L-VQ-Bx0"/>
-                <constraint firstItem="sBL-p5-nIW" firstAttribute="centerX" secondItem="jS6-5k-lLe" secondAttribute="centerX" id="Cu3-wo-yQu"/>
+                <constraint firstItem="jS6-5k-lLe" firstAttribute="trailing" secondItem="5OE-IY-IJG" secondAttribute="trailing" id="HNb-SM-VG4"/>
                 <constraint firstItem="jS6-5k-lLe" firstAttribute="bottom" secondItem="0QL-sc-1Yx" secondAttribute="bottom" constant="20" id="Jl1-4n-a8x"/>
-                <constraint firstItem="gMd-ha-8oN" firstAttribute="centerX" secondItem="KOL-M6-8bH" secondAttribute="centerX" id="Muc-xX-PRe"/>
+                <constraint firstItem="5OE-IY-IJG" firstAttribute="leading" secondItem="jS6-5k-lLe" secondAttribute="leading" id="S98-gV-PUd"/>
                 <constraint firstItem="jS6-5k-lLe" firstAttribute="trailing" secondItem="0QL-sc-1Yx" secondAttribute="trailing" constant="20" id="ZXd-OY-ZJ0"/>
-                <constraint firstItem="gMd-ha-8oN" firstAttribute="centerY" secondItem="KOL-M6-8bH" secondAttribute="centerY" constant="-100" id="noe-d3-VJT"/>
                 <constraint firstItem="0QL-sc-1Yx" firstAttribute="leading" secondItem="KOL-M6-8bH" secondAttribute="leading" constant="20" id="pLO-dr-Ycy"/>
-                <constraint firstItem="Cfk-F4-eli" firstAttribute="centerX" secondItem="jS6-5k-lLe" secondAttribute="centerX" id="u55-RL-nVT"/>
+                <constraint firstItem="5OE-IY-IJG" firstAttribute="top" secondItem="jS6-5k-lLe" secondAttribute="top" id="ws9-h4-pPi"/>
             </constraints>
             <point key="canvasLocation" x="-6" y="85"/>
         </view>
     </objects>
+    <designables>
+        <designable name="dGw-V2-zLA">
+            <size key="intrinsicContentSize" width="141" height="18.5"/>
+        </designable>
+        <designable name="xQK-aX-jYI">
+            <size key="intrinsicContentSize" width="125" height="18.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="btn_rectangle" width="300" height="40"/>
-        <image name="ic_res_cert" width="60" height="90"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

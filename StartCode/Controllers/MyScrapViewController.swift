@@ -37,7 +37,7 @@ extension MyScrapViewController: UITableViewDelegate, UITableViewDataSource {
         if cell == nil {
             cell = Bundle.main.loadNibNamed("MyQnaCell", owner: self, options: nil)?.first as? MyQnaCell
         }
-        cell?.configurationData(nil, .type6, indexPath.row)
+        cell?.configurationData(nil, .type1, indexPath.row)
         
         return cell!
         

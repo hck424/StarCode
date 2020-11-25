@@ -9,6 +9,7 @@ import UIKit
 enum MrModifyType {
     case findId, findPw, modifyPw
 }
+
 class MrInfoModifyViewController: BaseViewController {
 
     @IBOutlet weak var heightContentView: NSLayoutConstraint!
@@ -20,14 +21,41 @@ class MrInfoModifyViewController: BaseViewController {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var svActions: UIStackView!
     @IBOutlet weak var bottomContainer: NSLayoutConstraint!
-    @IBOutlet weak var svField1: UIStackView!
-    @IBOutlet weak var svField2: UIStackView!
-    @IBOutlet weak var svField3: UIStackView!
+    @IBOutlet weak var btnCancel: CButton!
+    @IBOutlet weak var btnOk: CButton!
     
+    @IBOutlet weak var svPhoneNum: UIStackView!
+    @IBOutlet weak var tfPhoneNum: CTextField!
+    @IBOutlet weak var btnPhoneAuth: UIButton!
+    @IBOutlet weak var lbHintPhone: UILabel!
+    
+    @IBOutlet weak var svAuth: UIStackView!
+    @IBOutlet weak var tfAuth: CTextField!
+    @IBOutlet weak var lbHintAuth: UILabel!
+    
+    @IBOutlet weak var svEmail: UIStackView!
+    @IBOutlet weak var tfEmail: CTextField!
+    @IBOutlet weak var lbHintEmail: UILabel!
+    
+    @IBOutlet weak var svCurPw: UIStackView!
+    @IBOutlet weak var tfCurPw: CTextField!
+    @IBOutlet weak var btnCurPw: UIButton!
+    @IBOutlet weak var lbHintCurPw: UILabel!
+    
+    @IBOutlet weak var svNewPw: UIStackView!
+    @IBOutlet weak var tfNewPw: CTextField!
+    @IBOutlet weak var btnNewPw: UIButton!
+    @IBOutlet weak var lbHintNewPw: UILabel!
+    
+    @IBOutlet weak var svConfirmPw: UIStackView!
+    @IBOutlet weak var tfConfirmPw: CTextField!
+    @IBOutlet weak var btnConfirmPw: UIButton!
+    @IBOutlet weak var lbHintConfirmPw: UILabel!
     
     var type: MrModifyType = .findId
     
     let accessoryView = CToolbar.init(barItems: [.keyboardDown])
+    var authKey = ""
     
     convenience init(type:MrModifyType) {
         self.init()
@@ -41,125 +69,32 @@ class MrInfoModifyViewController: BaseViewController {
         
         containerView.layer.cornerRadius = 20
         containerView.layer.maskedCorners = CACornerMask(TL: true, TR: true, BL: false, BR: false)
+       
+        svPhoneNum.isHidden = true
+        svAuth.isHidden = true
+        svEmail.isHidden = true
+        svCurPw.isHidden = true
+        svNewPw.isHidden = true
+        svConfirmPw.isHidden = true
         
-        
-        if type == .findId || type == .findPw {
-            svField1.isHidden = false
-            svField2.isHidden = false
-            svField3.isHidden = true
+        if type == .findId {
+            svPhoneNum.isHidden = false
+            svAuth.isHidden = false
             lbTitle.text = "아이디 찾기"
-            if let lbFieldTitle = svField1.viewWithTag(100) as? UILabel {
-                lbFieldTitle.text = "휴대폰 번호"
-            }
-            if let tfField = svField1.viewWithTag(101) as? CTextField {
-                tfField.placeholder = "휴대폰번호를 입력해주세요."
-                tfField.keyboardType = .phonePad
-                tfField.delegate = self
-                tfField.inputAccessoryView = accessoryView
-            }
-            if let lbHit = svField1.viewWithTag(102) as? UILabel {
-                lbHit.text = "휴대폰번호 형식이 아닙니다."
-            }
-            if let btnAuth = svField1.viewWithTag(103) as? UIButton {
-                btnAuth.setTitle("인증번호", for: .normal)
-                btnAuth.setImage(nil, for: .normal)
-            }
-            
-            //sv2
-            if let lbFieldTitle = svField2.viewWithTag(100) as? UILabel {
-                lbFieldTitle.text = "인증번호"
-            }
-            if let lbHit = svField2.viewWithTag(102) as? UILabel {
-                lbHit.text = "00:00"
-                lbHit.textColor = UIColor.label
-            }
-            if let tfField = svField2.viewWithTag(101) as? CTextField {
-                tfField.placeholder = "인증번호를 입력해주세요."
-                tfField.keyboardType = .numberPad
-                tfField.delegate = self
-                tfField.inputAccessoryView = accessoryView
-            }
-            if let btnAuth = svField2.viewWithTag(203) as? UIButton {
-                btnAuth.isHidden = true
-            }
-            
-            if type == .findPw {
-                lbTitle.text = "비밀번호 찾기"
-                svField3.isHidden = false
-                if let lbFieldTitle = svField3.viewWithTag(100) as? UILabel {
-                    lbFieldTitle.text = "이메일"
-                }
-                if let lbHit = svField2.viewWithTag(102) as? UILabel {
-                    lbHit.text = "이메일 형식이 아닙니다."
-                }
-                if let tfField = svField3.viewWithTag(101) as? CTextField {
-                    tfField.placeholder = "이메일을 입력해주세요"
-                    tfField.delegate = self
-                    tfField.keyboardType = .emailAddress
-                    tfField.inputAccessoryView = accessoryView
-                }
-                if let btnAuth = svField3.viewWithTag(303) as? UIButton {
-                    btnAuth.isHidden = true
-                }
-            }
         }
-        else if (type == .modifyPw) {
-            svField1.isHidden = false
-            svField2.isHidden = false
-            svField3.isHidden = false
+        else if type == .findPw {
+            svPhoneNum.isHidden = false
+            svAuth.isHidden = false
+            svEmail.isHidden = false
+            lbTitle.text = "비밀번호 찾기"
+        }
+        else if type == .modifyPw {
+            svCurPw.isHidden = false
+            svNewPw.isHidden = false
+            svConfirmPw.isHidden = false
             lbTitle.text = "비밀번호 변경"
-            let imgBlindEye = UIImage(systemName: "eye.slash.fill")
-            let imgEye = UIImage(systemName: "eye.fill")
-            
-            if let lbFieldTitle = svField1.viewWithTag(100) as? UILabel {
-                lbFieldTitle.text = "현재 비밀번호"
-            }
-            if let tfField = svField1.viewWithTag(101) as? CTextField {
-                tfField.placeholder = "현재 암호를 입력해주세요."
-                tfField.keyboardType = .default
-                tfField.isSecureTextEntry = true
-                tfField.delegate = self
-                tfField.inputAccessoryView = accessoryView
-            }
-            if let lbHit = svField1.viewWithTag(102) as? UILabel {
-                lbHit.text = "암호가 틀렸습니다."
-            }
-            if let btnAuth = svField1.viewWithTag(103) as? UIButton {
-                btnAuth.setImage(imgBlindEye, for: .normal)
-                btnAuth.setImage(imgEye, for: .selected)
-                btnAuth.setTitle(nil, for: .normal)
-                btnAuth.setTitle(nil, for: .selected)
-            }
-            
-            if let lbFieldTitle = svField2.viewWithTag(100) as? UILabel {
-                lbFieldTitle.text = "새로운 비밀번호"
-            }
-            if let tfField = svField2.viewWithTag(101) as? CTextField {
-                tfField.placeholder = "새로운 암호를 입력하세요"
-                tfField.keyboardType = .default
-                tfField.isSecureTextEntry = true
-                tfField.delegate = self
-                tfField.inputAccessoryView = accessoryView
-            }
-            if let lbHit = svField2.viewWithTag(102) as? UILabel {
-                lbHit.text = "비밀번호 형식이 아닙니다.(숫자, 영문, 특수문자 조합 6자리이상)"
-            }
-            
-            
-            if let lbFieldTitle = svField3.viewWithTag(100) as? UILabel {
-                lbFieldTitle.text = "새로운 비밀번호 확인"
-            }
-            if let tfField = svField3.viewWithTag(101) as? CTextField {
-                tfField.placeholder = "새로운 암호를 다시한번 입력하세요."
-                tfField.keyboardType = .default
-                tfField.isSecureTextEntry = true
-                tfField.delegate = self
-                tfField.inputAccessoryView = accessoryView
-            }
-            if let lbHit = svField3.viewWithTag(102) as? UILabel {
-                lbHit.text = "비밀번호가 일치하지 않습니다."
-            }
         }
+        
         accessoryView.addTarget(self, selctor: #selector(actionKeybardDown))
     }
 
@@ -176,13 +111,170 @@ class MrInfoModifyViewController: BaseViewController {
     
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        self.view.endEditing(true)
-        if sender == btnClose {
+        
+        if sender == btnClose || sender == btnCancel {
+            self.view.endEditing(true)
             self.dismiss(animated: true, completion: nil)
         }
         else if sender == btnFullClose {
             self.view.endEditing(true)
         }
+        else if sender == btnPhoneAuth {
+            lbHintPhone.isHidden = true
+            guard let phone = tfPhoneNum.text, phone.isEmpty == false else {
+                lbHintPhone.isHidden = false
+                return
+            }
+            
+            var param:[String:Any] = ["akey":akey, "phone":phone]
+            if type == .findId {
+                param["map_type"] = 2
+            }
+            else if type == .findPw {
+                param["map_type"] = 3
+            }
+            
+            ApiManager.shared.requestPhoneReAuthCode(param: param) { (response) in
+                if let response = response, let code = response["code"] as? Int, code == 200 {
+                    if let key = response["key"] as? String {
+                        self.authKey = key
+                        self.btnPhoneAuth.isSelected = true
+                    }
+                }
+                else {
+                    self.showErrorAlertView(response)
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
+            }
+        }
+        else if sender == btnCurPw {
+            tfCurPw.isSecureTextEntry = sender.isSelected
+            sender.isSelected = !sender.isSelected
+        }
+        else if sender == btnNewPw {
+            tfNewPw.isSecureTextEntry = sender.isSelected
+            sender.isSelected = !sender.isSelected
+        }
+        else if sender == btnConfirmPw {
+            tfConfirmPw.isSecureTextEntry = sender.isSelected
+            sender.isSelected = !sender.isSelected
+        }
+        else if sender == btnOk {
+            if self.checkValidata() == false {
+                return
+            }
+            
+            guard let authKey = authKey as? String else {
+                return
+            }
+            self.view.endEditing(true)
+            if type == .findId || type == .findPw {
+                var param:[String:Any] = ["akey":akey, "phone":tfPhoneNum.text!, "authkey":authKey, "code":tfAuth.text!]
+                if type == .findId {
+                    param["type"] = "id"
+                }
+                else {
+                    param["type"] = "pass"
+                    param["email"] = tfEmail.text!
+                }
+                
+                ApiManager.shared.requestFindIdOrPassword(param: param) { (respnse) in
+                    if let respnse = respnse, let code = respnse["code"] as? Int, code == 200 {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    else {
+                        self.showErrorAlertView(respnse)
+                    }
+                } failure: { (error) in
+                    self.showErrorAlertView(error)
+                }
+            }
+            else if type == .modifyPw {
+                guard let curPw = tfCurPw.text else {
+                    return
+                }
+                guard let newPw = tfNewPw.text else {
+                    return
+                }
+                guard let token = SharedData.instance.pToken else {
+                    return
+                }
+                let param:[String:Any] = ["token":token, "c_password": curPw, "n_password":newPw]
+                ApiManager.shared.requestModifyPassword(param: param) { (response) in
+                    if let response = response, let code = response["code"] as? Int, code == 200, let message = response["message"] as? String{
+                        self.view.makeToast(message, duration:2.0, position:.top)
+                        self.dismiss(animated: true, completion: nil)
+                        SharedData.setObjectForKey(newPw, kMemPassword)
+                        AppDelegate.instance()?.callLoginVc()
+                    }
+                    else {
+                        self.showErrorAlertView(response)
+                    }
+                } failure: { (error) in
+                    self.showErrorAlertView(error)
+                }
+            }
+        }
+    }
+    
+    func checkValidata() ->Bool {
+        
+        var isOk = true
+        if type == .findId || type == .findPw {
+            lbHintPhone.isHidden = true
+            if let phone = tfPhoneNum.text, phone.isEmpty == true {
+                lbHintPhone.isHidden = false
+                lbHintPhone.text = "휴대폰 번호를 입력하세요."
+                isOk = false
+            }
+            else if btnPhoneAuth.isSelected == false {
+                lbHintPhone.isHidden = false
+                lbHintPhone.text = "인증요청을 해주세요."
+                isOk = false
+            }
+            
+            lbHintAuth.isHidden = false
+            if let auth = tfAuth.text, auth.isEmpty == true {
+                lbHintAuth.isHidden = false
+                isOk = false
+            }
+            
+            if type == .findPw {
+                lbHintEmail.isHidden = true
+                if let email = tfEmail.text, email.isEmpty == true {
+                    lbHintEmail.isHidden = false
+                    lbHintEmail.text = "이메일을 입력하세요."
+                    isOk = false
+                }
+                else if let email = tfEmail.text, email.validateEmail() == false {
+                    lbHintEmail.isHidden = false
+                    lbHintEmail.text = "이메일 형식이 아닙니다."
+                    isOk = false
+                }
+            }
+        }
+        else if type == .modifyPw {
+            lbHintCurPw.isHidden = true
+            lbHintNewPw.isHidden = true
+            lbHintConfirmPw.isHidden = true
+            
+            if let curPw = tfCurPw.text, curPw.isEmpty {
+                lbHintCurPw.isHidden = false
+                isOk = false
+            }
+            
+            if let newPw = tfNewPw.text, newPw.isEmpty == true {
+                lbHintNewPw.isHidden = false
+                isOk = false
+            }
+            else if let confirmPw = tfConfirmPw.text, confirmPw != tfNewPw.text! {
+                lbHintConfirmPw.isHidden = false
+                isOk = false
+            }
+        }
+        
+        return isOk
     }
     
     ///mark notificationHandler

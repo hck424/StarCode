@@ -7,7 +7,6 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 typealias ResSuccess = ([String:Any]?) -> Void
 typealias ResFailure = (Any?) -> Void
@@ -62,11 +61,11 @@ class NetworkManager: NSObject {
                         success?(result)
                     }
                     else {
-                        failure?(AppError.invalidResponseType)
+                        failure?(result)
                     }
                 }
                 else {
-                    failure?(AppError.reqeustStatusCodeOverRage)
+                    failure?(result)
                 }
                 break
             case .failure(let error as NSError?):

@@ -12,7 +12,13 @@ pod 'Firebase/Messaging'
 pod 'Toast-Swift', '~> 5.0.1'
 pod "BSImagePicker", "~> 3.1"
 pod 'Mantis', '~> 1.4.1'
-pod 'SwiftyJSON', '~> 4.0'
+pod 'PhoneNumberKit', '~> 3.3'
+pod 'ObjectMapper', '~> 3.5'
+pod 'JWTDecode', '~> 2.4'
+pod 'CryptoSwift'
+pod 'SwiftKeychainWrapper'
+
+
 end
 
 target 'StartCode' do

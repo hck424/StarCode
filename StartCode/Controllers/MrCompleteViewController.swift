@@ -13,16 +13,15 @@ class MrCompleteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "가입완료", #selector(onClickedBtnActions(_:)))
-        
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender.tag == TAG_NAVI_BACK {
             self.navigationController?.popViewController(animated: true)
+            AppDelegate.instance()?.callMainVc()
         }
         else if sender == btnOk {
             //save user 정보 및
-            SharedData.setObjectForKey("TEST", kUserId)
             AppDelegate.instance()?.callMainVc()
         }
     }

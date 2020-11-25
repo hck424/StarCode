@@ -43,7 +43,7 @@ class ApiManager: NSObject {
         }
     }
     ///회원 가입
-    func requestMemberRegist(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+    func requestMemberSignUp(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
         NetworkManager.shared.request(.post, "/sign/up", param) { (response) in
             success?(response)
         } failure: { (error) in

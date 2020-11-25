@@ -20,6 +20,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트가 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLk-iU-dcz">
+                    <rect key="frame" x="151" y="194" width="112.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JZI-bH-xfw">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -34,6 +40,8 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="JZI-bH-xfw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BSR-WV-zUO"/>
+                <constraint firstItem="yLk-iU-dcz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="150" id="CDv-3J-V2A"/>
+                <constraint firstItem="yLk-iU-dcz" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="LyX-zp-Xx8"/>
                 <constraint firstItem="JZI-bH-xfw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="MoH-27-xrG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JZI-bH-xfw" secondAttribute="trailing" id="dQ2-Ve-7Jz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JZI-bH-xfw" secondAttribute="bottom" id="iXv-L7-o1r"/>

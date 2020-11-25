@@ -20,9 +20,9 @@ class ExpertViewController: BaseViewController {
     var searchTxt:String?
     
     var page = 1
-    var totalPage = 1
+    var totalPage = NSInteger.max
     var perPage = 10
-    
+    var isRequest = false
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBgView.layer.cornerRadius = 8.0
@@ -42,40 +42,39 @@ class ExpertViewController: BaseViewController {
         tfSearch.inputAccessoryView = accessoryView
         accessoryView.addTarget(self, selctor: #selector(actionKeybardDown))
         
-        self.requestExpertList()
+        let footerH:CGFloat = 100
+        let footerView = UIView.init(frame: CGRect(x: 0, y: collectionView.bounds.height, width: collectionView.bounds.width, height: footerH))
+        footerView.backgroundColor = UIColor.clear
+        collectionView.addSubview(footerView)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: footerH, right: 0)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addKeyboardNotification()
+        self.dataReset()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.removeKeyboardNotification()
     }
     
-    func makeTestData() {
-        let item = ["name":"zzz"]
-        listData = []
-        listData.removeAll()
-        for _ in 0..<20 {
-            listData.append(item)
-        }
-    }
-    
-    func dateReset() {
-        page = 1
-        totalPage = 1
+    func dataReset() {
+        self.page = 1
+        totalPage = NSInteger.max
+        self.listOrignData.removeAll()
+        self.listData.removeAll()
+        self.collectionView.setContentOffset(CGPoint.zero, animated: false)
         self.requestExpertList()
     }
-    
     func addData() {
         self.requestExpertList()
     }
     
     func requestExpertList() {
 
-        if page > totalPage {
+        if page >= totalPage {
             return
         }
         //        akey, page:1, per_page:10, skeyword:전문가2, findx, sfield:mem_nickname
@@ -87,14 +86,13 @@ class ExpertViewController: BaseViewController {
         
         ApiManager.shared.requestExpertList(param: param) { (response) in
             if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as? Array<[String:Any]>, list.isEmpty == false {
-                
+                self.isRequest = false
                 if self.page == 1 {
                     self.listOrignData = list
                 }
                 else {
                     self.listOrignData.append(contentsOf: list)
                 }
-                self.listData.removeAll()
                 self.listData = self.listOrignData
                 if let total_rows = response["total_rows"] as? Int {
                     if (total_rows%self.perPage) == 0 {
@@ -145,12 +143,24 @@ class ExpertViewController: BaseViewController {
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnSearch {
             self.view.endEditing(true)
-            self.dateReset()
+            self.dataReset()
         }
         
     }
 }
 
+extension ExpertViewController:UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let velocityY = scrollView.panGestureRecognizer.translation(in: scrollView).y
+        let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
+        let contentH = floor(scrollView.contentSize.height*100)/100
+        
+        if velocityY < 0 && offsetY > contentH && isRequest == false {
+            isRequest = true
+            self.addData()
+        }
+    }
+}
 extension ExpertViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listData.count
@@ -177,7 +187,7 @@ extension ExpertViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension ExpertViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchTxt = textField.text
-        self.dateReset()
+        self.dataReset()
         self.view.endEditing(true)
         return true
     }

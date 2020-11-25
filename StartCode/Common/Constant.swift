@@ -16,10 +16,10 @@ let baseUrl = "https://api.ohguohgu.com/api"
 let akey = "5XpADsQTqF8hXqnekIKpyKamGUNdui1p"
 
 #if Cust
-let hostUrl = "/v1"
+let hostUrl = "/v2"
 let appType:AppType = .user
 #else
-let hostUrl = "/a1"
+let hostUrl = "/a2"
 let appType:AppType = .expert
 #endif
 
@@ -33,10 +33,43 @@ public func RGBA(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> UICo
 let ColorAppDefault = RGB(139, 0, 255)
 
 let IsShowTutorial = "IsShowTutorial"
-let kJoinType = "JoinType"
-let kUserId = "UserId"
 let kPushSetting = "PushSetting"
 let kPushUserData = "PushUserData"
+#if Cust
+let kMemPassword = "CustMemPassword"
+let kMemId = "CustMemId"
+let kMemJoinType = "CustMemJoinType"
+let kMemUserid = "CustMemUserid"
+let kMemUsername = "CustMemUsername"
+let kMemNickname = "CustMemNickname"
+let kMemPhoto = "CustMemPhoto"
+let kMemPhone = "CustMemPhone"
+let kMemIcon = "CustMemIcon"
+let kMemLevel = "CustMemLevel"
+let kMemChu = "CustMemChu"
+let kMemStar = "CustMemStar"
+let kMemHeart = "CustMemHeart"
+let kLang = "CustLang"
+let kToken = "CustToken"
+#else
+let kMemPassword = "ProMemPassword"
+let kMemId = "ProMemId"
+let kMemJoinType = "ProMemJoinType"
+let kMemUserid = "ProMemUserid"
+let kMemUsername = "ProMemUsername"
+let kMemNickname = "ProMemNickname"
+let kMemPhoto = "ProMemPhoto"
+let kMemPhone = "ProMemPhone"
+let kMemIcon = "ProMemIcon"
+let kMemLevel = "ProMemLevel"
+let kMemChu = "ProMemChu"
+let kMemStar = "ProMemStar"
+let kMemHeart = "ProMemHeart"
+let kLang = "ProLang"
+let kToken = "ProToken"
+#endif
+
+
 enum SectionType {
     case button
     case makeupExport

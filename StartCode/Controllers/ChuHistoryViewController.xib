@@ -20,6 +20,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용내역이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qU9-A2-Gd0">
+                    <rect key="frame" x="144.5" y="194" width="125" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RIf-oZ-wzg">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -37,6 +43,8 @@
                 <constraint firstItem="Nch-yf-9uJ" firstAttribute="trailing" secondItem="RIf-oZ-wzg" secondAttribute="trailing" id="U5n-L9-jRp"/>
                 <constraint firstItem="RIf-oZ-wzg" firstAttribute="top" secondItem="Nch-yf-9uJ" secondAttribute="top" id="Ufd-MT-9do"/>
                 <constraint firstItem="RIf-oZ-wzg" firstAttribute="leading" secondItem="Nch-yf-9uJ" secondAttribute="leading" id="qDu-0p-4vT"/>
+                <constraint firstItem="qU9-A2-Gd0" firstAttribute="top" secondItem="Nch-yf-9uJ" secondAttribute="top" constant="150" id="qrI-G9-QFL"/>
+                <constraint firstItem="qU9-A2-Gd0" firstAttribute="centerX" secondItem="Nch-yf-9uJ" secondAttribute="centerX" id="vMp-yb-S63"/>
             </constraints>
             <point key="canvasLocation" x="139" y="90"/>
         </view>

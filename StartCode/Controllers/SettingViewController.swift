@@ -74,13 +74,17 @@ class SettingViewController: BaseViewController {
         
         tblView.tableHeaderView = haderView
         tblView.tableFooterView = footerView
-        let userName = "장유리"
-        let result = "\(userName)님\n환영합니다."
-        let attr = NSMutableAttributedString.init(string: result)
-        attr.addAttribute(.foregroundColor, value: RGB(128, 0, 250), range: (result as NSString).range(of: userName))
-        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: lbUserName.font.pointSize, weight: .bold), range: (result as NSString).range(of: userName))
+        if let userName = SharedData.objectForKey(kMemUsername) as? String {
+            let result = "\(userName)님\n환영합니다."
+            let attr = NSMutableAttributedString.init(string: result)
+            attr.addAttribute(.foregroundColor, value: RGB(128, 0, 250), range: (result as NSString).range(of: userName))
+            attr.addAttribute(.font, value: UIFont.systemFont(ofSize: lbUserName.font.pointSize, weight: .bold), range: (result as NSString).range(of: userName))
+            lbUserName.attributedText = attr
+        }
+        else {
+            lbUserName.text = "환영합니다."
+        }
         
-        lbUserName.attributedText = attr
         self.tblView.reloadData()
     }
     
@@ -93,7 +97,19 @@ class SettingViewController: BaseViewController {
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        
+        if sender == btnLogout {
+            let vc = PopupViewController.init(type: .alert, title: "로그아웃", message: "로그아웃 하시겠습니까?")
+            vc.addAction("취소", style: .cancel) { (btn) in
+                vc.dismiss(animated: true, completion: nil)
+            }
+            vc.addAction("확인", style: .ok) { (btn) in
+                vc.dismiss(animated: true, completion: nil)
+                SharedData.removeObjectForKey(kToken)
+                SharedData.instance.pToken = nil
+                AppDelegate.instance()?.callLoginVc()
+            }
+            present(vc, animated: true, completion: nil)
+        }
     }
     
 }

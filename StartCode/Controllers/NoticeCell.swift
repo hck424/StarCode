@@ -26,12 +26,44 @@ class NoticeCell: UITableViewCell {
     }
     
     func configutaitonData(_ type: NoticeCellType, _ data: [String:Any]?) {
+        lbTitle.text = ""
+        lbDate.text = ""
+        btnState.isHidden = true
+        
+        guard let data = data else {
+            return
+        }
         
         if type == .notice {
-            btnState.isHidden = true
+            if let post_title = data["post_title"] as? String {
+                lbTitle.text = post_title
+            }
+            if let post_datetime = data["post_datetime"] as? String {
+                let df = CDateFormatter.init()
+                df.dateFormat = "yyyy-MM-dd HH.mm.ss"
+                if let date = df.date(from: post_datetime) {
+                    df.dateFormat = "yy.MM.dd HH.mm"
+                    lbDate.text = df.string(from: date)
+                }
+            }
         }
         else if type == .contactus {
-            btnState.isHidden = false
+            if let post_title = data["post_title"] as? String {
+                lbTitle.text = post_title
+            }
+            if let post_datetime = data["post_datetime"] as? String {
+                let df = CDateFormatter.init()
+                df.dateFormat = "yyyy-MM-dd HH.mm.ss"
+                if let date = df.date(from: post_datetime) {
+                    df.dateFormat = "yy.MM.dd HH.mm"
+                    lbDate.text = df.string(from: date)
+                }
+            }
+            
+            if let post_category = data["post_category"] as? String {
+                btnState.isHidden = false
+                btnState.setTitle(post_category, for: .normal)
+            }
         }
     }
 }

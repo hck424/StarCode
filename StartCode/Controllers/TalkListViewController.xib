@@ -11,9 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TalkListViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
-                <outlet property="btnBeauty" destination="Ibh-q8-0Hj" id="xBn-ln-lBe"/>
                 <outlet property="btnCategory" destination="5H0-sf-1Ms" id="pUz-TA-oD4"/>
-                <outlet property="btnMakup" destination="tNx-BV-dv0" id="b1O-Xd-qdD"/>
+                <outlet property="btnDesc" destination="Ibh-q8-0Hj" id="U1u-wr-5mY"/>
+                <outlet property="btnLike" destination="tNx-BV-dv0" id="qzd-aJ-TtA"/>
                 <outlet property="btnSearch" destination="xaV-KE-Qxm" id="kFW-UF-Qm6"/>
                 <outlet property="btnWrite" destination="4RK-Vm-AAS" id="DbG-wI-Kgh"/>
                 <outlet property="lbEmpty" destination="42G-GY-SLO" id="Kcv-gH-7Wq"/>
@@ -149,7 +149,7 @@
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="검색어를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ix-bZ-ZQF" customClass="CTextField" customModule="StartCode" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="222" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="insetTB">
                                                     <real key="value" value="3"/>
@@ -192,9 +192,10 @@
                     </subviews>
                     <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="8" right="0.0"/>
                 </stackView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ek1-4c-imH">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ek1-4c-imH">
                     <rect key="frame" x="0.0" y="152" width="414" height="710"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="tT5-FV-M55"/>
                         <outlet property="delegate" destination="-1" id="Pvl-aA-tqI"/>

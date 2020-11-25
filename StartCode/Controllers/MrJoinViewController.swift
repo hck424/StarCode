@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseMessaging
 enum JoinType {
     case normal, sns
 }
@@ -45,8 +46,19 @@ class MrJoinViewController: BaseViewController {
     var arrFocuce:[AnyObject]?
     var focuseObj: AnyObject?
     
+    var user:UserInfo?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let user = user else {
+            return
+        }
+        if user.join_type == "none" {
+            self.type = .normal
+        }
+        else {
+            self.type = .sns
+        }
         
         var tmp = "(일반)"
         var result = "회원가입 \(tmp)"
@@ -83,7 +95,6 @@ class MrJoinViewController: BaseViewController {
                 view.inputAccessoryView = accessoryView
             }
         }
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -139,7 +150,35 @@ class MrJoinViewController: BaseViewController {
             genderView.bringSubviewToFront(btnFemail)
         }
         else if sender == btnCheckId {
-            sender.isSelected = true
+            lbHintId.isHidden = true
+            guard let user = user else {
+                return
+            }
+            guard let email = tfEmail.text, email.isEmpty == false else {
+                lbHintId.text = "이메일을 입력해주세요."
+                lbHintId.isHidden = false
+                return
+            }
+            if email.validateEmail() == false {
+                lbHintId.text = "이메일을 형식이아닙니다."
+                self.lbHintId.isHidden = false
+                return
+            }
+            
+            let param:[String:Any] = ["akey":akey, "user_id":email]
+            ApiManager.shared.requestMemberIdCheck(param: param) { (response) in
+                if let response = response, let code = response["code"] as? Int, let message = response["message"] as? String  {
+                    if code == 200 {
+                        self.btnCheckId.isSelected = true
+                    }
+                    else {
+                        self.lbHintId.text = message
+                        self.lbHintId.isHidden = false
+                    }
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
+            }
         }
         else if sender == btnEyePassword {
             sender.isSelected = !sender.isSelected
@@ -150,7 +189,26 @@ class MrJoinViewController: BaseViewController {
             tfPasswordConfirm.isSecureTextEntry = !sender.isSelected
         }
         else if sender == btnCheckNickName {
-            sender.isSelected = true
+            lbHintNickName.isHidden = true
+            guard let nickName = tfNickName.text, nickName.isEmpty == false else {
+                lbHintNickName.text = "닉네임을 입력해주세요."
+                lbHintNickName.isHidden = false
+                return
+            }
+            let param:[String:Any] = ["akey":akey, "user_nickname":nickName]
+            ApiManager.shared.requestMemberNickNameCheck(param: param) { (response) in
+                if let response = response, let code = response["code"] as? Int, let message = response["message"] as? String  {
+                    if code == 200 {
+                        self.btnCheckNickName.isSelected = true
+                    }
+                    else {
+                        self.lbHintNickName.text = message
+                        self.lbHintNickName.isHidden = false
+                    }
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
+            }
         }
         else if sender == btnBirthDay {
             self.view.endEditing(true)
@@ -174,15 +232,19 @@ class MrJoinViewController: BaseViewController {
             lbHintPasswordConfirm.isHidden = true
             lbHintBirthday.isHidden = true
             
-            
             var isOk = true
             if type == .normal {
                 if tfEmail.text?.isEmpty == true || (tfEmail.text?.validateEmail() == false) {
                     isOk = false
+                    lbHintId.text = "이메일 입력해주세요."
+                    lbHintId.isHidden = false
+                }
+                else if tfEmail.text!.validateEmail() == false {
+                    isOk = false
                     lbHintId.text = "이메일 형식이 아닙니다."
                     lbHintId.isHidden = false
                 }
-                if btnCheckId.isSelected {
+                else if btnCheckId.isSelected == false {
                     lbHintId.text = "아이디 중복 체크를 해주세요."
                     lbHintId.isHidden = false
                     isOk = false
@@ -203,7 +265,7 @@ class MrJoinViewController: BaseViewController {
                     lbHintNickName.text = "닉네임을 입력해주세요."
                     isOk = false
                 }
-                if btnCheckNickName.isSelected == false {
+                else if btnCheckNickName.isSelected == false {
                     lbHintNickName.isHidden = false
                     lbHintNickName.text = "닉네임 중복 확인을 해주세요."
                     isOk = false
@@ -219,15 +281,62 @@ class MrJoinViewController: BaseViewController {
                     isOk = false
                 }
                 
+                if tvEssay.text.isEmpty == true {
+                    self.view.makeToast("소개글일 입력해주세요.")
+                    isOk = false
+                }
                 if isOk == false {
                     return
                 }
                 
                 //회원가입 진행
+                user?.mem_userid = tfEmail.text!
+                user?.mem_password = tfPassword.text!
+                user?.mem_nickname = tfNickName.text!
+                user?.mem_profile_content = tvEssay.text!
+                user?.mem_birthday = tfBirthday.text!
+                if btnMail.isSelected {
+                    user?.mem_sex = 1
+                }
+                else {
+                    user?.mem_sex = 0
+                }
+                if let token = Messaging.messaging().fcmToken {
+                    user?.push_token = token
+                }
+                user?.platform = "ios"
+                user?.mem_device_id = Utility.getUUID()
+                user?.akey = akey
                 
+                
+                SharedData.setObjectForKey(user?.mem_password!, kMemPassword)
+                
+                guard let user = user, let param = user.toJSON() as?[String:Any] else {
+                    print("object mapper convert to diction error")
+                    return
+                }
+                
+                ApiManager.shared.requestMemberSignUp(param: param) { (response) in
+                    if let response = response, let code = response["code"] as? Int {
+                        if code == 200 {
+                            guard let user = response["user"] as? [String:Any] else {
+                                return
+                            }
+                            SharedData.instance.saveUserInfo(user: user)
+                            let vc = MrCompleteViewController.init()
+                            self.navigationController?.pushViewController(vc, animated:true)
+                        }
+                        else {
+                            if let message = response["message"] as? String {
+                                self.view.makeToast(message, duration:2.0, position:.top)
+                            }
+                        }
+                    }
+                } failure: { (error) in
+                    self.showErrorAlertView(error)
+                }
             }
             else {
-                
                 if tfNickName.text?.isEmpty == true {
                     lbHintNickName.isHidden = false
                     lbHintNickName.text = "닉네임을 입력해주세요."
@@ -250,13 +359,17 @@ class MrJoinViewController: BaseViewController {
                     isOk = false
                 }
                 
+                if tvEssay.text.isEmpty == true {
+                    self.view.makeToast("소개글일 입력해주세요.")
+                    isOk = false
+                }
                 if isOk == false {
                     return
                 }
+                
+                
             }
             
-            let vc = MrCompleteViewController.init()
-            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

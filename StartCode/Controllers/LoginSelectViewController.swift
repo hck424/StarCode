@@ -45,6 +45,7 @@ class LoginSelectViewController: BaseViewController {
         }
         else if sender == btnSignIn {
             let vc = MrTermsViewController.init()
+            vc.user = UserInfo.init(JSON: ["join_type":"none"])
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -7,12 +7,15 @@
 
 import UIKit
 import Toast_Swift
-//import JWTDecode
-//import NetworkExtension
+import JWTDecode
 //import SystemConfiguration.CaptiveNetwork
-//import Lightbox
-//import Photos
+import Photos
 
+enum SessionType: String {
+    case empty = "empty"
+    case expire = "expire"
+    case valid = "valid"
+}
 
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
@@ -20,6 +23,41 @@ class BaseViewController: UIViewController {
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
  
+    
+    func checkSession(completion:@escaping(_ type:SessionType) ->Void) {
+        if let token = SharedData.instance.pToken {
+            do {
+                let jwt = try decode(jwt: token)
+                print ("=== token: \(token)")
+                print ("=== jwt expire date: \(String(describing: jwt.expiresAt))")
+                if jwt.expired {
+                    completion(.expire)
+                }
+                else {
+                    completion(.valid)
+                }
+            } catch {
+                completion(.expire)
+            }
+        }
+        else {
+            completion(.empty)
+        }
+    }
+    func showLoginPopupWithCheckSession() {
+        self.checkSession { (type) in
+            if type == .empty || type == .empty {
+                let vc = PopupViewController.init(type: .alert, title: "로그인 안내", message: "로그인 세션이 만료되었습니다.\n 다시로그인 해주세요.")
+//                vc.addAction("취소", style: .cancel, hanlder: nil)
+                vc.addAction("확인", style: .ok) { (btn) in
+                    AppDelegate.instance()?.callLoginVc()
+                }
+                self.present(vc, animated: true, completion: nil)
+                vc.btnFullClose.isUserInteractionEnabled = false
+                vc.btnClose.isHidden = true
+            }
+        }
+    }
     func addRightNaviMyChuButton() {
         CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
     }

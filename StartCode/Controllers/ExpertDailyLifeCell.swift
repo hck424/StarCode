@@ -35,7 +35,7 @@ class ExpertDailyLifeCell: UITableViewCell {
         ivProfile.image = nil
         lbName.text = nil
         lbDate.text = nil
-        lbCommentCnt.text = nil
+        lbCommentCnt.text = "0"
         
         if let thumb_url = data["thumb_url"] as? String, thumb_url.isEmpty == false {
             ivThumb.setImageCache(url: thumb_url, placeholderImgName: nil)
@@ -56,13 +56,13 @@ class ExpertDailyLifeCell: UITableViewCell {
             let df = CDateFormatter.init()
             df.dateFormat = "yyyy-MM-dd HH:mm:ss"
             if let date = df.date(from: post_updated_datetime) {
-                df.dateFormat = "yyyy.MM.dd HH:mm"
+                df.dateFormat = "yy.MM.dd HH:mm"
                 let dateStr = df.string(for: date)
                 lbDate.text = dateStr
             }
         }
         
-        if let post_comment_count = data["post_comment_count"] as? Int {
+        if let post_comment_count = data["post_comment_count"] {
             let commentStr = "\(post_comment_count)".addComma()
             lbCommentCnt.text = commentStr
         }

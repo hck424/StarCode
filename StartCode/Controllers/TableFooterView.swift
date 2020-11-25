@@ -8,6 +8,8 @@
 import UIKit
 
 class TableFooterView: UIView {
-
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
 }

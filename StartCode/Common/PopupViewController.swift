@@ -10,7 +10,7 @@ enum PopupType {
     case list, alert, textField
 }
 enum ActionStyle {
-    case normal, ok, textfild, textfieldAndButton
+    case cancel, ok, textfild, textfieldAndButton
 }
 
 typealias ActionHalder = (_ action: AnyObject) ->Void
@@ -228,7 +228,7 @@ class PopupViewController: UIViewController {
         lbHint.tag = 102
     }
     
-    func addAction(_ title: Any?, style:ActionStyle, hanlder: @escaping ActionHalder) {
+    func addAction(_ title: Any?, style:ActionStyle, hanlder: ActionHalder?) {
         self.view.layoutIfNeeded()
         
         let btn = UIButton.init(type: .custom)
@@ -236,7 +236,7 @@ class PopupViewController: UIViewController {
         btn.layer.cornerRadius = 20
         btn.clipsToBounds = true
         
-        if style == .normal {
+        if style == .cancel {
             btn.backgroundColor = RGB(232, 232, 232)
             if let title = title as? NSAttributedString {
                 btn.setAttributedTitle(title, for: .normal)
@@ -245,6 +245,7 @@ class PopupViewController: UIViewController {
                 btn.setTitle(title, for: .normal)
                 btn.setTitleColor(RGB(153, 153, 153), for: .normal)
             }
+            btn.tag = 100
         }
         else if style == .ok {
             btn.setBackgroundImage(UIImage(named: "btn_rectangle"), for: .normal)
@@ -255,13 +256,14 @@ class PopupViewController: UIViewController {
                 btn.setTitle(title, for: .normal)
                 btn.setTitleColor(UIColor.systemBackground, for: .normal)
             }
+            btn.tag = 101
+            self.actionHandler = hanlder
         }
         
         svActions.isHidden = false
         svActions.addArrangedSubview(btn)
         btn.addTarget(self, action: #selector(onClickedBtnActions(_:)), for: .touchUpInside)
         self.view.layoutIfNeeded()
-        self.actionHandler = hanlder
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
@@ -286,10 +288,11 @@ class PopupViewController: UIViewController {
                     }
                 }
             }
-            else {
-                if let actionHandler = actionHandler {
-                    actionHandler(sender)
-                }
+            else if sender.tag == 100 {
+                self.dismiss(animated: true, completion: nil)
+            }
+            else if sender.tag == 101 {
+                actionHandler?(sender)
             }
         }
     }
@@ -338,8 +341,14 @@ extension PopupViewController: UITableViewDelegate, UITableViewDataSource {
             if let item = listData[indexPath.row] as? String {
                 cell?.lbTitle.text = item
             }
-            else {
-                
+            else if let item = listData[indexPath.row] as? [String:Any], let keys = keys {
+                var result = ""
+                for key in keys {
+                    if let value = item[key] {
+                        result.append("\(value)")
+                    }
+                }
+                cell?.lbTitle.text = result
             }
         }
         

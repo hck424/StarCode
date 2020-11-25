@@ -22,32 +22,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         window = UIWindow.init(frame: UIScreen.main.bounds)
         FirebaseApp.configure()
         let dfs = UserDefaults.standard
-//        if let showTutorial = dfs.object(forKey: IsShowTutorial) as? String {
-//            self.callTutorialVc()
-//            dfs.setValue("Y", forKey: IsShowTutorial)
-//            dfs.synchronize()
-//        }
-//        else {
-            //첫째 멤버에 id가 있으면 메인으로 간다.
-            if let userId = dfs.object(forKey: kUserId) as? String {
-                self.callMainVc()
-            }
-            else {
-                if let joginType = dfs.object(forKey: kJoinType) as? String {
-                    self.callLoginVc()
-                }
-                else {
-                    self.callLgoinSelectVc()
-                }
-            }
-//        }
+        
         let pushFlag = SharedData.objectForKey(kPushSetting)
         if let _ = pushFlag {
             self.registApnsPushKey()
         }
+        SharedData.instance.pToken = SharedData.objectForKey(kToken) as? String
+        SharedData.instance.memUserId = SharedData.objectForKey(kMemUserid) as? String
+        SharedData.instance.memId = SharedData.objectForKey(kMemId) as? String
+        SharedData.instance.memJoinType = SharedData.objectForKey(kMemJoinType) as? String
+        SharedData.instance.memChu = SharedData.objectForKey(kMemChu) as? Int
+        
+//        첫째 멤버에 id가 있으면 메인으로 간다.
+        if let userId = dfs.object(forKey: kMemUserid) as? String, let token = SharedData.instance.pToken {
+            print("userid: \(userId), token: \(token)")
+            self.requestUpdateToken()
+            self.callMainVc()
+        }
+        else {
+            if let _ = dfs.object(forKey: kMemJoinType) as? String {
+                self.callLoginVc()
+            }
+            else {
+                self.callLgoinSelectVc()
+            }
+        }
+    
         return true
     }
 
@@ -73,19 +77,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = mainTabVc
         window?.makeKeyAndVisible()
     }
-    
+    func requestUpdateToken() {
+        guard let token = SharedData.objectForKey(kToken) else {
+            return
+        }
+        let param:[String:Any] = ["akey":akey, "token":token]
+        ApiManager.shared.requestUpdateToken(param: param) { (response) in
+            if let response = response, let code = response["code"] as? Int {
+                if code == 200 {
+                    guard let user = response["user"] as?[String:Any], let token = user["token"] as? String else {
+                        return
+                    }
+                    SharedData.instance.pToken = token
+                    SharedData.setObjectForKey(token, kToken)
+                }
+            }
+        } failure: { (error) in
+            
+        }
+    }
     func startIndicator() {
         DispatchQueue.main.async(execute: {
             if self.loadingView == nil {
                 self.loadingView = UIView(frame: UIScreen.main.bounds)
             }
             self.window!.addSubview(self.loadingView!)
-            self.loadingView?.tag = 1234321
+            self.loadingView?.tag = 100000
             self.loadingView?.startAnimation(raduis: 25.0)
             
             //혹시라라도 indicator 계속 돌고 있으면 강제로 제거 해준다. 10초후에
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+60) {
-                if let loadingView = AppDelegate.instance()?.window?.viewWithTag(1234321) {
+                if let loadingView = AppDelegate.instance()?.window?.viewWithTag(100000) {
                     loadingView.removeFromSuperview()
                 }
             }

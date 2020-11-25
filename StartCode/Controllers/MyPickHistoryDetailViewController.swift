@@ -35,7 +35,7 @@ extension MyPickHistoryDetailViewController: UITableViewDelegate, UITableViewDat
         if cell == nil {
             cell = Bundle.main.loadNibNamed("MyQnaCell", owner: self, options: nil)?.first as? MyQnaCell
         }
-        cell?.configurationData(nil, .type5, indexPath.row)
+        cell?.configurationData(nil, .type1, indexPath.row)
         
         return cell!
     }

@@ -29,14 +29,14 @@ extension UIViewController {
         if let data = data as? Dictionary<String, Any> {
             
             var title = "에러"
-            if let code = data["code"] as? Int {
-                title.append(":\(code)")
-            }
+//            if let code = data["code"] as? Int {
+//                title.append(" : \(code)")
+//            }
             var msg:String = ""
             if let errors = data["errors"] as? NSArray {
                 for error in errors {
                     if let error = error as?[String:Any], let message = error["message"] {
-                        msg.append("\(message)\n")
+                        msg.append("\(message)")
                     }
                 }
                 if msg.isEmpty == false {
@@ -45,19 +45,20 @@ extension UIViewController {
             }
             if msg.isEmpty == true {
                 if let message = data["msg"] as? String {
-                    msg = message
+                    msg.append("\(message)")
+                }
+                else if let message = data["message"] as? String {
+                    msg.append("\(message)")
                 }
             }
             
             if msg.isEmpty == true {
                 return
             }
-            
-//            AlertView.showWithOk(title: title, message: msg, completion: nil)
+            self.view.makeToast("\(title): \(msg)", position:.top)
         }
-        else if let error = data as? Error {
-            let msg = "\(error)"
-//            AlertView.showWithOk(title: "시스템 에러", message: msg, completion: nil)
+        else if let error = data as? NSError {
+            self.view.makeToast("\(error.localizedDescription)", position:.top)
         }
     }
 }
@@ -91,8 +92,8 @@ extension UIView {
         ivIndicator.contentMode = .scaleAspectFit
         ivIndicator.image = UIImage(named: imageName)
         addSubview(ivIndicator)
-        indicator?.layer.borderWidth = 1.0
-        indicator?.layer.borderColor = UIColor.red.cgColor
+//        indicator?.layer.borderWidth = 1.0
+//        indicator?.layer.borderColor = UIColor.red.cgColor
         ivIndicator.frame = CGRect(x: (frame.size.width - ivIndicator.frame.size.width) / 2, y: (frame.size.height - ivIndicator.frame.size.height) / 2, width: ivIndicator.frame.size.width, height: ivIndicator.frame.size.height)
 
         let rotation = CABasicAnimation(keyPath: "transform.rotation")
@@ -287,5 +288,35 @@ extension Data {
     var hexString: String {
         let hexString = map { String(format: "%02.2hhx", $0) }.joined()
         return hexString
+    }
+}
+
+extension Bundle {
+    /// 앱 이름
+    class var appName: String {
+        if let value = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String {
+            return value
+        }
+        return ""
+    }
+    /// 앱 버전 class
+    var appVersion: String {
+        if let value = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String { return value
+        }
+        return ""
+    }
+    ////// 앱 빌드 버전
+    class var appBuildVersion: String {
+        if let value = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            return value
+        }
+        return ""
+    }
+    /// 앱 번들 ID
+    class var bundleIdentifier: String {
+        if let value = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String {
+            return value
+        }
+        return ""
     }
 }

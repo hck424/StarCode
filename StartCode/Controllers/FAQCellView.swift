@@ -25,29 +25,27 @@ class FAQCellView: UIView {
         lbContent.text = ""
         lbContent.attributedText = nil
         
-//        guard let data = data else {
-//            return
+        guard let data = data else {
+            return
+        }
+        if let faq_title = data["faq_title"] as? String {
+            lbTitle.text = faq_title
+        }
+//        if let faq_datetime = data["faq_datetime"] as? String {
+//
 //        }
-        
-//        if let registdata = data["update_date"] as? String {
-//            let df = CDateFormatter.init()
-//            df.dateFormat = "yyyy.MM.dd HH:mm:ss"
-//            guard let date = df.date(from: registdata) else {
-//                return
-//            }
-//            df.dateFormat = "yyyy.MM.dd"
-//            let strDate = df.string(from: date)
-//        }
-        lbTitle.text = "자주하는질문 FAQ 타이틀 영역입니다."
-        lbContent.text = "자주하는질문 FAQ 답변 내용 영역입니다. 자주하는질문 FAQ 답변 내용 영역입니다. 자주하는질문 FAQ 답변 내용 영역입니다. 자주하는질문 FAQ 답변 내용 영역입니다."
-        
-//        if let title = data["title"] as? String {
-//            lbTitle.text = title
-//        }
-//        
-//        if let content = data["content"] as? String {
-//            lbContent.attributedText = try? NSAttributedString.init(htmlString: content)
-//        }
+        if let faq_content = data["faq_content"] as? String {
+            do {
+                let attr = try NSMutableAttributedString.init(htmlString: faq_content)
+                attr.addAttribute(.font, value: UIFont.systemFont(ofSize: lbContent.font.pointSize, weight: .regular), range: NSMakeRange(0, attr.string.length))
+                lbContent.attributedText = attr
+                lbContent.textAlignment = NSTextAlignment.justified
+            }
+            catch {
+                
+            }
+            
+        }
     }
     
     @IBAction func onClickedButtonAction(_ sender: UIButton) {
@@ -55,11 +53,9 @@ class FAQCellView: UIView {
             btnExpand.isSelected = !btnExpand.isSelected
             if btnExpand.isSelected {
                 contentView.isHidden = false
-//                lbTitle.font = UIFont.systemFont(ofSize: 18, weight: .bold)
             }
             else {
                 contentView.isHidden = true
-//                lbTitle.font = UIFont.systemFont(ofSize: 18, weight: .regular)
             }
         }
     }

@@ -18,18 +18,18 @@
                     <rect key="frame" x="0.0" y="0.0" width="449" height="171"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWn-5Q-dz4" customClass="UIButton">
-                            <rect key="frame" x="0.0" y="0.0" width="449" height="59"/>
+                            <rect key="frame" x="0.0" y="0.0" width="449" height="54"/>
                             <subviews>
                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zo-jV-TNY">
-                                    <rect key="frame" x="0.0" y="0.0" width="449" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="449" height="54"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="공지사항 제목 영역입니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLJ-2Q-ouZ">
-                                            <rect key="frame" x="20" y="16" width="375" height="27"/>
+                                            <rect key="frame" x="20" y="16" width="375" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qW-yD-5xz" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                            <rect key="frame" x="395" y="16" width="44" height="27"/>
+                                            <rect key="frame" x="395" y="16" width="44" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="44" id="WkF-O4-Jvk"/>
                                             </constraints>
@@ -55,21 +55,22 @@
                             </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNb-Di-MiV">
-                            <rect key="frame" x="0.0" y="59" width="449" height="1"/>
+                            <rect key="frame" x="0.0" y="54" width="449" height="1"/>
                             <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="999" constant="1" id="8JL-4y-d0F"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2Y-Xw-2Ds">
-                            <rect key="frame" x="0.0" y="60" width="449" height="111"/>
+                            <rect key="frame" x="0.0" y="55" width="449" height="116"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mOq-Hj-mgN">
-                                    <rect key="frame" x="0.0" y="0.0" width="449" height="111"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="x9D-1T-Zxj">
+                                    <rect key="frame" x="0.0" y="0.0" width="449" height="116"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="공지사항 내용 영역입니다. 공지사항 내용 영역입니다. 공지사항 내용 영역입니다. 공지사항 내용 영역입니다. 공지사항 내용 영역입니다. 공지사항 내용 영역입니다. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxt-p9-xFd">
-                                            <rect key="frame" x="20" y="16" width="409" height="79"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JL-UZ-OIt">
+                                            <rect key="frame" x="20" y="16" width="409" height="84"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -78,10 +79,10 @@
                             </subviews>
                             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="mOq-Hj-mgN" firstAttribute="leading" secondItem="S2Y-Xw-2Ds" secondAttribute="leading" id="Cht-OJ-rV9"/>
-                                <constraint firstAttribute="bottom" secondItem="mOq-Hj-mgN" secondAttribute="bottom" id="URm-eG-zj0"/>
-                                <constraint firstItem="mOq-Hj-mgN" firstAttribute="top" secondItem="S2Y-Xw-2Ds" secondAttribute="top" id="tRY-9Y-8gT"/>
-                                <constraint firstAttribute="trailing" secondItem="mOq-Hj-mgN" secondAttribute="trailing" id="wTl-Rj-iUu"/>
+                                <constraint firstItem="x9D-1T-Zxj" firstAttribute="top" secondItem="S2Y-Xw-2Ds" secondAttribute="top" id="BVy-xg-K0A"/>
+                                <constraint firstAttribute="bottom" secondItem="x9D-1T-Zxj" secondAttribute="bottom" id="NGK-um-F8L"/>
+                                <constraint firstAttribute="trailing" secondItem="x9D-1T-Zxj" secondAttribute="trailing" id="OBx-tz-1hL"/>
+                                <constraint firstItem="x9D-1T-Zxj" firstAttribute="leading" secondItem="S2Y-Xw-2Ds" secondAttribute="leading" id="pek-1o-Gzm"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -99,7 +100,7 @@
                 <outlet property="btnExpand" destination="7qW-yD-5xz" id="bj7-oE-1vq"/>
                 <outlet property="btnTop" destination="EWn-5Q-dz4" id="Y0Q-Jh-uAu"/>
                 <outlet property="contentView" destination="S2Y-Xw-2Ds" id="jcb-od-jVk"/>
-                <outlet property="lbContent" destination="sxt-p9-xFd" id="JuI-NY-Nb0"/>
+                <outlet property="lbContent" destination="4JL-UZ-OIt" id="7uV-Wq-PQ6"/>
                 <outlet property="lbTitle" destination="sLJ-2Q-ouZ" id="Jmt-L1-UVb"/>
             </connections>
             <point key="canvasLocation" x="88" y="18"/>

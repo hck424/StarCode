@@ -25,5 +25,36 @@ class TalkCell: UITableViewCell {
     
     func configurationData(_ data:[String:Any]?) {
         
+        lbTitle.text = nil
+        lbDate.text = nil
+        lbComentCnt.text = "0"
+        lbSubTitle.text = nil
+        btnMark.isHidden = true
+        lbSubTitle.isHidden = true
+        guard let data = data  else {
+            return
+        }
+        
+        if let post_title = data["post_title"] as? String {
+            lbTitle.text = post_title
+        }
+        if let post_category = data["post_category"] as? String {
+            lbSubTitle.isHidden = false
+            lbSubTitle.text = post_category
+        }
+        
+        if let post_updated_datetime = data["post_updated_datetime"] as? String {
+            let df = CDateFormatter.init()
+            df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            if let date = df.date(from: post_updated_datetime) {
+                df.dateFormat = "yy.MM.dd HH:mm"
+                lbDate.text = df.string(from: date)
+            }
+        }
+        
+        if let post_comment_count = data["post_comment_count"] as? Int {
+            let strCount = "\(post_comment_count)".addComma()
+            lbComentCnt.text = strCount
+        }
     }
 }

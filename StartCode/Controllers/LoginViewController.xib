@@ -17,8 +17,8 @@
                 <outlet property="btnFindId" destination="oeP-Oq-SFg" id="7mc-5d-7My"/>
                 <outlet property="btnFindPw" destination="WS0-oE-bce" id="adQ-Md-7HZ"/>
                 <outlet property="btnIos" destination="xuf-x7-h6d" id="c49-gQ-lrR"/>
-                <outlet property="btnSignIn" destination="x23-4i-hz3" id="chY-mb-Tw3"/>
-                <outlet property="btnSignUp" destination="dnT-4o-RVV" id="vaJ-Tm-vUR"/>
+                <outlet property="btnSignIn" destination="dnT-4o-RVV" id="O0b-ir-3eT"/>
+                <outlet property="btnSignUp" destination="x23-4i-hz3" id="HQb-kO-SMh"/>
                 <outlet property="lbHitId" destination="chT-oS-Xac" id="zet-jo-wah"/>
                 <outlet property="lbHitPassword" destination="5Kk-Aa-Aog" id="kK3-cz-tGI"/>
                 <outlet property="tfPassword" destination="9yB-ha-mdK" id="7PF-Lj-htm"/>
@@ -97,7 +97,7 @@
                                                                 <constraint firstAttribute="height" constant="1" id="L08-Ag-AgJ"/>
                                                             </constraints>
                                                         </view>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디가 일치하지 않습니다." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chT-oS-Xac">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일을 입력해주세요." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chT-oS-Xac">
                                                             <rect key="frame" x="0.0" y="4" width="334" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="4NX-Sp-Bve"/>
@@ -160,7 +160,7 @@
                                                                 <constraint firstAttribute="height" constant="1" id="ZLF-Wb-2F0"/>
                                                             </constraints>
                                                         </view>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호가 일치하지 않습니다." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kk-Aa-Aog">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호가 입력해주세요." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kk-Aa-Aog">
                                                             <rect key="frame" x="0.0" y="4" width="334" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="MCg-B3-YDQ"/>

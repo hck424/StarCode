@@ -18,6 +18,7 @@ class MrTermsViewController: BaseViewController {
     @IBOutlet weak var tvMaketing: CTextView!
     @IBOutlet weak var btnOk: UIButton!
     
+    var user:UserInfo?
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "약관동의", #selector(onClickedBtnActions(_:)))
@@ -67,8 +68,17 @@ class MrTermsViewController: BaseViewController {
                 self.view.makeToast("약관에 동의해주세요.")
                 return
             }
-            let vc = MrJoinViewController.init()
-            vc.type = .sns
+            
+            guard let user = user else {
+                return
+            }
+            user.mem_is_14_agree = btnFourteen.isSelected
+            user.mem_is_termsservice_agree = btnService.isSelected
+            user.mem_is_privacy_agree = btnPrivacy.isSelected
+            user.mem_is_marketing_agree = btnMarketing.isSelected
+            
+            let vc = MrPhoneAuthViewController.init()
+            vc.user = user
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

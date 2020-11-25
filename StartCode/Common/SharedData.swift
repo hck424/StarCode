@@ -6,30 +6,63 @@
 //
 
 import UIKit
-
 class SharedData: NSObject {
     static var instance = SharedData()
-
-    var pToken: String? = nil
-    var userIdx:Int = -1
-    class func getUserId() -> String? {
-        guard let userid = UserDefaults.standard.object(forKey: kUserId) as? String else {
-            return nil
+    
+    var memId: String?
+    var pToken: String?
+    var memJoinType:String?
+    var memUserId:String?
+    var memChu:Int?
+    
+    func saveUserInfo(user:[String:Any]) {
+        if let mem_id = user["mem_id"] as? String {
+            SharedData.instance.memId = mem_id
+            SharedData.setObjectForKey(mem_id, kMemId)
         }
-        return userid
+        if let mem_join_type = user["mem_join_type"] as? String {
+            SharedData.instance.memJoinType = mem_join_type
+            SharedData.setObjectForKey(mem_join_type, kMemJoinType)
+        }
+        if let mem_userid = user["mem_userid"] as? String {
+            SharedData.instance.memUserId = mem_userid
+            SharedData.setObjectForKey(mem_userid, kMemUserid)
+        }
+        if let mem_username = user["mem_username"] as? String {
+            SharedData.setObjectForKey(mem_username, kMemUsername)
+        }
+        if let mem_nickname = user["mem_nickname"] as? String {
+            SharedData.setObjectForKey(mem_nickname, kMemNickname)
+        }
+        if let mem_photo = user["mem_photo"] as? String {
+            SharedData.setObjectForKey(mem_photo, kMemPhoto)
+        }
+        if let mem_phone = user["mem_phone"] as? String {
+            SharedData.setObjectForKey(mem_phone, kMemPhone)
+        }
+        if let mem_icon = user["mem_icon"] as? String {
+            SharedData.setObjectForKey(mem_icon, kMemIcon)
+        }
+        if let mem_level = user["mem_level"] as? String {
+            SharedData.setObjectForKey(mem_level, kMemLevel)
+        }
+        if let mem_chu = user["mem_chu"] as? Int {
+            SharedData.setObjectForKey(mem_chu, kMemChu)
+        }
+        if let mem_star = user["mem_star"] as? String {
+            SharedData.setObjectForKey(mem_star, kMemStar)
+        }
+        if let mem_heart = user["mem_heart"] as? String {
+            SharedData.setObjectForKey(mem_heart, kMemHeart)
+        }
+        if let lang = user["lang"] as? String {
+            SharedData.setObjectForKey(lang, kLang)
+        }
+        if let token = user["token"] as? String {
+            SharedData.setObjectForKey(token, kToken)
+            SharedData.instance.pToken = token
+        }
     }
-//    class func getLoginType() -> String? {
-//        guard let userid = UserDefaults.standard.object(forKey: kLoginType) as? String else {
-//            return nil
-//        }
-//        return userid
-//    }
-//    class func getToken() ->String? {
-//        guard let token = UserDefaults.standard.object(forKey: kPToken) as? String else {
-//            return nil
-//        }
-//        return token
-//    }
     class func objectForKey(_ key: String)-> Any? {
         guard let object = UserDefaults.standard.object(forKey: key) else {
             return nil
@@ -43,7 +76,6 @@ class SharedData: NSObject {
         UserDefaults.standard.setValue(value, forKey: key)
         UserDefaults.standard.synchronize()
     }
-    
     class func removeObjectForKey(_ key: String) {
         UserDefaults.standard.removeObject(forKey: key)
         UserDefaults.standard.synchronize()

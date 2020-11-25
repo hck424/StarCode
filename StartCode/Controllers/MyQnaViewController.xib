@@ -25,6 +25,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트가 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzT-D3-C50">
+                    <rect key="frame" x="151" y="230" width="112.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odL-QH-t1w">
                     <rect key="frame" x="20" y="44" width="374" height="36"/>
                     <subviews>
@@ -163,11 +169,13 @@
             <constraints>
                 <constraint firstItem="KwN-hN-Qkx" firstAttribute="trailing" secondItem="dXU-wj-0wh" secondAttribute="trailing" id="7Ts-hG-Fsk"/>
                 <constraint firstItem="dXU-wj-0wh" firstAttribute="top" secondItem="odL-QH-t1w" secondAttribute="bottom" constant="8" id="9ee-dv-OkZ"/>
+                <constraint firstItem="BzT-D3-C50" firstAttribute="centerX" secondItem="KwN-hN-Qkx" secondAttribute="centerX" id="AvB-hz-kd4"/>
                 <constraint firstItem="KwN-hN-Qkx" firstAttribute="trailing" secondItem="odL-QH-t1w" secondAttribute="trailing" constant="20" id="GaZ-0v-9cV"/>
                 <constraint firstItem="dXU-wj-0wh" firstAttribute="leading" secondItem="KwN-hN-Qkx" secondAttribute="leading" id="J1B-17-hhH"/>
                 <constraint firstItem="odL-QH-t1w" firstAttribute="leading" secondItem="KwN-hN-Qkx" secondAttribute="leading" constant="20" id="Z3o-7o-D2K"/>
                 <constraint firstItem="odL-QH-t1w" firstAttribute="top" secondItem="KwN-hN-Qkx" secondAttribute="top" id="lKS-Zu-REB"/>
                 <constraint firstItem="KwN-hN-Qkx" firstAttribute="bottom" secondItem="dXU-wj-0wh" secondAttribute="bottom" id="miN-g9-9cS"/>
+                <constraint firstItem="BzT-D3-C50" firstAttribute="top" secondItem="odL-QH-t1w" secondAttribute="bottom" constant="150" id="oM3-oa-yQo"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>
         </view>

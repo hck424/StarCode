@@ -11,6 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoticeDetailViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
+                <outlet property="btnOk" destination="zGS-Nw-2c2" id="Jdg-FS-Fcn"/>
+                <outlet property="heightContent" destination="nze-PG-emh" id="fjj-gy-E6W"/>
+                <outlet property="lbDate" destination="VoD-iE-ot4" id="0pk-Rl-oNY"/>
+                <outlet property="lbTitle" destination="2Ox-5L-LgJ" id="6zy-2Y-SDe"/>
+                <outlet property="svImage" destination="UPz-gK-rnh" id="u8u-le-eef"/>
+                <outlet property="textView" destination="MFC-yg-0EX" id="fc5-D9-JmO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -49,17 +55,35 @@
                                         <constraint firstAttribute="height" constant="1" id="l0O-Xx-qpg"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시스템 점검 공지 안내입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8u-UO-4V1">
-                                    <rect key="frame" x="20" y="106" width="374" height="17"/>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MFC-yg-0EX" customClass="CTextView" customModule="StartCode" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="106" width="374" height="100"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="999" constant="100" id="nze-PG-emh"/>
+                                    </constraints>
+                                    <color key="textColor" systemColor="labelColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bby-r5-cfO">
-                                    <rect key="frame" x="20" y="139" width="374" height="128"/>
-                                </imageView>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="insetTop">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="insetBottom">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="insetRigth">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UPz-gK-rnh">
+                                    <rect key="frame" x="20" y="222" width="374" height="128"/>
+                                </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BV4-Tu-Cdt">
-                                    <rect key="frame" x="20" y="283" width="374" height="432"/>
+                                    <rect key="frame" x="20" y="366" width="374" height="349"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -84,6 +108,9 @@
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="cHy-Lh-T1C"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <edgeInsets key="layoutMargins" top="30" left="20" bottom="30" right="20"/>
@@ -111,6 +138,9 @@
         </view>
     </objects>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

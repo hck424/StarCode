@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseMessaging
 
 class LoginViewController: BaseViewController {
 
@@ -27,6 +28,16 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTapGestureKeyBoardDown()
+        btnCheck.isSelected = true
+        
+        if let joinType = SharedData.instance.memJoinType, joinType == "none" {
+            if let userId = SharedData.instance.memUserId {
+                tfUserId.text = userId
+            }
+            if let password = SharedData.objectForKey(kMemPassword) as? String {
+                tfPassword.text = password
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,10 +70,6 @@ class LoginViewController: BaseViewController {
             
         }
         else if sender == btnSignIn {
-            let vc = MrTermsViewController.init()
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        else if sender == btnSignUp {
             var isOk = true
             lbHitId.isHidden = true
             lbHitPassword.isHidden = true
@@ -74,11 +81,41 @@ class LoginViewController: BaseViewController {
                 isOk = false
                 lbHitPassword.isHidden = false
             }
+            
             if isOk == false {
                 return
             }
             
-            //TODO:: 로그인
+            var param:[String:Any] = ["akey":akey, "userid": tfUserId.text!, "password": tfPassword.text!, "platform":"ios", "device_id":Utility.getUUID(),"join_type":"none"]
+            
+            if let fcmToken = Messaging.messaging().fcmToken {
+                param["push_token"] = fcmToken
+            }
+            
+            ApiManager.shared.requestMemberSignIn(param: param) { (response) in
+                if let response = response, let code = response["code"] as? Int {
+                    if code == 200 {
+                        guard let user = response["user"] as? [String:Any] else {
+                            return
+                        }
+                        SharedData.instance.saveUserInfo(user: user)
+                        SharedData.setObjectForKey(self.tfPassword.text!, kMemPassword)
+                        AppDelegate.instance()?.callMainVc()
+                    }
+                    else {
+                        if let message = response["message"] as? String {
+                            self.view.makeToast(message)
+                        }
+                    }
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
+            }
+        }
+        else if sender == btnSignUp {
+            let vc = MrTermsViewController.init()
+            vc.user = UserInfo.init(JSON: ["join_type":"none"])
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
