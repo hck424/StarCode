@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="QnaColCell" customModule="StartCode" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="284" height="279"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="284" height="279"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="721-9F-e7a">
+                        <rect key="frame" x="0.0" y="0.0" width="284" height="279"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FFh-5z-90R">
+                                <rect key="frame" x="0.0" y="0.0" width="284" height="279"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Adr-sf-NhD">
+                                        <rect key="frame" x="0.0" y="0.0" width="284" height="32"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j96-Tw-ajM">
+                                                <rect key="frame" x="0.0" y="0.0" width="284" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="눈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrE-4f-hNf">
+                                                        <rect key="frame" x="16" y="0.0" width="182" height="32"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_grade_star_m" translatesAutoresizingMaskIntoConstraints="NO" id="nvs-BF-lZG">
+                                                        <rect key="frame" x="198" y="0.0" width="14" height="32"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_grade_star_m" translatesAutoresizingMaskIntoConstraints="NO" id="5Jg-oa-C50">
+                                                        <rect key="frame" x="212" y="0.0" width="14" height="32"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_grade_star_m" translatesAutoresizingMaskIntoConstraints="NO" id="ef0-44-2yf">
+                                                        <rect key="frame" x="226" y="0.0" width="14" height="32"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_grade_star_m" translatesAutoresizingMaskIntoConstraints="NO" id="0B0-Ul-T0Z">
+                                                        <rect key="frame" x="240" y="0.0" width="14" height="32"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_grade_star_m_off" translatesAutoresizingMaskIntoConstraints="NO" id="Tg2-4m-3vn">
+                                                        <rect key="frame" x="254" y="0.0" width="14" height="32"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.27058823529411763" green="0.2627450980392157" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="j96-Tw-ajM" firstAttribute="leading" secondItem="Adr-sf-NhD" secondAttribute="leading" id="ETh-t8-iXC"/>
+                                            <constraint firstAttribute="trailing" secondItem="j96-Tw-ajM" secondAttribute="trailing" id="Wkp-N3-B2C"/>
+                                            <constraint firstItem="j96-Tw-ajM" firstAttribute="top" secondItem="Adr-sf-NhD" secondAttribute="top" id="i8W-bJ-duY"/>
+                                            <constraint firstAttribute="bottom" secondItem="j96-Tw-ajM" secondAttribute="bottom" id="mdA-Ae-zZA"/>
+                                            <constraint firstAttribute="height" priority="999" constant="32" id="yYI-c2-vSx"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jhS-7i-BFM">
+                                        <rect key="frame" x="0.0" y="32" width="284" height="247"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="FFh-5z-90R" secondAttribute="bottom" id="BKS-5D-jjb"/>
+                            <constraint firstAttribute="trailing" secondItem="FFh-5z-90R" secondAttribute="trailing" id="DWE-Ch-ugu"/>
+                            <constraint firstItem="FFh-5z-90R" firstAttribute="top" secondItem="721-9F-e7a" secondAttribute="top" id="NjJ-Xc-NT4"/>
+                            <constraint firstItem="FFh-5z-90R" firstAttribute="leading" secondItem="721-9F-e7a" secondAttribute="leading" id="ZNZ-o8-qtC"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="721-9F-e7a" secondAttribute="bottom" id="31m-Ip-mIA"/>
+                <constraint firstItem="721-9F-e7a" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9f3-t6-Aol"/>
+                <constraint firstAttribute="trailing" secondItem="721-9F-e7a" secondAttribute="trailing" id="Zeq-Df-A4q"/>
+                <constraint firstItem="721-9F-e7a" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dcA-nO-QPg"/>
+            </constraints>
+            <size key="customSize" width="284" height="279"/>
+            <connections>
+                <outlet property="bgItemView" destination="Adr-sf-NhD" id="J3S-fo-iSV"/>
+                <outlet property="bgView" destination="721-9F-e7a" id="pNl-t0-fsD"/>
+                <outlet property="ivThumb" destination="jhS-7i-BFM" id="YK0-V2-dT8"/>
+                <outlet property="lbItem" destination="lrE-4f-hNf" id="m2X-pp-EVy"/>
+                <outletCollection property="arrIvStar" destination="nvs-BF-lZG" collectionClass="NSMutableArray" id="bJM-y5-S6i"/>
+                <outletCollection property="arrIvStar" destination="5Jg-oa-C50" collectionClass="NSMutableArray" id="vXl-lF-eMr"/>
+                <outletCollection property="arrIvStar" destination="ef0-44-2yf" collectionClass="NSMutableArray" id="clL-al-n7X"/>
+                <outletCollection property="arrIvStar" destination="0B0-Ul-T0Z" collectionClass="NSMutableArray" id="R1m-Am-jTq"/>
+                <outletCollection property="arrIvStar" destination="Tg2-4m-3vn" collectionClass="NSMutableArray" id="Fse-dC-FuH"/>
+            </connections>
+            <point key="canvasLocation" x="288.40579710144931" y="45.870535714285715"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_grade_star_m" width="14" height="13"/>
+        <image name="ic_grade_star_m_off" width="14" height="13"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

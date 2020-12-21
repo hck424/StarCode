@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExpertDailyLifeListViewController" customModule="StartCode" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExpertLifeListViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
                 <outlet property="btnCategory" destination="bSd-WK-gqo" id="sR4-Ac-L2M"/>
                 <outlet property="btnSearch" destination="Agp-8g-eQ6" id="DCf-LR-bv7"/>
+                <outlet property="lbCategory" destination="oaB-TI-MvX" id="Ac7-jZ-lLL"/>
                 <outlet property="lbEmpty" destination="ijr-hK-eGY" id="j0Z-hB-PcD"/>
                 <outlet property="tblView" destination="7gw-1F-lnV" id="YPa-Ty-lN8"/>
                 <outlet property="tfSearch" destination="6kP-7g-jly" id="bHl-hB-pp1"/>
@@ -77,16 +76,22 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fzo-Nu-Mwr">
                                     <rect key="frame" x="0.0" y="0.0" width="266" height="40"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="검색어를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6kP-7g-jly" customClass="CTextField" customModule="StartCode" customModuleProvider="target">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="검색어를 입력해주세요" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6kP-7g-jly" customClass="CTextField" customModule="StartCode" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="222" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="insetTB">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetT">
                                                     <real key="value" value="3"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="insetLR">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetB">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetL">
                                                     <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetR">
+                                                    <real key="value" value="30"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
@@ -149,11 +154,6 @@
             <point key="canvasLocation" x="428.98550724637687" y="42.857142857142854"/>
         </view>
     </objects>
-    <designables>
-        <designable name="6kP-7g-jly">
-            <size key="intrinsicContentSize" width="125" height="18.5"/>
-        </designable>
-    </designables>
     <resources>
         <image name="ic_search" width="28" height="28"/>
         <image name="triangle" width="9" height="8"/>

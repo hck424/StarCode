@@ -16,10 +16,12 @@ let baseUrl = "https://api.ohguohgu.com/api"
 let akey = "5XpADsQTqF8hXqnekIKpyKamGUNdui1p"
 
 #if Cust
-let hostUrl = "/v2"
+let hostUrl = "v2"
+let hostAiUrl = "ai"
 let appType:AppType = .user
-#else
-let hostUrl = "/a2"
+#elseif Pro
+let hostUrl = "a2"
+let hostAiUrl = "ai"
 let appType:AppType = .expert
 #endif
 
@@ -31,6 +33,7 @@ public func RGBA(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> UICo
     UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a / 1.0)
 }
 let ColorAppDefault = RGB(139, 0, 255)
+let ColorBorderDefault = RGB(221, 221, 221)
 
 let IsShowTutorial = "IsShowTutorial"
 let kPushSetting = "PushSetting"
@@ -69,16 +72,44 @@ let kLang = "ProLang"
 let kToken = "ProToken"
 #endif
 
-
 enum SectionType {
     case button
     case makeupExport
     case popularPost
     case ad
-    case exportDailyLife
+    case expertLife
     case myFaq
     case makeupDiagnosis
     case beautyQna
 }
 
+enum ActionType {
+    case none, delete, modify, like, comment, warning, scrap
+}
 
+enum QuestionType {
+    case faq, ai, makeup, beauty
+    
+    func displayName() -> String {
+        if self == .faq {
+            return "1:1 문의"
+        }
+        else if self == .ai {
+            return "Ai 메이크업 진단"
+        }
+        else if self == .makeup {
+            return "메이크업 진단"
+        }
+        else if self == .beauty {
+            return "뷰티질문"
+        }
+        else {
+            return ""
+        }
+    }
+}
+enum QnaType {
+    case makeupQna, beautyQna, aiQna, faq
+}
+
+let imageScale:CGFloat = 600

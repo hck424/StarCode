@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExpertDailyLifeDetailViewController: BaseViewController {
+class ExpertLifeDetailViewController: BaseViewController {
     
     @IBOutlet weak var tblView: UITableView!
     
@@ -17,7 +17,6 @@ class ExpertDailyLifeDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "전문가 일상", #selector(actionPopViewCtrl))
-        CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
         
         headerView = Bundle.main.loadNibNamed("TalkDetailHeaderView", owner: self, options: nil)?.first as? TalkDetailHeaderView
         
@@ -43,10 +42,12 @@ class ExpertDailyLifeDetailViewController: BaseViewController {
         }
     }
     func requestExpertDailyLifeDetail() {
-        headerView?.configurationData(nil)
-        tblView.reloadData {
-            
-        }
+        self.loadViewIfNeeded()
+        headerView?.configurationData(nil, completion: {
+            self.loadViewIfNeeded()
+            self.tblView.reloadData()
+        })
+        tblView.reloadData()
     }
 }
 
@@ -60,7 +61,7 @@ extension ExpertDailyLifeDetailViewController: UITableViewDelegate, UITableViewD
             cell = Bundle.main.loadNibNamed("TalkDetailCell", owner: self, options: nil)?.first as? TalkDetailCell
         }
         
-        cell?.configurationData(nil, indexPath.row)
+//        cell?.configurationData(nil, indexPath.row)
         
         return cell!
     }

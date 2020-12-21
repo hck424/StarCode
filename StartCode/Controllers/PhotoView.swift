@@ -1,5 +1,5 @@
 //
-//  ImgPickerView.swift
+//  PhotoView.swift
 //  StartCode
 //
 //  Created by 김학철 on 2020/11/16.
@@ -10,7 +10,7 @@ import Photos
 protocol ImgPickerViewDelegate {
     func didClickDelAction(object: Any?)
 }
-class ImgPickerView: UIView {
+class PhotoView: UIView {
     @IBOutlet weak var ivThumb: UIImageView!
     @IBOutlet weak var btnDel: UIButton!
     var asset: PHAsset?

@@ -11,7 +11,7 @@ enum JoinType {
     case normal, sns
 }
 
-class MrJoinViewController: BaseViewController {
+class MrJoinInfoViewController: BaseViewController {
     @IBOutlet weak var svUserId: UIStackView!
     @IBOutlet weak var svPassword: UIStackView!
     @IBOutlet weak var svPasswordConfirm: UIStackView!
@@ -20,10 +20,8 @@ class MrJoinViewController: BaseViewController {
     @IBOutlet weak var btnCheckId: UIButton!
     @IBOutlet weak var lbHintId: UILabel!
     @IBOutlet weak var tfPassword: CTextField!
-    @IBOutlet weak var btnEyePassword: UIButton!
     @IBOutlet weak var lbHintPassword: UILabel!
     @IBOutlet weak var tfPasswordConfirm: CTextField!
-    @IBOutlet weak var btnEyePasswordConfirm: UIButton!
     @IBOutlet weak var lbHintPasswordConfirm: UILabel!
     @IBOutlet weak var tfNickName: CTextField!
     @IBOutlet weak var btnCheckNickName: UIButton!
@@ -32,6 +30,7 @@ class MrJoinViewController: BaseViewController {
     @IBOutlet weak var genderView: UIView!
     @IBOutlet weak var btnMail: SelectedButton!
     @IBOutlet weak var btnFemail: SelectedButton!
+    @IBOutlet weak var lbHintGender: UILabel!
     
     @IBOutlet weak var btnBirthDay: UIButton!
     @IBOutlet weak var tfBirthday: CTextField!
@@ -39,6 +38,11 @@ class MrJoinViewController: BaseViewController {
     @IBOutlet weak var tvEssay: CTextView!
     @IBOutlet weak var btnOk: UIButton!
     @IBOutlet weak var bottomContainer: NSLayoutConstraint!
+    @IBOutlet weak var lbHintEssay: UILabel!
+    @IBOutlet weak var seperatorEmail: UIView!
+    @IBOutlet weak var seperatorNickName: UIView!
+    @IBOutlet weak var seperatorBirthDay: UIView!
+    
     
     var type:JoinType = .normal
     let accessoryView = CToolbar.init(barItems: [.up, .down, .keyboardDown], itemColor: ColorAppDefault)
@@ -71,7 +75,7 @@ class MrJoinViewController: BaseViewController {
         attr.addAttribute(.foregroundColor, value: RGB(155, 155, 155), range: (result as NSString).range(of: tmp))
         attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 18, weight: .medium), range: NSMakeRange(0, result.length))
         CNavigationBar.drawBackButton(self, attr, #selector(onClickedBtnActions(_:)))
-        
+        self.hideRightNaviBarItem = true
         if type == .normal {
             self.arrFocuce = [tfEmail, tfPassword, tfPasswordConfirm, tfNickName, tvEssay]
         }
@@ -180,14 +184,6 @@ class MrJoinViewController: BaseViewController {
                 self.showErrorAlertView(error)
             }
         }
-        else if sender == btnEyePassword {
-            sender.isSelected = !sender.isSelected
-            tfPassword.isSecureTextEntry = !sender.isSelected
-        }
-        else if sender == btnEyePasswordConfirm {
-            sender.isSelected = !sender.isSelected
-            tfPasswordConfirm.isSecureTextEntry = !sender.isSelected
-        }
         else if sender == btnCheckNickName {
             lbHintNickName.isHidden = true
             guard let nickName = tfNickName.text, nickName.isEmpty == false else {
@@ -231,6 +227,10 @@ class MrJoinViewController: BaseViewController {
             lbHintPassword.isHidden = true
             lbHintPasswordConfirm.isHidden = true
             lbHintBirthday.isHidden = true
+            lbHintGender.isHidden = true
+            lbHintEssay.isHidden = true
+            
+            self.view.endEditing(true)
             
             var isOk = true
             if type == .normal {
@@ -250,12 +250,17 @@ class MrJoinViewController: BaseViewController {
                     isOk = false
                 }
                 
-                if (tfPassword.text?.count == 0) || (tfPassword.text?.validatePassword() == false) {
+                if let password = tfPassword.text, password.isEmpty == true {
                     lbHintPassword.isHidden = false
+                    lbHintPassword.text = "비밀번호를 입력해주세요."
                     isOk = false
                 }
-                
-                if tfPassword.text != tfPasswordConfirm.text {
+                else if tfPassword.text!.validatePassword() == false {
+                    lbHintPassword.isHidden = false
+                    lbHintPassword.text = "비밀번호(숫자,영문,특수문자)8자이상 입력해주세요."
+                    isOk = false
+                }
+                else if let pass = tfPassword.text, let pass2 = tfPasswordConfirm.text, pass != pass2 {
                     lbHintPasswordConfirm.isHidden = false
                     isOk = false
                 }
@@ -267,24 +272,20 @@ class MrJoinViewController: BaseViewController {
                 }
                 else if btnCheckNickName.isSelected == false {
                     lbHintNickName.isHidden = false
-                    lbHintNickName.text = "닉네임 중복 확인을 해주세요."
-                    isOk = false
-                }
-
-                if tfBirthday.text?.isEmpty == true {
-                    lbHintBirthday.isHidden = false
+                    lbHintNickName.text = "닉네임 중복확인을 해주세요."
                     isOk = false
                 }
                 
                 if btnMail.isSelected == false && btnFemail.isSelected == false {
-                    self.view.makeToast("성별을 선택해주세요.")
+                    lbHintGender.isHidden = false
+                    isOk = false
+                }
+                if let birthday = tfBirthday.text, birthday.isEmpty == true {
+                    lbHintBirthday.isHidden = false
                     isOk = false
                 }
                 
-                if tvEssay.text.isEmpty == true {
-                    self.view.makeToast("소개글일 입력해주세요.")
-                    isOk = false
-                }
+                
                 if isOk == false {
                     return
                 }
@@ -293,8 +294,10 @@ class MrJoinViewController: BaseViewController {
                 user?.mem_userid = tfEmail.text!
                 user?.mem_password = tfPassword.text!
                 user?.mem_nickname = tfNickName.text!
-                user?.mem_profile_content = tvEssay.text!
                 user?.mem_birthday = tfBirthday.text!
+                if let essay = tvEssay.text, essay.isEmpty == false {
+                    user?.mem_profile_content = essay
+                }
                 if btnMail.isSelected {
                     user?.mem_sex = 1
                 }
@@ -307,7 +310,6 @@ class MrJoinViewController: BaseViewController {
                 user?.platform = "ios"
                 user?.mem_device_id = Utility.getUUID()
                 user?.akey = akey
-                
                 
                 SharedData.setObjectForKey(user?.mem_password!, kMemPassword)
                 
@@ -328,7 +330,7 @@ class MrJoinViewController: BaseViewController {
                         }
                         else {
                             if let message = response["message"] as? String {
-                                self.view.makeToast(message, duration:2.0, position:.top)
+                                self.showToast(message)
                             }
                         }
                     }
@@ -342,34 +344,31 @@ class MrJoinViewController: BaseViewController {
                     lbHintNickName.text = "닉네임을 입력해주세요."
                     isOk = false
                 }
-
-                if btnCheckNickName.isSelected == false {
+                else if btnCheckNickName.isSelected == false {
                     lbHintNickName.isHidden = false
-                    lbHintNickName.text = "닉네임 체크를 해주세요."
-                    isOk = false
-                }
-
-                if btnMail.isSelected == false && btnFemail.isSelected == false {
-                    self.view.makeToast("성별을 선택해주세요.")
+                    lbHintNickName.text = "닉네임 중복확인을 해주세요."
                     isOk = false
                 }
                 
-                if tfBirthday.text?.isEmpty == true {
+                if btnMail.isSelected == false && btnFemail.isSelected == false {
+                    lbHintGender.isHidden = false
+                    isOk = false
+                }
+                
+                if let birthday = tfBirthday.text, birthday.isEmpty == true {
                     lbHintBirthday.isHidden = false
                     isOk = false
                 }
                 
-                if tvEssay.text.isEmpty == true {
-                    self.view.makeToast("소개글일 입력해주세요.")
-                    isOk = false
+                if let essay = tvEssay.text, essay.isEmpty == false {
+                    user?.mem_profile_content = essay
                 }
                 if isOk == false {
                     return
                 }
-                
+             
                 
             }
-            
         }
     }
     
@@ -393,12 +392,7 @@ class MrJoinViewController: BaseViewController {
     
 }
 
-extension MrJoinViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        self.focuseObj = textField
-        return true
-    }
-    
+extension MrJoinInfoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let arrFocuce = arrFocuce {
             let index:Int = arrFocuce.firstIndex { (obj) -> Bool in
@@ -412,9 +406,38 @@ extension MrJoinViewController: UITextFieldDelegate {
         }
         return true
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.focuseObj = textField
+        if textField == tfEmail {
+            seperatorEmail.backgroundColor = ColorAppDefault
+        }
+        else if textField == tfNickName {
+            seperatorNickName.backgroundColor = ColorAppDefault
+        }
+        else if textField == tfBirthday {
+            seperatorBirthDay.backgroundColor = ColorAppDefault
+        }
+        else if let textField = textField as? CTextField {
+            textField.borderColor = ColorAppDefault
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == tfEmail {
+            seperatorEmail.backgroundColor = ColorBorderDefault
+        }
+        else if textField == tfNickName {
+            seperatorNickName.backgroundColor = ColorBorderDefault
+        }
+        else if textField == tfBirthday {
+            seperatorBirthDay.backgroundColor = ColorBorderDefault
+        }
+        else if let textField = textField as? CTextField {
+            textField.borderColor = ColorBorderDefault
+        }
+    }
 }
 
-extension MrJoinViewController: UITextViewDelegate {
+extension MrJoinInfoViewController: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         self.focuseObj = textView
         self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.height), animated: true)

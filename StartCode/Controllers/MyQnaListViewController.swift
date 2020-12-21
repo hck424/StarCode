@@ -1,5 +1,5 @@
 //
-//  MyQnaViewController.swift
+//  MyQnaListViewController.swift
 //  StartCode
 //
 //  Created by 김학철 on 2020/11/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyQnaViewController: BaseViewController {
+class MyQnaListViewController: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet var arrTabBtn: [SelectedButton]!
@@ -26,8 +26,6 @@ class MyQnaViewController: BaseViewController {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "나의 문의 내역", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
-        
         arrTabBtn = arrTabBtn.sorted(by: { (btn1, btn2) -> Bool in
             btn2.tag > btn1.tag
         })
@@ -123,7 +121,7 @@ class MyQnaViewController: BaseViewController {
     }
 }
 
-extension MyQnaViewController: UITableViewDelegate, UITableViewDataSource {
+extension MyQnaListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listData.count
@@ -136,11 +134,14 @@ extension MyQnaViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         if let selBtn = selBtn, let item = listData[indexPath.row] as? [String:Any] {
-            if selBtn.tag == 1 || selBtn.tag == 2 {
+            if selBtn.tag == 1 {
                 cell?.configurationData(item, .type1, indexPath.row)
             }
-            else {
+            else if selBtn.tag == 2 {
                 cell?.configurationData(item, .type2, indexPath.row)
+            }
+            else {
+                cell?.configurationData(item, .type3, indexPath.row)
             }
         }
         return cell!
@@ -151,10 +152,24 @@ extension MyQnaViewController: UITableViewDelegate, UITableViewDataSource {
         guard let item = listData[indexPath.row] as? [String:Any] else {
             return
         }
-        ///TODO:: 나의 질문내역 페이지 상세 
+        let vc = MyQnaDetailViewController.init()
+        vc.data = item
+        if selBtn?.tag == 1 {
+            vc.type = .faq
+        }
+        else if selBtn?.tag == 2 {
+            vc.type = .aiQna
+        }
+        else if selBtn?.tag == 3 {
+            vc.type = .makeupQna
+        }
+        else if selBtn?.tag == 4 {
+            vc.type = .beautyQna
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
-extension MyQnaViewController: UIScrollViewDelegate {
+extension MyQnaListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let velocityY = scrollView.panGestureRecognizer.translation(in: scrollView).y
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
