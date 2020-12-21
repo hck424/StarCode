@@ -24,23 +24,23 @@ class CButton: UIButton {
     
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
-            if borderWidth > 0 {setNeedsLayout()}
+            if borderWidth > 0 {setNeedsDisplay()}
         }
     }
     
     @IBInspectable var borderColor: UIColor? {
         didSet {
-            if borderColor != nil { setNeedsLayout()}
+            setNeedsDisplay()
         }
     }
     @IBInspectable var halfCornerRadius:Bool = false {
         didSet {
-            if halfCornerRadius {setNeedsLayout()}
+            if halfCornerRadius {setNeedsDisplay()}
         }
     }
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
-            if cornerRadius > 0 { setNeedsLayout()}
+            if cornerRadius > 0 { setNeedsDisplay()}
         }
     }
     

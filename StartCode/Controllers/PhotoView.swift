@@ -7,14 +7,14 @@
 
 import UIKit
 import Photos
-protocol ImgPickerViewDelegate {
+protocol PhotoViewDelegate {
     func didClickDelAction(object: Any?)
 }
 class PhotoView: UIView {
     @IBOutlet weak var ivThumb: UIImageView!
     @IBOutlet weak var btnDel: UIButton!
     var asset: PHAsset?
-    var delegate: ImgPickerViewDelegate?
+    var delegate: PhotoViewDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,12 +28,11 @@ class PhotoView: UIView {
             return
         }
         
-        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 300, height: 300), contentMode: .aspectFit, options: PHImageRequestOptions()) { (result, _) in
+        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: imageScale, height: imageScale), contentMode: .aspectFit, options: PHImageRequestOptions()) { (result, _) in
             guard let result = result else {
                 return
             }
             self.ivThumb.image = result
-            
         }
     }
     @IBAction func onClickedBtnActions(_ sender: Any) {

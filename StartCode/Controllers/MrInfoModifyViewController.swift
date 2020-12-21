@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import PhoneNumberKit
+
 enum MrModifyType {
     case findId, findPw, modifyPw
 }
@@ -28,6 +30,7 @@ class MrInfoModifyViewController: BaseViewController {
     @IBOutlet weak var tfPhoneNum: CTextField!
     @IBOutlet weak var btnPhoneAuth: UIButton!
     @IBOutlet weak var lbHintPhone: UILabel!
+    @IBOutlet weak var seperatorPhoneNumber: UIView!
     
     @IBOutlet weak var svAuth: UIStackView!
     @IBOutlet weak var tfAuth: CTextField!
@@ -39,19 +42,17 @@ class MrInfoModifyViewController: BaseViewController {
     
     @IBOutlet weak var svCurPw: UIStackView!
     @IBOutlet weak var tfCurPw: CTextField!
-    @IBOutlet weak var btnCurPw: UIButton!
     @IBOutlet weak var lbHintCurPw: UILabel!
     
     @IBOutlet weak var svNewPw: UIStackView!
     @IBOutlet weak var tfNewPw: CTextField!
-    @IBOutlet weak var btnNewPw: UIButton!
     @IBOutlet weak var lbHintNewPw: UILabel!
     
-    @IBOutlet weak var svConfirmPw: UIStackView!
-    @IBOutlet weak var tfConfirmPw: CTextField!
-    @IBOutlet weak var btnConfirmPw: UIButton!
+    @IBOutlet weak var svNewPwConfirm: UIStackView!
+    @IBOutlet weak var tfNewPwConfirm: CTextField!
     @IBOutlet weak var lbHintConfirmPw: UILabel!
     
+//    let phoneNumberKit = PhoneNumberKit()
     var type: MrModifyType = .findId
     
     let accessoryView = CToolbar.init(barItems: [.keyboardDown])
@@ -75,7 +76,7 @@ class MrInfoModifyViewController: BaseViewController {
         svEmail.isHidden = true
         svCurPw.isHidden = true
         svNewPw.isHidden = true
-        svConfirmPw.isHidden = true
+        svNewPwConfirm.isHidden = true
         
         if type == .findId {
             svPhoneNum.isHidden = false
@@ -91,7 +92,7 @@ class MrInfoModifyViewController: BaseViewController {
         else if type == .modifyPw {
             svCurPw.isHidden = false
             svNewPw.isHidden = false
-            svConfirmPw.isHidden = false
+            svNewPwConfirm.isHidden = false
             lbTitle.text = "비밀번호 변경"
         }
         
@@ -109,6 +110,21 @@ class MrInfoModifyViewController: BaseViewController {
         self.view.endEditing(true)
     }
     
+    @IBAction func textFieldEdtingChanged(_ sender: UITextField) {
+        if sender == tfPhoneNum {
+            guard let text = sender.text, text.isEmpty == false else {
+                return
+            }
+//            do {
+//                let phoneNumber = try phoneNumberKit.parse(text, ignoreType: true)
+//                let newNum = self.phoneNumberKit.format(phoneNumber, toType: .national)
+//                self.tfPhoneNum.text = newNum
+//            } catch {
+//                self.tfPhoneNum.text = text
+//            }
+            btnPhoneAuth.isSelected = false
+        }
+    }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         
@@ -123,9 +139,15 @@ class MrInfoModifyViewController: BaseViewController {
             lbHintPhone.isHidden = true
             guard let phone = tfPhoneNum.text, phone.isEmpty == false else {
                 lbHintPhone.isHidden = false
+                lbHintPhone.text = "휴대폰 번호를 입력하세요."
                 return
             }
-            
+            if phone.validateKorPhoneNumber() == false {
+                lbHintPhone.isHidden = false
+                lbHintPhone.text = "휴대폰 번호형식이 아닙니다."
+                return
+            }
+
             var param:[String:Any] = ["akey":akey, "phone":phone]
             if type == .findId {
                 param["map_type"] = 2
@@ -148,29 +170,21 @@ class MrInfoModifyViewController: BaseViewController {
                 self.showErrorAlertView(error)
             }
         }
-        else if sender == btnCurPw {
-            tfCurPw.isSecureTextEntry = sender.isSelected
-            sender.isSelected = !sender.isSelected
-        }
-        else if sender == btnNewPw {
-            tfNewPw.isSecureTextEntry = sender.isSelected
-            sender.isSelected = !sender.isSelected
-        }
-        else if sender == btnConfirmPw {
-            tfConfirmPw.isSecureTextEntry = sender.isSelected
-            sender.isSelected = !sender.isSelected
-        }
         else if sender == btnOk {
+            
             if self.checkValidata() == false {
                 return
             }
             
-            guard let authKey = authKey as? String else {
-                return
-            }
             self.view.endEditing(true)
             if type == .findId || type == .findPw {
-                var param:[String:Any] = ["akey":akey, "phone":tfPhoneNum.text!, "authkey":authKey, "code":tfAuth.text!]
+                guard let intAuthCode = Int(tfAuth.text!) else {
+                    return
+                }
+                guard let phone = tfPhoneNum.text!.getNumberString() else {
+                    return
+                }
+                var param:[String:Any] = ["akey":akey, "phone":phone, "authkey":authKey, "code":intAuthCode]
                 if type == .findId {
                     param["type"] = "id"
                 }
@@ -191,19 +205,20 @@ class MrInfoModifyViewController: BaseViewController {
                 }
             }
             else if type == .modifyPw {
+                self.view.endEditing(true)
                 guard let curPw = tfCurPw.text else {
                     return
                 }
                 guard let newPw = tfNewPw.text else {
                     return
                 }
-                guard let token = SharedData.instance.pToken else {
+                guard let token = SharedData.instance.token else {
                     return
                 }
                 let param:[String:Any] = ["token":token, "c_password": curPw, "n_password":newPw]
                 ApiManager.shared.requestModifyPassword(param: param) { (response) in
                     if let response = response, let code = response["code"] as? Int, code == 200, let message = response["message"] as? String{
-                        self.view.makeToast(message, duration:2.0, position:.top)
+                        self.showToast(message)
                         self.dismiss(animated: true, completion: nil)
                         SharedData.setObjectForKey(newPw, kMemPassword)
                         AppDelegate.instance()?.callLoginVc()
@@ -219,29 +234,37 @@ class MrInfoModifyViewController: BaseViewController {
     }
     
     func checkValidata() ->Bool {
+        lbHintPhone.isHidden = true
+        lbHintAuth.isHidden = true
+        lbHintEmail.isHidden = true
+        lbHintCurPw.isHidden = true
+        lbHintNewPw.isHidden = true
+        lbHintConfirmPw.isHidden = true
         
         var isOk = true
         if type == .findId || type == .findPw {
-            lbHintPhone.isHidden = true
             if let phone = tfPhoneNum.text, phone.isEmpty == true {
                 lbHintPhone.isHidden = false
                 lbHintPhone.text = "휴대폰 번호를 입력하세요."
                 isOk = false
             }
+            else if tfPhoneNum.text!.validateKorPhoneNumber() == false {
+                lbHintPhone.isHidden = false
+                lbHintPhone.text = "휴대폰 번호형식이 아닙니다."
+                isOk = false
+            }
             else if btnPhoneAuth.isSelected == false {
                 lbHintPhone.isHidden = false
-                lbHintPhone.text = "인증요청을 해주세요."
+                lbHintPhone.text = "휴대폰 인증번호를 요청해주세요."
                 isOk = false
             }
             
-            lbHintAuth.isHidden = false
             if let auth = tfAuth.text, auth.isEmpty == true {
                 lbHintAuth.isHidden = false
                 isOk = false
             }
             
             if type == .findPw {
-                lbHintEmail.isHidden = true
                 if let email = tfEmail.text, email.isEmpty == true {
                     lbHintEmail.isHidden = false
                     lbHintEmail.text = "이메일을 입력하세요."
@@ -255,9 +278,6 @@ class MrInfoModifyViewController: BaseViewController {
             }
         }
         else if type == .modifyPw {
-            lbHintCurPw.isHidden = true
-            lbHintNewPw.isHidden = true
-            lbHintConfirmPw.isHidden = true
             
             if let curPw = tfCurPw.text, curPw.isEmpty {
                 lbHintCurPw.isHidden = false
@@ -265,10 +285,16 @@ class MrInfoModifyViewController: BaseViewController {
             }
             
             if let newPw = tfNewPw.text, newPw.isEmpty == true {
+                lbHintNewPw.text = "새로운 비밀번호를 입력하세요."
                 lbHintNewPw.isHidden = false
                 isOk = false
             }
-            else if let confirmPw = tfConfirmPw.text, confirmPw != tfNewPw.text! {
+            else if tfNewPw.text!.validatePassword() == false {
+                lbHintNewPw.text = "비밀번호 형식이 아닙니다."
+                lbHintNewPw.isHidden = false
+                isOk = false
+            }
+            else if let confirmPw = tfNewPwConfirm.text, confirmPw != tfNewPw.text! {
                 lbHintConfirmPw.isHidden = false
                 isOk = false
             }
@@ -302,6 +328,54 @@ class MrInfoModifyViewController: BaseViewController {
     }
 }
 
-extension MrInfoModifyViewController: UISearchTextFieldDelegate {
-    
+extension MrInfoModifyViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if type == .findId {
+            if textField == tfPhoneNum {
+                tfAuth.becomeFirstResponder()
+            }
+            else {
+                self.view.endEditing(true)
+            }
+        }
+        else if type == .findPw {
+            if textField == tfPhoneNum {
+                tfAuth.becomeFirstResponder()
+            }
+            else if textField == tfAuth {
+                tfEmail.becomeFirstResponder()
+            }
+            else {
+                self.view.endEditing(true)
+            }
+        }
+        else if type == .modifyPw {
+            if textField == tfCurPw {
+                tfNewPw.becomeFirstResponder()
+            }
+            else if textField == tfNewPw {
+                tfNewPwConfirm.becomeFirstResponder()
+            }
+            else {
+                self.view.endEditing(true)
+            }
+        }
+        return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == tfPhoneNum {
+            seperatorPhoneNumber.backgroundColor = ColorAppDefault
+        }
+        else if let textField = textField as? CTextField {
+            textField.borderColor = ColorAppDefault
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == tfPhoneNum {
+            seperatorPhoneNumber.backgroundColor = ColorBorderDefault
+        }
+        else if let textField = textField as? CTextField {
+            textField.borderColor = ColorBorderDefault
+        }
+    }
 }

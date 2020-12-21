@@ -21,8 +21,6 @@ class EventDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "이벤트 상세", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
-        
         
         self.requestEventDetail()
     }

@@ -14,7 +14,6 @@ class ConfigurationViewController: BaseViewController {
         super.viewDidLoad()
 
         CNavigationBar.drawBackButton(self, "환경 설정", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
         let footerView = Bundle.main.loadNibNamed("TableFooterView", owner: self, options: nil)?.first as! TableFooterView
         self.tblView.tableFooterView = footerView

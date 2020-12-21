@@ -28,7 +28,7 @@ extension UIViewController {
     func showErrorAlertView(_ data: Any?) {
         if let data = data as? Dictionary<String, Any> {
             
-            var title = "에러"
+//            var title = "에러"
 //            if let code = data["code"] as? Int {
 //                title.append(" : \(code)")
 //            }
@@ -55,10 +55,38 @@ extension UIViewController {
             if msg.isEmpty == true {
                 return
             }
-            self.view.makeToast("\(title): \(msg)", position:.top)
+            var findView:UIScrollView? = nil
+            for subview in self.view.subviews {
+                if let subview = subview as? UIScrollView {
+                    findView = subview
+                    break
+                }
+            }
+            if let findView = findView {
+                findView.makeToast(msg)
+            }
+            else {
+                self.view.makeToast(msg)
+            }
         }
         else if let error = data as? NSError {
-            self.view.makeToast("\(error.localizedDescription)", position:.top)
+            guard let msg = error.localizedDescription as? String else {
+                return
+            }
+            var findView:UIScrollView? = nil
+            for subview in self.view.subviews {
+                if let subview = subview as? UIScrollView {
+                    findView = subview
+                    break
+                }
+            }
+            
+            if let findView = findView {
+                findView.makeToast(msg, position: .bottom)
+            }
+            else {
+                self.view.makeToast(msg)
+            }
         }
     }
 }
@@ -175,6 +203,14 @@ extension UIImage {
             _ in draw(in: CGRect(origin: .zero, size: canvas))
         }
     }
+    func scaled(to maxSize: CGFloat) -> UIImage? {
+        let aspectRatio: CGFloat = min(maxSize / size.width, maxSize / size.height)
+        let newSize = CGSize(width: size.width * aspectRatio, height: size.height * aspectRatio)
+        let renderer = UIGraphicsImageRenderer(size: newSize)
+        return renderer.image { context in
+            draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: newSize))
+        }
+    }
     func resized(toWidth width: CGFloat, isOpaque: Bool = true) -> UIImage? {
         let canvas = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
         let format = imageRendererFormat
@@ -226,15 +262,26 @@ extension String {
         let predicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return predicate.evaluate(with: self)
     }
-    
+    public func validateKorPhoneNumber() -> Bool {
+//        let reg = "^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$"
+        let reg = "^[0-9]{3}+[0-9]{4}+[0-9]{4}$"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", reg)
+        return predicate.evaluate(with: self)
+    }
+//    public func validateKorPhoneNumber(_ candidate: String?) -> Bool {
+//        let emailRegex = "^[0-9]{3}+[0-9]{4}+[0-9]{4}$"
+//        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+//        return emailTest.evaluate(with: candidate)
+//    }
     // Password validation
     public func validatePassword() -> Bool {
-        let passwordRegEx = "(?=.*[a-zA-Z])(?=.*[!@#$%^_*-])(?=.*[0-9]).{8,40}"
+//        let passwordRegEx = "(?=.*[a-zA-Z])(?=.*[!@#$%^_*-])(?=.*[0-9]).{8,40}"
             //"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,16}$"
-        
+        let passwordRegEx = "(?=.*[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]).{8,40}"
         let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return predicate.evaluate(with: self)
     }
+
     
     // String split return array
     public func arrayBySplit(splitter: String? = nil) -> [String] {
@@ -245,11 +292,6 @@ extension String {
         }
     }
     
-    func validateKorPhoneNumber(_ candidate: String?) -> Bool {
-        let emailRegex = "^[0-9]{3}+[0-9]{4}+[0-9]{4}$"
-        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailTest.evaluate(with: candidate)
-    }
     func getNumberString() ->String? {
         let strArr = self.components(separatedBy: CharacterSet.decimalDigits.inverted)
         var result = ""

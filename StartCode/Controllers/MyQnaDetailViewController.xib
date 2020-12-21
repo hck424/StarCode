@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyQnaDetailViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
+                <outlet property="scrollView" destination="7zu-Tb-4IK" id="uY0-ew-s1f"/>
+                <outlet property="svContent" destination="V9h-gq-B6H" id="Z50-7z-Jvu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,8 +20,33 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zu-Tb-4IK">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V9h-gq-B6H">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="V9h-gq-B6H" secondAttribute="bottom" id="MNS-7s-eYI"/>
+                        <constraint firstItem="V9h-gq-B6H" firstAttribute="leading" secondItem="7zu-Tb-4IK" secondAttribute="leading" id="VVn-aI-7Bc"/>
+                        <constraint firstItem="V9h-gq-B6H" firstAttribute="width" secondItem="7zu-Tb-4IK" secondAttribute="width" id="XKU-Bo-Y32"/>
+                        <constraint firstAttribute="trailing" secondItem="V9h-gq-B6H" secondAttribute="trailing" id="aiL-dA-NBm"/>
+                        <constraint firstItem="V9h-gq-B6H" firstAttribute="top" secondItem="7zu-Tb-4IK" secondAttribute="top" id="fF2-tW-vRX"/>
+                        <constraint firstItem="V9h-gq-B6H" firstAttribute="height" secondItem="7zu-Tb-4IK" secondAttribute="height" priority="1" id="qU0-34-86U"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="7zu-Tb-4IK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Cuj-Rx-AeT"/>
+                <constraint firstAttribute="bottom" secondItem="7zu-Tb-4IK" secondAttribute="bottom" id="F2H-5j-3hc"/>
+                <constraint firstAttribute="trailing" secondItem="7zu-Tb-4IK" secondAttribute="trailing" id="Ju7-ak-TFg"/>
+                <constraint firstItem="7zu-Tb-4IK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Qhl-HL-28d"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="78"/>
         </view>
     </objects>

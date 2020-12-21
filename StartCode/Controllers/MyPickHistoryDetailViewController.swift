@@ -9,18 +9,19 @@ import UIKit
 
 class MyPickHistoryDetailViewController: BaseViewController {
     @IBOutlet weak var lbEmpty: UILabel!
-    
     @IBOutlet weak var tblView: UITableView!
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "내 픽", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
-        self.requestMyPickHistoryDetail()
     }
     
+    
     func requestMyPickHistoryDetail() {
-        self.tblView.reloadData()
+      
+
     }
     
 }

@@ -37,7 +37,7 @@ class ChuHistoryCell: UITableViewCell {
             let df = CDateFormatter.init()
             df.dateFormat = "yyyy-MM-dd HH.mm.ss"
             if let date = df.date(from: post_datetime) {
-                df.dateFormat = "yy.MM.dd HH.mm"
+                df.dateFormat = "yyyy.MM.dd HH.mm"
                 lbDate.text = df.string(from: date)
             }
         }

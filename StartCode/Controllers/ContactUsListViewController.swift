@@ -21,7 +21,6 @@ class ContactUsListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "고객센터", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
       
         let footerView = Bundle.main.loadNibNamed("TableFooterView", owner: nil, options: nil)?.first as! TableFooterView
         footerView.frame = CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: 200)
@@ -45,7 +44,7 @@ class ContactUsListViewController: BaseViewController {
         if isEndPage == true {
             return
         }
-        guard let token = SharedData.instance.pToken else {
+        guard let token = SharedData.instance.token else {
             return
         }
         let param:[String:Any] = ["token":token, "page":page, "per_page":perPage]

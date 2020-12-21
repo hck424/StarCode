@@ -26,6 +26,10 @@ class MyPostCell: UITableViewCell {
         guard let data = data else {
             return
         }
+        lbTitle.text = ""
+        lbSubTitle.text = ""
+        lbDate.text = ""
+        lbCommentCnt.text = "0"
         
         if let post_title = data["post_title"] as? String {
             lbTitle.text = post_title
@@ -39,7 +43,7 @@ class MyPostCell: UITableViewCell {
             let df = CDateFormatter.init()
             df.dateFormat = "yyyy-MM-dd HH.mm.ss"
             if let date = df.date(from: post_datetime) {
-                df.dateFormat = "yy.MM.dd HH.mm"
+                df.dateFormat = "yyyy.MM.dd HH.mm"
                 lbDate.text = df.string(from: date)
             }
         }

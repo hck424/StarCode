@@ -124,13 +124,23 @@ class CameraViewController: UIViewController {
             }, cancel: { (assets) in
                 print("Canceled with selections: \(assets)")
                 imagePicker.dismiss(animated: true) {
-                    self.navigationController?.popViewController(animated: true)
+                    if let navigationCtr = self.navigationController {
+                        navigationCtr.popViewController(animated: false)
+                    }
+                    else {
+                        self.dismiss(animated: false, completion: nil)
+                    }
                 }
             }, finish: { (assets) in
                 print("Finished with selections: \(assets)")
                 self.delegate?.didFinishImagePickerAssets(assets)
                 imagePicker.dismiss(animated: true) {
-                    self.navigationController?.popViewController(animated: true)
+                    if let navigationCtr = self.navigationController {
+                        navigationCtr.popViewController(animated: false)
+                    }
+                    else {
+                        self.dismiss(animated: false, completion: nil)
+                    }
                 }
             }, completion: {
                 let finish = Date()
@@ -144,7 +154,12 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: false) {
-            self.navigationController?.popViewController(animated: false)
+            if let navigationCtr = self.navigationController {
+                navigationCtr.popViewController(animated: false)
+            }
+            else {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
     }
     
@@ -167,7 +182,12 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
 extension CameraViewController: CameraOverlayViewDelegate {
     func cameraOverlayViewCancelAction() {
         imagePicker?.dismiss(animated: false) {
-            self.navigationController?.popViewController(animated: false)
+            if let navigationCtr = self.navigationController {
+                navigationCtr.popViewController(animated: false)
+            }
+            else {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
     }
     func cameraOverlayViewShotAction() {
@@ -187,16 +207,26 @@ extension CameraViewController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation) {
         cropViewController.dismiss(animated: false) {
             
-            if let resizeImg = cropped.resized(toWidth: 300) {
+            if let resizeImg = cropped.scaled(to: imageScale) {
                 self.delegate?.didFinishImagePicker(origin: self.originImg, crop: resizeImg)
             }
-            self.navigationController?.popViewController(animated: false)
+            if let navigationCtr = self.navigationController {
+                navigationCtr.popViewController(animated: false)
+            }
+            else {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
     }
     
     func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
         cropViewController.dismiss(animated: false) {
-            self.navigationController?.popViewController(animated: false)
+            if let navigationCtr = self.navigationController {
+                navigationCtr.popViewController(animated: false)
+            }
+            else {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
     }
 }

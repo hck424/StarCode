@@ -9,19 +9,29 @@ import UIKit
 @IBDesignable class CTextField: UITextField {
     var subLayer: CALayer?
     
-    @IBInspectable var insetTB :CGFloat = 0.0 {
+    @IBInspectable var insetT :CGFloat = 0.0 {
         didSet {
-            if insetTB > 0 { setNeedsLayout() }
+            if insetT > 0 { setNeedsDisplay() }
         }
     }
-    @IBInspectable var insetLR :CGFloat = 0.0 {
+    @IBInspectable var insetB :CGFloat = 0.0 {
         didSet {
-            if insetLR > 0 { setNeedsLayout() }
+            if insetB > 0 { setNeedsDisplay() }
+        }
+    }
+    @IBInspectable var insetL :CGFloat = 0.0 {
+        didSet {
+            if insetL > 0 { setNeedsDisplay() }
+        }
+    }
+    @IBInspectable var insetR :CGFloat = 0.0 {
+        didSet {
+            if insetR > 0 { setNeedsDisplay() }
         }
     }
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
-            if borderWidth > 0 { setNeedsLayout() }
+            if borderWidth > 0 { setNeedsDisplay() }
         }
     }
     @IBInspectable var borderBottom: Bool = false {
@@ -36,22 +46,22 @@ import UIKit
     }
     @IBInspectable var borderColor: UIColor? {
         didSet {
-            if borderColor != nil { setNeedsLayout() }
+            if borderColor != nil { setNeedsDisplay() }
         }
     }
     @IBInspectable var halfCornerRadius:Bool = false {
         didSet {
-            if halfCornerRadius { setNeedsLayout() }
+            if halfCornerRadius { setNeedsDisplay() }
         }
     }
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
-            if cornerRadius > 0 { setNeedsLayout() }
+            if cornerRadius > 0 { setNeedsDisplay() }
         }
     }
     @IBInspectable var  colorPlaceHolder: UIColor? {
         didSet {
-            if colorPlaceHolder != nil { setNeedsLayout() }
+            if colorPlaceHolder != nil { setNeedsDisplay() }
         }
     }
     
@@ -92,10 +102,10 @@ import UIKit
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(top: insetTB, left: insetLR, bottom: insetTB, right: insetLR))
+        return bounds.inset(by: UIEdgeInsets(top: insetT, left: insetL, bottom: insetB, right: insetR))
     }
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(top: insetTB, left: insetLR, bottom: insetTB, right: insetLR))
+        return bounds.inset(by: UIEdgeInsets(top: insetT, left: insetL, bottom: insetB, right: insetR))
     }
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
 //        if action == #selector(paste(_ :)) {

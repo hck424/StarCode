@@ -10,6 +10,7 @@ import UIKit
 class ExpertDetailViewController: BaseViewController {
 //header oulet
     @IBOutlet var headerView: UIView!
+    @IBOutlet weak var btnType: CButton!
     @IBOutlet weak var ivProfile: UIImageView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var btnStarCnt: UIButton!
@@ -19,78 +20,186 @@ class ExpertDetailViewController: BaseViewController {
     @IBOutlet weak var btnChu: CButton!
     @IBOutlet weak var btnPick: UIButton!
     @IBOutlet weak var heightContent: NSLayoutConstraint!
+    var heightHeaderView: NSLayoutConstraint?
+    var widthHeaderView: NSLayoutConstraint?
 //header outlet end
     @IBOutlet weak var tblView: UITableView!
     
     var arrData:Array<Any> = []
-    var passDic:[String:Any]?
+    var arrExpertDaily:Array<Any>?
+    var data:[String:Any]?
     override func viewDidLoad() {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "전문가", #selector(actionPopViewCtrl))
-        CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
-        ivProfile.layer.cornerRadius = ivProfile.bounds.height/2
         
-        tblView.tableHeaderView = headerView
+        
+        ivProfile.layer.cornerRadius = ivProfile.bounds.height/2
+        ivProfile.layer.borderWidth = 1.0
+        ivProfile.layer.borderColor = RGB(236, 236, 236).cgColor
+        self.tblView.estimatedRowHeight = 100
+        self.tblView.rowHeight = UITableView.automaticDimension
+        self.view.layoutIfNeeded()
         self.requestExpertDetail()
+        tblView.tableHeaderView = headerView
+        
+        self.requestExpertDailyLife()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.showLoginPopupWithCheckSession()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.headerUpdateLayout()
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.headerUpdateLayout()
+    }
+    
+    func headerUpdateLayout() {
+        
         if let header = tblView.tableHeaderView {
-            let conHeight = lbContent.sizeThatFits(CGSize(width: lbContent.bounds.width, height: CGFloat.greatestFiniteMagnitude)).height
-            heightContent.constant = conHeight
+            if heightHeaderView != nil {
+                header.removeConstraint(heightHeaderView!)
+            }
+            if widthHeaderView != nil {
+                header.removeConstraint(widthHeaderView!)
+            }
             
-            let height = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            
-            header.frame = CGRect(x: header.frame.origin.x, y: header.frame.origin.y, width: header.bounds.width, height: height)
+            if let header = tblView.tableHeaderView {
+                let conHeight = lbContent.sizeThatFits(CGSize(width: lbContent.bounds.width, height: CGFloat.greatestFiniteMagnitude)).height
+                heightContent.constant = conHeight
+                
+                let height = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+                
+                header.frame = CGRect(x: header.frame.origin.x, y: header.frame.origin.y, width: header.bounds.width, height: height)
+                
+                header.translatesAutoresizingMaskIntoConstraints = false
+                self.widthHeaderView = header.widthAnchor.constraint(equalToConstant: self.tblView.bounds.width)
+                widthHeaderView?.priority = UILayoutPriority(999)
+                widthHeaderView?.isActive = true
+                
+                header.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+                self.heightHeaderView = header.heightAnchor.constraint(equalToConstant: height)
+                self.heightHeaderView?.priority = UILayoutPriority(900)
+                self.heightHeaderView?.isActive = true
+            }
+        }
+    }
+    func requestExpertDailyLife() {
+        guard let token = SharedData.instance.token else {
+            return
+        }
+        let param:[String:Any] = ["token":token, "page":1, "per_page":5, "findex":"post_like"]
+        ApiManager.shared.requestTalkList(param: param) { (response) in
+            if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as?[[String:Any]], list.isEmpty == false {
+                self.arrExpertDaily = list
+                self.decorationUi()
+            }
+        } failure: { (errro) in
+            self.showErrorAlertView(errro)
+        }
+
+    }
+    func requestExpertDetail() {
+        guard let token = SharedData.instance.token, let data = data, let mem_id = data["mem_id"] else {
+            return
+        }
+        let param:[String:Any] = ["token":token, "mem_id":mem_id]
+        ApiManager.shared.requestExpertDetail(param: param) { (response) in
+            if let response = response, let user = response["user"] as? [String:Any] {
+                self.data = user
+                self.decorationUi()
+            }
+            else {
+                self.showErrorAlertView(response)
+            }
+        } failure: { (error) in
+            self.showErrorAlertView(error)
         }
     }
     
-    func requestExpertDetail() {
-        self.makeTestData()
-        self.tblView.reloadData()
-    }
-    func makeTestData() {
-        let item:[String:Any] = ["title": "CF 광고 촬영 출장 다녀왔습니다~", "data": "2020.10.04", "comment_cnt":19]
-        var secList = Array<Any>()
-        for _ in 0..<10 {
-            secList.append(item)
+    func decorationUi() {
+        ivProfile.image = nil
+        lbName.text = ""
+        btnStarCnt.setTitle("0", for: .normal)
+        btnHartCnt.setTitle("0", for: .normal)
+        lbContent.text = ""
+        guard let data = data else {
+            return
         }
-        var secInfo:[String:Any] = ["sec_type": "image", "sec_title":"", "sec_list":secList]
+        
+        if let mem_photo = data["mem_photo"] as? String {
+            ivProfile.setImageCache(url: mem_photo, placeholderImgName: nil)
+        }
+        if let mem_nickname = data["mem_nickname"] as? String {
+            lbName.text = mem_nickname
+        }
+        if let mem_star = data["mem_star"] {
+            let star = "\(mem_star)".addComma()
+            btnStarCnt.setTitle(star, for: .normal)
+        }
+        if let mem_heart = data["mem_heart"] {
+            let hart = "\(mem_heart)".addComma()
+            btnHartCnt.setTitle(hart, for: .normal)
+        }
+        
+        if let mem_manager_type = data["mem_manager_type"] as? String {
+            btnType.setTitle(mem_manager_type, for: .normal)
+        }
+        
+        let is_mypick = data["is_mypick"] as? Bool
+        if is_mypick == true {
+            btnPick.isSelected = true
+        }
+        else {
+            btnPick.isSelected = false
+        }
+        if let mem_profile_content = data["mem_profile_content"] as? String {
+            lbContent.text = mem_profile_content
+        }
+        self.headerUpdateLayout()
+        
         arrData.removeAll()
-        arrData.append(secInfo)
-        
-        secInfo.removeAll()
-        secInfo = ["sec_type": "expertDailyLife", "sec_title":"전문가 일상", "sec_list":secList]
-        arrData.append(secInfo)
-        
-        let item2:[String:Any] = ["name": "꾸쮸뿌쮸", "date":"2020.10.20 13:00", "star_cnt": 4, "content":"진단후기 내용입니다. 진단후기 내용입니다. 진단후기 내용입니다. 진단후기 내용입니다. 진단후기 내용입니다. 진단후기 내용입니다. 진단후기 내용입니다. 진단후기 내용입니다. 진단후기 내용입니다. "]
-        secList.removeAll()
-        secInfo.removeAll()
-        for _ in 0..<10 {
-            secList.append(item2)
+        if let thumb_url = data["thumb_url"] as? [String], thumb_url.isEmpty == false {
+            let secInfo:[String:Any] = ["sec_type": "image", "sec_title":"", "sec_list":thumb_url]
+            arrData.append(secInfo)
         }
-        secInfo = ["sec_type": "comment", "sec_title":"전문가 일상", "sec_list":secList]
-        arrData.append(secInfo)
+        
+        if let arrExpertDaily = arrExpertDaily {
+            let secInfo:[String:Any] = ["sec_type": "expertDailyLife", "sec_title":"전문가 일상", "sec_list":arrExpertDaily]
+            arrData.append(secInfo)
+        }
+        
+        if let review = data["review"] as? [String:Any], let list = review["list"] as? [[String:Any]], list.isEmpty == false {
+            let secInfo:[String:Any] = ["sec_type": "comment", "sec_list":list]
+            arrData.append(secInfo)
+        }
+        self.view.layoutIfNeeded()
+        self.tblView.reloadData {
+            self.view.layoutIfNeeded()
+            self.headerUpdateLayout()
+        }
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender.tag == 10000 { //전문가 일상
             print("전문가 일상")
             
-            let vc = ExpertDailyLifeListViewController.init()
+            let vc = ExpertLifeListViewController.init()
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
         else if sender == btnFaq {
-            
+            let vc = QnaViewController.init()
+            vc.type = .faq
+            vc.passData = data
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender == btnChu {
             
@@ -107,7 +216,7 @@ extension ExpertDetailViewController: UITableViewDelegate, UITableViewDataSource
         return arrData.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let secInfo = arrData[section] as?[String:Any], let secList = secInfo["sec_list"] as? Array<[String:Any]> {
+        if let secInfo = arrData[section] as?[String:Any], let secList = secInfo["sec_list"] as? [Any] {
             if let secType = secInfo["sec_type"] as? String, secType == "image" {
                 return 1
             }
@@ -118,7 +227,7 @@ extension ExpertDetailViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
         
-        if let secInfo = arrData[indexPath.section] as?[String:Any], let secList = secInfo["sec_list"] as? Array<[String:Any]> {
+        if let secInfo = arrData[indexPath.section] as?[String:Any], let secList = secInfo["sec_list"] as? [Any] {
             
             let secType = secInfo["sec_type"] as! String
             
@@ -149,7 +258,6 @@ extension ExpertDetailViewController: UITableViewDelegate, UITableViewDataSource
                 cell = commentCell
                 commentCell?.configurationData(secList[indexPath.row])
             }
-            
         }
         
         if cell == nil {
@@ -199,10 +307,14 @@ extension ExpertDetailViewController: UITableViewDelegate, UITableViewDataSource
         
         tableView.deselectRow(at: indexPath, animated: true)
         let secInfo = arrData[indexPath.section] as! [String:Any]
-        if let secType = secInfo["sec_type"] as? String, secType == "expertDailyLife", let list = secInfo["sec_list"] as? Array<[String:Any]>, let item = list[indexPath.row] as? [String:Any] {
-            let vc = ExpertDailyLifeDetailViewController.init()
-            vc.passData = item
-            self.navigationController?.pushViewController(vc, animated: true)
+        if let secType = secInfo["sec_type"] as? String, secType == "expertDailyLife", let list = secInfo["sec_list"] as? [Any], let item = list[indexPath.row] as? [String:Any] {
+            
+            let vc = TalkDetailViewController.init()
+            vc.data = item
+            self.navigationController?.pushViewController(vc, animated:true)
+//            let vc = ExpertLifeDetailViewController.init()
+//            vc.passData = item
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

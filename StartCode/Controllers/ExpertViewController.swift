@@ -30,7 +30,6 @@ class ExpertViewController: BaseViewController {
         collectionView.register(UINib(nibName: "ExpertColCell", bundle: nil), forCellWithReuseIdentifier: "ExpertColCell")
         
         CNavigationBar.drawBackButton(self, "전문가", false, nil)
-        CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
         
         self.view.layoutIfNeeded()
         let layout = UICollectionViewFlowLayout.init()
@@ -47,13 +46,12 @@ class ExpertViewController: BaseViewController {
         footerView.backgroundColor = UIColor.clear
         collectionView.addSubview(footerView)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: footerH, right: 0)
-        
+        self.dataReset()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addKeyboardNotification()
-        self.dataReset()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -178,8 +176,8 @@ extension ExpertViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-     
         let vc = ExpertDetailViewController.init()
+        vc.data = listData[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

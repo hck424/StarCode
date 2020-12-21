@@ -7,13 +7,15 @@
 
 import UIKit
 enum PopupType {
-    case list, alert, textField
-}
-enum ActionStyle {
-    case cancel, ok, textfild, textfieldAndButton
+    case list, alert
 }
 
-typealias ActionHalder = (_ action: AnyObject) ->Void
+enum PopupActionStyle {
+    case cancel, ok
+}
+
+typealias PopupClosure = (_ vcs:UIViewController, _ selItem:Any?, _ index:Int) ->Void
+
 class PopupViewController: UIViewController {
 
     @IBOutlet weak var heightContentView: NSLayoutConstraint!
@@ -33,27 +35,29 @@ class PopupViewController: UIViewController {
     var listData:Array<Any>?
     var data:[String:Any]?
     var keys:Array<String>?
-    var arrBtn:Array<UIButton>?
+    var arrBtn:Array<UIButton> = []
     
     var popupTitle:Any? = nil
     var message:Any? = nil
-    var actionHandler:ActionHalder?
-    var didSelectRowAtItem:((_ vcs:UIViewController, _ selItem:Any?, _ index:Int)->Void)?
     
-    convenience init(type:PopupType, title:Any? = nil, message:Any? = nil) {
+    var completion:PopupClosure?
+
+    convenience init(type:PopupType, title:Any? = nil, message:Any? = nil, completion:PopupClosure?) {
         self.init()
         self.type = type
         self.popupTitle = title
         self.message = message
+        self.completion = completion
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
     }
-    convenience init(type:PopupType, title:Any? = nil, data:Array<Any>?, keys:[String]? = nil) {
+    convenience init(type:PopupType, title:Any? = nil, data:Array<Any>?, keys:[String]? = nil, completion:PopupClosure?) {
         self.init()
         self.type = type
         self.popupTitle = title
         self.listData = data
         self.keys = keys
+        self.completion = completion
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
     }
@@ -137,98 +141,7 @@ class PopupViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    func addTextField(_ title: Any?, _ style:ActionStyle, _  placeHolder:String? = nil, _ btnTitle:String? = nil, _ hitTxt:String? = nil) {
-        self.view.layoutIfNeeded()
-        if arrFiled == nil {
-            arrFiled = Array<CTextField>()
-        }
-        
-        let svField = UIStackView.init()
-        
-        svField.axis = .vertical
-        svField.spacing = 0
-        svField.distribution = .fill
-        svContentView.isLayoutMarginsRelativeArrangement = true
-        svContentView.layoutMargins = UIEdgeInsets(top: 30, left: 20, bottom: 10, right: 20)
-        svContentView.addArrangedSubview(svField)
-        svContentView.spacing = 0
-        
-        if let title = title {
-            let lbTitle = UILabel.init()
-            lbTitle.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        
-            if title is NSAttributedString {
-                lbTitle.attributedText = title as? NSAttributedString
-            }
-            else if title is String {
-                lbTitle.text = (title as! String)
-            }
-            svField.addArrangedSubview(lbTitle)
-            lbTitle.tag = 100
-        }
-        
-        let textField = CTextField.init()
-        textField.insetTB = 3
-        textField.insetLR = 0
-        textField.delegate = self
-        textField.placeholder = placeHolder
-        textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        textField.tag = 101
-        
-        arrFiled?.append(textField)
-        if style == .textfieldAndButton {
-            let svTmp = UIStackView.init()
-            svTmp.axis = .horizontal
-            svTmp.spacing = 8
-            svField.addArrangedSubview(svTmp)
-            svTmp.addArrangedSubview(textField)
-         
-            let btn = UIButton.init()
-            btn.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-            btn.setTitleColor(RGB(139, 0, 255), for: .normal)
-            if let btnTitle = btnTitle {
-                btn.setTitle(btnTitle, for: .normal)
-            }
-            svTmp.addArrangedSubview(btn)
-            btn.addTarget(self, action: #selector(onClickedBtnActions(_:)), for: .touchUpInside)
-            btn.tag = 200+arrFiled!.count
-            let lineView = UIView.init()
-            svField.addArrangedSubview(lineView)
-            lineView.translatesAutoresizingMaskIntoConstraints = false
-            lineView.backgroundColor = RGB(216, 216, 216)
-            lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        }
-        else {
-            svField.addArrangedSubview(textField)
-            textField.borderBottom = true
-            textField.borderWidth = 1.0
-            textField.borderColor = RGB(216, 216, 216)
-        }
-        
-        let hitView = UIView.init()
-        svField.addArrangedSubview(hitView)
-        hitView.translatesAutoresizingMaskIntoConstraints = false
-        hitView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        let lbHint = UILabel.init()
-        lbHint.textAlignment = .right
-        lbHint.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        lbHint.textColor = RGB(230, 102, 102)
-        hitView.addSubview(lbHint)
-        if hitTxt != nil {
-            lbHint.text = hitTxt
-        }
-        
-        lbHint.leadingAnchor.constraint(equalTo: hitView.leadingAnchor).isActive = true
-        lbHint.topAnchor.constraint(equalTo: hitView.topAnchor).isActive = true
-        lbHint.bottomAnchor.constraint(equalTo: hitView.bottomAnchor).isActive = true
-        lbHint.trailingAnchor.constraint(equalTo: hitView.trailingAnchor).isActive = true
-        lbHint.tag = 102
-    }
-    
-    func addAction(_ title: Any?, style:ActionStyle, hanlder: ActionHalder?) {
+    func addAction(_ style:PopupActionStyle, _ title: Any) {
         self.view.layoutIfNeeded()
         
         let btn = UIButton.init(type: .custom)
@@ -236,18 +149,7 @@ class PopupViewController: UIViewController {
         btn.layer.cornerRadius = 20
         btn.clipsToBounds = true
         
-        if style == .cancel {
-            btn.backgroundColor = RGB(232, 232, 232)
-            if let title = title as? NSAttributedString {
-                btn.setAttributedTitle(title, for: .normal)
-            }
-            else if let title = title as? String {
-                btn.setTitle(title, for: .normal)
-                btn.setTitleColor(RGB(153, 153, 153), for: .normal)
-            }
-            btn.tag = 100
-        }
-        else if style == .ok {
+        if style == .ok {
             btn.setBackgroundImage(UIImage(named: "btn_rectangle"), for: .normal)
             if let title = title as? NSAttributedString {
                 btn.setAttributedTitle(title, for: .normal)
@@ -256,14 +158,22 @@ class PopupViewController: UIViewController {
                 btn.setTitle(title, for: .normal)
                 btn.setTitleColor(UIColor.systemBackground, for: .normal)
             }
-            btn.tag = 101
-            self.actionHandler = hanlder
         }
-        
+        else {
+            btn.backgroundColor = RGB(232, 232, 232)
+            if let title = title as? NSAttributedString {
+                btn.setAttributedTitle(title, for: .normal)
+            }
+            else if let title = title as? String {
+                btn.setTitle(title, for: .normal)
+                btn.setTitleColor(RGB(153, 153, 153), for: .normal)
+            }
+        }
         svActions.isHidden = false
         svActions.addArrangedSubview(btn)
         btn.addTarget(self, action: #selector(onClickedBtnActions(_:)), for: .touchUpInside)
-        self.view.layoutIfNeeded()
+        btn.tag = 100+arrBtn.count
+        arrBtn.append(btn)
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
@@ -271,29 +181,10 @@ class PopupViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }
         if sender == btnFullClose {
-            if type == .textField {
-                self.view.endEditing(true)
-            }
-            else {
-                self.dismiss(animated: false, completion: nil)
-            }
+            self.dismiss(animated: false, completion: nil)
         }
-        else {
-            if let arrFiled = arrFiled {
-                if (sender.tag >= 200) && (sender.tag < (arrFiled.count + 200)) {
-                    let index = sender.tag - 200
-                    let textField = arrFiled[index]
-                    if textField.text?.isEmpty == true {
-                        
-                    }
-                }
-            }
-            else if sender.tag == 100 {
-                self.dismiss(animated: true, completion: nil)
-            }
-            else if sender.tag == 101 {
-                actionHandler?(sender)
-            }
+        else if sender.tag >= 100 {
+            self.completion?(self, nil, sender.tag-100)
         }
     }
     
@@ -361,9 +252,7 @@ extension PopupViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        if let didSelectRowAtItem = didSelectRowAtItem {
-            didSelectRowAtItem(self, item, indexPath.row)
-        }
+        self.completion?(self, item, indexPath.row)
     }
     
 }

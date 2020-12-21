@@ -13,34 +13,34 @@ class Clabel: UILabel {
     
     @IBInspectable var insetTB :CGFloat = 0.0 {
         didSet {
-            if insetTB > 0 { setNeedsLayout() }
+            if insetTB > 0 { setNeedsDisplay() }
         }
     }
     @IBInspectable var insetLR :CGFloat = 0.0 {
         didSet {
-            if insetLR > 0 { setNeedsLayout() }
+            if insetLR > 0 { setNeedsDisplay() }
         }
     }
     
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
-            if borderWidth > 0 {setNeedsLayout()}
+            if borderWidth > 0 {setNeedsDisplay()}
         }
     }
     
     @IBInspectable var borderColor: UIColor? {
         didSet {
-            if borderColor != nil { setNeedsLayout()}
+            if borderColor != nil { setNeedsDisplay()}
         }
     }
     @IBInspectable var halfCornerRadius:Bool = false {
         didSet {
-            if halfCornerRadius {setNeedsLayout()}
+            if halfCornerRadius {setNeedsDisplay()}
         }
     }
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
-            if cornerRadius > 0 { setNeedsLayout()}
+            if cornerRadius > 0 { setNeedsDisplay()}
         }
     }
  

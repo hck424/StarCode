@@ -70,7 +70,6 @@ class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, UIImage(named: "logo_header"), nil)
-        CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
         
         tblView.tableHeaderView = haderView
         tblView.tableFooterView = footerView
@@ -98,16 +97,22 @@ class SettingViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnLogout {
-            let vc = PopupViewController.init(type: .alert, title: "로그아웃", message: "로그아웃 하시겠습니까?")
-            vc.addAction("취소", style: .cancel) { (btn) in
-                vc.dismiss(animated: true, completion: nil)
+            let vc = PopupViewController.init(type: .alert, title: "로그아웃", message: "로그아웃 하시겠습니까?") { (vcs, selItem, index) in
+                
+                vcs.dismiss(animated: true, completion: nil)
+                if index == 1 {
+                    SharedData.removeObjectForKey(kToken)
+                    SharedData.instance.token = nil
+                    SharedData.removeObjectForKey(kMemId)
+                    SharedData.removeObjectForKey(kMemUserid)
+                    SharedData.removeObjectForKey(kMemPassword)
+                    SharedData.instance.memUserId = nil
+                    SharedData.instance.memId = nil
+                    AppDelegate.instance()?.callLgoinSelectVc()
+                }
             }
-            vc.addAction("확인", style: .ok) { (btn) in
-                vc.dismiss(animated: true, completion: nil)
-                SharedData.removeObjectForKey(kToken)
-                SharedData.instance.pToken = nil
-                AppDelegate.instance()?.callLoginVc()
-            }
+            vc.addAction(.cancel, "취소")
+            vc.addAction(.ok, "확인")
             present(vc, animated: true, completion: nil)
         }
     }
@@ -146,7 +151,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if cellId == .myQna {
-            let vc = MyQnaViewController.init()
+            let vc = MyQnaListViewController.init()
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if cellId == .chuUsingHistory {

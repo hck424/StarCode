@@ -57,6 +57,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onClickedBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2dk-tP-Nir"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sR6-aV-fPo" customClass="CButton" customModule="StartCode" customModuleProvider="target">
                                         <rect key="frame" x="441" y="13.5" width="42" height="24"/>
@@ -74,6 +77,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onClickedBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="225-Ym-BPp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -86,7 +92,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vE-Bj-tuj">
                                 <rect key="frame" x="20" y="101" width="483" height="200"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHC-Lq-2Eb">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XHC-Lq-2Eb">
                                         <rect key="frame" x="0.0" y="0.0" width="483" height="200"/>
                                     </stackView>
                                 </subviews>
@@ -117,6 +123,9 @@
                                         <state key="normal" title="1" image="ic_warning">
                                             <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onClickedBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="t5l-u7-rhL"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEi-Pw-N4U">
                                         <rect key="frame" x="372" y="0.0" width="42" height="30"/>
@@ -127,6 +136,9 @@
                                             <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="selected" image="ic_like_on"/>
+                                        <connections>
+                                            <action selector="onClickedBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0xI-4e-5V3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8c-kC-Zpt">
                                         <rect key="frame" x="422" y="0.0" width="61" height="30"/>
@@ -135,6 +147,9 @@
                                         <state key="normal" title="댓글달기">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onClickedBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gtk-SF-diO"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -159,7 +174,7 @@
                 <outlet property="btnLikeCnt" destination="XEi-Pw-N4U" id="DAp-Nm-dvW"/>
                 <outlet property="btnModify" destination="3w9-08-3cQ" id="IDY-Rl-ZVW"/>
                 <outlet property="btnWarning" destination="t6r-bB-Jpr" id="Yst-6p-io6"/>
-                <outlet property="lbContent" destination="qsb-GU-4Ac" id="yqO-ML-4Rp"/>
+                <outlet property="lbContent" destination="lFP-Vh-UzN" id="rXg-W7-Awc"/>
                 <outlet property="lbDate" destination="Pen-5A-eIu" id="KEE-8J-yvl"/>
                 <outlet property="lbExpertName" destination="c3i-GZ-IxO" id="qKX-dH-6bi"/>
                 <outlet property="photoScrollView" destination="5vE-Bj-tuj" id="R0J-dl-oUU"/>

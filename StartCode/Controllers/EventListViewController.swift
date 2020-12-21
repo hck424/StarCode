@@ -18,7 +18,6 @@ class EventListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "이벤트", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
         let footerView = Bundle.main.loadNibNamed("TableFooterView", owner: nil, options: nil)?.first as! TableFooterView
         

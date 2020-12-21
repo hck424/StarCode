@@ -9,67 +9,71 @@ import UIKit
 
 class ChuPurchaseViewController: BaseViewController {
 
-    @IBOutlet var arrBtnChu: [CButton]!
     @IBOutlet weak var btnPurchase: UIButton!
+    @IBOutlet weak var svChu: UIStackView!
     
     var arrMony:[Int] = [2500, 5900, 12000, 37000, 65000, 119000]
-    
+    var arrData:[[String:Any]] = []
     var selMony = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "CHU 구매", #selector(actionPopViewCtrl))
-        arrBtnChu = arrBtnChu.sorted(by: { (btn1, btn2) -> Bool in
-            btn1.tag < btn2.tag
-        })
         
-        for i in 0..<arrBtnChu.count {
-            let btn = arrBtnChu[i]
-            btn.addTarget(self, action: #selector(onClickedBtnActions(_:)), for: .touchUpInside)
-            
-            if i < arrMony.count {
-                let money = arrMony[i]
-                btn.data = money
+        self.requestChuPurchaseList()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.showLoginPopupWithCheckSession()
+    }
+    func requestChuPurchaseList() {
+        guard let token = SharedData.instance.token else {
+            return
+        }
+        let param:[String:Any] = ["token":token]
+        ApiManager.shared.requestChuShopList(param: param) { (response) in
+            if let response = response, let data = response["data"] as?[String:Any], let list = data["list"] as? Array<[String:Any]> {
+                self.arrData = list
+                self.decorationUi()
             }
+            else {
+                self.showErrorAlertView(response)
+            }
+        } failure: { (error) in
+            self.showErrorAlertView(error)
+        }
+    }
+    func decorationUi() {
+        guard arrData.isEmpty == false else {
+            return
+        }
+        for subView in svChu.subviews {
+            subView.removeFromSuperview()
+        }
+        
+        for item in arrData {
+            let btnChu = Bundle.main.loadNibNamed("ChuPurchaseBtn", owner: nil, options: nil)?.first as! ChuPurchaseBtn
+            btnChu.configurationData(item)
+            svChu.addArrangedSubview(btnChu)
+            btnChu.translatesAutoresizingMaskIntoConstraints = false
+            btnChu.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            btnChu.addTarget(self, action: #selector(onClickedBtnActions(_:)), for: .touchUpInside)
         }
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        if let sender = sender as? CButton, arrBtnChu.contains(sender) == true {
-            for btnChu in arrBtnChu {
-                btnChu.isSelected = false
-                if let lbCnt = btnChu.viewWithTag(100) as? UILabel {
-                    lbCnt.textColor = UIColor.label
-                    lbCnt.font = UIFont.systemFont(ofSize: lbCnt.font.pointSize, weight: .regular)
+        if let sender = sender as? ChuPurchaseBtn {
+            for btn in svChu.subviews {
+                if let btn = btn as? ChuPurchaseBtn {
+                    btn.isSelected = false
                 }
-                if let lbMoney = btnChu.viewWithTag(101) as? UILabel {
-                    lbMoney.textColor = UIColor.label
-                    lbMoney.font = UIFont.systemFont(ofSize: lbMoney.font.pointSize, weight: .regular)
-                }
-                btnChu.borderColor = RGB(221, 221, 221)
             }
-            
             sender.isSelected = true
-            let colorSel = RGB(128, 0, 255)
-            if let lbCnt = sender.viewWithTag(100) as? UILabel {
-                lbCnt.textColor = colorSel
-                lbCnt.font = UIFont.systemFont(ofSize: lbCnt.font.pointSize, weight: .bold)
-            }
-            if let lbMoney = sender.viewWithTag(101) as? UILabel {
-                lbMoney.textColor = colorSel
-                lbMoney.font = UIFont.systemFont(ofSize: lbMoney.font.pointSize, weight: .bold)
-            }
-            sender.borderColor = colorSel
-            
-            if let money = sender.data as? Int {
-                self.selMony = money
-            }
-            print("\(selMony)")
         }
         else if sender == btnPurchase {
             if selMony < 0 {
-                self.view.makeToast("금액을 선택해주세요")
+                self.showToast("금액을 선택해주세요")
                 return
             }
             

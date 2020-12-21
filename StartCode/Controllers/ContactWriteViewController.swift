@@ -17,7 +17,6 @@ class ContactWriteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "고객센터", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
         tfTitle.inputAccessoryView = accessroyView
         textView.inputAccessoryView = accessroyView
@@ -33,23 +32,24 @@ class ContactWriteViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnOk {
+            self.view.endEditing(true)
             guard let title = tfTitle.text, title.isEmpty == false else {
-                self.view.makeToast("타이틀을 입력해주세요.", position:.top)
+                self.showToast("타이틀을 입력해주세요.")
                 return
             }
             guard let content = textView.text, content.isEmpty == false else {
-                self.view.makeToast("내용을 입력해주세요.", position:.top)
+                self.showToast("내용을 입력해주세요.")
                 return
             }
             
-            guard let token = SharedData.instance.pToken else {
+            guard let token = SharedData.instance.token else {
                 return
             }
             let param = ["token":token, "post_title": title, "post_content": content]
             self.view.endEditing(true)
             ApiManager.shared.requestContactUsWrite(param: param) { (response) in
                 if let response = response, let code = response["code"] as? Int, code == 200, let message = response["message"] as? String {
-                    self.view.makeToast(message, position:.top)
+                    self.showToast(message)
                     self.navigationController?.popViewController(animated: true)
                 }
                 else {

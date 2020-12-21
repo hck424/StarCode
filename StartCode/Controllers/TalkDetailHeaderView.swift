@@ -11,10 +11,11 @@ class TalkDetailHeaderView: UIView {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbCategory: UILabel!
     @IBOutlet weak var lbDate: UILabel!
-    @IBOutlet weak var lbModify: CButton!
-    @IBOutlet weak var lbDelete: CButton!
+    @IBOutlet weak var btnModify: CButton!
+    @IBOutlet weak var btnDelete: CButton!
     @IBOutlet weak var lbContent: UILabel!
     @IBOutlet weak var heightConetnt: NSLayoutConstraint!
+    
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.register(UINib.init(nibName: "ExpertImgColCell", bundle: nil), forCellWithReuseIdentifier: "ExpertImgColCell")
@@ -22,43 +23,120 @@ class TalkDetailHeaderView: UIView {
     }
     
     @IBOutlet weak var btnScript: UIButton!
-    @IBOutlet weak var lbWarning: UIButton!
+    @IBOutlet weak var btnWarning: UIButton!
     @IBOutlet weak var btnLike: UIButton!
-    @IBOutlet weak var textView: CTextView!
-    @IBOutlet weak var photoScrollView: UIScrollView!
-    @IBOutlet weak var svPhoto: UIStackView!
-    @IBOutlet weak var btnAddPhoto: CButton!
-    @IBOutlet weak var btnCommentRegi: CButton!
+    var arrFile:Array<[String:Any]> = []
     
-    
-    func configurationData(_ data: [String:Any]?) {
+    var didClickedActionClosure:((_ action:ActionType) -> Void)?
+    func configurationData(_ data: [String:Any]?, completion:@escaping()->Void) {
+        lbTitle.text = ""
+        lbDate.text = ""
+        lbCategory.text = ""
+        lbContent.text = ""
         
+        guard let data = data else {
+            return
+        }
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        if let post_title = data["post_title"] as? String {
+            lbTitle.text = post_title
+        }
+        if let post_category = data["post_category"] as? String {
+            lbCategory.text = post_category
+        }
+        if let post_datetime = data["post_datetime"] as? String {
+            let df = CDateFormatter.init()
+            df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            if let date = df.date(from: post_datetime) {
+                df.dateFormat = "yyyy.MM.dd HH.mm"
+                lbDate.text = df.string(from: date)
+            }
+        }
         
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 320, height: collectionView.bounds.height)
-        layout.minimumLineSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        collectionView.collectionViewLayout = layout
+        if let post_content = data["post_content"] as? String {
+            lbContent.text = post_content
+            let height = lbContent.sizeThatFits(CGSize(width: lbContent.bounds.width, height: CGFloat.greatestFiniteMagnitude)).height
+            heightConetnt.constant = height
+        }
         
-        collectionView.reloadData()
+        btnWarning.isHidden = false
+        btnModify.isHidden = true
+        btnDelete.isHidden = true
+        btnLike.isHidden = false
+        if let mem_id = data["mem_id"] as? String {
+            if mem_id == SharedData.instance.memId {
+                btnWarning.isHidden = true
+                btnModify.isHidden = false
+                btnDelete.isHidden = false
+                btnLike.isHidden = true
+            }
+        }
         
+        if let post_like = data["post_like"] {
+            let like = "\(post_like)".addComma()
+            btnLike.setTitle(like, for: .normal)
+        }
+        if let post_blame = data["post_blame"] {
+            let blame = "\(post_blame)".addComma()
+            btnWarning.setTitle(blame, for: .normal)
+        }
+        if let scrap_count = data["scrap_count"] {
+            let scrap = "\(scrap_count)".addComma()
+            btnScript.setTitle(scrap, for: .normal)
+        }
+        
+        if let files = data["files"] as? Array<[String:Any]>, files.isEmpty == false {
+            self.arrFile = files
+            collectionView.isHidden = false
+            collectionView.delegate = self
+            collectionView.dataSource = self
+            
+            let layout = UICollectionViewFlowLayout.init()
+            layout.scrollDirection = .horizontal
+            layout.itemSize = CGSize(width: collectionView.bounds.width-40, height: collectionView.bounds.height)
+            layout.minimumLineSpacing = 8
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+            collectionView.collectionViewLayout = layout
+            
+            collectionView.reloadData()
+        }
+        else {
+            collectionView.isHidden = true
+        }
+        
+        completion()
     }
     
+    @IBAction func onClickedBtnAction(_ sender: UIButton) {
+        if sender == btnModify {
+            self.didClickedActionClosure?(.modify)
+        }
+        else if sender == btnDelete {
+            self.didClickedActionClosure?(.delete)
+        }
+        else if sender == btnScript {
+            self.didClickedActionClosure?(.scrap)
+        }
+        else if sender == btnWarning {
+            self.didClickedActionClosure?(.warning)
+        }
+        else if sender == btnLike {
+            self.didClickedActionClosure?(.like)
+        }
+        else {
+            self.didClickedActionClosure?(.none)
+        }
+    }
 }
 
 extension TalkDetailHeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return arrFile.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExpertImgColCell", for: indexPath) as! ExpertImgColCell
-        
-        
-        cell.configurationData(type: .talkDetail, "sample")
+        let item = arrFile[indexPath.row]
+        cell.configurationData(.talkDetail, item)
         return cell
     }
     

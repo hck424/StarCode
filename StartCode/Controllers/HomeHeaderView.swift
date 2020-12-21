@@ -15,7 +15,7 @@ class HomeHeaderView: UIView {
             typeIndex = 0
         }
     }
-    var arrBanner:[[String:Any]]?
+    var arrBanner:[[String:Any]] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,6 +42,9 @@ class HomeHeaderView: UIView {
     }
     
     func configurationData(_ data: [[String:Any]]?) {
+        guard let data = data else {
+            return
+        }
         self.arrBanner = data
         self.commonInit()
         bannerView.reloadData()
@@ -50,14 +53,11 @@ class HomeHeaderView: UIView {
 
 extension HomeHeaderView: FSPagerViewDelegate, FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        if let arrBanner = arrBanner {
-            return arrBanner.count
-        }
-        return 0
+        return arrBanner.count
     }
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "BannerCell", at: index) as! BannerCell
-        if let arrBanner = arrBanner, let item = arrBanner[index] as? [String:Any] {
+        if let item = arrBanner[index] as? [String:Any] {
             cell.configurationData(item)
         }
         return cell

@@ -47,14 +47,13 @@ class TalkCell: UITableViewCell {
             let df = CDateFormatter.init()
             df.dateFormat = "yyyy-MM-dd HH:mm:ss"
             if let date = df.date(from: post_updated_datetime) {
-                df.dateFormat = "yy.MM.dd HH:mm"
+                df.dateFormat = "yyyy.MM.dd HH:mm"
                 lbDate.text = df.string(from: date)
             }
         }
         
-        if let post_comment_count = data["post_comment_count"] as? Int {
-            let strCount = "\(post_comment_count)".addComma()
-            lbComentCnt.text = strCount
+        if let post_comment_count = data["post_comment_count"] as? String {
+            lbComentCnt.text = post_comment_count.addComma()
         }
     }
 }

@@ -52,7 +52,7 @@ class MyQnaListViewController: BaseViewController {
         self.requestQnaList()
     }
     func requestQnaList() {
-        guard let token = SharedData.instance.pToken else {
+        guard let token = SharedData.instance.token else {
             return
         }
         if isPageEnd == true {

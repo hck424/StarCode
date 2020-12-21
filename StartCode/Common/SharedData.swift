@@ -10,10 +10,12 @@ class SharedData: NSObject {
     static var instance = SharedData()
     
     var memId: String?
-    var pToken: String?
+    var token: String?
     var memJoinType:String?
     var memUserId:String?
-    var memChu:Int?
+    var memChu:Int = 0
+    var enableChangeTabMenu:Bool = false
+    let categorys = ["전체", "연예인", "패션", "헤어", "픽!쳐톡", "화장법", "다이어트"]
     
     func saveUserInfo(user:[String:Any]) {
         if let mem_id = user["mem_id"] as? String {
@@ -30,6 +32,7 @@ class SharedData: NSObject {
         }
         if let mem_username = user["mem_username"] as? String {
             SharedData.setObjectForKey(mem_username, kMemUsername)
+            
         }
         if let mem_nickname = user["mem_nickname"] as? String {
             SharedData.setObjectForKey(mem_nickname, kMemNickname)
@@ -46,9 +49,15 @@ class SharedData: NSObject {
         if let mem_level = user["mem_level"] as? String {
             SharedData.setObjectForKey(mem_level, kMemLevel)
         }
-        if let mem_chu = user["mem_chu"] as? Int {
-            SharedData.setObjectForKey(mem_chu, kMemChu)
+        if let mem_chu = user["mem_chu"] as? String, let intChu = Int(mem_chu) {
+            SharedData.setObjectForKey(intChu, kMemChu)
+            SharedData.instance.memChu = intChu
         }
+        else if let mem_chu = user["mem_chu"] as? Int {
+            SharedData.setObjectForKey(mem_chu, kMemChu)
+            SharedData.instance.memChu = mem_chu
+        }
+        
         if let mem_star = user["mem_star"] as? String {
             SharedData.setObjectForKey(mem_star, kMemStar)
         }
@@ -60,7 +69,7 @@ class SharedData: NSObject {
         }
         if let token = user["token"] as? String {
             SharedData.setObjectForKey(token, kToken)
-            SharedData.instance.pToken = token
+            SharedData.instance.token = token
         }
     }
     class func objectForKey(_ key: String)-> Any? {

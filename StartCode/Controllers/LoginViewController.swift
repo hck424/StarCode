@@ -17,10 +17,10 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var btnFindId: UIButton!
     @IBOutlet weak var btnFindPw: UIButton!
     @IBOutlet weak var btnSignIn: UIButton!
-    @IBOutlet weak var btnAndroid: CButton!
     @IBOutlet weak var btnIos: CButton!
     @IBOutlet weak var lbHitId: UILabel!
     @IBOutlet weak var lbHitPassword: UILabel!
+    @IBOutlet weak var svIos: UIStackView!
     @IBOutlet weak var bottomContainer: NSLayoutConstraint!
     
     var focusTf: UITextField?
@@ -37,6 +37,9 @@ class LoginViewController: BaseViewController {
             if let password = SharedData.objectForKey(kMemPassword) as? String {
                 tfPassword.text = password
             }
+        }
+        if appType == .expert {
+            svIos.isHidden = true
         }
     }
     
@@ -62,9 +65,6 @@ class LoginViewController: BaseViewController {
         else if sender == btnFindPw {
             let vc = MrInfoModifyViewController.init(type: .findPw)
             self.present(vc, animated: false, completion: nil)
-        }
-        else if sender == btnAndroid {
-            
         }
         else if sender == btnIos {
             
@@ -104,7 +104,7 @@ class LoginViewController: BaseViewController {
                     }
                     else {
                         if let message = response["message"] as? String {
-                            self.view.makeToast(message)
+                            self.showToast(message)
                         }
                     }
                 }

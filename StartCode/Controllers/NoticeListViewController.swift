@@ -20,7 +20,6 @@ class NoticeListViewController: BaseViewController {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "공지사항", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
         let footerView = Bundle.main.loadNibNamed("TableFooterView", owner: nil, options: nil)?.first as! TableFooterView
         

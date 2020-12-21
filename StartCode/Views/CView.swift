@@ -11,38 +11,38 @@ import UIKit
 class CView: UIView {
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
-            if borderWidth > 0 {setNeedsLayout()}
+            if borderWidth > 0 {setNeedsDisplay()}
         }
     }
     @IBInspectable var borderColor: UIColor? {
         didSet {
-            if borderColor != nil { setNeedsLayout()}
+            if borderColor != nil { setNeedsDisplay()}
         }
     }
     @IBInspectable var halfCornerRadius:Bool = false {
         didSet {
-            if halfCornerRadius {setNeedsLayout()}
+            if halfCornerRadius {setNeedsDisplay()}
         }
     }
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
-            if cornerRadius > 0 { setNeedsLayout()}
+            if cornerRadius > 0 { setNeedsDisplay()}
         }
     }
     
     @IBInspectable var sdColor: UIColor? {
         didSet {
-            if sdColor != nil { setNeedsLayout() }
+            if sdColor != nil { setNeedsDisplay() }
         }
     }
     @IBInspectable var sdOffset:CGSize = CGSize.zero {
         didSet {
-            if sdOffset.width > 0 || sdOffset.height > 0 { setNeedsLayout()}
+            if sdOffset.width > 0 || sdOffset.height > 0 { setNeedsDisplay()}
         }
     }
     @IBInspectable var sdRadius: CGFloat = 0.0 {
         didSet {
-            if sdRadius > 0 {setNeedsLayout()}
+            if sdRadius > 0 {setNeedsDisplay()}
         }
     }
     @IBInspectable var sdOpacity: Float = 0.0 {

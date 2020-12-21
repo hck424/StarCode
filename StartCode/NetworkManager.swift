@@ -26,9 +26,8 @@ enum ContentType: String {
 class NetworkManager: NSObject {
     static let shared = NetworkManager()
     func getFullUrl(_ url:String) -> String {
-        return "\(baseUrl)\(hostUrl)\(url)"
+        return "\(baseUrl)\(url)"
     }
-    
     func request(_ method: HTTPMethod, _ url: String, _ param:[String:Any]?, success:ResSuccess?, failure:ResFailure?) {
         let fullUrl = self.getFullUrl(url)
         guard let encodedUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
@@ -47,6 +46,72 @@ class NetworkManager: NSObject {
                 if let param = param {
                     print(String(describing: param))
                 }
+            }
+            print("take time: \(endTime - startTime)")
+            print("======= response ======= \n\(response)")
+            AppDelegate.instance()?.stopIndicator()
+            
+            switch response.result {
+            case .success(let result):
+                let statusCode: Int = response.response!.statusCode as Int
+                if (statusCode >= 200) && (statusCode <= 300) {
+                    
+                    if let result = result as? [String:Any] {
+                        success?(result)
+                    }
+                    else {
+                        failure?(result)
+                    }
+                }
+                else {
+                    failure?(result)
+                }
+                break
+            case .failure(let error as NSError?):
+                failure?(error)
+                break
+            }
+        }
+    }
+    
+    func requestFileUpload(_ method: HTTPMethod, _ url: String, _ param:[String:Any]?, success:ResSuccess?, failure:ResFailure?) {
+        let fullUrl = self.getFullUrl(url)
+        guard let encodedUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+        guard let param = param else {
+            return
+        }
+        
+        AppDelegate.instance()?.startIndicator()
+        let startTime = CACurrentMediaTime()
+        let header: HTTPHeaders = [.contentType(ContentType.urlencoded.rawValue), .accept(ContentType.json.rawValue)]
+        
+        AF.upload(multipartFormData: { (multipartFormData) in
+            for (key, value) in param {
+                if key == "post_file" {
+                    if let value = value as? Array<UIImage> {
+                        for img in value {
+                            let imgData = img.jpegData(compressionQuality: 1.0)
+                            if let imgData = imgData {
+                                multipartFormData.append(imgData, withName: "\(key)[]", fileName: "\(Date().timeIntervalSince1970).jpeg", mimeType: "image/png")
+                                print(" == imgData byte: \(ByteCountFormatter().string(fromByteCount: Int64(imgData.count)))")
+                            }
+                        }
+                    }
+                }
+                else {
+                    let data:Data? = "\(value)".data(using: .utf8)
+                    if let data = data {
+                        multipartFormData.append(data, withName: key)
+                    }
+                }
+            }
+        }, to: encodedUrl, method: method, headers: header).responseJSON { (response) in
+            let endTime = CACurrentMediaTime()
+            if let url = response.request?.url?.absoluteString {
+                print("\n\n =======request ======= \nurl: \(String(describing: url))")
+                print(String(describing: param))
             }
             print("take time: \(endTime - startTime)")
             print("======= response ======= \n\(response)")

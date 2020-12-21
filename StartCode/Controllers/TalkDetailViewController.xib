@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TalkDetailViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
+                <outlet property="btnComent" destination="dzI-YZ-da4" id="Rhl-DJ-LAZ"/>
                 <outlet property="tblView" destination="YbJ-7E-cxj" id="Lla-Qd-tR7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,14 +30,32 @@
                         <outlet property="delegate" destination="-1" id="YUy-1S-zDR"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzI-YZ-da4" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                    <rect key="frame" x="346" y="794" width="52" height="52"/>
+                    <color key="backgroundColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="52" id="Hjd-mG-PKh"/>
+                        <constraint firstAttribute="width" secondItem="dzI-YZ-da4" secondAttribute="height" multiplier="1:1" id="KOU-TQ-jYl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <state key="normal" title="댓글"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="hd1-dy-Yt1"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YbJ-7E-cxj" secondAttribute="trailing" id="8jI-y0-Kst"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dzI-YZ-da4" secondAttribute="bottom" constant="16" id="AeE-Mc-y59"/>
                 <constraint firstItem="YbJ-7E-cxj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d5i-hc-5Rf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="YbJ-7E-cxj" secondAttribute="bottom" id="fQ1-Rq-i54"/>
                 <constraint firstItem="YbJ-7E-cxj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="k2b-B3-zzP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dzI-YZ-da4" secondAttribute="trailing" constant="16" id="mhu-Id-lb1"/>
             </constraints>
             <point key="canvasLocation" x="139" y="96"/>
         </view>

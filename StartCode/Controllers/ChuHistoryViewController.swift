@@ -18,8 +18,8 @@ class ChuHistoryViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "CHU 사용내역", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
-        
+        let footerView = Bundle.main.loadNibNamed("TableFooterView", owner: self, options: nil)?.first as! TableFooterView
+        tblView.tableFooterView = footerView
         self.dataRest()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +36,7 @@ class ChuHistoryViewController: BaseViewController {
         self.requestMyChuHistory()
     }
     func requestMyChuHistory() {
-        guard let token = SharedData.instance.pToken else {
+        guard let token = SharedData.instance.token else {
             return
         }
         

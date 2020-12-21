@@ -19,14 +19,15 @@ class MyPostListViewController: BaseViewController {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "내 게시글", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
-        self.requestMyPostList()
+        let footerview = Bundle.main.loadNibNamed("TableFooterView", owner: self, options: nil)?.first as? TableFooterView
+        self.tblView.tableFooterView = footerview
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.showLoginPopupWithCheckSession()
+        self.dataRest()
     }
     func dataRest() {
         self.page = 1
@@ -37,7 +38,7 @@ class MyPostListViewController: BaseViewController {
         self.requestMyPostList()
     }
     func requestMyPostList() {
-        guard let token = SharedData.instance.pToken else {
+        guard let token = SharedData.instance.token else {
             return
         }
         
@@ -104,7 +105,9 @@ extension MyPostListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let item = listData[indexPath.row] as? [String:Any] else {
             return
         }
-        /// TODO:: detail
+        let vc = TalkDetailViewController.init()
+        vc.data = item
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 extension MyPostListViewController: UIScrollViewDelegate {

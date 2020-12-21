@@ -22,6 +22,7 @@ class MrTermsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "약관동의", #selector(onClickedBtnActions(_:)))
+        self.hideRightNaviBarItem = true
         let tmpStr = "(필수)"
         let result = "만 14세 이상입니다 \(tmpStr)"
         let attr = NSMutableAttributedString.init(string: result, attributes: [.foregroundColor: UIColor.label])
@@ -65,7 +66,7 @@ class MrTermsViewController: BaseViewController {
         else if sender == btnOk {
             if btnFourteen.isSelected == false
                 || btnService.isSelected == false {
-                self.view.makeToast("약관에 동의해주세요.")
+                self.showToast("약관에 동의해주세요.")
                 return
             }
             
@@ -77,8 +78,9 @@ class MrTermsViewController: BaseViewController {
             user.mem_is_privacy_agree = btnPrivacy.isSelected
             user.mem_is_marketing_agree = btnMarketing.isSelected
             
-            let vc = MrPhoneAuthViewController.init()
-            vc.user = user
+            let vc = MrJoinInfoViewController.init()
+//            let vc = MrPhoneAuthViewController.init()
+//            vc.user = user
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

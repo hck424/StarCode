@@ -15,7 +15,6 @@ class FAQListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "FAQ", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
         self.requestFaqList()
     }

@@ -8,11 +8,14 @@
 import UIKit
 
 class MyQnaDetailViewController: BaseViewController {
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var svContent: UIStackView!
+    var vcTitle = ""
     var type:QnaType = .faq
     var data:[String:Any]? 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var vcTitle = ""
+        
         if type == .faq {
             vcTitle = "1:1 문의"
         }
@@ -30,7 +33,7 @@ class MyQnaDetailViewController: BaseViewController {
         self.requestMyQuestDetail()
     }
     func requestMyQuestDetail() {
-        guard let token = SharedData.instance.pToken else {
+        guard let token = SharedData.instance.token else {
             return
         }
         guard let data = data, let post_id = data["post_id"] as? String else {
@@ -39,7 +42,8 @@ class MyQnaDetailViewController: BaseViewController {
         let param = ["token":token, "post_id":post_id]
         
         ApiManager.shared.requestAskDetail(param: param) { (response) in
-            if let response = response, let data = response["data"] as? [String:Any], let code = response["code"] as? Int, code == 200 {
+            if let response = response, let data = response["data"] as? [String:Any],
+               let code = response["code"] as? Int, code == 200 {
                 self.data = data
                 self.configurationUi()
             }
@@ -51,6 +55,20 @@ class MyQnaDetailViewController: BaseViewController {
         }
     }
     func configurationUi() {
+        guard let data = data else {
+            return
+        }
+        self.view.layoutIfNeeded()
+        let questionView = Bundle.main.loadNibNamed("MyQnaView", owner: self, options: nil)?.first as! MyQnaView
+        svContent.addArrangedSubview(questionView)
         
+        self.view.layoutIfNeeded()
+        questionView.questionType = type
+        questionView.configurationData(data, .question)
+        
+        
+        if let comment = data["comment"] as? [String:Any], let list = comment["list"] as? Array<[String:Any]> {
+            
+        }
     }
 }

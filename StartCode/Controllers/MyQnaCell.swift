@@ -8,7 +8,7 @@
 import UIKit
 enum MyQnaCellType {
 //    type1:나의문의내역(1:1, ai), type2:내문의내역(메이크업진단, 뷰티질문)
-    case type1, type2
+    case type1, type2, type3
 }
 
 
@@ -27,8 +27,8 @@ class MyQnaCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         ivThumb.layer.cornerRadius = 16
-        ivThumb.layer.borderWidth = 1.0
-        ivThumb.layer.borderColor = RGB(236, 236, 236).cgColor
+//        ivThumb.layer.borderWidth = 1.0
+//        ivThumb.layer.borderColor = RGB(236, 236, 236).cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,34 +42,37 @@ class MyQnaCell: UITableViewCell {
         btnAnswer2.isHidden = true
         svComment.isHidden = true
         lbSubTitle.isHidden = true
+        lbSubTitle.text = ""
+        lbTitle.text = ""
+        lbDate.text = ""
         lbCommentCnt.text = "0"
         guard let data = data else {
             return
         }
-        if type == .type1 {
+        
+        if type == .type1 || type == .type2 {
             btnAnswer.isHidden = false
-            
-            if let post_title = data["post_title"] as? String {
-                lbTitle.text = post_title
+            lbDate.isHidden = false
+            if type == .type1 {
+                if let post_title = data["post_title"] as? String {
+                    lbTitle.text = post_title
+                }
             }
-            
-            if let post_category = data["post_category"] as? String {
-                lbSubTitle.text = post_category
+            else {
+                if let post_content = data["post_content"] as? String {
+                    lbTitle.text = post_content
+                }
             }
             
             if let post_datetime = data["post_datetime"] as? String {
                 let df = CDateFormatter.init()
                 df.dateFormat = "yyyy-MM-dd HH.mm.ss"
                 if let date = df.date(from: post_datetime) {
-                    df.dateFormat = "yy.MM.dd HH.mm"
+                    df.dateFormat = "yyyy.MM.dd HH.mm"
                     lbDate.text = df.string(from: date)
                 }
             }
-            if let post_comment_count = data["post_comment_count"] {
-                let comentCnt = "\(post_comment_count)".addComma()
-                lbCommentCnt.text = comentCnt
-            }
-            
+
             if let post_reply = data["post_reply"] as? String, post_reply.isEmpty == false {
                 btnAnswer.backgroundColor = RGB(128, 0, 255)
                 btnAnswer.setTitle("답볍", for: .normal)
@@ -79,19 +82,19 @@ class MyQnaCell: UITableViewCell {
                 btnAnswer.setTitle("미답볍", for: .normal)
             }
         }
-        else if type == .type2 {
+        else  {
             ivThumb.isHidden = false
             btnAnswer2.isHidden = false
             ivThumb.image = nil
-            if let post_title = data["post_title"] as? String {
-                lbTitle.text = post_title
+            if let post_content = data["post_content"] as? String {
+                lbTitle.text = post_content
             }
            
             if let post_datetime = data["post_datetime"] as? String {
                 let df = CDateFormatter.init()
                 df.dateFormat = "yyyy-MM-dd HH.mm.ss"
                 if let date = df.date(from: post_datetime) {
-                    df.dateFormat = "yy.MM.dd HH.mm"
+                    df.dateFormat = "yyyy.MM.dd HH.mm"
                     lbDate.text = df.string(from: date)
                 }
             }

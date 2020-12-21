@@ -11,42 +11,42 @@ class SelectedButton: UIButton {
     var data:Any? = nil
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
-            if cornerRadius > 0 { setNeedsLayout()}
+            if cornerRadius > 0 { setNeedsDisplay()}
         }
     }
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
-            if borderWidth > 0 { setNeedsLayout()}
+            if borderWidth > 0 { setNeedsDisplay()}
         }
     }
     @IBInspectable var tl: Bool = false {
         didSet {
-            setNeedsLayout()
+            setNeedsDisplay()
         }
     }
     @IBInspectable var tr: Bool = false {
         didSet {
-            setNeedsLayout()
+            setNeedsDisplay()
         }
     }
     @IBInspectable var bl: Bool = false {
         didSet {
-            setNeedsLayout()
+            setNeedsDisplay()
         }
     }
     @IBInspectable var br: Bool = false {
         didSet {
-            setNeedsLayout()
+            setNeedsDisplay()
         }
     }
     @IBInspectable var borderColor: UIColor = UIColor.clear {
         didSet {
-            setNeedsLayout()
+            setNeedsDisplay()
         }
     }
     @IBInspectable var selBorderColor: UIColor = UIColor.clear {
         didSet {
-            setNeedsLayout()
+            setNeedsDisplay()
         }
     }
     override func draw(_ rect: CGRect) {
@@ -82,11 +82,11 @@ class SelectedButton: UIButton {
         
         self.setTitleColor(selBorderColor, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: (self.titleLabel?.font.pointSize)!, weight: .bold)
-        setNeedsLayout()
+        setNeedsDisplay()
     }
     func decorationNormalBtn() {
         self.setTitleColor(RGB(155, 155, 155), for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: (self.titleLabel?.font.pointSize)!, weight: .regular)
-        setNeedsLayout()
+        setNeedsDisplay()
     }
 }

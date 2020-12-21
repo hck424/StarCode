@@ -22,13 +22,25 @@ class ExpertDailyLifeCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        ivThumb.layer.cornerRadius = 16
+        ivThumb.clipsToBounds = true
+        ivThumb.layer.borderWidth = 1
+        
+        
+        ivProfile.layer.cornerRadius = ivProfile.bounds.height/2
+        ivProfile.clipsToBounds = true
+        ivProfile.layer.borderWidth = 1
+        ivProfile.layer.borderColor = RGB(236, 236, 236).cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func configurationData(_ data:[String:Any]) {
+    func configurationData(_ data:Any?) {
+        guard let data = data as? [String:Any] else {
+            return
+        }
         self.data = data
         ivThumb.image = nil
         lbTitle.text = nil
@@ -37,8 +49,11 @@ class ExpertDailyLifeCell: UITableViewCell {
         lbDate.text = nil
         lbCommentCnt.text = "0"
         
+        ivThumb.layer.borderColor = RGB(236, 236, 236).cgColor
+        ivProfile.layer.borderColor = RGB(236, 236, 236).cgColor
         if let thumb_url = data["thumb_url"] as? String, thumb_url.isEmpty == false {
             ivThumb.setImageCache(url: thumb_url, placeholderImgName: nil)
+            ivThumb.layer.borderColor = UIColor.clear.cgColor
         }
         
         if let post_title = data["post_title"] as? String {
@@ -50,13 +65,14 @@ class ExpertDailyLifeCell: UITableViewCell {
         }
         if let mem_icon = data["mem_icon"] as? String, mem_icon.isEmpty == false {
             ivProfile.setImageCache(url: mem_icon, placeholderImgName: nil)
+            ivProfile.layer.borderColor = UIColor.clear.cgColor
         }
         
         if let post_updated_datetime = data["post_updated_datetime"] as? String {
             let df = CDateFormatter.init()
             df.dateFormat = "yyyy-MM-dd HH:mm:ss"
             if let date = df.date(from: post_updated_datetime) {
-                df.dateFormat = "yy.MM.dd HH:mm"
+                df.dateFormat = "yyyy.MM.dd HH:mm"
                 let dateStr = df.string(for: date)
                 lbDate.text = dateStr
             }

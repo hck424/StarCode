@@ -41,7 +41,7 @@ class ExpertLifeListViewController: BaseViewController {
         
         tfSearch.inputAccessoryView = accoryView
         accoryView.addTarget(self, selctor: #selector(actionKeybardDown))
-        self.selCategory = SharedData.instance.categorys[5]
+//        self.selCategory = SharedData.instance.categorys[5]
         self.dataReset()
     }
     
@@ -102,14 +102,14 @@ class ExpertLifeListViewController: BaseViewController {
         self.page = 1
         self.isPageEnd = false
         self.isRequest = false
-        self.requestExpertDailyLifeList()
+        self.requestExpertLifeList()
     }
     func addData() {
-        self.requestExpertDailyLifeList()
+        self.requestExpertLifeList()
     }
     
-    func requestExpertDailyLifeList() {
-        guard let token = SharedData.instance.pToken else {
+    func requestExpertLifeList() {
+        guard let token = SharedData.instance.token else {
             return
         }
         if isPageEnd == true {
@@ -124,7 +124,7 @@ class ExpertLifeListViewController: BaseViewController {
             param["skeyword"] = searchTxt
         }
         
-        ApiManager.shared.requestTalkList(param: param) { (response) in
+        ApiManager.shared.requestExpertLifeList(param: param) { (response) in
             if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as? [[String:Any]] {
                 
                 if list.isEmpty == true {

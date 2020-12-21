@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseMessaging
+import JWTDecode
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,33 +27,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         FirebaseApp.configure()
         let dfs = UserDefaults.standard
+        print("==== apptype: \(appType)")
         
         let pushFlag = SharedData.objectForKey(kPushSetting)
         if let _ = pushFlag {
             self.registApnsPushKey()
         }
-        SharedData.instance.pToken = SharedData.objectForKey(kToken) as? String
+        SharedData.instance.token = SharedData.objectForKey(kToken) as? String
         SharedData.instance.memUserId = SharedData.objectForKey(kMemUserid) as? String
         SharedData.instance.memId = SharedData.objectForKey(kMemId) as? String
         SharedData.instance.memJoinType = SharedData.objectForKey(kMemJoinType) as? String
-        SharedData.instance.memChu = SharedData.objectForKey(kMemChu) as? Int
-        
-//        첫째 멤버에 id가 있으면 메인으로 간다.
-        if let userId = dfs.object(forKey: kMemUserid) as? String, let token = SharedData.instance.pToken {
-            print("userid: \(userId), token: \(token)")
-            self.requestUpdateToken()
-            self.callMainVc()
+        if let chu = SharedData.objectForKey(kMemChu) as? Int {
+            SharedData.instance.memChu = chu
         }
-        else {
-            if let _ = dfs.object(forKey: kMemJoinType) as? String {
-                self.callLoginVc()
+//        첫째 멤버에 id가 있으면 메인으로 간다.
+        if let _ = dfs.object(forKey: kMemUserid) as? String, let _ = SharedData.objectForKey(kToken) {
+            let expired = self.checkExpireToken()
+            if expired {
+                if appType == .user {
+                    self.callLgoinSelectVc()
+                }
+                else {
+                    self.callLoginVc()
+                }
             }
             else {
+                self.requestUpdateToken()
+                self.callMainVc()
+            }
+        }
+        else {
+            if appType == .user {
                 self.callLgoinSelectVc()
+            }
+            else {
+                self.callLoginVc()
             }
         }
     
         return true
+    }
+    
+    func checkExpireToken() -> Bool {
+        if let token = SharedData.objectForKey(kToken) as? String {
+            do {
+                let jwt = try decode(jwt: token)
+                print ("=== token: \(token)")
+                print ("=== jwt expire date: \(String(describing: jwt.expiresAt))")
+                if jwt.expired {
+                    return true
+                }
+                else {
+                    return false
+                }
+            } catch {
+                return true
+            }
+        }
+        else {
+            return true
+        }
     }
 
     func callTutorialVc() {
@@ -83,13 +117,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         let param:[String:Any] = ["akey":akey, "token":token]
         ApiManager.shared.requestUpdateToken(param: param) { (response) in
-            if let response = response, let code = response["code"] as? Int {
+            if let response = response, let code = response["code"] as? Int, let message = response["message"] as? String {
                 if code == 200 {
                     guard let user = response["user"] as?[String:Any], let token = user["token"] as? String else {
                         return
                     }
-                    SharedData.instance.pToken = token
+                    SharedData.instance.token = token
                     SharedData.setObjectForKey(token, kToken)
+                }
+                else {
+                    self.window?.rootViewController?.view.makeToast(message)
                 }
             }
         } failure: { (error) in

@@ -12,13 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChuPurchaseViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
                 <outlet property="btnPurchase" destination="FJe-HG-1IC" id="qnj-OR-Ith"/>
+                <outlet property="svChu" destination="nak-za-SjN" id="bqK-fz-NfK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="arrBtnChu" destination="AwJ-Ub-t9t" collectionClass="NSMutableArray" id="ltH-tS-zMZ"/>
-                <outletCollection property="arrBtnChu" destination="pax-ju-7WZ" collectionClass="NSMutableArray" id="J9w-cd-FC6"/>
-                <outletCollection property="arrBtnChu" destination="tZI-Nc-iUb" collectionClass="NSMutableArray" id="Ybb-eZ-06Q"/>
-                <outletCollection property="arrBtnChu" destination="n2s-IE-Y1a" collectionClass="NSMutableArray" id="8jc-mc-4gV"/>
-                <outletCollection property="arrBtnChu" destination="vJN-dq-qtb" collectionClass="NSMutableArray" id="G7p-z6-jz5"/>
-                <outletCollection property="arrBtnChu" destination="HWV-gj-8hr" collectionClass="NSMutableArray" id="LFY-Z4-8gw"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -40,8 +35,8 @@ CHU를 구매해서 다양한 질문에 대한 빠르고 정확한 답변을 받
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ooA-eU-wnt">
-                                    <rect key="frame" x="20" y="97" width="374" height="317"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ooA-eU-wnt">
+                                    <rect key="frame" x="20" y="97" width="374" height="249"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHU 구입" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJ1-PN-ebO">
                                             <rect key="frame" x="0.0" y="24" width="374" height="17"/>
@@ -49,305 +44,14 @@ CHU를 구매해서 다양한 질문에 대한 빠르고 정확한 답변을 받
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AwJ-Ub-t9t" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="47" width="374" height="40"/>
-                                            <subviews>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gdz-te-qlD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_chu" translatesAutoresizingMaskIntoConstraints="NO" id="ymK-NZ-aHD">
-                                                            <rect key="frame" x="16" y="0.0" width="18" height="40"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="20개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmd-bd-GKZ">
-                                                            <rect key="frame" x="42" y="0.0" width="27.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZS-Tm-7c3">
-                                                            <rect key="frame" x="77.5" y="0.0" width="50" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <color key="textColor" red="0.54509803921568623" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2,500원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIh-du-x82">
-                                                            <rect key="frame" x="135.5" y="0.0" width="222.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Gdz-te-qlD" secondAttribute="trailing" id="LOn-HQ-NP3"/>
-                                                <constraint firstItem="Gdz-te-qlD" firstAttribute="top" secondItem="AwJ-Ub-t9t" secondAttribute="top" id="R26-7s-Ehi"/>
-                                                <constraint firstAttribute="height" constant="40" id="cyK-gb-mjM"/>
-                                                <constraint firstItem="Gdz-te-qlD" firstAttribute="leading" secondItem="AwJ-Ub-t9t" secondAttribute="leading" id="eb9-He-jnF"/>
-                                                <constraint firstAttribute="bottom" secondItem="Gdz-te-qlD" secondAttribute="bottom" id="xTN-Qc-hb0"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pax-ju-7WZ" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="93" width="374" height="40"/>
-                                            <subviews>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GVK-4u-GeT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_chu" translatesAutoresizingMaskIntoConstraints="NO" id="ufc-A5-Kzi">
-                                                            <rect key="frame" x="16" y="0.0" width="18" height="40"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="50개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24P-UP-FT5">
-                                                            <rect key="frame" x="42" y="0.0" width="27.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlx-vm-KW6">
-                                                            <rect key="frame" x="77.5" y="0.0" width="50" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <color key="textColor" red="0.5450980392" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,900원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QD-9g-SM9">
-                                                            <rect key="frame" x="135.5" y="0.0" width="222.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstItem="GVK-4u-GeT" firstAttribute="top" secondItem="pax-ju-7WZ" secondAttribute="top" id="H9t-5h-AI6"/>
-                                                <constraint firstAttribute="trailing" secondItem="GVK-4u-GeT" secondAttribute="trailing" id="gmM-qM-iwa"/>
-                                                <constraint firstItem="GVK-4u-GeT" firstAttribute="leading" secondItem="pax-ju-7WZ" secondAttribute="leading" id="lmA-Al-do6"/>
-                                                <constraint firstAttribute="height" constant="40" id="vQT-SK-orZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="GVK-4u-GeT" secondAttribute="bottom" id="zeD-3S-sm8"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZI-Nc-iUb" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="139" width="374" height="40"/>
-                                            <subviews>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4Ov-Cv-RzD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_chu" translatesAutoresizingMaskIntoConstraints="NO" id="SGs-Cq-qzp">
-                                                            <rect key="frame" x="16" y="0.0" width="18" height="40"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="100개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERt-DT-bP5">
-                                                            <rect key="frame" x="42" y="0.0" width="33.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="+10개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsP-WN-yZU">
-                                                            <rect key="frame" x="83.5" y="0.0" width="29" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <color key="textColor" red="0.5450980392" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12,000원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1s1-oS-FjG">
-                                                            <rect key="frame" x="120.5" y="0.0" width="237.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="4Ov-Cv-RzD" secondAttribute="trailing" id="JDo-q2-I1O"/>
-                                                <constraint firstAttribute="bottom" secondItem="4Ov-Cv-RzD" secondAttribute="bottom" id="eIF-YQ-9m5"/>
-                                                <constraint firstItem="4Ov-Cv-RzD" firstAttribute="leading" secondItem="tZI-Nc-iUb" secondAttribute="leading" id="kAd-iT-1IG"/>
-                                                <constraint firstAttribute="height" constant="40" id="poa-W0-4pc"/>
-                                                <constraint firstItem="4Ov-Cv-RzD" firstAttribute="top" secondItem="tZI-Nc-iUb" secondAttribute="top" id="wXh-vs-4vn"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2s-IE-Y1a" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="185" width="374" height="40"/>
-                                            <subviews>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="r8I-72-0VW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_chu" translatesAutoresizingMaskIntoConstraints="NO" id="gKi-1V-lcy">
-                                                            <rect key="frame" x="16" y="0.0" width="18" height="40"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="300개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u08-J6-rOX">
-                                                            <rect key="frame" x="42" y="0.0" width="36" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="+60개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ma2-xn-eT7">
-                                                            <rect key="frame" x="86" y="0.0" width="31" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <color key="textColor" red="0.5450980392" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37,000원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfM-Z1-xXb">
-                                                            <rect key="frame" x="125" y="0.0" width="233" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="d0M-kT-alq"/>
-                                                <constraint firstItem="r8I-72-0VW" firstAttribute="top" secondItem="n2s-IE-Y1a" secondAttribute="top" id="fRf-5A-aeD"/>
-                                                <constraint firstItem="r8I-72-0VW" firstAttribute="leading" secondItem="n2s-IE-Y1a" secondAttribute="leading" id="kCb-Dt-pVj"/>
-                                                <constraint firstAttribute="bottom" secondItem="r8I-72-0VW" secondAttribute="bottom" id="pAZ-uR-olr"/>
-                                                <constraint firstAttribute="trailing" secondItem="r8I-72-0VW" secondAttribute="trailing" id="vFM-wj-do0"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJN-dq-qtb" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="231" width="374" height="40"/>
-                                            <subviews>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BQO-xJ-0oT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_chu" translatesAutoresizingMaskIntoConstraints="NO" id="Vph-qL-Pf1">
-                                                            <rect key="frame" x="16" y="0.0" width="18" height="40"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="500개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwA-yg-jn2">
-                                                            <rect key="frame" x="42" y="0.0" width="35.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="+200개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K46-cN-JQ3">
-                                                            <rect key="frame" x="85.5" y="0.0" width="37.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <color key="textColor" red="0.5450980392" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="65,500원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQy-Le-CB1">
-                                                            <rect key="frame" x="131" y="0.0" width="227" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstItem="BQO-xJ-0oT" firstAttribute="top" secondItem="vJN-dq-qtb" secondAttribute="top" id="59H-qD-chl"/>
-                                                <constraint firstItem="BQO-xJ-0oT" firstAttribute="leading" secondItem="vJN-dq-qtb" secondAttribute="leading" id="F1g-gt-RWw"/>
-                                                <constraint firstAttribute="bottom" secondItem="BQO-xJ-0oT" secondAttribute="bottom" id="LAH-fZ-mTl"/>
-                                                <constraint firstAttribute="height" constant="40" id="jf8-fw-CrB"/>
-                                                <constraint firstAttribute="trailing" secondItem="BQO-xJ-0oT" secondAttribute="trailing" id="wUW-m5-mPQ"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWV-gj-8hr" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="277" width="374" height="40"/>
-                                            <subviews>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jhX-sl-N5o">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="ic_chu" translatesAutoresizingMaskIntoConstraints="NO" id="mL1-fR-SFK">
-                                                            <rect key="frame" x="16" y="0.0" width="18" height="40"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1,000개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqp-RK-D3b">
-                                                            <rect key="frame" x="42" y="0.0" width="44.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="+500개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WM4-8N-Q9v">
-                                                            <rect key="frame" x="94.5" y="0.0" width="37.5" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <color key="textColor" red="0.5450980392" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="119,000원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJW-jK-Tll">
-                                                            <rect key="frame" x="140" y="0.0" width="218" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="jhX-sl-N5o" secondAttribute="trailing" id="DO0-cZ-bhI"/>
-                                                <constraint firstAttribute="bottom" secondItem="jhX-sl-N5o" secondAttribute="bottom" id="XDy-SR-8Jy"/>
-                                                <constraint firstItem="jhX-sl-N5o" firstAttribute="top" secondItem="HWV-gj-8hr" secondAttribute="top" id="XLj-qe-hSt"/>
-                                                <constraint firstAttribute="height" constant="40" id="cih-kF-hSW"/>
-                                                <constraint firstItem="jhX-sl-N5o" firstAttribute="leading" secondItem="HWV-gj-8hr" secondAttribute="leading" id="qJe-Dc-Zzn"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="8"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="nak-za-SjN">
+                                            <rect key="frame" x="0.0" y="49" width="374" height="200"/>
+                                        </stackView>
                                     </subviews>
                                     <edgeInsets key="layoutMargins" top="24" left="0.0" bottom="0.0" right="0.0"/>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4ft-z9-DIe">
-                                    <rect key="frame" x="20" y="414" width="374" height="80"/>
+                                    <rect key="frame" x="20" y="346" width="374" height="80"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJe-HG-1IC">
                                             <rect key="frame" x="0.0" y="16" width="374" height="40"/>
@@ -361,7 +65,7 @@ CHU를 구매해서 다양한 질문에 대한 빠르고 정확한 답변을 받
                                     <edgeInsets key="layoutMargins" top="16" left="0.0" bottom="24" right="0.0"/>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNW-Ig-wOP" customClass="CView" customModule="StartCode" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="494" width="374" height="175"/>
+                                    <rect key="frame" x="20" y="426" width="374" height="175"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f7Y-yo-MqC">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="175"/>
@@ -409,7 +113,7 @@ CHU를 구매해서 다양한 질문에 대한 빠르고 정확한 답변을 받
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLH-qf-5Lk">
-                                    <rect key="frame" x="20" y="669" width="374" height="129"/>
+                                    <rect key="frame" x="20" y="601" width="374" height="197"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -441,7 +145,6 @@ CHU를 구매해서 다양한 질문에 대한 빠르고 정확한 답변을 받
     </objects>
     <resources>
         <image name="btn_rectangle" width="300" height="40"/>
-        <image name="ic_chu" width="18" height="12"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -43,6 +43,20 @@ class MrJoinInfoViewController: BaseViewController {
     @IBOutlet weak var seperatorNickName: UIView!
     @IBOutlet weak var seperatorBirthDay: UIView!
     
+    @IBOutlet weak var svExpert: UIStackView!
+    @IBOutlet weak var btnExpertSelect: UIButton!
+    @IBOutlet weak var tfExpertSelect: CTextField!
+    
+    @IBOutlet weak var lbHitExpertSelect: UILabel!
+    @IBOutlet weak var svArtist: UIStackView!
+    @IBOutlet weak var svPhotoArtist: UIStackView!
+    @IBOutlet weak var btnArtist: CButton!
+    @IBOutlet weak var scrollViewArtist: UIScrollView!
+    
+    @IBOutlet weak var svCeleb: UIStackView!
+    @IBOutlet weak var scrollViewCeleb: UIScrollView!
+    @IBOutlet weak var btnCeleb: CButton!
+    @IBOutlet weak var svPhotoCeleb: UIStackView!
     
     var type:JoinType = .normal
     let accessoryView = CToolbar.init(barItems: [.up, .down, .keyboardDown], itemColor: ColorAppDefault)
@@ -99,6 +113,13 @@ class MrJoinInfoViewController: BaseViewController {
                 view.inputAccessoryView = accessoryView
             }
         }
+        svExpert.isHidden = true
+        scrollViewArtist.isHidden = true
+        scrollViewCeleb.isHidden = true
+        if appType == .expert {
+            svExpert.isHidden = false
+            svArtist.isHidden = true
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +132,7 @@ class MrJoinInfoViewController: BaseViewController {
         super.viewWillDisappear(animated)
         self.removeKeyboardNotification()
     }
+    
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender.tag == TAG_NAVI_BACK {
             self.navigationController?.popViewController(animated: true)
@@ -220,6 +242,23 @@ class MrJoinInfoViewController: BaseViewController {
             }
             picker?.local = Locale(identifier: "ko_KR")
             picker?.show()
+        }
+        else if sender == btnExpertSelect {
+            let list = ["아티스트", "셀럽"]
+            let vc = PopupViewController.init(type: .list, title: "전문가 선택", data: list) { (vcs, selItem, index) in
+                vcs.dismiss(animated: false, completion: nil)
+                guard let selItem = selItem as? String else {
+                    return
+                }
+                if index == 0 {
+                    self.svCeleb.isHidden = false
+                }
+                else {
+                    self.svCeleb.isHidden = true
+                }
+                self.tfExpertSelect.text = selItem
+            }
+            self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnOk {
             lbHintId.isHidden = true

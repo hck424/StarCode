@@ -17,12 +17,11 @@ class ContactUsDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "고객센터", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
 
         self.requestContactUsDetail()
     }
     func requestContactUsDetail() {
-        guard let token = SharedData.instance.pToken, let post_id = data["post_id"] else {
+        guard let token = SharedData.instance.token, let post_id = data["post_id"] else {
             return
         }
         

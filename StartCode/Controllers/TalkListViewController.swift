@@ -8,7 +8,6 @@
 import UIKit
 
 class TalkListViewController: BaseViewController {
-
     @IBOutlet weak var btnLike: SelectedButton!
     @IBOutlet weak var btnDesc: SelectedButton!
     @IBOutlet weak var lbEmpty: UILabel!
@@ -17,33 +16,27 @@ class TalkListViewController: BaseViewController {
     @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var btnWrite: UIButton!
     @IBOutlet weak var tblView: UITableView!
-    
+    @IBOutlet weak var lbCategory: UILabel!
     
     var listData:Array<[String:Any]> = []
     var listOriginData:Array<[String:Any]> = []
     var searchTxt:String?
+    var page: Int = 1
+    var isPageEnd: Bool = false
+    var isRequest: Bool = false
+    var perPage = 10
+
     let accoryView = CToolbar.init(barItems: [.keyboardDown])
-    var arrCategory:Array<[String:Any]> = Array<[String:Any]>()
-    var selCategory:[String:Any]? {
+    var selCategory:String? {
         didSet {
-            if let bca_value = selCategory?["bca_value"] as? String {
-                if let lbCategory = btnCategory.viewWithTag(100) as? UILabel {
-                    lbCategory.text = bca_value
-                }
-            }
+            lbCategory.text = selCategory!
         }
     }
-    
-    var page = 1
-    var totalPage = NSInteger.max
-    let perPage = 10
     var fIndex = "post_like" //실시간 인기, "desc"
-    var isRequest = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "커뮤니티", false, nil)
-        CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
         
         let footerView = Bundle.main.loadNibNamed("TableFooterView", owner: nil, options: nil)?.first as! UIView
         tblView.tableFooterView = footerView
@@ -51,10 +44,11 @@ class TalkListViewController: BaseViewController {
         tblView.rowHeight = UITableView.automaticDimension
         
         tfSearch.inputAccessoryView = accoryView
-        accoryView.addTarget(self, selctor: #selector(onClickedBtnActions(_:)))
-        self.requestCategoryList()
+        accoryView.addTarget(self, selctor: #selector(actionKeybardDown))
         
-        btnLike.sendActions(for: .touchUpInside)
+        self.selCategory = SharedData.instance.categorys[5]
+        btnLike.isSelected = true
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,23 +60,10 @@ class TalkListViewController: BaseViewController {
         self.removeKeyboardNotification()
     }
     
-    func requestCategoryList() {
-        guard let token = SharedData.instance.pToken else {
-            return
-        }
-        let param:[String:Any] = ["token":token]
-        ApiManager.shared.requestTalkCategory(param: param) { (response) in
-            if let response = response, let category = response["category"] as? Array<Any> {
-                self.arrCategory = category.first as! Array<[String : Any]>
-            }
-        } failure: { (error) in
-            self.showErrorAlertView(error)
-        }
-    }
     func dataReset() {
         self.page = 1
-        self.totalPage = NSInteger.max
-        self.tblView.setContentOffset(CGPoint.zero, animated: false)
+        self.isPageEnd = false
+        self.isRequest = false
         self.requestCommunityList()
     }
     func addData() {
@@ -90,61 +71,55 @@ class TalkListViewController: BaseViewController {
     }
     
     func requestCommunityList() {
-        if page >= totalPage {
+        if isPageEnd == true {
             return
         }
-        var param:[String:Any] = ["page":page, "per_page":perPage, "findex":fIndex]
-        if let token = SharedData.instance.pToken {
-            param["token"] = token
+        guard let token = SharedData.instance.token else {
+            return
         }
-//        if let selCategory = selCategory, let bca_id = selCategory["bca_id"] as? Int {
-//            param["category_id"] = bca_id
-//        }
-        if let skeyword = searchTxt, skeyword.isEmpty == false {
-            param["skeyword"] = skeyword
+        
+        var param:[String:Any] = ["token":token, "page":page, "per_page":perPage, "findex":fIndex]
+        
+        if let selCategory = selCategory, selCategory.isEmpty == false, selCategory != "전체" {
+            param["category_id"] = selCategory
+        }
+        if let searchTxt = searchTxt, searchTxt.isEmpty == false {
+            param["skeyword"] = searchTxt
         }
         
         ApiManager.shared.requestTalkList(param: param) { (response) in
             self.isRequest = false
-            if let response = response, let data = response["data"] as? [String:Any] {
-                if let list = data["list"] as? Array<[String:Any]> {
-                    if self.page == 1 {
-                        self.listOriginData = list
-                    }
-                    else {
-                        self.listOriginData.append(contentsOf: list)
-                    }
+            if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as? [[String:Any]] {
+                
+                if list.isEmpty == true {
+                    self.isPageEnd = true
                 }
                 
-                if let total_rows = data["total_rows"] as? String {
-                    let rows:Int = Int(total_rows)!
-                    if (rows%self.perPage) == 0 {
-                        self.totalPage = Int(rows/self.perPage)
-                    }
-                    else {
-                        self.totalPage = Int(rows/self.perPage) + 1
-                    }
-                }
-                else if let total_rows = data["total_rows"] as? Int {
-                    let rows:Int = total_rows
-                    if (rows%self.perPage) == 0 {
-                        self.totalPage = Int(rows/self.perPage)
-                    }
-                    else {
-                        self.totalPage = Int(rows/self.perPage) + 1
-                    }
-                }
-                
-                self.listData.removeAll()
-                self.listData = self.listOriginData
-                if self.listData.isEmpty == false {
-                    self.tblView.isHidden = false
+                if self.page == 1 {
+                    self.listOriginData = list
                 }
                 else {
+                    self.listOriginData.append(contentsOf: list)
+                }
+                self.listData.removeAll()
+                self.listData = self.listOriginData
+                
+                if self.listData.isEmpty == true {
                     self.tblView.isHidden = true
                 }
+                else {
+                    self.tblView.isHidden = false
+                }
+                
+                self.tblView.reloadData {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                        self.tblView.reloadData()
+                    }
+                }
                 self.page += 1
-                self.tblView.reloadData()
+            }
+            else {
+                self.showErrorAlertView(response)
             }
         } failure: { (error) in
             self.showErrorAlertView(error)
@@ -153,30 +128,22 @@ class TalkListViewController: BaseViewController {
     
     @IBAction func textFieldEdtingChanged(_ sender: UITextField) {
         self.searchTxt = sender.text
-        listData.removeAll()
         if searchTxt?.isEmpty == false {
-            var tmpArr:Array<[String:Any]> = []
+            var tmpArr:[[String:Any]] = []
             for item in listOriginData {
-                var result = ""
-                if let post_title = item["post_title"] as? String {
-                    result.append(post_title)
-                }
-                if let post_category = item["post_category"] as? String {
-                    result.append(post_category)
-                }
-                
-                if result.contains(searchTxt!) {
+                if let post_title = item["post_title"] as? String, post_title.contains(searchTxt!) == true {
                     tmpArr.append(item)
                 }
             }
             
             if tmpArr.isEmpty == false {
-                listData = tmpArr
+                self.listData = tmpArr
             }
         }
         else {
-            listData = listOriginData
+            self.listData = listOriginData
         }
+        
         self.tblView.reloadData()
     }
     
@@ -206,19 +173,21 @@ class TalkListViewController: BaseViewController {
         }
         else if sender == btnCategory {
             self.view.endEditing(true)
-            let vc = PopupViewController.init(type: .list, data: arrCategory, keys: ["bca_value"])
-            vc.didSelectRowAtItem = {(vcs, selData, index) -> Void in
+            let vc = PopupViewController.init(type: .list, data: SharedData.instance.categorys) { (vcs, selItem, index) in
                 vcs.dismiss(animated: false, completion: nil)
-                guard let selData = selData as? [String:Any] else {
+                guard let selItem = selItem as? String else {
                     return
                 }
-                self.selCategory = selData
+                self.tfSearch.text = nil
+                self.searchTxt = nil
+                self.selCategory = selItem
                 self.dataReset()
             }
             self.present(vc, animated: false, completion: nil)
         }
         else if sender == btnWrite {
             let vc = TalkWriteViewController.init()
+            vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -231,15 +200,11 @@ extension TalkListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         var cell = tblView.dequeueReusableCell(withIdentifier: "TalkCell") as? TalkCell
         if cell == nil {
             cell = Bundle.main.loadNibNamed("TalkCell", owner: self, options: nil)?.first as? TalkCell
         }
-        
-        if let item = listData[indexPath.row] as? [String:Any] {
-            cell?.configurationData(item)
-        }
+        cell?.configurationData(listData[indexPath.row])
         
         return cell!
     }
@@ -248,6 +213,7 @@ extension TalkListViewController: UITableViewDelegate, UITableViewDataSource {
         tblView.deselectRow(at: indexPath, animated: true)
         
         let vc = TalkDetailViewController.init()
+        vc.data = listData[indexPath.row]
         self.navigationController?.pushViewController(vc, animated:true)
     }
 }
@@ -268,5 +234,11 @@ extension TalkListViewController: UITextFieldDelegate {
         self.searchTxt = textField.text;
         self.dataReset()
         return true
+    }
+}
+extension TalkListViewController: TalkWriteViewControllerDelegate {
+    func didfinishTalkWriteCompletion(category: String) {
+        self.selCategory = category
+        lbCategory.text = self.selCategory!
     }
 }

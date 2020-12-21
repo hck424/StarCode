@@ -20,7 +20,7 @@ let hostUrl = "v2"
 let hostAiUrl = "ai"
 let appType:AppType = .user
 #elseif Pro
-let hostUrl = "a2"
+let hostUrl = "m2"
 let hostAiUrl = "ai"
 let appType:AppType = .expert
 #endif

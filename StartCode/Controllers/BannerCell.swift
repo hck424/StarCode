@@ -33,17 +33,17 @@ class BannerCell: UICollectionViewCell {
         self.data = data
         
         ivThumb.image = nil
-        lbTitle.text = nil
-        lbSubTitle.text = nil
+        lbTitle.isHidden = true
+        lbSubTitle.isHidden = true
         
         if let thumb_url = data["thumb_url"] as? String {
             ivThumb.setImageCache(url: thumb_url, placeholderImgName: nil)
         }
-        if let ban_title = data["ban_title"] as? String {
-            lbTitle.text = ban_title
-        }
-        if let sub = data["content"] as? String {
-            lbSubTitle.text = sub
-        }
+//        if let ban_title = data["ban_title"] as? String {
+//            lbTitle.text = ban_title
+//        }
+//        if let sub = data["content"] as? String {
+//            lbSubTitle.text = sub
+//        }
     }
 }

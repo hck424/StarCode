@@ -14,18 +14,18 @@ import Foundation
     
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
-            if borderWidth > 0 {setNeedsLayout()}
+            if borderWidth > 0 {setNeedsDisplay()}
         }
     }
     
     @IBInspectable var borderColor: UIColor? {
         didSet {
-            if borderColor != nil { setNeedsLayout()}
+            if borderColor != nil { setNeedsDisplay()}
         }
     }
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
-            if cornerRadius > 0 { setNeedsLayout()}
+            if cornerRadius > 0 { setNeedsDisplay()}
         }
     }
     
@@ -98,6 +98,9 @@ import Foundation
 //    }
     func configurePlaceholderLabel() {
         
+        if let placeholderLabel = placeholderLabel {
+            placeholderLabel.removeFromSuperview()
+        }
         placeholderLabel = UILabel()
         placeholderLabel?.font = font
         placeholderLabel?.textColor? = placeHolderColor
@@ -111,6 +114,7 @@ import Foundation
         placeholderLabel?.topAnchor.constraint(equalTo: self.topAnchor, constant: insetTop).isActive = true
         placeholderLabel?.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: insetRigth).isActive = true
         placeholderLabel?.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor, constant: insetBottom).isActive = true
+        placeholderLabel?.isHidden = !self.text.isEmpty
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

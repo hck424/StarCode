@@ -20,7 +20,6 @@ class NoticeDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "공지사항", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
         self.requestNoticeDetail()
     }

@@ -6,17 +6,14 @@
 //
 
 import UIKit
-
+protocol CustomColFlowLayoutDelegate {
+    func didEndDecelatedFloawLayout(_ indexPath: IndexPath, _ point:CGPoint)
+}
 class CustomColFlowLayout: UICollectionViewFlowLayout {
-    
-    var sizeForTopInsertions: CGSize = CGSize.zero
+    var delegate:CustomColFlowLayoutDelegate?
     var lastPoint:CGPoint = CGPoint.zero
     override func prepare() {
         super.prepare()
-        let newSize = self.collectionView?.contentSize
-        let xOffset = (self.collectionView?.contentOffset.x ?? 0) + (newSize!.width - sizeForTopInsertions.width)
-        self.collectionView?.contentOffset = CGPoint(x: xOffset, y: self.collectionView?.contentOffset.y ?? 0)
-        
     }
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
@@ -44,8 +41,10 @@ class CustomColFlowLayout: UICollectionViewFlowLayout {
         }
         
         let targetAttribute = attributes[targetIdx]
-        lastPoint = CGPoint(x: targetAttribute.center.x-(self.collectionView?.bounds.size.width)!/2, y: proposedContentOffset.y)
-     
+//        print(targetAttribute)
+        lastPoint = CGPoint(x: targetAttribute.center.x - (self.collectionView?.bounds.size.width)!/2, y: proposedContentOffset.y)
+        delegate?.didEndDecelatedFloawLayout(targetAttribute.indexPath, lastPoint)
+        
         return lastPoint
     }
 }

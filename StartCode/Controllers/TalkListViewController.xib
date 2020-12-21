@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +16,7 @@
                 <outlet property="btnLike" destination="tNx-BV-dv0" id="qzd-aJ-TtA"/>
                 <outlet property="btnSearch" destination="xaV-KE-Qxm" id="kFW-UF-Qm6"/>
                 <outlet property="btnWrite" destination="4RK-Vm-AAS" id="DbG-wI-Kgh"/>
+                <outlet property="lbCategory" destination="6JQ-ct-bBZ" id="lG1-lh-vMg"/>
                 <outlet property="lbEmpty" destination="42G-GY-SLO" id="Kcv-gH-7Wq"/>
                 <outlet property="tblView" destination="Ek1-4c-imH" id="Mmj-Mh-Jes"/>
                 <outlet property="tfSearch" destination="8ix-bZ-ZQF" id="Mg7-6N-uKS"/>
@@ -146,15 +147,21 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmh-Xt-wgi">
                                     <rect key="frame" x="0.0" y="0.0" width="266" height="40"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="검색어를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ix-bZ-ZQF" customClass="CTextField" customModule="StartCode" customModuleProvider="target">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="검색어를 입력해주세요" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8ix-bZ-ZQF" customClass="CTextField" customModule="StartCode" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="222" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="insetTB">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetT">
                                                     <real key="value" value="3"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="insetLR">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetB">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetL">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetR">
                                                     <real key="value" value="16"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>

@@ -27,7 +27,7 @@ class HomeViewController: BaseViewController {
         arrAskBtn.append(["title":"뷰티 전문가의 고민해결", "sub_title":"뷰티 고민 질문하기", "image_name":"btn_main_beauty_qna"])
         
         CNavigationBar.drawBackButton(self, UIImage(named: "logo_header"), nil)
-        CNavigationBar.drawRight(self, "12,00", UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
+        
         
         self.view.layoutIfNeeded()
         self.headerView = Bundle.main.loadNibNamed("HomeHeaderView", owner: self, options: nil)?.first as? HomeHeaderView
@@ -48,18 +48,15 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
     }
     
     func reqeustBannerList() {
         //Api 요청
         arrBanner.removeAll()
-        let param = ["akey":akey]
-        ApiManager.shared.requestAdvertisement(param: param) { (response) in
-            if let response = response,
-               let banner = response["banner"] as?[String:Any],
-               let list = banner["list"] as? Array<[String:Any]>,
-               list.count > 0 {
+        let param:[String:Any] = ["akey":akey, "page":1, "per_page":10]
+        
+        ApiManager.shared.requestEventList(param: param) { (response) in
+            if let response = response, let banner = response["data"] as?[String:Any], let list = banner["list"] as? Array<[String:Any]>, list.isEmpty == false {
                 self.arrBanner.append(contentsOf: list)
                 self.tblView.reloadData {
                     self.headerView?.configurationData(self.arrBanner)
@@ -92,7 +89,7 @@ class HomeViewController: BaseViewController {
     }
     func requestTalkListPopular() {
         var param:[String:Any] = ["page":1, "per_page":10, "findex":"desc"]
-        if let token = SharedData.instance.pToken {
+        if let token = SharedData.instance.token {
             param["token"] = token
         }
         arrPopular.removeAll()
@@ -110,10 +107,10 @@ class HomeViewController: BaseViewController {
     }
     func requestTalkListExpertDailyLife() {
         var param:[String:Any] = ["page":1, "per_page":10, "findex":"post_like"]
-        if let token = SharedData.instance.pToken {
+        if let token = SharedData.instance.token {
             param["token"] = token
         }
-        ApiManager.shared.requestTalkList(param: param) { (response) in
+        ApiManager.shared.requestExpertLifeList(param: param) { (response) in
             guard let response = response else {
                 return
             }
@@ -148,7 +145,7 @@ class HomeViewController: BaseViewController {
             listData.append(adSection)
             
             if arrDailyLife.isEmpty == false {
-                let section = ["sec_title":"전문가 일상", "sec_type":SectionType.exportDailyLife, "sec_list":arrDailyLife] as [String : Any]
+                let section = ["sec_title":"전문가 일상", "sec_type":SectionType.expertLife, "sec_list":arrDailyLife] as [String : Any]
                 listData.append(section)
             }
             
@@ -161,10 +158,16 @@ class HomeViewController: BaseViewController {
         }
     }
 
+    func moveTabIndex(index:Int) {
+        //0:"메이크업 진단 받기", 1:"뷰티고민 질문", 2:"1:1질문", 3:"Ai 메이크업 진단"
+        AppDelegate.instance()?.mainTabbarCtrl()?.selectedIndex = 2
+    }
+    
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         let vc = LoginViewController.init()
         self.navigationController?.pushViewController(vc, animated:true)
     }
+    
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -203,41 +206,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 tmpCell?.configurationData(item)
             }
             cell = tmpCell
-            
             tmpCell?.didSelectedClosure = {(selData, index)->() in
-                guard let selData = selData else {
+                guard let mainTabVc = AppDelegate.instance()?.mainTabbarCtrl(), let vctrls = mainTabVc.viewControllers, let vc = vctrls[2] as? UIViewController else {
                     return
                 }
-                let hasMoney = true
-                if hasMoney {
-                    let list = ["메이크업 진단 받기", "뷰티고민 질문하기", "Ai 진단 받기"]
-                    let vc = PopupViewController.init(type: .list, data: list, keys: nil)
-                    self.present(vc, animated: true, completion: nil)
-                    vc.didSelectRowAtItem = {(vcs, selItem, index)-> Void in
-                        vcs.dismiss(animated: false, completion: nil)
-                        print(selItem)
-                    }
-                }
-                else {
-                    let coin = 2000
-                    let tmpStr = "ea"
-                    let coinStr = "\(coin)".addComma()
-                    let result = "\(coinStr) \(tmpStr)"
-        
-                    let attr = NSMutableAttributedString.init(string: result)
-                    attr.addAttribute(.foregroundColor, value: RGB(139, 0, 255), range: (result as NSString).range(of: coinStr))
-                    attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 24, weight: .bold), range: (result as NSString).range(of: coinStr))
-                    attr.addAttribute(.foregroundColor, value: UIColor.label, range: (result as NSString).range(of: tmpStr))
-                    attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 24, weight: .regular), range: (result as NSString).range(of: tmpStr))
-        
-                    let vc = PopupViewController.init(type: .alert, title: "잔여 CHU", message: attr)
-                    vc.addAction("CHU 구매하기", style: .ok) { (action) in
-                        vc.dismiss(animated: true, completion: nil)
-                        
-                        print("CHU 구매하기")
-                    }
-                    self.present(vc, animated: false, completion: nil)
-                }
+                mainTabVc.tabBarController(mainTabVc, shouldSelect: vc)
             }
         }
         else if secType == .makeupExport {
@@ -256,7 +229,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     return
                 }
                 let vc = ExpertDetailViewController.init()
-                vc.passDic = selData
+                vc.data = selData
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -283,7 +256,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             tmpCell?.ivArrow.isHidden = true
             cell = tmpCell
         }
-        else if secType == .exportDailyLife {
+        else if secType == .expertLife {
             var tmpCell = tableView.dequeueReusableCell(withIdentifier: "ExpertDailyLifeCell") as? ExpertDailyLifeCell
             if tmpCell == nil {
                 tmpCell = Bundle.main.loadNibNamed("ExpertDailyLifeCell", owner: self, options: nil)?.first as? ExpertDailyLifeCell
@@ -337,9 +310,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     print("실시간 인기글")
                     AppDelegate.instance()?.mainTabbarCtrl()?.selectedIndex = 3
                 }
-                else if type == .exportDailyLife {
+                else if type == .expertLife {
                     print("전문가의 일상")
-                    let vc = ExpertDailyLifeListViewController.init()
+                    let vc = ExpertLifeListViewController.init()
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -360,12 +333,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let type = secInfo["sec_type"] as! SectionType
         if type == .popularPost {
             let vc = TalkDetailViewController.init()
-            vc.passData = item
+            vc.data = item
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        else if type == .exportDailyLife {
-            let vc = ExpertDailyLifeDetailViewController.init()
-            vc.passData = item
+        else if type == .expertLife {
+//            let vc = TalkDetailViewController.init()
+//            vc.data = item
+//            self.navigationController?.pushViewController(vc, animated:true)
+            let vc = ExpertLifeDetailViewController.init()
+            vc.data = item
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

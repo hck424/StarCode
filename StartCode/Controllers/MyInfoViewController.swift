@@ -27,7 +27,6 @@ class MyInfoViewController: BaseViewController {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "계정 관리", #selector(actionPopViewCtrl))
-        self.addRightNaviMyChuButton()
         
         tfPassword.inputAccessoryView = accessoryView
         tfNickName.inputAccessoryView = accessoryView
@@ -51,7 +50,7 @@ class MyInfoViewController: BaseViewController {
     }
     
     func requestMyInfo() {
-        guard let token = SharedData.instance.pToken else {
+        guard let token = SharedData.instance.token else {
             return
         }
         let param = ["token":token]
@@ -130,17 +129,17 @@ class MyInfoViewController: BaseViewController {
             if isOk == false {
                 return
             }
-            guard let token = SharedData.instance.pToken else {
+            guard let token = SharedData.instance.token else {
                 return
             }
             let param:[String:Any] = ["token":token, "mem_nickname":tfNickName.text!, "mem_profile_content":textView.text!]
             ApiManager.shared.requestModifyMyInfo(param: param) { (response) in
                 if let response = response, let code = response["code"] as? Int, let message = response["message"] as? String, code == 200 {
-                    let vc = PopupViewController.init(type: .alert, title: "회원정보 변경", message:message)
-                    vc.addAction("확인", style: .ok) { (btn) in
-                        vc.dismiss(animated: true, completion: nil)
+                    let vc = PopupViewController.init(type: .alert, title: "회원정보 변경", message:message) { (vcs, selItem, index) in
+                        vcs.dismiss(animated: true, completion: nil)
                         self.navigationController?.popViewController(animated: true)
                     }
+                    vc.addAction(.ok, "확인")
                     self.present(vc, animated: true, completion: nil)
                 }
                 else {
