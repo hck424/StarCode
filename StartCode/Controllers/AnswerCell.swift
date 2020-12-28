@@ -1,29 +1,31 @@
 //
-//  TalkCell.swift
-//  StartCode
+//  AnswerCell.swift
+//  StartCodePro
 //
-//  Created by 김학철 on 2020/11/17.
+//  Created by 김학철 on 2020/12/24.
 //
 
 import UIKit
 
-class TalkCell: UITableViewCell {
+class AnswerCell: UITableViewCell {
 
-    @IBOutlet weak var btnMark: CButton!
     @IBOutlet weak var lbTitle: UILabel!
-    @IBOutlet weak var lbSubTitle: UILabel!
     @IBOutlet weak var lbDate: UILabel!
-    @IBOutlet weak var lbComentCnt: UILabel!
+    @IBOutlet weak var btnAnswerState: CButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
     
-    func configurationData(_ data:[String:Any]?) {
+    func configuraitonData(_ data:[String:Any]) {
         
     }
+    
 }

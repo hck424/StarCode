@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExMakeupQnaDetailViewController" customModule="StartCodePro" customModuleProvider="target">
+            <connections>
+                <outlet property="svContent" destination="mN2-Aj-Dir" id="3Xr-VS-ezA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VS3-BZ-Z3B">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mN2-Aj-Dir">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="254.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zEp-bp-LNm">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="254.5"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jgF-Cd-3Ay" customClass="CTextView" customModule="StartCode" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="24" width="374" height="160"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="160" id="0lK-Dl-ea9"/>
+                                            </constraints>
+                                            <color key="textColor" systemColor="labelColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetTop">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetBottom">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetRigth">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="500자 이내로 작성해주세요."/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                    <color key="value" systemColor="placeholderTextColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textView>
+                                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emU-xg-WX1">
+                                            <rect key="frame" x="20" y="188" width="374" height="0.0"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jwC-kd-dNE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="jwC-kd-dNE" secondAttribute="bottom" id="6Qr-ld-NWb"/>
+                                                <constraint firstAttribute="height" priority="999" constant="104" id="7fQ-fl-95y"/>
+                                                <constraint firstItem="jwC-kd-dNE" firstAttribute="width" secondItem="emU-xg-WX1" secondAttribute="width" priority="1" id="Bsp-kT-FeM"/>
+                                                <constraint firstAttribute="trailing" secondItem="jwC-kd-dNE" secondAttribute="trailing" id="M1K-Cw-amR"/>
+                                                <constraint firstItem="jwC-kd-dNE" firstAttribute="top" secondItem="emU-xg-WX1" secondAttribute="top" id="UZE-mD-K9W"/>
+                                                <constraint firstItem="jwC-kd-dNE" firstAttribute="height" secondItem="emU-xg-WX1" secondAttribute="height" id="lNH-h2-5ZT"/>
+                                                <constraint firstItem="jwC-kd-dNE" firstAttribute="leading" secondItem="emU-xg-WX1" secondAttribute="leading" id="wsL-V9-Qnd"/>
+                                            </constraints>
+                                        </scrollView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※ 이미지는 최대 10장 등록 가능합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMJ-0h-1td">
+                                            <rect key="frame" x="20" y="192" width="374" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnK-Lz-hYY" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="214.5" width="374" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="GSB-bH-VOb"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="사진등록" image="ic_file_upload">
+                                                <color key="titleColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="24" left="20" bottom="0.0" right="20"/>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="mN2-Aj-Dir" secondAttribute="bottom" id="7Tx-v0-cwT"/>
+                        <constraint firstItem="mN2-Aj-Dir" firstAttribute="leading" secondItem="VS3-BZ-Z3B" secondAttribute="leading" id="Kmw-82-DUc"/>
+                        <constraint firstItem="mN2-Aj-Dir" firstAttribute="height" secondItem="VS3-BZ-Z3B" secondAttribute="height" priority="1" id="V4i-dm-iDP"/>
+                        <constraint firstItem="mN2-Aj-Dir" firstAttribute="top" secondItem="VS3-BZ-Z3B" secondAttribute="top" id="muv-Qa-u06"/>
+                        <constraint firstAttribute="trailing" secondItem="mN2-Aj-Dir" secondAttribute="trailing" id="sP6-By-YGZ"/>
+                        <constraint firstItem="mN2-Aj-Dir" firstAttribute="width" secondItem="VS3-BZ-Z3B" secondAttribute="width" id="vCG-1h-r8z"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VS3-BZ-Z3B" secondAttribute="bottom" id="Wih-J7-FgT"/>
+                <constraint firstItem="VS3-BZ-Z3B" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="r9b-2P-Xgw"/>
+                <constraint firstItem="VS3-BZ-Z3B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xCF-Rf-8hA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VS3-BZ-Z3B" secondAttribute="trailing" id="ydG-X1-eez"/>
+            </constraints>
+            <point key="canvasLocation" x="128" y="82"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_file_upload" width="18" height="18"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

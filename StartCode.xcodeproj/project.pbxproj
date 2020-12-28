@@ -201,14 +201,20 @@
 		E95652AA25617D40000E3CE8 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95652A725617D40000E3CE8 /* ButtonCell.swift */; };
 		E95652AB25617D40000E3CE8 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95652A825617D40000E3CE8 /* ButtonCell.xib */; };
 		E95652AC25617D40000E3CE8 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95652A825617D40000E3CE8 /* ButtonCell.xib */; };
-		E95652B125617F7B000E3CE8 /* MakeupExportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95652AF25617F7B000E3CE8 /* MakeupExportCell.swift */; };
-		E95652B225617F7B000E3CE8 /* MakeupExportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95652AF25617F7B000E3CE8 /* MakeupExportCell.swift */; };
-		E95652B325617F7B000E3CE8 /* MakeupExportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95652B025617F7B000E3CE8 /* MakeupExportCell.xib */; };
-		E95652B425617F7B000E3CE8 /* MakeupExportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95652B025617F7B000E3CE8 /* MakeupExportCell.xib */; };
+		E95652B125617F7B000E3CE8 /* MakeupExpertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95652AF25617F7B000E3CE8 /* MakeupExpertCell.swift */; };
+		E95652B225617F7B000E3CE8 /* MakeupExpertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95652AF25617F7B000E3CE8 /* MakeupExpertCell.swift */; };
+		E95652B325617F7B000E3CE8 /* MakeupExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95652B025617F7B000E3CE8 /* MakeupExpertCell.xib */; };
+		E95652B425617F7B000E3CE8 /* MakeupExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95652B025617F7B000E3CE8 /* MakeupExpertCell.xib */; };
 		E95652BF25618656000E3CE8 /* HomeSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95652BE25618656000E3CE8 /* HomeSectionView.swift */; };
 		E95652C025618656000E3CE8 /* HomeSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95652BE25618656000E3CE8 /* HomeSectionView.swift */; };
 		E95652C425618662000E3CE8 /* HomeSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95652C325618662000E3CE8 /* HomeSectionView.xib */; };
 		E95652C525618662000E3CE8 /* HomeSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95652C325618662000E3CE8 /* HomeSectionView.xib */; };
+		E95B65CB259085780039D37B /* ExHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B65C9259085780039D37B /* ExHomeViewController.swift */; };
+		E95B65CC259085780039D37B /* ExHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95B65CA259085780039D37B /* ExHomeViewController.xib */; };
+		E95B65D1259086B00039D37B /* ExAnswerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B65CF259086B00039D37B /* ExAnswerListViewController.swift */; };
+		E95B65D2259086B00039D37B /* ExAnswerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95B65D0259086B00039D37B /* ExAnswerListViewController.xib */; };
+		E95B65D7259088370039D37B /* ExQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B65D5259088370039D37B /* ExQuestionListViewController.swift */; };
+		E95B65D8259088370039D37B /* ExQuestionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95B65D6259088370039D37B /* ExQuestionListViewController.xib */; };
 		E95D6E19256D4C5500B4F65C /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D6E18256D4C5500B4F65C /* Utility.swift */; };
 		E95D6E1A256D4C5500B4F65C /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D6E18256D4C5500B4F65C /* Utility.swift */; };
 		E961640B256E3D78000E09C1 /* MyPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9616409256E3D78000E09C1 /* MyPostCell.swift */; };
@@ -252,6 +258,14 @@
 		E972BB2E2587A3DA006C2764 /* MyQnaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972BB2B2587A3DA006C2764 /* MyQnaDetailViewController.swift */; };
 		E972BB2F2587A3DA006C2764 /* MyQnaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E972BB2C2587A3DA006C2764 /* MyQnaDetailViewController.xib */; };
 		E972BB302587A3DA006C2764 /* MyQnaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E972BB2C2587A3DA006C2764 /* MyQnaDetailViewController.xib */; };
+		E97313F025978A8F00EDF82F /* ExOneToQnaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97313EE25978A8F00EDF82F /* ExOneToQnaDetailViewController.swift */; };
+		E97313F125978A8F00EDF82F /* ExOneToQnaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97313EF25978A8F00EDF82F /* ExOneToQnaDetailViewController.xib */; };
+		E97313F5259793D300EDF82F /* ExQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97313F4259793D300EDF82F /* ExQuestionView.swift */; };
+		E97313F9259793DC00EDF82F /* ExQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97313F8259793DC00EDF82F /* ExQuestionView.xib */; };
+		E97314022598C25400EDF82F /* ExMakeupQnaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97313FE2598C25400EDF82F /* ExMakeupQnaDetailViewController.xib */; };
+		E97314032598C25400EDF82F /* ExMakeupQnaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97313FF2598C25400EDF82F /* ExMakeupQnaDetailViewController.swift */; };
+		E97314042598C25400EDF82F /* ExBeautyQnaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97314002598C25400EDF82F /* ExBeautyQnaDetailViewController.swift */; };
+		E97314052598C25400EDF82F /* ExBeautyQnaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97314012598C25400EDF82F /* ExBeautyQnaDetailViewController.xib */; };
 		E982A6E42563E8C80019CB09 /* TalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982A6E22563E8C80019CB09 /* TalkCell.swift */; };
 		E982A6E52563E8C80019CB09 /* TalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982A6E22563E8C80019CB09 /* TalkCell.swift */; };
 		E982A6E62563E8C80019CB09 /* TalkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E982A6E32563E8C80019CB09 /* TalkCell.xib */; };
@@ -364,6 +378,10 @@
 		E9A21F39258F77D100670D35 /* CDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9626A3D255FCF4B0080FE97 /* CDatePickerView.xib */; };
 		E9A21F3C258F77E200670D35 /* MrCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99870482560C6320067CD44 /* MrCompleteViewController.swift */; };
 		E9A21F3D258F77E200670D35 /* MrCompleteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99870492560C6320067CD44 /* MrCompleteViewController.xib */; };
+		E9A760C425944CBF00EDB25E /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A760C225944CBF00EDB25E /* AnswerCell.swift */; };
+		E9A760C525944CBF00EDB25E /* AnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A760C325944CBF00EDB25E /* AnswerCell.xib */; };
+		E9A760FC25948BEE00EDB25E /* QuestionColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A760FA25948BEE00EDB25E /* QuestionColCell.swift */; };
+		E9A760FD25948BEE00EDB25E /* QuestionColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A760FB25948BEE00EDB25E /* QuestionColCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -469,10 +487,16 @@
 		E95652A225616482000E3CE8 /* HomeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
 		E95652A725617D40000E3CE8 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		E95652A825617D40000E3CE8 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
-		E95652AF25617F7B000E3CE8 /* MakeupExportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeupExportCell.swift; sourceTree = "<group>"; };
-		E95652B025617F7B000E3CE8 /* MakeupExportCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MakeupExportCell.xib; sourceTree = "<group>"; };
+		E95652AF25617F7B000E3CE8 /* MakeupExpertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeupExpertCell.swift; sourceTree = "<group>"; };
+		E95652B025617F7B000E3CE8 /* MakeupExpertCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MakeupExpertCell.xib; sourceTree = "<group>"; };
 		E95652BE25618656000E3CE8 /* HomeSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionView.swift; sourceTree = "<group>"; };
 		E95652C325618662000E3CE8 /* HomeSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeSectionView.xib; sourceTree = "<group>"; };
+		E95B65C9259085780039D37B /* ExHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExHomeViewController.swift; sourceTree = "<group>"; };
+		E95B65CA259085780039D37B /* ExHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExHomeViewController.xib; sourceTree = "<group>"; };
+		E95B65CF259086B00039D37B /* ExAnswerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExAnswerListViewController.swift; sourceTree = "<group>"; };
+		E95B65D0259086B00039D37B /* ExAnswerListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExAnswerListViewController.xib; sourceTree = "<group>"; };
+		E95B65D5259088370039D37B /* ExQuestionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExQuestionListViewController.swift; sourceTree = "<group>"; };
+		E95B65D6259088370039D37B /* ExQuestionListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExQuestionListViewController.xib; sourceTree = "<group>"; };
 		E95D6E18256D4C5500B4F65C /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		E9616409256E3D78000E09C1 /* MyPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostCell.swift; sourceTree = "<group>"; };
 		E961640A256E3D78000E09C1 /* MyPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostCell.xib; sourceTree = "<group>"; };
@@ -497,6 +521,14 @@
 		E97211EE256E5DC000546AEF /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		E972BB2B2587A3DA006C2764 /* MyQnaDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQnaDetailViewController.swift; sourceTree = "<group>"; };
 		E972BB2C2587A3DA006C2764 /* MyQnaDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQnaDetailViewController.xib; sourceTree = "<group>"; };
+		E97313EE25978A8F00EDF82F /* ExOneToQnaDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExOneToQnaDetailViewController.swift; sourceTree = "<group>"; };
+		E97313EF25978A8F00EDF82F /* ExOneToQnaDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExOneToQnaDetailViewController.xib; sourceTree = "<group>"; };
+		E97313F4259793D300EDF82F /* ExQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExQuestionView.swift; sourceTree = "<group>"; };
+		E97313F8259793DC00EDF82F /* ExQuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExQuestionView.xib; sourceTree = "<group>"; };
+		E97313FE2598C25400EDF82F /* ExMakeupQnaDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExMakeupQnaDetailViewController.xib; sourceTree = "<group>"; };
+		E97313FF2598C25400EDF82F /* ExMakeupQnaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExMakeupQnaDetailViewController.swift; sourceTree = "<group>"; };
+		E97314002598C25400EDF82F /* ExBeautyQnaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExBeautyQnaDetailViewController.swift; sourceTree = "<group>"; };
+		E97314012598C25400EDF82F /* ExBeautyQnaDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExBeautyQnaDetailViewController.xib; sourceTree = "<group>"; };
 		E982A6E22563E8C80019CB09 /* TalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkCell.swift; sourceTree = "<group>"; };
 		E982A6E32563E8C80019CB09 /* TalkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkCell.xib; sourceTree = "<group>"; };
 		E982A6EA2563F6D00019CB09 /* ChuPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuPurchaseViewController.swift; sourceTree = "<group>"; };
@@ -556,6 +588,10 @@
 		E9A21F09258F2BE000670D35 /* QnaColCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnaColCell.swift; sourceTree = "<group>"; };
 		E9A21F0A258F2BE000670D35 /* QnaColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QnaColCell.xib; sourceTree = "<group>"; };
 		E9A21F1E258F430D00670D35 /* CustomColFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColFlowLayout.swift; sourceTree = "<group>"; };
+		E9A760C225944CBF00EDB25E /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
+		E9A760C325944CBF00EDB25E /* AnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerCell.xib; sourceTree = "<group>"; };
+		E9A760FA25948BEE00EDB25E /* QuestionColCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionColCell.swift; sourceTree = "<group>"; };
+		E9A760FB25948BEE00EDB25E /* QuestionColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionColCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,8 +675,8 @@
 				E945C48D255E58D800C1C334 /* HomeViewController.xib */,
 				E95652BE25618656000E3CE8 /* HomeSectionView.swift */,
 				E95652C325618662000E3CE8 /* HomeSectionView.xib */,
-				E95652AF25617F7B000E3CE8 /* MakeupExportCell.swift */,
-				E95652B025617F7B000E3CE8 /* MakeupExportCell.xib */,
+				E95652AF25617F7B000E3CE8 /* MakeupExpertCell.swift */,
+				E95652B025617F7B000E3CE8 /* MakeupExpertCell.xib */,
 				E95652A725617D40000E3CE8 /* ButtonCell.swift */,
 				E95652A825617D40000E3CE8 /* ButtonCell.xib */,
 				E99870D5256109FE0067CD44 /* BannerCell.swift */,
@@ -777,6 +813,31 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
+		E95B65C4259083340039D37B /* ExpertExpert */ = {
+			isa = PBXGroup;
+			children = (
+				E95B65C9259085780039D37B /* ExHomeViewController.swift */,
+				E95B65CA259085780039D37B /* ExHomeViewController.xib */,
+				E95B65CF259086B00039D37B /* ExAnswerListViewController.swift */,
+				E95B65D0259086B00039D37B /* ExAnswerListViewController.xib */,
+				E95B65D5259088370039D37B /* ExQuestionListViewController.swift */,
+				E95B65D6259088370039D37B /* ExQuestionListViewController.xib */,
+				E9A760FA25948BEE00EDB25E /* QuestionColCell.swift */,
+				E9A760FB25948BEE00EDB25E /* QuestionColCell.xib */,
+				E9A760C225944CBF00EDB25E /* AnswerCell.swift */,
+				E9A760C325944CBF00EDB25E /* AnswerCell.xib */,
+				E97313EE25978A8F00EDF82F /* ExOneToQnaDetailViewController.swift */,
+				E97313EF25978A8F00EDF82F /* ExOneToQnaDetailViewController.xib */,
+				E97314002598C25400EDF82F /* ExBeautyQnaDetailViewController.swift */,
+				E97314012598C25400EDF82F /* ExBeautyQnaDetailViewController.xib */,
+				E97313FF2598C25400EDF82F /* ExMakeupQnaDetailViewController.swift */,
+				E97313FE2598C25400EDF82F /* ExMakeupQnaDetailViewController.xib */,
+				E97313F4259793D300EDF82F /* ExQuestionView.swift */,
+				E97313F8259793DC00EDF82F /* ExQuestionView.xib */,
+			);
+			name = ExpertExpert;
+			sourceTree = "<group>";
+		};
 		E9987099256102410067CD44 /* Libray */ = {
 			isa = PBXGroup;
 			children = (
@@ -855,6 +916,7 @@
 		E9988B8A255E1BAB00D60D68 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E95B65C4259083340039D37B /* ExpertExpert */,
 				E945C48B255E586B00C1C334 /* Base */,
 				E945C4C9255E687400C1C334 /* Talk */,
 				E945C4B6255E5AE100C1C334 /* Expert */,
@@ -1055,7 +1117,7 @@
 				E94DFE1C256A798B009FD953 /* TableFooterView.xib in Resources */,
 				E907AA802564EC6500EFFB0E /* ExpertLifeDetailViewController.xib in Resources */,
 				E94DFE02256A75D2009FD953 /* ConfigurationViewController.xib in Resources */,
-				E95652B325617F7B000E3CE8 /* MakeupExportCell.xib in Resources */,
+				E95652B325617F7B000E3CE8 /* MakeupExpertCell.xib in Resources */,
 				E945C4B2255E5ADA00C1C334 /* ExpertViewController.xib in Resources */,
 				E94BEBA0256B40BB005F5D38 /* FAQCellView.xib in Resources */,
 				E907AA722564E50900EFFB0E /* ExpertLifeListViewController.xib in Resources */,
@@ -1117,6 +1179,7 @@
 				E9A21F2E258F779300670D35 /* MrPhoneAuthViewController.xib in Resources */,
 				E945C497255E590200C1C334 /* LoginViewController.xib in Resources */,
 				E9A21F0E258F2BE000670D35 /* QnaColCell.xib in Resources */,
+				E95B65D2259086B00039D37B /* ExAnswerListViewController.xib in Resources */,
 				E94DFD832569EAB0009FD953 /* MrInfoModifyViewController.xib in Resources */,
 				E94DFE13256A7624009FD953 /* ConfiguraitonCell.xib in Resources */,
 				E945C4BC255E680000C1C334 /* QnaViewController.xib in Resources */,
@@ -1140,9 +1203,12 @@
 				E956529A25615C9B000E3CE8 /* ExpertDailyLifeCell.xib in Resources */,
 				E945C4A0255E591700C1C334 /* TutorialViewController.xib in Resources */,
 				E9626A16255F877C0080FE97 /* MrTermsViewController.xib in Resources */,
+				E97313F9259793DC00EDF82F /* ExQuestionView.xib in Resources */,
+				E95B65CC259085780039D37B /* ExHomeViewController.xib in Resources */,
 				E94DFE55256A86EA009FD953 /* ContactUsDetailViewController.xib in Resources */,
 				E907AA542564A3AC00EFFB0E /* ExpertImageCell.xib in Resources */,
 				E945C4A9255E59F300C1C334 /* LoginSelectViewController.xib in Resources */,
+				E95B65D8259088370039D37B /* ExQuestionListViewController.xib in Resources */,
 				E982A72325641B130019CB09 /* SettingCell.xib in Resources */,
 				E99870A8256102860067CD44 /* LICENSE in Resources */,
 				E94DFE2D256A7C39009FD953 /* NoticeDetailViewController.xib in Resources */,
@@ -1153,6 +1219,7 @@
 				E99870AA256102860067CD44 /* README-OBJECTIVE-C.md in Resources */,
 				E94DFE4D256A83C8009FD953 /* ContactUsListViewController.xib in Resources */,
 				E945C4D0255E68A400C1C334 /* SettingViewController.xib in Resources */,
+				E9A760FD25948BEE00EDB25E /* QuestionColCell.xib in Resources */,
 				E982A6F7256403F10019CB09 /* TalkDetailViewController.xib in Resources */,
 				E97211E6256E4A1E00546AEF /* ChuHistoryCell.xib in Resources */,
 				E94BEBA1256B40BB005F5D38 /* FAQCellView.xib in Resources */,
@@ -1165,7 +1232,7 @@
 				E9988B77255E194100D60D68 /* Main.storyboard in Resources */,
 				E94DFDAA256A4E02009FD953 /* MyPostListViewController.xib in Resources */,
 				E961640E256E3D78000E09C1 /* MyPostCell.xib in Resources */,
-				E95652B425617F7B000E3CE8 /* MakeupExportCell.xib in Resources */,
+				E95652B425617F7B000E3CE8 /* MakeupExpertCell.xib in Resources */,
 				E95652A425616482000E3CE8 /* HomeHeaderView.xib in Resources */,
 				E964053E25623C66003A4759 /* PopupCell.xib in Resources */,
 				E9A21F3D258F77E200670D35 /* MrCompleteViewController.xib in Resources */,
@@ -1173,20 +1240,24 @@
 				E964EC12256E98300057BBA1 /* ContactUsDetailAnswerView.xib in Resources */,
 				E94DFE45256A8210009FD953 /* EventDetailViewController.xib in Resources */,
 				E945C49D255E590D00C1C334 /* HomeViewController.xib in Resources */,
+				E9A760C525944CBF00EDB25E /* AnswerCell.xib in Resources */,
 				E95652AC25617D40000E3CE8 /* ButtonCell.xib in Resources */,
 				E956529025615682000E3CE8 /* PopularPostCell.xib in Resources */,
 				E94DFE5D256A8AC5009FD953 /* ContactWriteViewController.xib in Resources */,
+				E97313F125978A8F00EDF82F /* ExOneToQnaDetailViewController.xib in Resources */,
 				E907AA4A256427E300EFFB0E /* ExpertDetailViewController.xib in Resources */,
 				E94DFE25256A7AE1009FD953 /* NoticeCell.xib in Resources */,
 				E94DFDF3256A6BDC009FD953 /* MyScrapViewController.xib in Resources */,
 				E907AA812564EC6500EFFB0E /* ExpertLifeDetailViewController.xib in Resources */,
 				E94DFE35256A7F0C009FD953 /* EventListViewController.xib in Resources */,
 				E907AA642564A43100EFFB0E /* ExpertImgColCell.xib in Resources */,
+				E97314022598C25400EDF82F /* ExMakeupQnaDetailViewController.xib in Resources */,
 				E998A5E32562BD3E004A09DF /* PhotoView.xib in Resources */,
 				E95652C525618662000E3CE8 /* HomeSectionView.xib in Resources */,
 				E982A6EF2563F6D00019CB09 /* ChuPurchaseViewController.xib in Resources */,
 				E94DFDE3256A6851009FD953 /* MyPickHistoryViewController.xib in Resources */,
 				E94DFE3D256A7F50009FD953 /* EventCell.xib in Resources */,
+				E97314052598C25400EDF82F /* ExBeautyQnaDetailViewController.xib in Resources */,
 				E945C4B3255E5ADA00C1C334 /* ExpertViewController.xib in Resources */,
 				E9A21EF8258F222300670D35 /* MyQnaView.xib in Resources */,
 			);
@@ -1300,7 +1371,7 @@
 			files = (
 				E99870B3256102860067CD44 /* FSPageViewLayout.swift in Sources */,
 				E94DFDD8256A6697009FD953 /* ChuHistoryViewController.swift in Sources */,
-				E95652B125617F7B000E3CE8 /* MakeupExportCell.swift in Sources */,
+				E95652B125617F7B000E3CE8 /* MakeupExpertCell.swift in Sources */,
 				E961640B256E3D78000E09C1 /* MyPostCell.swift in Sources */,
 				E953B338256B48DD00BA77B5 /* ApiManager.swift in Sources */,
 				E964EC0C256E98260057BBA1 /* ContactUsDetailAnswerView.swift in Sources */,
@@ -1412,6 +1483,7 @@
 				E95652C025618656000E3CE8 /* HomeSectionView.swift in Sources */,
 				E945C4A7255E59F300C1C334 /* LoginSelectViewController.swift in Sources */,
 				E94DFE11256A7624009FD953 /* ConfiguraitonCell.swift in Sources */,
+				E9A760FC25948BEE00EDB25E /* QuestionColCell.swift in Sources */,
 				E9626A0E255F70F20080FE97 /* CToolbar.swift in Sources */,
 				E94DFE2B256A7C39009FD953 /* NoticeDetailViewController.swift in Sources */,
 				E9988BCC255E2F2D00D60D68 /* BaseNavigationController.swift in Sources */,
@@ -1435,11 +1507,14 @@
 				E94DFE53256A86EA009FD953 /* ContactUsDetailViewController.swift in Sources */,
 				E907AA842564EC6F00EFFB0E /* ExpertLifeListViewController.swift in Sources */,
 				E9A21F25258F776100670D35 /* Constant.swift in Sources */,
-				E95652B225617F7B000E3CE8 /* MakeupExportCell.swift in Sources */,
+				E97313F025978A8F00EDF82F /* ExOneToQnaDetailViewController.swift in Sources */,
+				E95652B225617F7B000E3CE8 /* MakeupExpertCell.swift in Sources */,
 				E94DFDE9256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift in Sources */,
 				E9988B72255E194100D60D68 /* AppDelegate.swift in Sources */,
+				E95B65D1259086B00039D37B /* ExAnswerListViewController.swift in Sources */,
 				E964EC0D256E98260057BBA1 /* ContactUsDetailAnswerView.swift in Sources */,
 				E94BEB93256B3CD3005F5D38 /* FAQListViewController.swift in Sources */,
+				E95B65CB259085780039D37B /* ExHomeViewController.swift in Sources */,
 				E99870AC256102860067CD44 /* FSPagerView.swift in Sources */,
 				E982A72125641B130019CB09 /* SettingCell.swift in Sources */,
 				E956529F2561647A000E3CE8 /* HomeHeaderView.swift in Sources */,
@@ -1483,7 +1558,9 @@
 				E9A21F32258F77A600670D35 /* MrJoinInfoViewController.swift in Sources */,
 				E945C4B1255E5ADA00C1C334 /* ExpertViewController.swift in Sources */,
 				E99870AE256102860067CD44 /* FSPageViewTransformer.swift in Sources */,
+				E9A760C425944CBF00EDB25E /* AnswerCell.swift in Sources */,
 				E945C49A255E590900C1C334 /* HomeViewController.swift in Sources */,
+				E97314042598C25400EDF82F /* ExBeautyQnaDetailViewController.swift in Sources */,
 				E94BEB9F256B40BB005F5D38 /* FAQCellView.swift in Sources */,
 				E9A21F38258F77D100670D35 /* CDatePickerView.swift in Sources */,
 				E99870B4256102860067CD44 /* FSPageViewLayout.swift in Sources */,
@@ -1496,10 +1573,12 @@
 				E945C4C4255E686A00C1C334 /* TalkListViewController.swift in Sources */,
 				E907AA5A2564A3E100EFFB0E /* ExpertCommentCell.swift in Sources */,
 				E907AA532564A3AC00EFFB0E /* ExpertImageCell.swift in Sources */,
+				E97313F5259793D300EDF82F /* ExQuestionView.swift in Sources */,
 				E982A6F5256403F10019CB09 /* TalkDetailViewController.swift in Sources */,
 				E9A21EF3258F221700670D35 /* MyQnaView.swift in Sources */,
 				E982A70725640A210019CB09 /* TalkWriteViewController.swift in Sources */,
 				E982A6ED2563F6D00019CB09 /* ChuPurchaseViewController.swift in Sources */,
+				E97314032598C25400EDF82F /* ExMakeupQnaDetailViewController.swift in Sources */,
 				E945C4EC255E7CF000C1C334 /* SelectedButton.swift in Sources */,
 				E94DFE01256A75D2009FD953 /* ConfigurationViewController.swift in Sources */,
 				E9A21F35258F77BF00670D35 /* DateExtension.swift in Sources */,
@@ -1507,6 +1586,7 @@
 				E945C4BA255E680000C1C334 /* QnaViewController.swift in Sources */,
 				E945C4CE255E68A400C1C334 /* SettingViewController.swift in Sources */,
 				E95652AA25617D40000E3CE8 /* ButtonCell.swift in Sources */,
+				E95B65D7259088370039D37B /* ExQuestionListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

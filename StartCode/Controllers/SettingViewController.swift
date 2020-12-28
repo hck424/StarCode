@@ -69,11 +69,17 @@ class SettingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CNavigationBar.drawBackButton(self, UIImage(named: "logo_header"), nil)
+        if appType == .user {
+            CNavigationBar.drawBackButton(self, UIImage(named: "logo_header"), nil)
+        }
+        else {
+            CNavigationBar.drawBackButton(self, "설정", #selector(actionPopViewCtrl))
+            self.removeRightSettingNaviItem()
+        }
         
         tblView.tableHeaderView = haderView
         tblView.tableFooterView = footerView
-        if let userName = SharedData.objectForKey(kMemUsername) as? String {
+        if let userName = SharedData.objectForKey(kMemNickname) as? String {
             let result = "\(userName)님\n환영합니다."
             let attr = NSMutableAttributedString.init(string: result)
             attr.addAttribute(.foregroundColor, value: RGB(128, 0, 250), range: (result as NSString).range(of: userName))
@@ -108,7 +114,12 @@ class SettingViewController: BaseViewController {
                     SharedData.removeObjectForKey(kMemPassword)
                     SharedData.instance.memUserId = nil
                     SharedData.instance.memId = nil
-                    AppDelegate.instance()?.callLgoinSelectVc()
+                    if appType == .user {
+                        AppDelegate.instance()?.callLgoinSelectVc()
+                    }
+                    else {
+                        AppDelegate.instance()?.callLoginVc()
+                    }
                 }
             }
             vc.addAction(.cancel, "취소")

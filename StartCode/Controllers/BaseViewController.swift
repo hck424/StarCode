@@ -16,22 +16,59 @@ enum SessionType: String {
     case expire = "expire"
     case valid = "valid"
 }
+let TAG_NAVI_RIGHT_CHU = 900
+let TAG_NAVI_RIGHT_SETTING = 800
 
 class BaseViewController: UIViewController {
-    var hideRightNaviBarItem = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+        
+        self.addRightChuNaviItem()
+        if appType == .expert {
+            self.addRightSettingNaviItem()
+        }
     }
- 
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if hideRightNaviBarItem == false {
-            self.addRightNaviMyChuButton()
-        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    public func addRightChuNaviItem() {
+        let memChu = SharedData.instance.memChu
+        let chu = "\(memChu)".addComma()
+        CNavigationBar.drawRight(self, chu, UIImage(named: "ic_chu"), TAG_NAVI_RIGHT_CHU, #selector(actionShowChuVc))
+    }
+    public func addRightSettingNaviItem() {
+        CNavigationBar.drawRight(self, nil, UIImage(named: "ic_tabbar_mypage_on"), TAG_NAVI_RIGHT_SETTING, #selector(actionshowSettingVc))
+    }
+    
+    public func removeRightChuNaviItem() {
+        guard var items = self.navigationItem.rightBarButtonItems else {
+            return
+        }
+        
+        items.removeLast()
+        self.navigationItem.setRightBarButtonItems(items, animated: true)
+    }
+    public func removeRightSettingNaviItem() {
+        guard var items = self.navigationItem.rightBarButtonItems else {
+            return
+        }
+        items.removeFirst()
+        self.navigationItem.setRightBarButtonItems(items, animated: true)
+    }
+    func updateChuNaviBarItem() {
+        guard let navibar = self.navigationController?.navigationBar, let btn = navibar.viewWithTag(TAG_NAVI_RIGHT_CHU) as? UIButton else {
+            return
+        }
+        let memChu = SharedData.instance.memChu
+        let chu = "\(memChu)".addComma()
+        btn.setTitle(chu, for: .normal)
     }
     func checkSession(completion:@escaping(_ type:SessionType) ->Void) {
         if let token = SharedData.instance.token {
@@ -40,16 +77,19 @@ class BaseViewController: UIViewController {
                 print ("=== token: \(token)")
                 print ("=== jwt expire date: \(String(describing: jwt.expiresAt))")
                 if jwt.expired {
+                    SharedData.instance.token = nil;
                     completion(.expire)
                 }
                 else {
                     completion(.valid)
                 }
             } catch {
+                SharedData.instance.token = nil;
                 completion(.expire)
             }
         }
         else {
+            SharedData.instance.token = nil;
             completion(.empty)
         }
     }
@@ -59,9 +99,10 @@ class BaseViewController: UIViewController {
         }
         AppDelegate.instance()?.window?.rootViewController?.view.makeToast(message, position:.bottom)
     }
+    
     func showLoginPopupWithCheckSession() {
         self.checkSession { (type) in
-            if type == .empty || type == .empty {
+            if type == .empty || type == .expire {
                 
                 let vc = PopupViewController.init(type: .alert, title: "로그인 안내", message: "로그인 세션이 만료되었습니다.\n 다시로그인 해주세요.") { (vcs, selItem, index) in
                     vcs.dismiss(animated: false, completion: nil)
@@ -74,16 +115,16 @@ class BaseViewController: UIViewController {
             }
         }
     }
-    func addRightNaviMyChuButton() {
-        let memChu = SharedData.instance.memChu
-        let chu = "\(memChu)".addComma()
-        CNavigationBar.drawRight(self, chu, UIImage(named: "ic_chu"), 999, #selector(actionShowChuVc))
-    }
+    
     @objc public func actionPopViewCtrl() {
         self.navigationController?.popViewController(animated: true)
     }
     @objc public func actionShowChuVc() {
         let vc = ChuPurchaseViewController.init()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc public func actionshowSettingVc() {
+        let vc = SettingViewController.init()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func addTapGestureKeyBoardDown() {

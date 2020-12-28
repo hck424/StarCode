@@ -32,7 +32,6 @@ class SharedData: NSObject {
         }
         if let mem_username = user["mem_username"] as? String {
             SharedData.setObjectForKey(mem_username, kMemUsername)
-            
         }
         if let mem_nickname = user["mem_nickname"] as? String {
             SharedData.setObjectForKey(mem_nickname, kMemNickname)

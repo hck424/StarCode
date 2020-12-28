@@ -283,6 +283,15 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
+    /// 내가 처리할 문의내역 (전문가)
+    /// - parameter: token, page, category_id:1:1, post_state: 0
+    func requestMyAnswerList(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/mypage/question", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
     /// 내픽
     /// - parameter: token, page, per_page
     func requestMyPickList(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {

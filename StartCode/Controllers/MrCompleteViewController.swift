@@ -13,7 +13,7 @@ class MrCompleteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "가입완료", #selector(onClickedBtnActions(_:)))
-        self.hideRightNaviBarItem = true
+//        self.removeRightChuNaviBarItem()
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="QuestionColCell" customModule="StartCodePro" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="293" height="337"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="293" height="337"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9xW-Bz-3xi">
+                        <rect key="frame" x="0.0" y="0.0" width="293" height="337"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Twr-UN-gjc">
+                                <rect key="frame" x="0.0" y="0.0" width="293" height="316"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D7L-FZ-oX7">
+                                        <rect key="frame" x="10" y="8" width="273" height="273"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="D7L-FZ-oX7" secondAttribute="height" multiplier="1:1" priority="999" id="fXT-3e-rSD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mAz-hU-eXV">
+                                        <rect key="frame" x="10" y="291" width="273" height="17"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Ps-iU-v3j">
+                                                <rect key="frame" x="101" y="0.0" width="71" height="17"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="김제니" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUh-cP-1J2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="36.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="RKT-D8-12h">
+                                                        <rect key="frame" x="46.5" y="2.5" width="24.5" height="12"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_like_heart" translatesAutoresizingMaskIntoConstraints="NO" id="KwR-fq-9Qv">
+                                                                <rect key="frame" x="0.0" y="0.0" width="15" height="12"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnH-ME-Nnd">
+                                                                <rect key="frame" x="18" y="0.0" width="6.5" height="12"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="8" left="10" bottom="8" right="10"/>
+                            </stackView>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vo9-Zv-sVU" customClass="CButton" customModule="StartCodePro" customModuleProvider="target">
+                                <rect key="frame" x="20" y="18" width="44" height="17"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.33333333333333331" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <inset key="contentEdgeInsets" minX="6" minY="3" maxX="6" maxY="3"/>
+                                <state key="normal" title="아티스트"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vo9-Zv-sVU" firstAttribute="leading" secondItem="D7L-FZ-oX7" secondAttribute="leading" constant="10" id="77w-Pd-BKN"/>
+                            <constraint firstAttribute="trailing" secondItem="Twr-UN-gjc" secondAttribute="trailing" id="Q9f-tm-jIp"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Twr-UN-gjc" secondAttribute="bottom" id="Vme-CN-rlV"/>
+                            <constraint firstItem="Twr-UN-gjc" firstAttribute="leading" secondItem="9xW-Bz-3xi" secondAttribute="leading" id="mjt-eR-0Rx"/>
+                            <constraint firstItem="Vo9-Zv-sVU" firstAttribute="top" secondItem="D7L-FZ-oX7" secondAttribute="top" constant="10" id="wh5-KB-ShH"/>
+                            <constraint firstItem="Twr-UN-gjc" firstAttribute="top" secondItem="9xW-Bz-3xi" secondAttribute="top" id="yCy-QQ-i0K"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="9xW-Bz-3xi" secondAttribute="trailing" id="RfJ-R5-DVZ"/>
+                <constraint firstItem="9xW-Bz-3xi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iVG-uq-t7L"/>
+                <constraint firstAttribute="bottom" secondItem="9xW-Bz-3xi" secondAttribute="bottom" id="iwJ-Y7-dWk"/>
+                <constraint firstItem="9xW-Bz-3xi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="mq3-p2-iXP"/>
+            </constraints>
+            <size key="customSize" width="293" height="337"/>
+            <connections>
+                <outlet property="btnExpertType" destination="Vo9-Zv-sVU" id="upa-9J-DPi"/>
+                <outlet property="ivThumb" destination="D7L-FZ-oX7" id="mIx-Mm-Mki"/>
+                <outlet property="lbHartCnt" destination="qnH-ME-Nnd" id="kPX-fm-pEY"/>
+                <outlet property="lbName" destination="pUh-cP-1J2" id="dZy-SJ-vhe"/>
+            </connections>
+            <point key="canvasLocation" x="313.768115942029" y="51.897321428571423"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ico_like_heart" width="15" height="12"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

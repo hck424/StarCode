@@ -25,7 +25,7 @@ class MyQnaView: UIView {
             collectionView.register(UINib(nibName: "QnaColCell", bundle: nil), forCellWithReuseIdentifier: "QnaColCell")
         }
     }
-    var questionType:QnaType = .faq
+    var questionType:QnaType = .oneToQna
     
     var indexPath:IndexPath = [] {
         didSet {
@@ -84,12 +84,12 @@ class MyQnaView: UIView {
                 result = post_title
             }
         }
-        else {
+        else if type == .answer {
             seperatorView.isHidden = false
             ivType.image = UIImage(named: "ic_answer")
-            
             tmpStr = "전문가님의 답변"
         }
+        
         result.append(tmpStr)
         if tmpStr.isEmpty == false {
             let attr = NSMutableAttributedString.init(string: result)

@@ -30,7 +30,7 @@ class MrPhoneAuthViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "휴대폰 인증", #selector(actionPopViewCtrl))
-        self.hideRightNaviBarItem = true
+//        self.removeRightChuNaviBarItem()
         tfPhone.inputAccessoryView = accessoryView
         tfAuthNumber.inputAccessoryView = accessoryView
         accessoryView.addTarget(self, selctor: #selector(actionKeybardDown))

@@ -155,7 +155,7 @@ extension MyQnaListViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = MyQnaDetailViewController.init()
         vc.data = item
         if selBtn?.tag == 1 {
-            vc.type = .faq
+            vc.type = .oneToQna
         }
         else if selBtn?.tag == 2 {
             vc.type = .aiQna

@@ -78,9 +78,9 @@ enum SectionType {
     case popularPost
     case ad
     case expertLife
-    case myFaq
-    case makeupDiagnosis
-    case beautyQna
+    case askAnswer
+    case askMakeup
+    case askBeauty
 }
 
 enum ActionType {
@@ -109,7 +109,7 @@ enum QuestionType {
     }
 }
 enum QnaType {
-    case makeupQna, beautyQna, aiQna, faq
+    case makeupQna, beautyQna, aiQna, oneToQna
 }
 
 let imageScale:CGFloat = 600

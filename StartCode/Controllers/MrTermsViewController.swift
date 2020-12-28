@@ -21,8 +21,10 @@ class MrTermsViewController: BaseViewController {
     var user:UserInfo?
     override func viewDidLoad() {
         super.viewDidLoad()
-        CNavigationBar.drawBackButton(self, "약관동의", #selector(onClickedBtnActions(_:)))
-        self.hideRightNaviBarItem = true
+        CNavigationBar.drawBackButton(self, "약관동의", #selector(actionPopViewCtrl))
+        self.removeRightChuNaviItem()
+        self.removeRightSettingNaviItem()
+        
         let tmpStr = "(필수)"
         let result = "만 14세 이상입니다 \(tmpStr)"
         let attr = NSMutableAttributedString.init(string: result, attributes: [.foregroundColor: UIColor.label])
@@ -38,13 +40,14 @@ class MrTermsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
     @IBAction func onClickedBtnActions(_ sender:UIButton) {
-        if sender.tag == TAG_NAVI_BACK {
-            self.navigationController?.popViewController(animated: true)
-        }
-        else if sender == btnTotal {
+        if sender == btnTotal {
             sender.isSelected = !sender.isSelected
             btnFourteen.isSelected = sender.isSelected
             btnService.isSelected = sender.isSelected
@@ -78,9 +81,8 @@ class MrTermsViewController: BaseViewController {
             user.mem_is_privacy_agree = btnPrivacy.isSelected
             user.mem_is_marketing_agree = btnMarketing.isSelected
             
-            let vc = MrJoinInfoViewController.init()
-//            let vc = MrPhoneAuthViewController.init()
-//            vc.user = user
+            let vc = MrPhoneAuthViewController.init()
+            vc.user = user
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -18,10 +18,11 @@ class CNavigationBar: UINavigationBar {
      
         controller.navigationController?.setNavigationBarHidden(false, animated: true)
         let button: UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-        button.tag = TAG_NAVI_BACK
+        
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         button.titleLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
         button.tintColor = UIColor.label
+        button.tag = TAG_NAVI_BACK
         if let info = info as? String {
             if showBackImg {
                 button.setImage(UIImage(named: "ic_arrow_back"), for: .normal)
@@ -61,12 +62,12 @@ class CNavigationBar: UINavigationBar {
             button.frame = CGRect.init(x: 0, y: 0, width: width + button.titleEdgeInsets.left, height: button.frame.size.height)
         }
        
-        if let selctor = selector {
-            button.addTarget(controller, action: selctor, for: .touchUpInside)
-        }
-        
         let barBtn = UIBarButtonItem.init(customView: button)
+        barBtn.tag = TAG_NAVI_BACK
         controller.navigationItem.setLeftBarButton(barBtn, animated: false)
+        if let selector = selector {
+            button.addTarget(controller, action: selector, for: .touchUpInside)
+        }
         
         let naviBar = controller.navigationController?.navigationBar
         naviBar?.isTranslucent = true
@@ -105,6 +106,7 @@ class CNavigationBar: UINavigationBar {
         }
         
         let naviBar = controller.navigationController?.navigationBar
+        
         naviBar?.isTranslucent = true
         let img = UIImage.image(from: UIColor.white)!
         naviBar?.tintColor = UIColor.white
@@ -117,9 +119,10 @@ class CNavigationBar: UINavigationBar {
     class func drawRight(_ controller: UIViewController, _ title: String?, _ img:UIImage?, _ tag:Int,  _ selctor:Selector) {
         
         let button: UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-        button.tag = tag
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.right
         button.titleLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
+        button.tag = tag
+        
         if let img = img {
             button.setImage(img, for: .normal)
         }
@@ -142,9 +145,14 @@ class CNavigationBar: UINavigationBar {
 //        button.layer.borderWidth = 1.0
 //        button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(controller, action: selctor, for: .touchUpInside)
-        
         let barBtn = UIBarButtonItem.init(customView: button)
-        controller.navigationItem.setRightBarButton(barBtn, animated: false)
+        if var items = controller.navigationItem.rightBarButtonItems, items.isEmpty == false {
+            items.append(barBtn)
+            controller.navigationItem.setRightBarButtonItems(items.reversed(), animated: false)
+        }
+        else {
+            controller.navigationItem.setRightBarButton(barBtn, animated: false)
+        }
         
         let naviBar = controller.navigationController?.navigationBar
         
@@ -156,9 +164,4 @@ class CNavigationBar: UINavigationBar {
         naviBar?.shadowImage = UIImage.init()
         UINavigationBar.appearance().shadowImage = UIImage.init()
     }
-    
-    class func drawProfile(_ controller: UIViewController, _ selctor:Selector) {
-        CNavigationBar .drawRight(controller, nil, UIImage(named: "group_3")!, TAG_NAVI_USER, selctor)
-    }
-    
 }

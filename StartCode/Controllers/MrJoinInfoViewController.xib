@@ -14,13 +14,13 @@
                 <outlet property="bottomContainer" destination="KQS-Xu-kvO" id="Tuo-0o-4wK"/>
                 <outlet property="btnArtist" destination="aji-Ad-Wan" id="1kD-3k-6kb"/>
                 <outlet property="btnBirthDay" destination="BgK-Sf-a8w" id="CLQ-Yy-A99"/>
-                <outlet property="btnCeleb" destination="zWi-vM-bHG" id="qeV-01-g7H"/>
                 <outlet property="btnCheckId" destination="1Gv-rk-xCd" id="14M-XJ-0Tk"/>
                 <outlet property="btnCheckNickName" destination="JMj-N8-YzI" id="mwb-Ji-OhQ"/>
                 <outlet property="btnExpertSelect" destination="gmv-Sp-g1e" id="tCm-OK-5mP"/>
                 <outlet property="btnFemail" destination="U24-dx-PBs" id="2MK-Xz-bc8"/>
                 <outlet property="btnMail" destination="OV4-cS-upt" id="pfy-jP-kry"/>
                 <outlet property="btnOk" destination="xiK-p9-CFQ" id="CgM-hb-rUX"/>
+                <outlet property="btnProfile" destination="zWi-vM-bHG" id="SwT-tF-Vtz"/>
                 <outlet property="genderView" destination="5Ab-Q9-MkJ" id="tLd-V0-gxs"/>
                 <outlet property="lbHintBirthday" destination="pEa-ev-l8w" id="O0d-Ni-j72"/>
                 <outlet property="lbHintEssay" destination="2vv-YL-Y1g" id="Okz-aI-4Ed"/>
@@ -32,17 +32,17 @@
                 <outlet property="lbHitExpertSelect" destination="F6L-Jc-rXg" id="1I6-5t-Yae"/>
                 <outlet property="scrollView" destination="Xce-TG-F7W" id="m7r-Se-Run"/>
                 <outlet property="scrollViewArtist" destination="AkY-XW-iHT" id="8ci-Qr-0lY"/>
-                <outlet property="scrollViewCeleb" destination="x5f-VZ-m5W" id="sOw-Er-6rb"/>
+                <outlet property="scrollViewProfile" destination="x5f-VZ-m5W" id="7kZ-yD-Oxj"/>
                 <outlet property="seperatorBirthDay" destination="kbh-KB-FNq" id="KxJ-zf-5oQ"/>
                 <outlet property="seperatorEmail" destination="bhj-mQ-tvz" id="YRq-69-ZHT"/>
                 <outlet property="seperatorNickName" destination="TTZ-st-ZoF" id="ch1-1X-Uc5"/>
                 <outlet property="svArtist" destination="fT4-uM-mlg" id="Iy3-7T-06d"/>
-                <outlet property="svCeleb" destination="vNe-P6-IqM" id="jSS-57-yFG"/>
                 <outlet property="svExpert" destination="KVw-n1-MQi" id="XZR-2n-XiD"/>
                 <outlet property="svPassword" destination="FVv-za-bE4" id="FWi-eO-HRb"/>
                 <outlet property="svPasswordConfirm" destination="8Ri-Vy-D7T" id="6xC-z8-19b"/>
                 <outlet property="svPhotoArtist" destination="2ku-m4-jVg" id="zRi-B5-2Ko"/>
-                <outlet property="svPhotoCeleb" destination="KYF-23-8HZ" id="ox3-mB-RUQ"/>
+                <outlet property="svPhotoProfile" destination="KYF-23-8HZ" id="gp9-K3-jNp"/>
+                <outlet property="svProfile" destination="vNe-P6-IqM" id="QUC-G8-ZIQ"/>
                 <outlet property="svUserId" destination="HAG-Oy-6yK" id="iAR-Li-zQv"/>
                 <outlet property="tfBirthday" destination="AmG-Ro-aKZ" id="BNH-fF-ObS"/>
                 <outlet property="tfEmail" destination="RfR-Nm-coc" id="NbB-Bd-DSv"/>
@@ -710,7 +710,7 @@
                                                 </button>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-P6-IqM" userLabel="svCeleb">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-P6-IqM" userLabel="svProfile">
                                             <rect key="frame" x="0.0" y="205.5" width="374" height="82"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ZjC-IE-fD4">
@@ -733,7 +733,7 @@
                                                 <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5f-VZ-m5W">
                                                     <rect key="frame" x="0.0" y="37" width="374" height="0.0"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KYF-23-8HZ">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KYF-23-8HZ" userLabel="svPhotoProfile">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
                                                         </stackView>
                                                     </subviews>

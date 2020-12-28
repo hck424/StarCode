@@ -197,7 +197,7 @@ class ExpertDetailViewController: BaseViewController {
         }
         else if sender == btnFaq {
             let vc = QnaViewController.init()
-            vc.type = .faq
+            vc.type = .oneToQna
             vc.passData = data
             self.navigationController?.pushViewController(vc, animated: true)
         }

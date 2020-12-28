@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import Photos
 import FirebaseMessaging
+
 enum JoinType {
     case normal, sns
 }
@@ -48,15 +50,17 @@ class MrJoinInfoViewController: BaseViewController {
     @IBOutlet weak var tfExpertSelect: CTextField!
     
     @IBOutlet weak var lbHitExpertSelect: UILabel!
+    
     @IBOutlet weak var svArtist: UIStackView!
+    @IBOutlet weak var scrollViewArtist: UIScrollView!
     @IBOutlet weak var svPhotoArtist: UIStackView!
     @IBOutlet weak var btnArtist: CButton!
-    @IBOutlet weak var scrollViewArtist: UIScrollView!
     
-    @IBOutlet weak var svCeleb: UIStackView!
-    @IBOutlet weak var scrollViewCeleb: UIScrollView!
-    @IBOutlet weak var btnCeleb: CButton!
-    @IBOutlet weak var svPhotoCeleb: UIStackView!
+    @IBOutlet weak var svProfile: UIStackView!
+    @IBOutlet weak var scrollViewProfile: UIScrollView!
+    @IBOutlet weak var svPhotoProfile: UIStackView!
+    @IBOutlet weak var btnProfile: CButton!
+    
     
     var type:JoinType = .normal
     let accessoryView = CToolbar.init(barItems: [.up, .down, .keyboardDown], itemColor: ColorAppDefault)
@@ -68,10 +72,7 @@ class MrJoinInfoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let user = user else {
-            return
-        }
-        if user.join_type == "none" {
+        if user?.join_type == "none" {
             self.type = .normal
         }
         else {
@@ -89,7 +90,7 @@ class MrJoinInfoViewController: BaseViewController {
         attr.addAttribute(.foregroundColor, value: RGB(155, 155, 155), range: (result as NSString).range(of: tmp))
         attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 18, weight: .medium), range: NSMakeRange(0, result.length))
         CNavigationBar.drawBackButton(self, attr, #selector(onClickedBtnActions(_:)))
-        self.hideRightNaviBarItem = true
+//        self.removeRightChuNaviBarItem()
         if type == .normal {
             self.arrFocuce = [tfEmail, tfPassword, tfPasswordConfirm, tfNickName, tvEssay]
         }
@@ -115,7 +116,7 @@ class MrJoinInfoViewController: BaseViewController {
         }
         svExpert.isHidden = true
         scrollViewArtist.isHidden = true
-        scrollViewCeleb.isHidden = true
+        scrollViewProfile.isHidden = true
         if appType == .expert {
             svExpert.isHidden = false
             svArtist.isHidden = true
@@ -250,15 +251,36 @@ class MrJoinInfoViewController: BaseViewController {
                 guard let selItem = selItem as? String else {
                     return
                 }
+                
                 if index == 0 {
-                    self.svCeleb.isHidden = false
+                    self.svArtist.isHidden = false
+                    self.svProfile.isHidden = false
+                    self.btnArtist.setNeedsDisplay()
                 }
                 else {
-                    self.svCeleb.isHidden = true
+                    self.svArtist.isHidden = true
+                    self.svProfile.isHidden = false
                 }
                 self.tfExpertSelect.text = selItem
             }
             self.present(vc, animated: true, completion: nil)
+        }
+        else if sender == btnProfile || sender == btnArtist {
+            btnProfile.isSelected = false
+            btnArtist.isSelected = false
+            sender.isSelected = true
+            
+            let list = ["갤러리에서 사진 가져오기", "카메라로 사진 촬영하기"]
+            let vc = PopupViewController.init(type: .list, data: list, completion: { (vcs, selItem, index) in
+                vcs.dismiss(animated: false, completion: nil)
+                if index == 0 {
+                    self.showCamera(.photoLibrary)
+                }
+                else if index == 1 {
+                    self.showCamera(.camera)
+                }
+            })
+            self.present(vc, animated: false, completion: nil)
         }
         else if sender == btnOk {
             lbHintId.isHidden = true
@@ -350,20 +372,58 @@ class MrJoinInfoViewController: BaseViewController {
                 user?.mem_device_id = Utility.getUUID()
                 user?.akey = akey
                 
-                SharedData.setObjectForKey(user?.mem_password!, kMemPassword)
-                
-                guard let user = user, let param = user.toJSON() as?[String:Any] else {
+                guard let user = user, var param = user.toJSON() as?[String:Any] else {
                     print("object mapper convert to diction error")
                     return
+                }
+                
+                if appType == .expert {
+                    lbHitExpertSelect.isHidden = true
+                    guard let expertType = tfExpertSelect.text, expertType.isEmpty == false else {
+                        lbHitExpertSelect.isHidden = false
+                        return
+                    }
+//                    ["아티스트", "셀럽"]
+                    let isArtist:Bool = (expertType == "아티스트")
+                    if isArtist {
+                        if svPhotoArtist.subviews.count == 0 {
+                            self.view.makeToast("아티스트인 경우, 메이크업 관련 자격증 or 메이크업 관련 학과 학생증을 사진으로 올려주셔야 합니다.")
+                            return
+                        }
+                    }
+                    
+                    if svPhotoProfile.subviews.count == 0 {
+                        self.view.makeToast("프로필 이미지 필수입니다.")
+                        return
+                    }
+                    
+                    if isArtist {
+                        var arrImgArtist:[UIImage] = []
+                        for subView in svPhotoArtist.subviews {
+                            if let subView = subView as? PhotoView, let img = subView.ivThumb.image {
+                                arrImgArtist.append(img)
+                            }
+                        }
+                        param["post_file1"] = arrImgArtist
+                    }
+                    
+                    var arrImgProfile:[UIImage] = []
+                    for subView in svPhotoProfile.subviews {
+                        if let subView = subView as? PhotoView, let img = subView.ivThumb.image{
+                            arrImgProfile.append(img)
+                        }
+                    }
+                    param["post_file"] = arrImgProfile
                 }
                 
                 ApiManager.shared.requestMemberSignUp(param: param) { (response) in
                     if let response = response, let code = response["code"] as? Int {
                         if code == 200 {
-                            guard let user = response["user"] as? [String:Any] else {
+                            guard let memInfo = response["user"] as? [String:Any] else {
                                 return
                             }
-                            SharedData.instance.saveUserInfo(user: user)
+                            SharedData.setObjectForKey(user.mem_password!, kMemPassword)
+                            SharedData.instance.saveUserInfo(user: memInfo)
                             let vc = MrCompleteViewController.init()
                             self.navigationController?.pushViewController(vc, animated:true)
                         }
@@ -410,7 +470,13 @@ class MrJoinInfoViewController: BaseViewController {
             }
         }
     }
-    
+    func showCamera(_ sourceType: UIImagePickerController.SourceType) {
+        let vc = CameraViewController.init()
+        vc.delegate = self
+        vc.sourceType = sourceType
+        vc.maxCount = 6
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
     override func notificationHandler(_ notification: NSNotification) {
         let heightKeyboard = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size.height
         let duration = CGFloat((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.floatValue ?? 0.0)
@@ -486,5 +552,87 @@ extension MrJoinInfoViewController: UITextViewDelegate {
         if let textView = textView as? CTextView {
             textView.placeholderLabel?.isHidden = !textView.text.isEmpty
         }
+    }
+}
+
+extension MrJoinInfoViewController: CameraViewControllerDelegate {
+    func didFinishImagePicker(origin: UIImage?, crop: UIImage?) {
+        guard let cropImage = crop else {
+            return
+        }
+        if btnArtist.isSelected {
+            scrollViewArtist.isHidden = false
+            if svPhotoArtist.subviews.count > 5 {
+                return
+            }
+            let itemView = Bundle.main.loadNibNamed("PhotoView", owner: self, options: nil)?.first as! PhotoView
+            svPhotoArtist.addArrangedSubview(itemView)
+            itemView.ivThumb.image = cropImage
+            itemView.delegate = self
+        }
+        else {
+            scrollViewProfile.isHidden = false
+            if svPhotoProfile.subviews.count > 5 {
+                return
+            }
+            let itemView = Bundle.main.loadNibNamed("PhotoView", owner: self, options: nil)?.first as! PhotoView
+            svPhotoProfile.addArrangedSubview(itemView)
+            itemView.ivThumb.image = cropImage
+            itemView.delegate = self
+        }
+    }
+    func didFinishImagePickerAssets(_ assets: [PHAsset]?) {
+        guard let assets = assets, assets.isEmpty == false else {
+            return
+        }
+        if btnArtist.isSelected {
+            scrollViewArtist.isHidden = false
+            if svPhotoArtist.subviews.count > 5 {
+                return
+            }
+            var k = svPhotoArtist.subviews.count
+            for asset in assets {
+                k += 1
+                if k > 6 {
+                    break
+                }
+                let itemView = Bundle.main.loadNibNamed("PhotoView", owner: self, options: nil)?.first as! PhotoView
+                svPhotoArtist.addArrangedSubview(itemView)
+                itemView.asset = asset
+                itemView.delegate = self
+            }
+        }
+        else {
+            scrollViewProfile.isHidden = false
+            if svPhotoProfile.subviews.count > 5 {
+                return
+            }
+            var k = svPhotoProfile.subviews.count
+            for asset in assets {
+                k += 1
+                if k > 6 {
+                    break
+                }
+                let itemView = Bundle.main.loadNibNamed("PhotoView", owner: self, options: nil)?.first as! PhotoView
+                svPhotoProfile.addArrangedSubview(itemView)
+                itemView.asset = asset
+                itemView.delegate = self
+            }
+        }
+    }
+    
+}
+extension MrJoinInfoViewController: PhotoViewDelegate {
+    func didClickDelAction(object: Any?) {
+        guard let object = object as? PhotoView else {
+            return
+        }
+        if let scrollView = object.superview?.superview as? UIScrollView,
+           let svContent = object.superview as? UIStackView {
+            if svContent.subviews.count == 1 {
+                scrollView.isHidden = true
+            }
+        }
+        object.removeFromSuperview()
     }
 }

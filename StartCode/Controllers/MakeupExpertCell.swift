@@ -1,5 +1,5 @@
 //
-//  MakeupExportCell.swift
+//  MakeupExpertCell.swift
 //  StartCode
 //
 //  Created by 김학철 on 2020/11/16.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MakeupExportCell: UITableViewCell {
+class MakeupExpertCell: UITableViewCell {
 
     @IBOutlet weak var collectionVeiw: UICollectionView! {
         didSet {
@@ -16,6 +16,7 @@ class MakeupExportCell: UITableViewCell {
     }
     var arrData:Array<[String:Any]>?
     var didSelectedClosure:((_ selData:[String:Any]?, _ index:Int) -> Void)?
+    var sectionType:SectionType = .makeupExport
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -25,16 +26,18 @@ class MakeupExportCell: UITableViewCell {
     }
     
     
-    func configurationData(_ data: Array<[String:Any]>?) {
+    func configurationData(_ data: Array<[String:Any]>?, _ type:SectionType) {
         self.arrData = data
+        self.sectionType = type
         self.collectionVeiw.delegate = self
         self.collectionVeiw.dataSource = self
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: collectionVeiw.bounds.width/3.5, height: 150)
+        let width:CGFloat = 78+8
+        layout.itemSize = CGSize(width: width, height: self.bounds.height)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        
+        self.collectionVeiw.contentInset = UIEdgeInsets(top: 0, left: 17, bottom: 0, right: 17)
         self.collectionVeiw.collectionViewLayout = layout
         DispatchQueue.main.async {
             self.collectionVeiw.reloadData()
@@ -42,7 +45,7 @@ class MakeupExportCell: UITableViewCell {
     }
 }
 
-extension MakeupExportCell:UICollectionViewDelegate, UICollectionViewDataSource {
+extension MakeupExpertCell:UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let arrData = arrData {
@@ -56,6 +59,9 @@ extension MakeupExportCell:UICollectionViewDelegate, UICollectionViewDataSource 
         
         if let arrData = arrData, let item = arrData[indexPath.row] as?[String:Any] {
             cell.configurationData(item)
+        }
+        if sectionType == .askBeauty {
+            cell.ivProfile.layer.cornerRadius = 20
         }
         return cell
     }

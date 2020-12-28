@@ -26,7 +26,7 @@ class QnaViewController: BaseViewController {
     @IBOutlet weak var btnArtist: UIButton!
     @IBOutlet weak var btnCeleb: UIButton!
     @IBOutlet weak var btnRegist: UIButton!
-    var type:QnaType = .faq
+    var type:QnaType = .oneToQna
     var passData:[String:Any]?
     
     let accessoryView = CToolbar.init(barItems: [.keyboardDown], itemColor: ColorAppDefault)
@@ -154,7 +154,7 @@ class QnaViewController: BaseViewController {
         else if sender == btnRegist {
             var param:[String:Any] = [:]
           
-            if type  == .faq {
+            if type  == .oneToQna {
                 guard let title = tfTitle.text, title.isEmpty == false else {
                     self.showToast("제목을 입력해주세요.")
                     return
@@ -220,7 +220,7 @@ class QnaViewController: BaseViewController {
             
             param["token"] = token
             param["post_content"] = content
-            if type == .faq {
+            if type == .oneToQna {
                 param["post_category"] = "1:1"
             }
             else if type == .beautyQna {
@@ -238,7 +238,7 @@ class QnaViewController: BaseViewController {
             }
             param["post_file"] = images
             
-            if type == .faq {
+            if type == .oneToQna {
                 
                 guard let passData = passData else {
                     return
@@ -296,12 +296,12 @@ class QnaViewController: BaseViewController {
             if let response = response, let code = response["code"] as? Int, code == 200, let message = response["message"] as? String, let last_chu = response["last_chu"] as? Int {
                 SharedData.instance.memChu = last_chu
                 SharedData.setObjectForKey(last_chu, kMemChu)
-                self.addRightNaviMyChuButton()
+                self.updateChuNaviBarItem()
                 do {
                     let attr = try NSAttributedString.init(htmlString: message)
                     let vc = PopupViewController.init(type: .alert, title: nil, message: attr) { (vcs, selItem, index) in
                         vcs.dismiss(animated: false, completion: nil)
-                        if self.type == .faq {
+                        if self.type == .oneToQna {
                             self.navigationController?.popViewController(animated: false)
                         }
                         else {
@@ -326,7 +326,7 @@ class QnaViewController: BaseViewController {
             if let response = response, let code = response["code"] as? Int, code == 200 , let message = response["message"] as? String, let last_chu = response["last_chu"] as? Int {
                 SharedData.instance.memChu = last_chu
                 SharedData.setObjectForKey(last_chu, kMemChu)
-                self.addRightNaviMyChuButton()
+                self.updateChuNaviBarItem()
                 do {
                     let attr = try NSAttributedString.init(htmlString: message)
                     let vc = PopupViewController.init(type: .alert, title: nil, message: attr) { (vcs, selItem, index) in
@@ -400,7 +400,7 @@ extension QnaViewController: CameraViewControllerDelegate {
             self.svPhoto.addArrangedSubview(picker)
             picker.delegate = self
             picker.asset = asset
-            picker.decoration()
+//            picker.decoration()
             count += 1
         }
     }

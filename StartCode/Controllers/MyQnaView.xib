@@ -37,7 +37,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3K4-MK-e6g">
                                     <rect key="frame" x="68" y="33" width="142" height="39"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="장유리님의 뷰티질문" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y11-i7-xuZ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="장유리님의 뷰티질문" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y11-i7-xuZ">
                                             <rect key="frame" x="0.0" y="0.0" width="142" height="19.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <nil key="textColor"/>
@@ -161,7 +161,7 @@
                 <outlet property="lbTitle" destination="y11-i7-xuZ" id="YSe-BR-8mm"/>
                 <outlet property="seperatorView" destination="DbT-gr-zJS" id="eLh-a9-9MG"/>
             </connections>
-            <point key="canvasLocation" x="-17.39130434782609" y="55.245535714285715"/>
+            <point key="canvasLocation" x="-16" y="26"/>
         </view>
     </objects>
     <resources>

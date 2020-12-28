@@ -17,7 +17,7 @@ class HomeViewController: BaseViewController {
     var arrExpert:[[String:Any]] = []
     var arrAskBtn:[[String:Any]] = []
     var arrPopular:[[String:Any]] = []
-    var arrDailyLife:[[String:Any]] = []
+    var arrExpertLife:[[String:Any]] = []
     
     var headerView:HomeHeaderView?
     
@@ -30,13 +30,15 @@ class HomeViewController: BaseViewController {
         
         
         self.view.layoutIfNeeded()
+        tblView.estimatedRowHeight = 70
+        tblView.rowHeight = UITableView.automaticDimension;
         self.headerView = Bundle.main.loadNibNamed("HomeHeaderView", owner: self, options: nil)?.first as? HomeHeaderView
         tblView.tableHeaderView = headerView!
-        tblView.tableFooterView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: 100))
+        tblView.tableFooterView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: 190))
         self.reqeustBannerList()
         self.reqeustExpertMainTop()
         self.requestTalkListPopular()
-        self.requestTalkListExpertDailyLife()
+        self.requestExpertLifeList()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -52,12 +54,11 @@ class HomeViewController: BaseViewController {
     
     func reqeustBannerList() {
         //Api 요청
-        arrBanner.removeAll()
         let param:[String:Any] = ["akey":akey, "page":1, "per_page":10]
         
         ApiManager.shared.requestEventList(param: param) { (response) in
             if let response = response, let banner = response["data"] as?[String:Any], let list = banner["list"] as? Array<[String:Any]>, list.isEmpty == false {
-                self.arrBanner.append(contentsOf: list)
+                self.arrBanner = list
                 self.tblView.reloadData {
                     self.headerView?.configurationData(self.arrBanner)
                 }
@@ -67,13 +68,12 @@ class HomeViewController: BaseViewController {
         }
     }
     func reqeustExpertMainTop() {
-        arrExpert.removeAll()
         let param:[String:Any] = ["akey":akey, "page":1, "per_page":5]
         ApiManager.shared.requestExpertMainTop(param: param) { (response) in
             guard let response = response else {
                 return
             }
-            
+            self.arrExpert.removeAll()
             if let data1 = response["data1"] as? [String:Any], let list = data1["list"] as? Array<[String:Any]>, list.isEmpty == false {
                 self.arrExpert.append(contentsOf: list)
             }
@@ -105,17 +105,18 @@ class HomeViewController: BaseViewController {
             self.showErrorAlertView(error)
         }
     }
-    func requestTalkListExpertDailyLife() {
+    func requestExpertLifeList() {
         var param:[String:Any] = ["page":1, "per_page":10, "findex":"post_like"]
         if let token = SharedData.instance.token {
             param["token"] = token
         }
         ApiManager.shared.requestExpertLifeList(param: param) { (response) in
-            guard let response = response else {
-                return
+            
+            if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as? Array<[String:Any]>, list.isEmpty == false {
+                self.arrExpertLife = list
             }
-            if let data = response["data"] as? [String:Any], let list = data["list"] as? Array<[String:Any]>, list.isEmpty == false {
-                self.arrDailyLife = list
+            else {
+                self.arrExpertLife.removeAll()
             }
             self.makeSectionData()
         } failure: { (error) in
@@ -123,39 +124,35 @@ class HomeViewController: BaseViewController {
         }
     }
     func makeSectionData() {
-        if appType == .user {
-            //버튼
-            listData.removeAll()
-            
-            let section: [String : Any] = ["sec_title":"", "sec_type":SectionType.button, "sec_list":arrAskBtn]
+        //버튼
+        listData.removeAll()
+        
+        let section: [String : Any] = ["sec_title":"", "sec_type":SectionType.button, "sec_list":arrAskBtn]
+        listData.append(section)
+        
+        if arrExpert.isEmpty == false {
+            let section:[String : Any] = ["sec_title":"메이크업 전문가", "sec_type":SectionType.makeupExport, "sec_list":arrExpert]
             listData.append(section)
-
-            if arrExpert.isEmpty == false {
-                let section:[String : Any] = ["sec_title":"메이크업 전문가", "sec_type":SectionType.makeupExport, "sec_list":arrExpert]
-                listData.append(section)
-            }
-
-            if arrPopular.isEmpty == false {
-                let section = ["sec_title":"실시간 인기글", "sec_type":SectionType.popularPost, "sec_list":arrPopular] as [String : Any]
-                listData.append(section)
-            }
-
-            let list = [["title":"Skin Cosmetic", "sub_title":"블라인드 테스트 테스터 모집", "image_name":"img_main_ad"]]
-            let adSection = ["sec_title":"", "sec_type":SectionType.ad, "sec_list":list] as [String : Any]
-            listData.append(adSection)
-            
-            if arrDailyLife.isEmpty == false {
-                let section = ["sec_title":"전문가 일상", "sec_type":SectionType.expertLife, "sec_list":arrDailyLife] as [String : Any]
-                listData.append(section)
-            }
-            
-            self.tblView.reloadData {
-                self.tblView.reloadData()
-            }
         }
-        else {
-            
+        
+        if arrPopular.isEmpty == false {
+            let section = ["sec_title":"실시간 인기글", "sec_type":SectionType.popularPost, "sec_list":arrPopular] as [String : Any]
+            listData.append(section)
         }
+        
+        let list = [["title":"Skin Cosmetic", "sub_title":"블라인드 테스트 테스터 모집", "image_name":"img_main_ad"]]
+        let adSection = ["sec_title":"", "sec_type":SectionType.ad, "sec_list":list] as [String : Any]
+        listData.append(adSection)
+        
+        if arrExpertLife.isEmpty == false {
+            let section = ["sec_title":"전문가 일상", "sec_type":SectionType.expertLife, "sec_list":arrExpertLife] as [String : Any]
+            listData.append(section)
+        }
+        
+        self.tblView.reloadData {
+            self.tblView.reloadData()
+        }
+        
     }
 
     func moveTabIndex(index:Int) {
@@ -214,13 +211,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         else if secType == .makeupExport {
-            var tmpCell = tableView.dequeueReusableCell(withIdentifier: "MakeupExportCell") as? MakeupExportCell
+            var tmpCell = tableView.dequeueReusableCell(withIdentifier: "MakeupExpertCell") as? MakeupExpertCell
             if tmpCell == nil {
-                tmpCell = Bundle.main.loadNibNamed("MakeupExportCell", owner: self, options: nil)?.first as? MakeupExportCell
+                tmpCell = Bundle.main.loadNibNamed("MakeupExpertCell", owner: self, options: nil)?.first as? MakeupExpertCell
             }
             
             if let secList = secList as? [[String:Any]] {
-                tmpCell?.configurationData(secList)
+                tmpCell?.configurationData(secList, secType)
             }
             
             cell = tmpCell
@@ -274,7 +271,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell!
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let secInfo = listData[indexPath.section] as? [String:Any], let secType = secInfo["sec_type"] as? SectionType else {
+            return UITableView.automaticDimension
+        }
+        
+        if secType == .makeupExport {
+            return 140
+        }
+        return UITableView.automaticDimension
+    }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let secInfo = listData[section] as! [String:Any]
         let secType = secInfo["sec_type"] as! SectionType
@@ -282,8 +288,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if secType == .button || secType == .ad {
             return 30
         }
-        
         return 70
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         

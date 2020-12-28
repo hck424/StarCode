@@ -231,7 +231,7 @@ extension TalkWriteViewController: CameraViewControllerDelegate {
             self.svPhoto.addArrangedSubview(picker)
             picker.delegate = self
             picker.asset = asset
-            picker.decoration()
+//            picker.decoration()
             count += 1
         }
     }

@@ -11,12 +11,12 @@ class MyQnaDetailViewController: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var svContent: UIStackView!
     var vcTitle = ""
-    var type:QnaType = .faq
+    var type:QnaType = .oneToQna
     var data:[String:Any]? 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if type == .faq {
+        if type == .oneToQna {
             vcTitle = "1:1 문의"
         }
         else if type == .makeupQna {

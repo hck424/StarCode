@@ -39,6 +39,9 @@ class BannerCell: UICollectionViewCell {
         if let thumb_url = data["thumb_url"] as? String {
             ivThumb.setImageCache(url: thumb_url, placeholderImgName: nil)
         }
+        else {
+            ivThumb.image = UIImage(named: "img_bn_example")
+        }
 //        if let ban_title = data["ban_title"] as? String {
 //            lbTitle.text = ban_title
 //        }
