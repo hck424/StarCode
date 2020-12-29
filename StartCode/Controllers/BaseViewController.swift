@@ -97,9 +97,33 @@ class BaseViewController: UIViewController {
         guard let message = message, message.isEmpty == false else {
             return
         }
-        AppDelegate.instance()?.window?.rootViewController?.view.makeToast(message, position:.bottom)
+        
+//        var selView: UIView?
+//        if let subView = self.view.subviews.first as? UIScrollView {
+//            selView = subView
+//        }
+//        else if let subView = self.view.subviews.first as? UITableView {
+//            selView = subView
+//        }
+//        else if let subView = self.view.subviews.first as? UICollectionView {
+//            selView = subView
+//        }
+//        else {
+//            selView = self.view
+//        }
+        AppDelegate.instance()?.window?.rootViewController?.view.makeToast(message)
+//        guard let findView = selView else {
+//            return
+//        }
+//        self.view.layoutIfNeeded()
+//        findView.makeToast(message)
     }
-    
+    func showToastMainView(_ message:String?) {
+        guard let message = message, message.isEmpty == false else {
+            return
+        }
+        AppDelegate.instance()?.window?.rootViewController?.view.makeToast(message)
+    }
     func showLoginPopupWithCheckSession() {
         self.checkSession { (type) in
             if type == .empty || type == .expire {

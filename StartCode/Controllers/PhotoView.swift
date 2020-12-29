@@ -48,6 +48,7 @@ class PhotoView: UIView {
 //            self.ivThumb.image = result
 //        }
 //    }
+    
     @IBAction func onClickedBtnActions(_ sender: Any) {
         delegate?.didClickDelAction(object: self)
     }

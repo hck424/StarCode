@@ -32,7 +32,7 @@ class ExOneToQnaDetailViewController: BaseViewController {
             return
         }
         let param = ["token":token, "post_id":post_id]
-        ApiManager.shared.requestAskDetail(param: param) { (response) in
+        ApiManager.shared.requestAnswerDetail(param: param) { (response) in
             if let response = response, let data = response["data"] as? [String:Any] {
                 self.data = data
                 self.configurationUi()

@@ -13,7 +13,7 @@ class SharedData: NSObject {
     var token: String?
     var memJoinType:String?
     var memUserId:String?
-    var memChu:Int = 0
+    var memChu:Float = 0.0
     var enableChangeTabMenu:Bool = false
     let categorys = ["전체", "연예인", "패션", "헤어", "픽!쳐톡", "화장법", "다이어트"]
     
@@ -48,11 +48,11 @@ class SharedData: NSObject {
         if let mem_level = user["mem_level"] as? String {
             SharedData.setObjectForKey(mem_level, kMemLevel)
         }
-        if let mem_chu = user["mem_chu"] as? String, let intChu = Int(mem_chu) {
-            SharedData.setObjectForKey(intChu, kMemChu)
-            SharedData.instance.memChu = intChu
+        if let mem_chu = user["mem_chu"] as? String, let numChu = Float(mem_chu) {
+            SharedData.setObjectForKey(numChu, kMemChu)
+            SharedData.instance.memChu = numChu
         }
-        else if let mem_chu = user["mem_chu"] as? Int {
+        else if let mem_chu = user["mem_chu"] as? Float {
             SharedData.setObjectForKey(mem_chu, kMemChu)
             SharedData.instance.memChu = mem_chu
         }
@@ -61,7 +61,7 @@ class SharedData: NSObject {
             SharedData.setObjectForKey(mem_star, kMemStar)
         }
         if let mem_heart = user["mem_heart"] as? String {
-            SharedData.setObjectForKey(mem_heart, kMemHeart)
+            SharedData.setObjectForKey(mem_heart, kMemHart)
         }
         if let lang = user["lang"] as? String {
             SharedData.setObjectForKey(lang, kLang)

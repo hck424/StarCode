@@ -110,10 +110,22 @@ import Foundation
         self.addSubview(placeholderLabel!)
         
         placeholderLabel?.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel?.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: insetLeft).isActive = true
-        placeholderLabel?.topAnchor.constraint(equalTo: self.topAnchor, constant: insetTop).isActive = true
-        placeholderLabel?.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: insetRigth).isActive = true
-        placeholderLabel?.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor, constant: insetBottom).isActive = true
+        let leading = (placeholderLabel?.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: insetLeft))!
+        leading.priority = UILayoutPriority(rawValue: 999)
+        leading.isActive = true
+        
+        let top = (placeholderLabel?.topAnchor.constraint(equalTo: self.topAnchor, constant: insetTop))!
+        top.priority = UILayoutPriority(rawValue: 999)
+        top.isActive = true
+        
+        let right = (placeholderLabel?.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: insetRigth))!
+        right.priority = UILayoutPriority(rawValue: 999)
+        right.isActive = true
+        
+        let bottom = (placeholderLabel?.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor, constant: insetBottom))!
+        bottom.priority = UILayoutPriority(rawValue: 999)
+        bottom.isActive = true
+        
         placeholderLabel?.isHidden = !self.text.isEmpty
     }
     

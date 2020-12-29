@@ -207,7 +207,7 @@ extension CameraViewController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation) {
         cropViewController.dismiss(animated: false) {
             
-            if let resizeImg = cropped.scaled(to: imageScale) {
+            if let resizeImg = cropped.resized(toWidth: imageScale) {
                 self.delegate?.didFinishImagePicker(origin: self.originImg, crop: resizeImg)
             }
             if let navigationCtr = self.navigationController {

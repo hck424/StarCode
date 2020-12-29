@@ -13,7 +13,8 @@ class MyQnaListViewController: BaseViewController {
     @IBOutlet var arrTabBtn: [SelectedButton]!
     
     var selBtn:SelectedButton?
-    let arrCategory:[String] = ["1:1", "ai", "메이크업진단", "뷰티질문"]
+    
+    var arrCategory:[String] = ["1:1", "ai", "메이크업진단", "뷰티질문"]
     var selCagegory:String = "1:1"
     
     var listData:Array<[String:Any]> = []
@@ -25,10 +26,13 @@ class MyQnaListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CNavigationBar.drawBackButton(self, "나의 문의 내역", #selector(actionPopViewCtrl))
-        arrTabBtn = arrTabBtn.sorted(by: { (btn1, btn2) -> Bool in
-            btn2.tag > btn1.tag
-        })
+        if appType == .user {
+            CNavigationBar.drawBackButton(self, "나의 문의 내역", #selector(actionPopViewCtrl))
+        }
+        else {
+            CNavigationBar.drawBackButton(self, "질문 내역", #selector(actionPopViewCtrl))
+            arrTabBtn[1].isHidden = true
+        }
         for btn in arrTabBtn {
             btn.addTarget(self, action: #selector(onClickedBtnActions(_ :)), for: .touchUpInside)
         }
@@ -131,7 +135,6 @@ extension MyQnaListViewController: UITableViewDelegate, UITableViewDataSource {
         if cell == nil {
             cell = Bundle.main.loadNibNamed("MyQnaCell", owner: self, options: nil)?.first as? MyQnaCell
         }
-        
         
         if let selBtn = selBtn, let item = listData[indexPath.row] as? [String:Any] {
             if selBtn.tag == 1 {

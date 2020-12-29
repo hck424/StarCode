@@ -92,18 +92,25 @@ class NetworkManager: NSObject {
                 if key == "post_file" {
                     if let value = value as? Array<UIImage> {
                         for img in value {
-                            let imgData = img.jpegData(compressionQuality: 1.0)
-                            if let imgData = imgData {
-                                multipartFormData.append(imgData, withName: "\(key)[]", fileName: "\(Date().timeIntervalSince1970).jpeg", mimeType: "image/png")
+                            if let imgData = img.jpegData(compressionQuality: 0.9) {
+                                multipartFormData.append(imgData, withName: "\(key)[]", fileName: "\(Date().timeIntervalSince1970).jpeg", mimeType: "image/jpeg")
                                 print(" == imgData byte: \(ByteCountFormatter().string(fromByteCount: Int64(imgData.count)))")
                             }
                         }
                     }
                 }
                 else {
-                    let data:Data? = "\(value)".data(using: .utf8)
-                    if let data = data {
-                        multipartFormData.append(data, withName: key)
+                    if let value = value as? UIImage {
+                        if let imgData = value.jpegData(compressionQuality: 0.9) {
+                            multipartFormData.append(imgData, withName: "\(key)", fileName: "\(key).jpeg", mimeType: "image/jpeg")
+                            print(" == imgData byte: \(ByteCountFormatter().string(fromByteCount: Int64(imgData.count)))")
+                        }
+                    }
+                    else {
+                        let data:Data? = "\(value)".data(using: .utf8)
+                        if let data = data {
+                            multipartFormData.append(data, withName: key)
+                        }
                     }
                 }
             }

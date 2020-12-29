@@ -29,6 +29,7 @@ class ExQuestionListViewController: BaseViewController {
         else {
             CNavigationBar.drawBackButton(self, "메이크업 진단", false,  #selector(actionPopViewCtrl))
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,20 +121,35 @@ extension ExQuestionListViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
         if let item = listData[indexPath.row] as? [String:Any] {
-            if type == .oneToQna {
-                let vc = ExOneToQnaDetailViewController.init()
-                vc.data = item
-                self.navigationController?.pushViewController(vc, animated: true)
+            
+            guard let token = SharedData.instance.token, let post_id = item["post_id"] else {
+                return
             }
-            else if type == .makeupQna {
-                let vc = ExMakeupQnaDetailViewController.init()
-                vc.data = item
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            else if type == .beautyQna {
-                let vc = ExBeautyQnaDetailViewController.init()
-                vc.data = item
-                self.navigationController?.pushViewController(vc, animated: true)
+            let param = ["token":token, "post_id":post_id]
+            
+            ApiManager.shared.requestAnswerOpenCheck(param) { (response) in
+                if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200 {
+                    if self.type == .oneToQna {
+                        let vc = ExOneToQnaDetailViewController.init()
+                        vc.data = item
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    else if self.type == .makeupQna {
+                        let vc = ExMakeupQnaDetailViewController.init()
+                        vc.data = item
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    else if self.type == .beautyQna {
+                        let vc = ExBeautyQnaDetailViewController.init()
+                        vc.data = item
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+                else {
+                    self.showErrorAlertView(response)
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
             }
         }
     }

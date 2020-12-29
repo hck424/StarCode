@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SharedData.instance.memUserId = SharedData.objectForKey(kMemUserid) as? String
         SharedData.instance.memId = SharedData.objectForKey(kMemId) as? String
         SharedData.instance.memJoinType = SharedData.objectForKey(kMemJoinType) as? String
-        if let chu = SharedData.objectForKey(kMemChu) as? Int {
+        if let chu = SharedData.objectForKey(kMemChu) as? Float {
             SharedData.instance.memChu = chu
         }
 //        첫째 멤버에 id가 있으면 메인으로 간다.

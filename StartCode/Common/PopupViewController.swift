@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AudioToolbox
 enum PopupType {
     case list, alert
 }
@@ -14,7 +15,7 @@ enum PopupActionStyle {
     case cancel, ok
 }
 
-typealias PopupClosure = (_ vcs:UIViewController, _ selItem:Any?, _ index:Int) ->Void
+typealias PopupClosure = (_ vcs:PopupViewController, _ selItem:Any?, _ index:Int) ->Void
 
 class PopupViewController: UIViewController {
 
@@ -28,7 +29,7 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var svActions: UIStackView!
     @IBOutlet weak var bottomContainer: NSLayoutConstraint!
     
-    var arrFiled:Array<UITextField>?
+    var arrTextView:[CTextView] = []
     
     var tblView:UITableView? = nil
     var type:PopupType = .list
@@ -115,7 +116,6 @@ class PopupViewController: UIViewController {
                 lbMessage.numberOfLines = 0
                 svContentView.addArrangedSubview(lbMessage)
                 
-                
                 if message is NSAttributedString {
                     lbMessage.attributedText = (message as! NSAttributedString)
                 }
@@ -141,6 +141,30 @@ class PopupViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    func addTextView(_ placeHolderString:String) {
+        self.view.layoutIfNeeded()
+        let sv = UIStackView.init()
+        svContentView.addArrangedSubview(sv)
+        sv.isLayoutMarginsRelativeArrangement = true
+        sv.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        
+        let tv = CTextView.init()
+        sv.addArrangedSubview(tv)
+        tv.placeHolderString = placeHolderString
+        tv.delegate = self
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        tv.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        tv.cornerRadius = 8.0
+        tv.insetLeft = 10
+        tv.insetTop = 10
+        tv.insetBottom = 10
+        tv.insetRigth = 10
+        tv.borderWidth = 1.0
+        tv.borderColor = RGB(221, 221, 221)
+        tv.setNeedsDisplay()
+        arrTextView.append(tv)
+    }
     func addAction(_ style:PopupActionStyle, _ title: Any) {
         self.view.layoutIfNeeded()
         
@@ -181,10 +205,30 @@ class PopupViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }
         if sender == btnFullClose {
-            self.dismiss(animated: false, completion: nil)
+            if arrTextView.isEmpty == false {
+                self.view.endEditing(true)
+            }
+            else {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
         else if sender.tag >= 100 {
-            self.completion?(self, nil, sender.tag-100)
+            if sender.tag == 100 {
+                self.completion?(self, nil, sender.tag-100)
+            }
+            else {
+                if arrTextView.isEmpty == false {
+                    if let textView = arrTextView.first, textView.text.isEmpty == true {
+                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                        return
+                    }
+                    self.completion?(self, nil, sender.tag-100)
+                }
+                else {
+                    self.completion?(self, nil, sender.tag-100)
+                }
+            }
+            
         }
     }
     
@@ -256,6 +300,10 @@ extension PopupViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-extension PopupViewController: UITextFieldDelegate {
-    
+extension PopupViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if let textView = textView as? CTextView {
+            textView.placeholderLabel?.isHidden = !textView.text.isEmpty
+        }
+    }
 }

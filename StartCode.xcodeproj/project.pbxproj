@@ -82,6 +82,8 @@
 		E945C4F6255E808700C1C334 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C4F3255E808700C1C334 /* Extension.swift */; };
 		E945C4F7255E808700C1C334 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C4F4255E808700C1C334 /* SharedData.swift */; };
 		E945C4F8255E808700C1C334 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C4F4255E808700C1C334 /* SharedData.swift */; };
+		E94A7165259B1BEC00840F57 /* ChuExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94A7163259B1BEC00840F57 /* ChuExportViewController.swift */; };
+		E94A7166259B1BEC00840F57 /* ChuExportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94A7164259B1BEC00840F57 /* ChuExportViewController.xib */; };
 		E94BEB92256B3CD3005F5D38 /* FAQListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94BEB90256B3CD3005F5D38 /* FAQListViewController.swift */; };
 		E94BEB93256B3CD3005F5D38 /* FAQListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94BEB90256B3CD3005F5D38 /* FAQListViewController.swift */; };
 		E94BEB94256B3CD3005F5D38 /* FAQListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94BEB91256B3CD3005F5D38 /* FAQListViewController.xib */; };
@@ -294,6 +296,8 @@
 		E9873691256F760C0085223B /* WritePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987368E256F760C0085223B /* WritePopupViewController.swift */; };
 		E9873692256F760C0085223B /* WritePopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E987368F256F760C0085223B /* WritePopupViewController.xib */; };
 		E9873693256F760C0085223B /* WritePopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E987368F256F760C0085223B /* WritePopupViewController.xib */; };
+		E987F2422599B348008FD7C8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E987F2412599B348008FD7C8 /* AudioToolbox.framework */; };
+		E987F2432599B353008FD7C8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E987F2412599B348008FD7C8 /* AudioToolbox.framework */; };
 		E998704A2560C6320067CD44 /* MrCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99870482560C6320067CD44 /* MrCompleteViewController.swift */; };
 		E998704B2560C6320067CD44 /* MrCompleteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99870492560C6320067CD44 /* MrCompleteViewController.xib */; };
 		E99870502560C7A20067CD44 /* MrPhoneAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E998704E2560C7A20067CD44 /* MrPhoneAuthViewController.swift */; };
@@ -427,6 +431,8 @@
 		E945C4E2255E7CF000C1C334 /* Clabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clabel.swift; sourceTree = "<group>"; };
 		E945C4F3255E808700C1C334 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E945C4F4255E808700C1C334 /* SharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		E94A7163259B1BEC00840F57 /* ChuExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuExportViewController.swift; sourceTree = "<group>"; };
+		E94A7164259B1BEC00840F57 /* ChuExportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChuExportViewController.xib; sourceTree = "<group>"; };
 		E94BEB90256B3CD3005F5D38 /* FAQListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQListViewController.swift; sourceTree = "<group>"; };
 		E94BEB91256B3CD3005F5D38 /* FAQListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FAQListViewController.xib; sourceTree = "<group>"; };
 		E94BEB9C256B40BB005F5D38 /* FAQCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQCellView.swift; sourceTree = "<group>"; };
@@ -543,6 +549,7 @@
 		E982A71F25641B130019CB09 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		E987368E256F760C0085223B /* WritePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePopupViewController.swift; sourceTree = "<group>"; };
 		E987368F256F760C0085223B /* WritePopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritePopupViewController.xib; sourceTree = "<group>"; };
+		E987F2412599B348008FD7C8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		E99870482560C6320067CD44 /* MrCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrCompleteViewController.swift; sourceTree = "<group>"; };
 		E99870492560C6320067CD44 /* MrCompleteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MrCompleteViewController.xib; sourceTree = "<group>"; };
 		E998704E2560C7A20067CD44 /* MrPhoneAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrPhoneAuthViewController.swift; sourceTree = "<group>"; };
@@ -601,6 +608,7 @@
 			files = (
 				E998A5B42562A593004A09DF /* Photos.framework in Frameworks */,
 				0E4CA86AA172D5B6DFDD4180 /* Pods_StartCode.framework in Frameworks */,
+				E987F2432599B353008FD7C8 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +618,7 @@
 			files = (
 				E998A5B52562A59D004A09DF /* Photos.framework in Frameworks */,
 				A9BD7838E5247F4FD54F6EF0 /* Pods_StartCodePro.framework in Frameworks */,
+				E987F2422599B348008FD7C8 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +639,7 @@
 		3C9806BBDEB0DF610408A306 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E987F2412599B348008FD7C8 /* AudioToolbox.framework */,
 				E998A5B32562A593004A09DF /* Photos.framework */,
 				ABB90F869FE51973CEF51920 /* Pods_StartCode.framework */,
 				BF6216EED1476FE3C6EA9113 /* Pods_StartCodePro.framework */,
@@ -834,6 +844,8 @@
 				E97313FE2598C25400EDF82F /* ExMakeupQnaDetailViewController.xib */,
 				E97313F4259793D300EDF82F /* ExQuestionView.swift */,
 				E97313F8259793DC00EDF82F /* ExQuestionView.xib */,
+				E94A7163259B1BEC00840F57 /* ChuExportViewController.swift */,
+				E94A7164259B1BEC00840F57 /* ChuExportViewController.xib */,
 			);
 			name = ExpertExpert;
 			sourceTree = "<group>";
@@ -1215,6 +1227,7 @@
 				E94DFE0B256A760E009FD953 /* NoticeListViewController.xib in Resources */,
 				E9640534256231F8003A4759 /* PopupViewController.xib in Resources */,
 				E99870E725613B7F0067CD44 /* ExpertColCell.xib in Resources */,
+				E94A7166259B1BEC00840F57 /* ChuExportViewController.xib in Resources */,
 				E94BEB95256B3CD3005F5D38 /* FAQListViewController.xib in Resources */,
 				E99870AA256102860067CD44 /* README-OBJECTIVE-C.md in Resources */,
 				E94DFE4D256A83C8009FD953 /* ContactUsListViewController.xib in Resources */,
@@ -1510,6 +1523,7 @@
 				E97313F025978A8F00EDF82F /* ExOneToQnaDetailViewController.swift in Sources */,
 				E95652B225617F7B000E3CE8 /* MakeupExpertCell.swift in Sources */,
 				E94DFDE9256A6A6D009FD953 /* MyPickHistoryDetailViewController.swift in Sources */,
+				E94A7165259B1BEC00840F57 /* ChuExportViewController.swift in Sources */,
 				E9988B72255E194100D60D68 /* AppDelegate.swift in Sources */,
 				E95B65D1259086B00039D37B /* ExAnswerListViewController.swift in Sources */,
 				E964EC0D256E98260057BBA1 /* ContactUsDetailAnswerView.swift in Sources */,

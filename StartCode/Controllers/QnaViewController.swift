@@ -246,6 +246,8 @@ class QnaViewController: BaseViewController {
                 guard let recv_mem_id = passData["mem_id"] else {
                     return
                 }
+                param["recv_mem_id"] = recv_mem_id
+                
                 guard let mem_nicknamemem_nickname = passData["mem_nickname"] as? String else {
                     return
                 }
@@ -253,7 +255,7 @@ class QnaViewController: BaseViewController {
                     return
                 }
                 
-                if SharedData.instance.memChu > Int(mem_chupay)! {
+                if SharedData.instance.memChu > Float(mem_chupay)! {
                     param["recv_mem_id"] = recv_mem_id
                     
                     let result = "\(mem_nicknamemem_nickname) 전문가에게 1:1 질문을 할 경우\n\(mem_chupay)개의 CHU가 소모됩니다."
@@ -293,8 +295,8 @@ class QnaViewController: BaseViewController {
     
     func requestAskRegist(_ param:[String:Any]) {
         ApiManager.shared.requestAskRegist(param: param) { (response) in
-            if let response = response, let code = response["code"] as? Int, code == 200, let message = response["message"] as? String, let last_chu = response["last_chu"] as? Int {
-                SharedData.instance.memChu = last_chu
+            if let response = response, let code = response["code"] as? Int, code == 200, let message = response["message"] as? String, let last_chu = response["last_chu"] as? NSNumber {
+                SharedData.instance.memChu = last_chu.floatValue
                 SharedData.setObjectForKey(last_chu, kMemChu)
                 self.updateChuNaviBarItem()
                 do {
@@ -323,8 +325,9 @@ class QnaViewController: BaseViewController {
     }
     func requestAiAskRegist(_ param:[String:Any]) {
         ApiManager.shared.requestAiAskRegist(param: param) { (response) in
-            if let response = response, let code = response["code"] as? Int, code == 200 , let message = response["message"] as? String, let last_chu = response["last_chu"] as? Int {
-                SharedData.instance.memChu = last_chu
+            if let response = response, let code = response["code"] as? Int, code == 200 , let message = response["message"] as? String,
+               let last_chu = response["last_chu"] as? String {
+                SharedData.instance.memChu = Float(last_chu)!
                 SharedData.setObjectForKey(last_chu, kMemChu)
                 self.updateChuNaviBarItem()
                 do {

@@ -44,7 +44,7 @@ class ExBeautyQnaDetailViewController: BaseViewController {
             return
         }
         let param = ["token":token, "post_id":post_id]
-        ApiManager.shared.requestAskDetail(param: param) { (response) in
+        ApiManager.shared.requestAnswerDetail(param: param) { (response) in
             if let response = response, let data = response["data"] as? [String:Any] {
                 self.data = data
                 self.configurationUi()
@@ -80,13 +80,96 @@ class ExBeautyQnaDetailViewController: BaseViewController {
             self.present(vc, animated: false, completion: nil)
         }
         else if sender == btnPass {
-            
+            let vc = PopupViewController.init(type: .alert, message: "PASS 사유를 입력해주세요.") { (vcs, selItem, index) in
+                
+                if index == 1 {
+                    if let textView = vcs.arrTextView.first, let text = textView.text, text.isEmpty == false {
+                        vcs.dismiss(animated: false, completion: nil)
+                        self.requestAnswerPass(comment: text)
+                    }
+                }
+                else {
+                    vcs.dismiss(animated: false, completion: nil)
+                }
+            }
+            vc.addTextView("500자 이내로 작성해주세요.")
+            vc.addAction(.cancel, "취소")
+            vc.addAction(.ok, "확인")
+            self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnWrite {
+            self.view.endEditing(true)
             
+            guard let token = SharedData.instance.token, let post_id = data["post_id"] else {
+                return
+            }
+            guard let content = textView.text, content.isEmpty == false else {
+                self.showToast("답변 내용을 입력해주세요.")
+                return
+            }
+            guard let arrPhtoView = svPhoto.subviews as? [PhotoView], arrPhtoView.isEmpty == false else {
+                self.showToast("사진을 선택해주세요.")
+                return
+            }
+            
+            
+            var param: [String:Any] = [:]
+            param["post_category"] = "뷰티질문"
+            param["post_content"] = content
+            param["token"] = token
+            param["post_id"] = post_id
+            param["mode"] = "c"
+            
+            if let post_tag = data["post_tag"] as? String, post_tag.isEmpty == false {
+                param["post_tag"] = post_tag
+            }
+            var arrImg:[UIImage] = []
+            for photoview in arrPhtoView {
+                if let photoview = photoview as? PhotoView, let img = photoview.ivThumb.image {
+                    arrImg.append(img)
+                }
+            }
+            param["post_file"] = arrImg
+            ApiManager.shared.requestAnswerComment(param: param) { (response) in
+                if let response = response, let code = response["code"] as? NSNumber, let message = response["message"] as? String  {
+                    if code.intValue == 200 {
+                        self.showToastMainView(message)
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    else {
+                        self.showToast(message)
+                    }
+                }
+                else {
+                    self.showErrorAlertView(response)
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
+            }
         }
     }
-    
+    func requestAnswerPass(comment:String) {
+        guard let token = SharedData.instance.token, let post_id = data["post_id"] else {
+            return
+        }
+        
+        let param = ["token":token, "post_id":post_id, "cmt_content":comment, "mode":"pass"]
+        ApiManager.shared.requestAnswerComment(param: param) { (response) in
+            if let response = response, let code = response["code"] as? NSNumber, let message = response["message"] as? String  {
+                if code.intValue == 200 {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                else {
+                    self.showToast(message)
+                }
+            }
+            else {
+                self.showErrorAlertView(response)
+            }
+        } failure: { (error) in
+            self.showErrorAlertView(error)
+        }
+    }
     func showCamera(_ sourceType: UIImagePickerController.SourceType) {
         let vc = CameraViewController.init()
         vc.delegate = self

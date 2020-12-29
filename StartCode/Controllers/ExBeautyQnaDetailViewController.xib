@@ -35,7 +35,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wEL-lB-TMG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="254.5"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nOV-ZH-ehl" customClass="CTextView" customModule="StartCode" customModuleProvider="target">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nOV-ZH-ehl" customClass="CTextView" customModule="StartCodePro" customModuleProvider="target">
                                             <rect key="frame" x="20" y="24" width="374" height="160"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -66,7 +66,7 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="insetRigth">
                                                     <real key="value" value="13"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="500자 이내로 작성해주세요."/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="답변 내용을 입력해주세요."/>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                     <color key="value" systemColor="placeholderTextColor"/>
                                                 </userDefinedRuntimeAttribute>
@@ -92,7 +92,7 @@
                                                 <constraint firstItem="gdo-7j-Hgs" firstAttribute="top" secondItem="lcq-aE-kf4" secondAttribute="top" id="kJi-3V-YXa"/>
                                             </constraints>
                                         </scrollView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ih7-2f-uOR" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ih7-2f-uOR" customClass="CButton" customModule="StartCodePro" customModuleProvider="target">
                                             <rect key="frame" x="20" y="192" width="374" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="mcm-jV-Hre"/>

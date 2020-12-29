@@ -28,9 +28,12 @@ class ExHomeViewController: BaseViewController {
         tblView.tableHeaderView = headerView!
         tblView.tableFooterView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: 190))
         self.reqeustBannerList()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.dataReset()
     }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let headerView = tblView.tableHeaderView {
@@ -38,7 +41,6 @@ class ExHomeViewController: BaseViewController {
         }
     }
     func dataReset() {
-        
         self.requestMyAnswerList()
         self.requestAskList(type: .makeupQna)
         self.requestAskList(type: .beautyQna)

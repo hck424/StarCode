@@ -11,11 +11,13 @@ class SettingCell: UITableViewCell {
 
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var btnNoticeCnt: CButton!
+    @IBOutlet weak var btnPush: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

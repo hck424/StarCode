@@ -41,17 +41,33 @@ class MyQnaDetailViewController: BaseViewController {
         }
         let param = ["token":token, "post_id":post_id]
         
-        ApiManager.shared.requestAskDetail(param: param) { (response) in
-            if let response = response, let data = response["data"] as? [String:Any],
-               let code = response["code"] as? Int, code == 200 {
-                self.data = data
-                self.configurationUi()
+        if appType == .user {
+            ApiManager.shared.requestAskDetail(param: param) { (response) in
+                if let response = response, let data = response["data"] as? [String:Any],
+                   let code = response["code"] as? Int, code == 200 {
+                    self.data = data
+                    self.configurationUi()
+                }
+                else {
+                    self.showErrorAlertView(response)
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
             }
-            else {
-                self.showErrorAlertView(response)
+        }
+        else {
+            ApiManager.shared.requestAnswerDetail(param: param) { (response) in
+                if let response = response, let data = response["data"] as? [String:Any],
+                   let code = response["code"] as? Int, code == 200 {
+                    self.data = data
+                    self.configurationUi()
+                }
+                else {
+                    self.showErrorAlertView(response)
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
             }
-        } failure: { (error) in
-            self.showErrorAlertView(error)
         }
     }
     func configurationUi() {

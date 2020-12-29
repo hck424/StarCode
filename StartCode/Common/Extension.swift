@@ -203,14 +203,7 @@ extension UIImage {
             _ in draw(in: CGRect(origin: .zero, size: canvas))
         }
     }
-    func scaled(to maxSize: CGFloat) -> UIImage? {
-        let aspectRatio: CGFloat = min(maxSize / size.width, maxSize / size.height)
-        let newSize = CGSize(width: size.width * aspectRatio, height: size.height * aspectRatio)
-        let renderer = UIGraphicsImageRenderer(size: newSize)
-        return renderer.image { context in
-            draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: newSize))
-        }
-    }
+    
     func resized(toWidth width: CGFloat, isOpaque: Bool = true) -> UIImage? {
         let canvas = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
         let format = imageRendererFormat

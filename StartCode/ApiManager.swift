@@ -292,6 +292,17 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
+    
+    ///전문가 답변 상세 PASS /answer/comment
+    //mode: pass, c 업데이트
+    func requestAnswerComment(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.requestFileUpload(.post, "/\(hostUrl)/answer/comment", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
+    
     /// 내픽
     /// - parameter: token, page, per_page
     func requestMyPickList(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
@@ -411,10 +422,26 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
-    ///질문 상세
-    /// - parameter: token, post_id
+    ///질문 상세체크
+    func requestAnswerOpenCheck(_ param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/answer/opencheck", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
+    ///일반유저 질문상세
     func requestAskDetail(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
-        NetworkManager.shared.request(.post, "/\(hostUrl)/ask/detail", param) { (response) in
+        NetworkManager.shared.requestFileUpload(.post, "/\(hostUrl)/ask/detail", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
+    ///전문가답변 상세
+    /// - parameter: token, post_id
+    func requestAnswerDetail(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/answer/detail", param) { (response) in
             success?(response)
         } failure: { (error) in
             failure?(error)
