@@ -11,7 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExOneToQnaDetailViewController" customModule="StartCodePro" customModuleProvider="target">
             <connections>
-                <outlet property="svContent" destination="mN2-Aj-Dir" id="3Xr-VS-ezA"/>
+                <outlet property="btnFile" destination="VYC-x6-Nvc" id="anF-ba-RZ5"/>
+                <outlet property="btnWarning" destination="tDM-Hy-aos" id="FlQ-5b-VLZ"/>
+                <outlet property="btnWrite" destination="dJo-OW-2AA" id="7Ib-gy-wZy"/>
+                <outlet property="scrollViewPhoto" destination="Kb5-i8-qxV" id="gre-gL-oo6"/>
+                <outlet property="svContent" destination="AMp-6P-B7W" id="CJp-Ni-eOQ"/>
+                <outlet property="svPhoto" destination="dDl-Zl-U6r" id="Tpk-Yw-bql"/>
+                <outlet property="textView" destination="hwF-UQ-AUc" id="PJM-7H-3fp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,120 +26,178 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VS3-BZ-Z3B">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8Z-xw-hGY">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mN2-Aj-Dir">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="230.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AMp-6P-B7W" userLabel="svContent">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="342.5"/>
                             <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0mL-XH-Is9" customClass="CTextView" customModule="StartCode" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="160" id="bhH-ch-RLq"/>
-                                    </constraints>
-                                    <color key="textColor" systemColor="labelColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                            <real key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="insetTop">
-                                            <real key="value" value="13"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="insetBottom">
-                                            <real key="value" value="13"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
-                                            <real key="value" value="13"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="insetRigth">
-                                            <real key="value" value="13"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="500자 이내로 작성해주세요."/>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                            <color key="value" systemColor="placeholderTextColor"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </textView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※ 이미지는 최대 10장 등록 가능합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="596-La-Ee7">
-                                    <rect key="frame" x="0.0" y="168" width="414" height="14.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdP-AU-Zhy">
-                                    <rect key="frame" x="0.0" y="186.5" width="414" height="0.0"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QKS-3A-e4g">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="254.5"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b5w-W5-9do">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                                        </stackView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hwF-UQ-AUc" customClass="CTextView" customModule="StartCodePro" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="24" width="374" height="160"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="160" id="BIh-UE-TCk"/>
+                                            </constraints>
+                                            <color key="textColor" systemColor="labelColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetTop">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetBottom">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="insetRigth">
+                                                    <real key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="답변 내용을 입력해주세요."/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                    <color key="value" systemColor="placeholderTextColor"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="uBX-DA-MaN"/>
+                                            </connections>
+                                        </textView>
+                                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb5-i8-qxV" userLabel="scrollViewPhoto">
+                                            <rect key="frame" x="20" y="188" width="374" height="0.0"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dDl-Zl-U6r" userLabel="svPhoto">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="dDl-Zl-U6r" secondAttribute="bottom" id="6Ob-UA-GFP"/>
+                                                <constraint firstAttribute="height" priority="999" constant="104" id="BG1-wm-kos"/>
+                                                <constraint firstItem="dDl-Zl-U6r" firstAttribute="leading" secondItem="Kb5-i8-qxV" secondAttribute="leading" id="BIO-ch-lr3"/>
+                                                <constraint firstItem="dDl-Zl-U6r" firstAttribute="width" secondItem="Kb5-i8-qxV" secondAttribute="width" priority="1" id="FJV-zt-Ogu"/>
+                                                <constraint firstItem="dDl-Zl-U6r" firstAttribute="top" secondItem="Kb5-i8-qxV" secondAttribute="top" id="Mif-8u-Dds"/>
+                                                <constraint firstItem="dDl-Zl-U6r" firstAttribute="height" secondItem="Kb5-i8-qxV" secondAttribute="height" id="OJn-ZT-iPa"/>
+                                                <constraint firstAttribute="trailing" secondItem="dDl-Zl-U6r" secondAttribute="trailing" id="hrJ-fe-ebX"/>
+                                            </constraints>
+                                        </scrollView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYC-x6-Nvc" customClass="CButton" customModule="StartCodePro" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="192" width="374" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="egH-94-1nC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="사진등록" image="ic_file_upload">
+                                                <color key="titleColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="Aqd-HM-Noe"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※ 이미지는 최대 10장 등록 가능합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKi-tj-xkz">
+                                            <rect key="frame" x="20" y="240" width="374" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="b5w-W5-9do" secondAttribute="trailing" id="0q4-wG-Qn2"/>
-                                        <constraint firstAttribute="height" priority="999" constant="104" id="81B-bc-K0q"/>
-                                        <constraint firstItem="b5w-W5-9do" firstAttribute="leading" secondItem="vdP-AU-Zhy" secondAttribute="leading" id="PUZ-aq-6dB"/>
-                                        <constraint firstItem="b5w-W5-9do" firstAttribute="height" secondItem="vdP-AU-Zhy" secondAttribute="height" id="TN5-Fl-HJL"/>
-                                        <constraint firstItem="b5w-W5-9do" firstAttribute="top" secondItem="vdP-AU-Zhy" secondAttribute="top" id="VhK-Kj-1id"/>
-                                        <constraint firstItem="b5w-W5-9do" firstAttribute="width" secondItem="vdP-AU-Zhy" secondAttribute="width" priority="1" id="wfv-eh-fGD"/>
-                                        <constraint firstAttribute="bottom" secondItem="b5w-W5-9do" secondAttribute="bottom" id="zBF-8b-sJI"/>
-                                    </constraints>
-                                </scrollView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSy-d1-GYM" customClass="CButton" customModule="StartCode" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="190.5" width="414" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="fvk-Fg-JlN"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="사진등록" image="ic_file_upload">
-                                        <color key="titleColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                            <real key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
+                                    <edgeInsets key="layoutMargins" top="24" left="20" bottom="0.0" right="20"/>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="JLR-Bh-0hS">
+                                    <rect key="frame" x="0.0" y="254.5" width="414" height="88"/>
+                                    <subviews>
+                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJo-OW-2AA" customClass="CButton" customModule="StartCodePro" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="24" width="325" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="D4X-7u-zFr"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <state key="normal" title="답변달기" backgroundImage="btn_rectangle"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="lfi-cd-AzD"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDM-Hy-aos" customClass="CButton" customModule="StartCodePro" customModuleProvider="target">
+                                            <rect key="frame" x="354" y="24" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="6gW-j1-PLS"/>
+                                                <constraint firstAttribute="width" secondItem="tDM-Hy-aos" secondAttribute="height" multiplier="1:1" id="8Lj-KV-Cq6"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <state key="normal" image="ic_warning">
+                                                <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="nKC-mT-wil"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="24" left="20" bottom="24" right="20"/>
+                                </stackView>
                             </subviews>
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="mN2-Aj-Dir" secondAttribute="bottom" id="7Tx-v0-cwT"/>
-                        <constraint firstItem="mN2-Aj-Dir" firstAttribute="leading" secondItem="VS3-BZ-Z3B" secondAttribute="leading" id="Kmw-82-DUc"/>
-                        <constraint firstItem="mN2-Aj-Dir" firstAttribute="height" secondItem="VS3-BZ-Z3B" secondAttribute="height" priority="1" id="V4i-dm-iDP"/>
-                        <constraint firstItem="mN2-Aj-Dir" firstAttribute="top" secondItem="VS3-BZ-Z3B" secondAttribute="top" id="muv-Qa-u06"/>
-                        <constraint firstAttribute="trailing" secondItem="mN2-Aj-Dir" secondAttribute="trailing" id="sP6-By-YGZ"/>
-                        <constraint firstItem="mN2-Aj-Dir" firstAttribute="width" secondItem="VS3-BZ-Z3B" secondAttribute="width" id="vCG-1h-r8z"/>
+                        <constraint firstItem="AMp-6P-B7W" firstAttribute="top" secondItem="B8Z-xw-hGY" secondAttribute="top" id="Kpo-5n-Nd2"/>
+                        <constraint firstItem="AMp-6P-B7W" firstAttribute="leading" secondItem="B8Z-xw-hGY" secondAttribute="leading" id="ORj-Nr-Eau"/>
+                        <constraint firstItem="AMp-6P-B7W" firstAttribute="height" secondItem="B8Z-xw-hGY" secondAttribute="height" priority="1" id="WIQ-dT-XNQ"/>
+                        <constraint firstAttribute="trailing" secondItem="AMp-6P-B7W" secondAttribute="trailing" id="Xzk-c1-oDt"/>
+                        <constraint firstAttribute="bottom" secondItem="AMp-6P-B7W" secondAttribute="bottom" id="axe-y8-ian"/>
+                        <constraint firstItem="AMp-6P-B7W" firstAttribute="width" secondItem="B8Z-xw-hGY" secondAttribute="width" id="hdo-Dd-VWg"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VS3-BZ-Z3B" secondAttribute="bottom" id="Wih-J7-FgT"/>
-                <constraint firstItem="VS3-BZ-Z3B" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="r9b-2P-Xgw"/>
-                <constraint firstItem="VS3-BZ-Z3B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xCF-Rf-8hA"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VS3-BZ-Z3B" secondAttribute="trailing" id="ydG-X1-eez"/>
+                <constraint firstItem="B8Z-xw-hGY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JRu-GS-hyf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="B8Z-xw-hGY" secondAttribute="bottom" identifier="bottom" id="OGg-eF-2PJ"/>
+                <constraint firstItem="B8Z-xw-hGY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bzF-DY-CNF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="B8Z-xw-hGY" secondAttribute="trailing" id="wkX-x4-f99"/>
             </constraints>
             <point key="canvasLocation" x="128" y="82"/>
         </view>
     </objects>
     <resources>
+        <image name="btn_rectangle" width="300" height="40"/>
         <image name="ic_file_upload" width="18" height="18"/>
+        <image name="ic_warning" width="22" height="20"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

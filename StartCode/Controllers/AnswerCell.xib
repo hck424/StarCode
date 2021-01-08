@@ -77,6 +77,7 @@
                 <outlet property="btnAnswerState" destination="h6G-lW-0cL" id="NmN-tE-EHi"/>
                 <outlet property="lbDate" destination="C6P-HQ-eQN" id="Gsj-fK-JKz"/>
                 <outlet property="lbTitle" destination="BG5-Wd-b2g" id="63N-i7-Xfb"/>
+                <outlet property="seperatorBottom" destination="0ve-rk-csd" id="Tfu-WZ-CBb"/>
             </connections>
             <point key="canvasLocation" x="31.884057971014496" y="74.665178571428569"/>
         </tableViewCell>

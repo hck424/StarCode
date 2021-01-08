@@ -14,10 +14,14 @@
                 <outlet property="btnCancel" destination="qBu-Yt-0Pu" id="QdN-3r-LhB"/>
                 <outlet property="btnChangeNickName" destination="kE4-EC-16X" id="tFS-HB-8LN"/>
                 <outlet property="btnChangePW" destination="vb3-3q-SDi" id="fSW-6j-ovk"/>
+                <outlet property="btnFile" destination="eoJ-aL-YbD" id="1zp-Kb-VfM"/>
                 <outlet property="btnOk" destination="ael-1b-PrM" id="Wr0-9W-AbQ"/>
                 <outlet property="lbHintEssay" destination="oln-oD-CRD" id="hnd-qq-4bn"/>
                 <outlet property="lbHitNickName" destination="jQO-A1-h79" id="NYG-gP-Kej"/>
                 <outlet property="lbHitPw" destination="ayL-Gt-FIM" id="xWj-V3-PF1"/>
+                <outlet property="scrollViewProfile" destination="EXi-F2-UFn" id="1zb-e5-bKA"/>
+                <outlet property="svPhotoProfile" destination="l0S-U4-p9A" id="dYK-qY-jdX"/>
+                <outlet property="svProfile" destination="VaO-u5-lww" id="V8I-U4-6wL"/>
                 <outlet property="textView" destination="Yvs-ab-LID" id="x2j-jv-FIM"/>
                 <outlet property="tfNickName" destination="ZHn-rm-etE" id="UpL-1y-gK3"/>
                 <outlet property="tfPassword" destination="Uzx-lP-01f" id="W1H-oQ-0Na"/>
@@ -205,8 +209,72 @@
                                         </view>
                                     </subviews>
                                 </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VaO-u5-lww" userLabel="svProfile">
+                                    <rect key="frame" x="20" y="211" width="374" height="82"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ABI-Gy-7ru">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 이미지 등록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tQ-FV-fWI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본인을 홍보할 수 있는 이미지를 최대 6장 등록해주세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs0-iF-QuW">
+                                                    <rect key="frame" x="0.0" y="17.5" width="374" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXi-F2-UFn">
+                                            <rect key="frame" x="0.0" y="37" width="374" height="0.0"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="l0S-U4-p9A" userLabel="svPhotoProfile">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="l0S-U4-p9A" firstAttribute="leading" secondItem="EXi-F2-UFn" secondAttribute="leading" id="A59-si-ubb"/>
+                                                <constraint firstAttribute="height" priority="999" constant="104" id="EOC-9C-6mv"/>
+                                                <constraint firstItem="l0S-U4-p9A" firstAttribute="top" secondItem="EXi-F2-UFn" secondAttribute="top" id="K3a-cf-yR1"/>
+                                                <constraint firstAttribute="trailing" secondItem="l0S-U4-p9A" secondAttribute="trailing" id="WCz-us-Ia5"/>
+                                                <constraint firstItem="l0S-U4-p9A" firstAttribute="height" secondItem="EXi-F2-UFn" secondAttribute="height" id="ZWL-P2-YN3"/>
+                                                <constraint firstAttribute="bottom" secondItem="l0S-U4-p9A" secondAttribute="bottom" id="fBh-ty-2B0"/>
+                                                <constraint firstItem="l0S-U4-p9A" firstAttribute="width" secondItem="EXi-F2-UFn" secondAttribute="width" priority="1" id="ypA-8a-ynl"/>
+                                            </constraints>
+                                        </scrollView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoJ-aL-YbD" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="42" width="374" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="999" constant="40" id="WTJ-eJ-EEK"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="사진등록" image="ic_file_upload">
+                                                <color key="titleColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onClickedBtnAction:" destination="-1" eventType="touchUpInside" id="Ktv-hC-e8r"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gWZ-m2-R35">
-                                    <rect key="frame" x="20" y="211" width="374" height="174.5"/>
+                                    <rect key="frame" x="20" y="303" width="374" height="174.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소개글" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ef-qo-IPP">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="14.5"/>
@@ -281,7 +349,7 @@
                                     </subviews>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFJ-kA-wNB">
-                                    <rect key="frame" x="20" y="395.5" width="374" height="342.5"/>
+                                    <rect key="frame" x="20" y="487.5" width="374" height="250.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -357,6 +425,7 @@
     </designables>
     <resources>
         <image name="btn_rectangle" width="300" height="40"/>
+        <image name="ic_file_upload" width="18" height="18"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

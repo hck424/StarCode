@@ -9,7 +9,6 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Messaging'
-pod 'Toast-Swift', '~> 5.0.1'
 pod "BSImagePicker", "~> 3.1"
 pod 'Mantis', '~> 1.4.1'
 pod 'PhoneNumberKit', '~> 3.3'

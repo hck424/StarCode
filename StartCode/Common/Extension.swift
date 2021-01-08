@@ -55,19 +55,27 @@ extension UIViewController {
             if msg.isEmpty == true {
                 return
             }
-            var findView:UIScrollView? = nil
+            
+            var findView:UIView = self.view
             for subview in self.view.subviews {
                 if let subview = subview as? UIScrollView {
                     findView = subview
                     break
                 }
             }
-            if let findView = findView {
-                findView.makeToast(msg)
+            if msg.contains("<") {
+                do {
+                    let attr = try NSMutableAttributedString.init(htmlString: msg)
+                    attr.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, attr.string.length))
+                    findView.makeToast(attr)
+                }
+                catch {
+                }
             }
             else {
-                self.view.makeToast(msg)
+                findView.makeToast(msg)
             }
+            
         }
         else if let error = data as? NSError {
             guard let msg = error.localizedDescription as? String else {
@@ -295,7 +303,11 @@ extension String {
     }
     func addComma() ->String {
         let nf = NumberFormatter.init()
+        nf.minimumFractionDigits = 0
+        nf.maximumFractionDigits = 1
+        nf.roundingMode = .halfEven
         nf.numberStyle = .decimal
+        
         nf.locale = Locale(identifier: "en_US")
         let number = NSNumber.init(value: Double(self)!)
         let result = nf.string(from: number)

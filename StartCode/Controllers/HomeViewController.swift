@@ -43,7 +43,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let headerView = tblView.tableHeaderView {
-            headerView.frame = CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: 190)
+            headerView.frame = CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: (self.view.frame.size.width * 170)/335)
         }
     }
     
@@ -53,12 +53,11 @@ class HomeViewController: BaseViewController {
     }
     
     func reqeustBannerList() {
-        //Api 요청
-        let param:[String:Any] = ["akey":akey, "page":1, "per_page":10]
-        
-        ApiManager.shared.requestEventList(param: param) { (response) in
-            if let response = response, let banner = response["data"] as?[String:Any], let list = banner["list"] as? Array<[String:Any]>, list.isEmpty == false {
-                self.arrBanner = list
+        arrBanner.removeAll()
+        let param:[String:Any] = ["akey":akey]
+        ApiManager.shared.requestAdvertisement(param: param) { (response) in
+            if let response = response, let banner = response["banner"] as?[String:Any], let list = banner["list"] as? Array<[String:Any]>, list.isEmpty == false {
+                self.arrBanner.append(contentsOf: list)
                 self.tblView.reloadData {
                     self.headerView?.configurationData(self.arrBanner)
                 }
@@ -131,7 +130,7 @@ class HomeViewController: BaseViewController {
         listData.append(section)
         
         if arrExpert.isEmpty == false {
-            let section:[String : Any] = ["sec_title":"메이크업 전문가", "sec_type":SectionType.makeupExport, "sec_list":arrExpert]
+            let section:[String : Any] = ["sec_title":"메이크업 전문가", "sec_type":SectionType.makeupExpert, "sec_list":arrExpert]
             listData.append(section)
         }
         
@@ -178,7 +177,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let sec_list = secInfo["sec_list"] as? [[String:Any]] {
-            if secType == .makeupExport {
+            if secType == .makeupExpert {
                 return 1
             }
             else {
@@ -210,7 +209,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 mainTabVc.tabBarController(mainTabVc, shouldSelect: vc)
             }
         }
-        else if secType == .makeupExport {
+        else if secType == .makeupExpert {
             var tmpCell = tableView.dequeueReusableCell(withIdentifier: "MakeupExpertCell") as? MakeupExpertCell
             if tmpCell == nil {
                 tmpCell = Bundle.main.loadNibNamed("MakeupExpertCell", owner: self, options: nil)?.first as? MakeupExpertCell
@@ -276,7 +275,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableView.automaticDimension
         }
         
-        if secType == .makeupExport {
+        if secType == .makeupExpert {
             return 140
         }
         return UITableView.automaticDimension
@@ -310,7 +309,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 let type = secInfo["sec_type"] as! SectionType
-                if type == .makeupExport {
+                if type == .makeupExpert {
                     print("메이크업 전문가")
                     AppDelegate.instance()?.mainTabbarCtrl()?.selectedIndex = 1
                 }

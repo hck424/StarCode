@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExpertLifeDetailViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
+                <outlet property="btnWriteComment" destination="Rhy-84-d9g" id="BXE-d6-9Lb"/>
                 <outlet property="tblView" destination="ZYG-CW-lFy" id="sWu-fU-Cwj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,6 +29,22 @@
                         <outlet property="delegate" destination="-1" id="vsO-uf-jkS"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhy-84-d9g" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                    <rect key="frame" x="346" y="794" width="52" height="52"/>
+                    <color key="backgroundColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Rhy-84-d9g" secondAttribute="height" multiplier="1:1" id="1rx-eL-6bG"/>
+                        <constraint firstAttribute="height" constant="52" id="kT5-IE-gs7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <state key="normal" title="댓글"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="hwX-zF-qkw"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -35,6 +52,8 @@
                 <constraint firstItem="ZYG-CW-lFy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Cfa-tJ-n7k"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZYG-CW-lFy" secondAttribute="trailing" id="JLz-Ij-QW2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ZYG-CW-lFy" secondAttribute="bottom" id="Sgw-8e-0mS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Rhy-84-d9g" secondAttribute="bottom" constant="16" id="ZMg-o4-Vu0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Rhy-84-d9g" secondAttribute="trailing" constant="16" id="dQL-it-56B"/>
                 <constraint firstItem="ZYG-CW-lFy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dWX-pJ-NwG"/>
             </constraints>
             <point key="canvasLocation" x="142" y="97"/>

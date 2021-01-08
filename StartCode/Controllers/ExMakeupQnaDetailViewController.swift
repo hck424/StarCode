@@ -27,7 +27,7 @@ class ExMakeupQnaDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CNavigationBar.drawBackButton(self, "메이크업 진단", #selector(actionPopViewCtrl))
+        CNavigationBar.drawBackButton(self, "메이크업 진단", #selector(onClickedBtnActions(_:)))
         
         self.requestAnswerDetail()
         self.arrBtnCategory.sort { (btn1, btn2) -> Bool in
@@ -96,7 +96,18 @@ class ExMakeupQnaDetailViewController: BaseViewController {
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        if let sender = sender as? SelectedButton, arrBtnCategory.contains(sender) == true {
+        if sender.tag == TAG_NAVI_BACK {
+            let vc = PopupViewController.init(type: .alert,  message:"답변을 취소할 경우 1CHU가 차감됩니다.") { (vcs, selData, index) in
+                vcs.dismiss(animated: false, completion: nil)
+                if index == 1 {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            vc.addAction(.cancel, "취소")
+            vc.addAction(.ok, "확인")
+            self.present(vc, animated: true, completion: nil)
+        }
+        else if let sender = sender as? SelectedButton, arrBtnCategory.contains(sender) == true {
             for btn in arrBtnCategory {
                 btn.isSelected = false
             }
@@ -215,7 +226,7 @@ class ExMakeupQnaDetailViewController: BaseViewController {
                     self.showToast("\(category)의 별점을 선택해주세요.")
                     return
                 }
-                param["cmt_\(key)_star"] = (selIndex+1)
+                param["cmt_\(key)_star"] = "\(selIndex+1)"
             }
             
             var index = 0
@@ -243,8 +254,6 @@ class ExMakeupQnaDetailViewController: BaseViewController {
             }
             
             
-            print("abc")
-            
             param["token"] = token
             param["post_id"] = post_id
             param["cmt_content"] = "none"
@@ -253,7 +262,7 @@ class ExMakeupQnaDetailViewController: BaseViewController {
             ApiManager.shared.requestAnswerComment(param: param) { (response) in
                 if let response = response, let code = response["code"] as? NSNumber, let message = response["message"] as? String  {
                     if code.intValue == 200 {
-                        self.showToastMainView(message)
+                        self.showToast(message)
                         self.navigationController?.popViewController(animated: true)
                     }
                     else {
@@ -294,7 +303,7 @@ class ExMakeupQnaDetailViewController: BaseViewController {
         let vc = CameraViewController.init()
         vc.delegate = self
         vc.sourceType = sourceType
-        vc.maxCount = 10
+        vc.maxCount = 5
         self.navigationController?.pushViewController(vc, animated: false)
     }
 }

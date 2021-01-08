@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExpertDetailViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
                 <outlet property="btnChu" destination="K7B-wq-x3z" id="EhP-xA-VtK"/>
+                <outlet property="btnComment" destination="0lp-qd-ZGW" id="wdT-Zc-4VU"/>
                 <outlet property="btnFaq" destination="l2G-RG-nBT" id="Oou-KA-kob"/>
                 <outlet property="btnHartCnt" destination="8Wb-om-nJu" id="HUC-1c-u2c"/>
                 <outlet property="btnPick" destination="7I5-Pq-HgL" id="dpu-xB-RNd"/>
@@ -40,12 +41,33 @@
                         <outlet property="delegate" destination="-1" id="wSD-N5-N3k"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lp-qd-ZGW" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                    <rect key="frame" x="346" y="794" width="52" height="52"/>
+                    <color key="backgroundColor" red="0.50196078430000002" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0lp-qd-ZGW" secondAttribute="height" multiplier="1:1" id="QvC-P7-V3Y"/>
+                        <constraint firstAttribute="height" constant="52" id="azR-6f-3LW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <state key="normal">
+                        <string key="title">리뷰
+달기</string>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="D0a-sQ-4cU"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="hTV-vN-BUb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="DdX-Em-iFn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0lp-qd-ZGW" secondAttribute="bottom" constant="16" id="QD1-bI-CN6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hTV-vN-BUb" secondAttribute="trailing" id="Z52-wC-Dkm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0lp-qd-ZGW" secondAttribute="trailing" constant="16" id="dqT-Lh-jb7"/>
                 <constraint firstItem="hTV-vN-BUb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hkc-Kq-7Zb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hTV-vN-BUb" secondAttribute="bottom" id="vcO-XF-UwR"/>
             </constraints>
@@ -58,7 +80,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LsP-CQ-5Uf">
                     <rect key="frame" x="20" y="30" width="313" height="160"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hIU-l7-cIi">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hIU-l7-cIi">
                             <rect key="frame" x="105" y="0.0" width="103" height="102"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="102" id="16A-Oe-gTc"/>
@@ -185,6 +207,7 @@
                                         <constraint firstAttribute="width" secondItem="7I5-Pq-HgL" secondAttribute="height" multiplier="1:1" id="6En-EN-Cqk"/>
                                     </constraints>
                                     <state key="normal" image="btn_pick_off"/>
+                                    <state key="selected" image="btn_pick_on"/>
                                     <connections>
                                         <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="6LY-a9-OMN"/>
                                     </connections>
@@ -224,6 +247,7 @@
     </objects>
     <resources>
         <image name="btn_pick_off" width="40" height="40"/>
+        <image name="btn_pick_on" width="40" height="40"/>
         <image name="btn_rectangle" width="300" height="40"/>
         <image name="ic_grade_star_m" width="14" height="13"/>
         <image name="ico_like_heart" width="15" height="12"/>

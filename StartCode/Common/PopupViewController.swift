@@ -42,7 +42,9 @@ class PopupViewController: UIViewController {
     var message:Any? = nil
     
     var completion:PopupClosure?
-
+    var stepValue:Float = 0.0
+    var slierVlaue:Int = 0
+    
     convenience init(type:PopupType, title:Any? = nil, message:Any? = nil, completion:PopupClosure?) {
         self.init()
         self.type = type
@@ -165,6 +167,49 @@ class PopupViewController: UIViewController {
         tv.setNeedsDisplay()
         arrTextView.append(tv)
     }
+    func addSliderBar(_ minValue:Float, _ maxValue:Float, _ stepValue:Float) {
+        self.view.layoutIfNeeded()
+        
+        let sv = UIStackView.init()
+        sv.distribution = .fill
+        sv.axis = .vertical
+        sv.isLayoutMarginsRelativeArrangement = true
+        sv.layoutMargins = UIEdgeInsets(top: 20, left: 30, bottom: 0, right: 30)
+        svContentView.addArrangedSubview(sv)
+        sv.spacing = 20
+        
+        let lbChu = UILabel.init()
+        sv.addArrangedSubview(lbChu)
+        lbChu.tag = 1000
+        lbChu.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        lbChu.attributedText = self.getAttrStringChu(0)
+        lbChu.textAlignment = .center
+        lbChu.translatesAutoresizingMaskIntoConstraints = false
+        lbChu.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        let slider = CSlider.init()
+        sv.addArrangedSubview(slider)
+        slider.tintColor = RGB(128, 0, 255)
+        slider.trackHeight = 8
+        slider.minimumValue = minValue
+        slider.maximumValue = maxValue/stepValue
+        self.stepValue = stepValue
+        slider.setThumbImage(UIImage(named: "img_chugift_btn"), for: .normal)
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        slider.addTarget(self, action: #selector(touchSliderBarValueChange(_ :)), for: .valueChanged)
+    }
+    func getAttrStringChu(_ chu:Int) ->NSAttributedString {
+        let tmpStr = "CHU"
+        let coinStr = "\(chu)".addComma()
+        let result = "\(coinStr) \(tmpStr)"
+        let attr = NSMutableAttributedString.init(string: result)
+        attr.addAttribute(.foregroundColor, value: RGB(139, 0, 255), range: (result as NSString).range(of: coinStr))
+        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 24, weight: .bold), range: (result as NSString).range(of: coinStr))
+        attr.addAttribute(.foregroundColor, value: UIColor.label, range: (result as NSString).range(of: tmpStr))
+        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 24, weight: .regular), range: (result as NSString).range(of: tmpStr))
+        return attr
+    }
     func addAction(_ style:PopupActionStyle, _ title: Any) {
         self.view.layoutIfNeeded()
         
@@ -199,7 +244,14 @@ class PopupViewController: UIViewController {
         btn.tag = 100+arrBtn.count
         arrBtn.append(btn)
     }
-    
+    @objc func touchSliderBarValueChange(_ slider:UISlider) {
+        let value:Int = Int((floor(slider.value))*stepValue)
+        self.slierVlaue = value
+        if let lbChu = svContentView.viewWithTag(1000) as? UILabel {
+            let attr = self.getAttrStringChu(value)
+            lbChu.attributedText = attr
+        }
+    }
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnClose {
             self.dismiss(animated: false, completion: nil)

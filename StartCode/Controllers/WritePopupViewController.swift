@@ -8,12 +8,16 @@
 import UIKit
 import Photos
 enum WritePopupType {
-    case comentWrite, commentModify
+    case comentWrite, commentModify, expertComment
 }
 
-typealias WritePopupClosure = (_ vcs:UIViewController, _ content:String?, _ images:[UIImage]?, _ actionIdx:Int) ->Void
+typealias WritePopupClosure = (_ vcs:UIViewController, _ content:String?, _ images:[UIImage]?, _ starCnt:Int) ->Void
 
 class WritePopupViewController: BaseViewController {
+    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var expertStarView: UIView!
+    @IBOutlet weak var lbExpertStar: UILabel!
     
     @IBOutlet weak var btnUpDown: UIButton!
     @IBOutlet weak var btnSend: UIButton!
@@ -21,6 +25,7 @@ class WritePopupViewController: BaseViewController {
     @IBOutlet weak var heightTextView: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var svPhoto: UIStackView!
+    @IBOutlet weak var btnClose: UIButton!
     
     @IBOutlet weak var heightContainer: NSLayoutConstraint!
     @IBOutlet weak var btnFullClose: UIButton!
@@ -28,12 +33,17 @@ class WritePopupViewController: BaseViewController {
     @IBOutlet weak var btnCamera: UIButton!
     @IBOutlet weak var svHideItem: UIStackView!
     
+    @IBOutlet var arrBtnStar: [UIButton]!
+    
     var type:WritePopupType = .comentWrite
     var completion:WritePopupClosure?
     var isKeyboardDown = false
-    convenience init(type:WritePopupType, completion:WritePopupClosure?) {
+    var starCnt = 0
+    var data:[String:Any]?
+    convenience init(_ type:WritePopupType, _ data:[String:Any]? = nil, completion:WritePopupClosure?) {
         self.init()
-        self.type = .comentWrite
+        self.type = type
+        self.data = data
         self.completion = completion
         
         self.modalPresentationStyle = .formSheet
@@ -45,6 +55,27 @@ class WritePopupViewController: BaseViewController {
         scrollView.isHidden = true
         heightContainer.constant = 34
         self.view.layoutIfNeeded()
+        
+        self.view.layer.cornerRadius = 20
+        self.view.layer.maskedCorners = CACornerMask(TL: true, TR: true, BL: false, BR: false)
+        
+        expertStarView.isHidden = true
+        if type == .expertComment {
+            expertStarView.isHidden = false
+            self.arrBtnStar = self.arrBtnStar.sorted(by: { (btn1, btn2) -> Bool in
+                return btn1.tag < btn2.tag
+            })
+            for btn in arrBtnStar {
+                btn.addTarget(self, action: #selector(onClickedBtnActions(_:)), for: .touchUpInside)
+            }
+            
+            if let data = data, let mem_nickname = data["mem_nickname"] as? String {
+                let result = "\(mem_nickname) 전문가에게 별점 주기"
+                let attr = NSMutableAttributedString.init(string: result)
+                attr.addAttribute(.foregroundColor, value: RGB(128, 0, 255), range: (result as NSString).range(of: mem_nickname))
+                lbExpertStar.attributedText = attr
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +95,9 @@ class WritePopupViewController: BaseViewController {
             isKeyboardDown = true
             self.view.endEditing(true)
         }
+        else if sender == btnClose {
+            self.dismiss(animated: true, completion: nil)
+        }
         else if sender == btnUpDown {
             sender.isSelected = !sender.isSelected
             if sender.isSelected {
@@ -71,6 +105,19 @@ class WritePopupViewController: BaseViewController {
             }
             else {
                 textView.becomeFirstResponder()
+            }
+        }
+        else if arrBtnStar.contains(sender) {
+            self.starCnt = sender.tag
+            var i = 0
+            for btn in arrBtnStar {
+                if i < starCnt {
+                    btn.isSelected = true
+                }
+                else {
+                    btn.isSelected = false
+                }
+                i += 1
             }
         }
         else if sender == btnCamera {
@@ -93,7 +140,7 @@ class WritePopupViewController: BaseViewController {
                 }
             }
             
-            completion?(self, text, images, 100)
+            completion?(self, text, images, starCnt)
         }
     }
     

@@ -16,11 +16,13 @@ class MyPickHistoryDetailViewController: BaseViewController {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "내 픽", #selector(actionPopViewCtrl))
         
+        self.requestMyPickHistoryDetail()
     }
     
     
     func requestMyPickHistoryDetail() {
-      
+        
+        
 
     }
     

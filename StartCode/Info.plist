@@ -17,11 +17,22 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>카메라 사용을 허용해주세요.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>갤러리 접근을 허용해주세요.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>갤러리 접근을 허용해주세요.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -45,16 +56,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSCameraUsageDescription</key>
-    <string>카메라 사용을 허용해주세요.</string>
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>갤러리 접근을 허용해주세요.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>갤러리 접근을 허용해주세요.</string>
-    <key>NSAppTransportSecurity</key>
-        <dict>
-            <key>NSAllowsArbitraryLoads</key>
-            <true/>
-        </dict>
 </dict>
 </plist>

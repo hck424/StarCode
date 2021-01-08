@@ -93,8 +93,8 @@ class LoginViewController: BaseViewController {
             }
             
             ApiManager.shared.requestMemberSignIn(param: param) { (response) in
-                if let response = response, let code = response["code"] as? Int {
-                    if code == 200 {
+                if let response = response, let code = response["code"] as? NSNumber {
+                    if code.intValue == 200 {
                         guard let user = response["user"] as? [String:Any] else {
                             return
                         }

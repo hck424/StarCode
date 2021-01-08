@@ -90,7 +90,9 @@ class MrJoinInfoViewController: BaseViewController {
         attr.addAttribute(.foregroundColor, value: RGB(155, 155, 155), range: (result as NSString).range(of: tmp))
         attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 18, weight: .medium), range: NSMakeRange(0, result.length))
         CNavigationBar.drawBackButton(self, attr, #selector(onClickedBtnActions(_:)))
-//        self.removeRightChuNaviBarItem()
+        self.removeRightChuNaviItem()
+        self.removeRightSettingNaviItem()
+        
         if type == .normal {
             self.arrFocuce = [tfEmail, tfPassword, tfPasswordConfirm, tfNickName, tvEssay]
         }
@@ -291,8 +293,6 @@ class MrJoinInfoViewController: BaseViewController {
             lbHintGender.isHidden = true
             lbHintEssay.isHidden = true
             
-            self.view.endEditing(true)
-            
             var isOk = true
             if type == .normal {
                 if tfEmail.text?.isEmpty == true || (tfEmail.text?.validateEmail() == false) {
@@ -360,10 +360,10 @@ class MrJoinInfoViewController: BaseViewController {
                     user?.mem_profile_content = essay
                 }
                 if btnMail.isSelected {
-                    user?.mem_sex = 1
+                    user?.mem_sex = "1"
                 }
                 else {
-                    user?.mem_sex = 0
+                    user?.mem_sex = "2"
                 }
                 if let token = Messaging.messaging().fcmToken {
                     user?.push_token = token
@@ -371,6 +371,7 @@ class MrJoinInfoViewController: BaseViewController {
                 user?.platform = "ios"
                 user?.mem_device_id = Utility.getUUID()
                 user?.akey = akey
+                user?.push_token = Messaging.messaging().fcmToken
                 
                 guard let user = user, var param = user.toJSON() as?[String:Any] else {
                     print("object mapper convert to diction error")
@@ -387,43 +388,49 @@ class MrJoinInfoViewController: BaseViewController {
                     let isArtist:Bool = (expertType == "아티스트")
                     if isArtist {
                         if svPhotoArtist.subviews.count == 0 {
-                            self.view.makeToast("아티스트인 경우, 메이크업 관련 자격증 or 메이크업 관련 학과 학생증을 사진으로 올려주셔야 합니다.")
+                            self.showToast("아티스트인 경우, 메이크업 관련 자격증 or 메이크업 관련 학과 학생증을 사진으로 올려주셔야 합니다.")
                             return
                         }
+                        param["mem_manager_type"] = "아티스트"
+                    }
+                    else {
+                        param["mem_manager_type"] = "셀럽"
                     }
                     
                     if svPhotoProfile.subviews.count == 0 {
-                        self.view.makeToast("프로필 이미지 필수입니다.")
+                        self.showToast("프로필 이미지 필수입니다.")
                         return
                     }
                     
                     if isArtist {
-                        var arrImgArtist:[UIImage] = []
+                        var i = 1
                         for subView in svPhotoArtist.subviews {
                             if let subView = subView as? PhotoView, let img = subView.ivThumb.image {
-                                arrImgArtist.append(img)
+                                param["mem_id_photo\(i)"] = img
+                                i += 1
                             }
                         }
-                        param["post_file1"] = arrImgArtist
                     }
                     
-                    var arrImgProfile:[UIImage] = []
+                    
+                    var i = 1
                     for subView in svPhotoProfile.subviews {
                         if let subView = subView as? PhotoView, let img = subView.ivThumb.image{
-                            arrImgProfile.append(img)
+                            param["mem_profile_photo\(i)"] = img
+                            i += 1
                         }
                     }
-                    param["post_file"] = arrImgProfile
                 }
                 
                 ApiManager.shared.requestMemberSignUp(param: param) { (response) in
                     if let response = response, let code = response["code"] as? Int {
                         if code == 200 {
-                            guard let memInfo = response["user"] as? [String:Any] else {
-                                return
+                            
+                            if let memInfo = response["user"] as? [String:Any] {
+                                SharedData.setObjectForKey(user.mem_password!, kMemPassword)
+                                SharedData.instance.saveUserInfo(user: memInfo)
                             }
-                            SharedData.setObjectForKey(user.mem_password!, kMemPassword)
-                            SharedData.instance.saveUserInfo(user: memInfo)
+                            
                             let vc = MrCompleteViewController.init()
                             self.navigationController?.pushViewController(vc, animated:true)
                         }

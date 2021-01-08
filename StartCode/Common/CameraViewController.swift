@@ -26,7 +26,7 @@ class CameraViewController: UIViewController {
     var isFirst:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.clear
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -105,7 +105,7 @@ class CameraViewController: UIViewController {
             let final = translate.scaledBy(x: CGFloat(scale), y: CGFloat(scale))
             
             imagePicker?.cameraViewTransform = final
-            self.present(imagePicker!, animated: true, completion: nil)
+            self.present(imagePicker!, animated: false, completion: nil)
         }
         else {
 //            imagePicker?.allowsEditing = false
@@ -117,13 +117,13 @@ class CameraViewController: UIViewController {
             imagePicker.settings.selection.unselectOnReachingMax = true
 
             let start = Date()
-            self.presentImagePicker(imagePicker, select: { (asset) in
+            self.presentImagePicker(imagePicker, animated: false, select: { (asset) in
                 print("Selected: \(asset)")
             }, deselect: { (asset) in
                 print("Deselected: \(asset)")
             }, cancel: { (assets) in
                 print("Canceled with selections: \(assets)")
-                imagePicker.dismiss(animated: true) {
+                imagePicker.dismiss(animated: false) {
                     if let navigationCtr = self.navigationController {
                         navigationCtr.popViewController(animated: false)
                     }
@@ -134,7 +134,7 @@ class CameraViewController: UIViewController {
             }, finish: { (assets) in
                 print("Finished with selections: \(assets)")
                 self.delegate?.didFinishImagePickerAssets(assets)
-                imagePicker.dismiss(animated: true) {
+                imagePicker.dismiss(animated: false) {
                     if let navigationCtr = self.navigationController {
                         navigationCtr.popViewController(animated: false)
                     }
@@ -173,7 +173,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
                 vc.delegate = self
                 vc.modalTransitionStyle = .crossDissolve
                 vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
+                self.present(vc, animated: false)
             }
         }
     }

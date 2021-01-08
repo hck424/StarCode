@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -88,10 +89,20 @@
                         </subviews>
                         <edgeInsets key="layoutMargins" top="8" left="20" bottom="8" right="20"/>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvn-sW-w6J">
+                        <rect key="frame" x="20" y="104.5" width="320" height="0.5"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.29999999999999999" id="tuF-Vj-UM5"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Bvn-sW-w6J" secondAttribute="trailing" constant="20" id="1Zx-ov-VLJ"/>
+                    <constraint firstItem="Bvn-sW-w6J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="BR8-Zi-44h"/>
                     <constraint firstAttribute="trailing" secondItem="QSD-aa-jmF" secondAttribute="trailing" id="Ond-SF-YQb"/>
                     <constraint firstItem="QSD-aa-jmF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="OqD-Yz-J9X"/>
+                    <constraint firstAttribute="bottom" secondItem="Bvn-sW-w6J" secondAttribute="bottom" id="hiS-FQ-iRj"/>
                     <constraint firstItem="QSD-aa-jmF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mPD-YW-atM"/>
                     <constraint firstAttribute="bottom" secondItem="QSD-aa-jmF" secondAttribute="bottom" id="n59-ih-vtS"/>
                 </constraints>
@@ -111,5 +122,8 @@
     <resources>
         <image name="ic_comment" width="10" height="10"/>
         <image name="img_star_thumb" width="58" height="58"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

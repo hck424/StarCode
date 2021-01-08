@@ -13,17 +13,28 @@ class MrCompleteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBackButton(self, "가입완료", #selector(onClickedBtnActions(_:)))
-//        self.removeRightChuNaviBarItem()
+        self.removeRightChuNaviItem()
+        self.removeRightSettingNaviItem()
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender.tag == TAG_NAVI_BACK {
             self.navigationController?.popViewController(animated: true)
-            AppDelegate.instance()?.callMainVc()
+            if appType == .user {
+                AppDelegate.instance()?.callMainVc()
+            }
+            else {
+                AppDelegate.instance()?.callLoginVc()
+            }
         }
         else if sender == btnOk {
             //save user 정보 및
-            AppDelegate.instance()?.callMainVc()
+            if appType == .user {
+                AppDelegate.instance()?.callMainVc()
+            }
+            else {
+                AppDelegate.instance()?.callLoginVc()
+            }
         }
     }
 }

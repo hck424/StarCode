@@ -76,10 +76,24 @@ class MrTermsViewController: BaseViewController {
             guard let user = user else {
                 return
             }
-            user.mem_is_14_agree = btnFourteen.isSelected
-            user.mem_is_termsservice_agree = btnService.isSelected
-            user.mem_is_privacy_agree = btnPrivacy.isSelected
-            user.mem_is_marketing_agree = btnMarketing.isSelected
+            
+            user.mem_is_14_agree = "0"
+            user.mem_is_termsservice_agree = "0"
+            user.mem_is_privacy_agree = "0"
+            user.mem_is_marketing_agree = "0"
+            
+            if btnFourteen.isSelected {
+                user.mem_is_14_agree = "1"
+            }
+            if btnService.isSelected {
+                user.mem_is_termsservice_agree = "1"
+            }
+            if btnPrivacy.isSelected {
+                user.mem_is_privacy_agree = "1"
+            }
+            if btnMarketing.isSelected {
+                user.mem_is_marketing_agree = "1"
+            }
             
             let vc = MrPhoneAuthViewController.init()
             vc.user = user

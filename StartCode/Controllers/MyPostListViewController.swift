@@ -19,7 +19,6 @@ class MyPostListViewController: BaseViewController {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "내 게시글", #selector(actionPopViewCtrl))
-        
         let footerview = Bundle.main.loadNibNamed("TableFooterView", owner: self, options: nil)?.first as? TableFooterView
         self.tblView.tableFooterView = footerview
     }

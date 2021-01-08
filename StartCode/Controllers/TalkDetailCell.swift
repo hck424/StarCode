@@ -19,7 +19,9 @@ class TalkDetailCell: UITableViewCell {
     @IBOutlet weak var btnLikeCnt: UIButton!
     @IBOutlet weak var btnComment: UIButton!
     
-    var didActionClosure:((_ action:ActionType) ->Void)?
+    var didActionClosure:((_ selData:[String:Any]?, _ action:ActionType) ->Void)?
+    var data:[String:Any] = [:]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -29,7 +31,7 @@ class TalkDetailCell: UITableViewCell {
     }
     
     func configurationData(_ data:[String:Any]) {
-        
+        self.data = data
         btnModify.isHidden = true
         btnDelete.isHidden = true
         btnWarning.isHidden = false
@@ -78,27 +80,38 @@ class TalkDetailCell: UITableViewCell {
             btnWarning.setTitle(cmt_blame, for: .normal)
         }
         
-        guard let meta = data["meta"] as? [[String:Any]], meta.isEmpty == false else {
+        guard let files = data["files"] as? [[String:Any]], files.isEmpty == false else {
             return
         }
-        photoScrollView.isHidden = false
         
+        photoScrollView.isHidden = false
+        for item in files {
+            if let cfi_filename = item["cfi_filename"] as? String {
+                let ivThumb = UIImageView.init()
+                svPhoto.addArrangedSubview(ivThumb)
+                ivThumb.setImageCache(url: cfi_filename, placeholderImgName: nil)
+                ivThumb.translatesAutoresizingMaskIntoConstraints = false
+                ivThumb.widthAnchor.constraint(equalToConstant: 200).isActive = true
+                ivThumb.contentMode = .scaleAspectFill
+                ivThumb.clipsToBounds = true
+            }
+        }
     }
     @IBAction func onClickedBtnAction(_ sender: UIButton) {
         if sender == btnModify {
-            self.didActionClosure?(.modify)
+            self.didActionClosure?(data, .modify)
         }
         else if sender == btnDelete {
-            self.didActionClosure?(.delete)
+            self.didActionClosure?(data, .delete)
         }
         else if sender == btnWarning {
-            self.didActionClosure?(.warning)
+            self.didActionClosure?(data, .warning)
         }
         else if sender == btnLikeCnt {
-            self.didActionClosure?(.like)
+            self.didActionClosure?(data, .like)
         }
         else if sender == btnComment {
-            self.didActionClosure?(.comment)
+            self.didActionClosure?(data, .comment)
         }
     }
 }

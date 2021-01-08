@@ -20,6 +20,7 @@ class ExpertDetailViewController: BaseViewController {
     @IBOutlet weak var btnChu: CButton!
     @IBOutlet weak var btnPick: UIButton!
     @IBOutlet weak var heightContent: NSLayoutConstraint!
+    @IBOutlet weak var btnComment: CButton!
     var heightHeaderView: NSLayoutConstraint?
     var widthHeaderView: NSLayoutConstraint?
 //header outlet end
@@ -27,12 +28,12 @@ class ExpertDetailViewController: BaseViewController {
     
     var arrData:Array<Any> = []
     var arrExpertDaily:Array<Any>?
-    var data:[String:Any]?
+    var data:[String:Any] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         
         CNavigationBar.drawBackButton(self, "전문가", #selector(actionPopViewCtrl))
-        
+        btnComment.titleLabel?.numberOfLines = 2
         
         ivProfile.layer.cornerRadius = ivProfile.bounds.height/2
         ivProfile.layer.borderWidth = 1.0
@@ -40,10 +41,11 @@ class ExpertDetailViewController: BaseViewController {
         self.tblView.estimatedRowHeight = 100
         self.tblView.rowHeight = UITableView.automaticDimension
         self.view.layoutIfNeeded()
-        self.requestExpertDetail()
-        tblView.tableHeaderView = headerView
         
+        tblView.tableHeaderView = headerView
+        self.requestExpertDetail()
         self.requestExpertDailyLife()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -96,7 +98,7 @@ class ExpertDetailViewController: BaseViewController {
             return
         }
         let param:[String:Any] = ["token":token, "page":1, "per_page":5, "findex":"post_like"]
-        ApiManager.shared.requestTalkList(param: param) { (response) in
+        ApiManager.shared.requestExpertLifeList(param: param) { (response) in
             if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as?[[String:Any]], list.isEmpty == false {
                 self.arrExpertDaily = list
                 self.decorationUi()
@@ -107,7 +109,7 @@ class ExpertDetailViewController: BaseViewController {
 
     }
     func requestExpertDetail() {
-        guard let token = SharedData.instance.token, let data = data, let mem_id = data["mem_id"] else {
+        guard let token = SharedData.instance.token, let mem_id = data["mem_id"] else {
             return
         }
         let param:[String:Any] = ["token":token, "mem_id":mem_id]
@@ -130,9 +132,6 @@ class ExpertDetailViewController: BaseViewController {
         btnStarCnt.setTitle("0", for: .normal)
         btnHartCnt.setTitle("0", for: .normal)
         lbContent.text = ""
-        guard let data = data else {
-            return
-        }
         
         if let mem_photo = data["mem_photo"] as? String {
             ivProfile.setImageCache(url: mem_photo, placeholderImgName: nil)
@@ -153,13 +152,17 @@ class ExpertDetailViewController: BaseViewController {
             btnType.setTitle(mem_manager_type, for: .normal)
         }
         
-        let is_mypick = data["is_mypick"] as? Bool
-        if is_mypick == true {
+        btnPick.isSelected = false
+        if let is_mypick = data["is_mypick"] as? Bool, is_mypick == true {
             btnPick.isSelected = true
         }
-        else {
-            btnPick.isSelected = false
+        btnFaq.setBackgroundImage(nil, for: .normal)
+        btnFaq.setTitleColor(RGB(155, 155, 155), for: .normal)
+        if let mem_is_question = data["mem_is_question"] as? String, mem_is_question == "1" {
+            btnFaq.setBackgroundImage(UIImage(named: "btn_rectangle"), for: .normal)
+            btnFaq.setTitleColor(UIColor.white, for: .normal)
         }
+        
         if let mem_profile_content = data["mem_profile_content"] as? String {
             lbContent.text = mem_profile_content
         }
@@ -193,23 +196,101 @@ class ExpertDetailViewController: BaseViewController {
             
             let vc = ExpertLifeListViewController.init()
             self.navigationController?.pushViewController(vc, animated: true)
-            
         }
         else if sender == btnFaq {
+            if let mem_is_question = data["mem_is_question"] as? String, mem_is_question == "0" {
+                self.view.makeToast("전문가 부재중입니다.")
+                return
+            }
+            
             let vc = QnaViewController.init()
             vc.type = .oneToQna
             vc.passData = data
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender == btnChu {
-            
+            let vc = PopupViewController.init(type: .alert) { (vcs, selItem, index) in
+                vcs.dismiss(animated: false, completion: nil)
+                
+                if vcs.slierVlaue > 0 {
+                    self.requestGiveChu(vcs.slierVlaue)
+                }
+            }
+            vc.addSliderBar(0, 200, 10)
+            vc.addAction(.ok, "CHU 선물하기")
+            self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnPick {
-            sender.isSelected = !sender.isSelected
+            if sender.isSelected {
+                self.view.makeToast("이미 '픽'하였습니다.")
+                return
+            }
+            guard let mem_id = data["mem_id"], let token = SharedData.instance.token else {
+                return
+            }
             
+            let param:[String:Any] = ["token":token, "pick_mem_id":mem_id, "flag":true]
+            ApiManager.shared.requestPickRegist(param: param) { (response) in
+                if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200 {
+                    self.btnPick.isSelected = true
+                }
+                else {
+                    self.showErrorAlertView(response)
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
+            }
+        }
+        else if sender == btnComment {
+            let vc = WritePopupViewController.init(.expertComment, data) { (vcs, content, images, starCnt) in
+                vcs.dismiss(animated: true, completion: nil)
+                guard let content = content else {
+                    return
+                }
+                self.requestWriteComent(content, images, starCnt)
+            }
+            self.present(vc, animated: true, completion: nil)
         }
     }
-    
+    func requestWriteComent(_ content:String, _ images:[UIImage]?, _ starCnt:Int) {
+        guard let token = SharedData.instance.token, let recv_mem_id = data["mem_id"] else {
+            return
+        }
+        
+        var param = ["token":token, "recv_mem_id":recv_mem_id, "rating":"\(starCnt)", "message":content]
+        if let images = images {
+            param["post_file"] = images
+        }
+        ApiManager.shared.requestWriteExpertReview(param: param) { (response) in
+            if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200 {
+                self.requestExpertDetail()
+            }
+            else {
+                self.showErrorAlertView(response)
+            }
+        } failure: { (error) in
+            self.showErrorAlertView(error)
+        }
+    }
+    func requestGiveChu(_ chu:Int) {
+        guard let token = SharedData.instance.token, let recv_mem_id = data["mem_id"] else {
+            return
+        }
+        let param:[String:Any] = ["token":token, "recv_mem_id":recv_mem_id, "chu_give":chu]
+        ApiManager.shared.requestGiveChu(param: param) { (response) in
+            if let response = response, let message = response["message"] as? String, let code = response["code"] as? NSNumber, let last_chu = response["last_chu"] as? NSNumber, code.intValue == 200 {
+                self.showToast(message)
+                SharedData.setObjectForKey("\(last_chu)", kMemChu)
+                SharedData.instance.memChu = "\(last_chu)"
+                self.updateChuNaviBarItem()
+            }
+            else {
+                self.showErrorAlertView(response)
+            }
+        } failure: { (error) in
+            self.showErrorAlertView(error)
+        }
+    }
 }
 extension ExpertDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -304,17 +385,12 @@ extension ExpertDetailViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         let secInfo = arrData[indexPath.section] as! [String:Any]
         if let secType = secInfo["sec_type"] as? String, secType == "expertDailyLife", let list = secInfo["sec_list"] as? [Any], let item = list[indexPath.row] as? [String:Any] {
-            
-            let vc = TalkDetailViewController.init()
+            let vc = ExpertLifeDetailViewController.init()
             vc.data = item
-            self.navigationController?.pushViewController(vc, animated:true)
-//            let vc = ExpertLifeDetailViewController.init()
-//            vc.passData = item
-//            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

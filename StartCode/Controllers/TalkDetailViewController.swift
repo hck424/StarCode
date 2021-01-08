@@ -187,9 +187,9 @@ class TalkDetailViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnComent {
-            let vc = WritePopupViewController.init(type: .comentWrite) { (vcs, content, images, actionIdx) in
+            let vc = WritePopupViewController.init(.comentWrite) { (vcs, content, images, actionIdx) in
                 vcs.dismiss(animated: true, completion: nil)
-                guard let content = content as? String else {
+                guard let content = content else {
                     return
                 }
                 
@@ -239,8 +239,9 @@ extension TalkDetailViewController: UITableViewDelegate, UITableViewDataSource {
         if let item = listData[indexPath.row] as? [String:Any] {
             cell?.configurationData(item)
             
-            cell?.didActionClosure = {(action) ->Void in
-                guard let token = SharedData.instance.token, self.postId.isEmpty == false else {
+            cell?.didActionClosure = {(selData, action) ->Void in
+                
+                guard let selData = selData, let token = SharedData.instance.token, let cmt_id = selData["cmt_id"] as? String else {
                     return
                 }
                 
@@ -248,10 +249,7 @@ extension TalkDetailViewController: UITableViewDelegate, UITableViewDataSource {
                     
                 }
                 else if action == .delete {
-                    guard let cmtId = item["cmt_id"] as? String else {
-                        return
-                    }
-                    let param:[String:Any] = ["cmt_id":cmtId, "token":token]
+                    let param:[String:Any] = ["cmt_id":cmt_id, "token":token]
                     ApiManager.shared.requestDeleteComment(param: param) { (response) in
                         if let response = response, let message = response["message"] as? String, let code = response["code"] as? Int, code == 200 {
                             self.showToast(message)
@@ -263,13 +261,9 @@ extension TalkDetailViewController: UITableViewDelegate, UITableViewDataSource {
                     } failure: { (error) in
                         self.showErrorAlertView(error)
                     }
-
                 }
                 else if action == .warning {
-                    guard let cmtId = item["cmt_id"] as? String else {
-                        return
-                    }
-                    let param:[String:Any] = ["cmt_id":cmtId, "token":token]
+                    let param:[String:Any] = ["cmt_id":cmt_id, "token":token]
                     ApiManager.shared.requestPostCommentWarning(param: param) { (response) in
                         if let response = response, let message = response["message"] as? String, let code = response["code"] as? Int, code == 200 {
                             self.showToast(message)
@@ -283,9 +277,6 @@ extension TalkDetailViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 else if action == .like {
-                    guard let cmt_id = item["cmt_id"] as? String else {
-                        return
-                    }
                     let param:[String:Any] = ["token":token, "cmt_id":cmt_id ,"like_type":1]
                     ApiManager.shared.requestCommentRecomend(param: param) { (response) in
                         if let response = response, let message = response["message"] as? String {
@@ -300,9 +291,9 @@ extension TalkDetailViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 else if action == .comment {
-                    let vc = WritePopupViewController.init(type: .comentWrite) { (vcs, content, images, index) in
+                    let vc = WritePopupViewController.init(.comentWrite) { (vcs, content, images, index) in
                         vcs.dismiss(animated: false, completion: nil)
-                        guard let content = content, let cmt_id = item["cmt_id"] as? String else {
+                        guard let content = content else {
                             return
                         }
                         self.requestWriteComent(content, images, cmt_id)

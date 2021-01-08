@@ -249,6 +249,9 @@
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="halfCornerRadius" value="YES"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="b0t-QA-T0t"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <edgeInsets key="layoutMargins" top="30" left="20" bottom="30" right="20"/>

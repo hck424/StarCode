@@ -15,6 +15,7 @@ class QnaViewController: BaseViewController {
     @IBOutlet weak var btnAddPhoto: CButton!
     @IBOutlet weak var scrollViewPhototo: UIScrollView!
     @IBOutlet weak var svPhoto: UIStackView!
+    @IBOutlet weak var lbPhotoCnt: UILabel!
     
     @IBOutlet weak var svSelectedContainer: UIStackView!
     @IBOutlet weak var lbSelectTitle: UILabel!
@@ -94,6 +95,9 @@ class QnaViewController: BaseViewController {
         tfTitle.isHidden = true
         svSelectedContainer.isHidden = true
         tvContent.text = ""
+        lbPhotoCnt.text = "※ 이미지는 최대 10장 등록 가능합니다."
+        tvContent.isHidden = false
+        
         if type == .makeupQna {
             svSelectedContainer.isHidden = false
             lbTitle.text = "회원 여러분의 메이크업을 진단해드립니다."
@@ -112,7 +116,9 @@ class QnaViewController: BaseViewController {
         }
         else if type == .aiQna {
             lbTitle.text = "Ai로 메이크업 진단을 받아요."
+            lbPhotoCnt.text = "※ 이미지는 최대 1장 등록 가능합니다."
             CNavigationBar.drawBackButton(self, "Ai 메이크업 진단", false, nil)
+            tvContent.isHidden = true
         }
         else {
             lbTitle.text = "전문가에게 1:1로 상담 받을 수 있습니다.\n단, 욕설/비방글 등은 신고를 통해 고객님에게 불이익이 발생할 수 있습니다."
@@ -200,10 +206,17 @@ class QnaViewController: BaseViewController {
                 param["post_tag"] = tmpStr
             }
             
-            guard let content = tvContent.text, content.isEmpty == false else {
-                self.showToast("질문 내용을 입력해주세요.")
-                return
+            if type == .aiQna {
+                param["post_content"] = "ai"
             }
+            else {
+                guard let content = tvContent.text, content.isEmpty == false else {
+                    self.showToast("질문 내용을 입력해주세요.")
+                    return
+                }
+                param["post_content"] = content
+            }
+            
             var images:[UIImage] = []
             for photoView in svPhoto.subviews {
                 if let photoView = photoView as? PhotoView, let img = photoView.ivThumb.image {
@@ -219,14 +232,13 @@ class QnaViewController: BaseViewController {
             }
             
             param["token"] = token
-            param["post_content"] = content
+            
             if type == .oneToQna {
                 param["post_category"] = "1:1"
             }
             else if type == .beautyQna {
                 param["post_title"] = "뷰티질문"
                 param["post_category"] = "뷰티질문"
-                
             }
             else if type == .makeupQna {
                 param["post_title"] = "메이크업진단"
@@ -255,7 +267,7 @@ class QnaViewController: BaseViewController {
                     return
                 }
                 
-                if SharedData.instance.memChu > Float(mem_chupay)! {
+                if let memChu = Double(SharedData.instance.memChu), let chupay = Double(mem_chupay), memChu > chupay {
                     param["recv_mem_id"] = recv_mem_id
                     
                     let result = "\(mem_nicknamemem_nickname) 전문가에게 1:1 질문을 할 경우\n\(mem_chupay)개의 CHU가 소모됩니다."
@@ -294,10 +306,10 @@ class QnaViewController: BaseViewController {
     }
     
     func requestAskRegist(_ param:[String:Any]) {
-        ApiManager.shared.requestAskRegist(param: param) { (response) in
+        ApiManager.shared.requestAskWrite(param: param) { (response) in
             if let response = response, let code = response["code"] as? Int, code == 200, let message = response["message"] as? String, let last_chu = response["last_chu"] as? NSNumber {
-                SharedData.instance.memChu = last_chu.floatValue
-                SharedData.setObjectForKey(last_chu, kMemChu)
+                SharedData.instance.memChu = "\(last_chu)"
+                SharedData.setObjectForKey("\(last_chu)", kMemChu)
                 self.updateChuNaviBarItem()
                 do {
                     let attr = try NSAttributedString.init(htmlString: message)
@@ -326,9 +338,9 @@ class QnaViewController: BaseViewController {
     func requestAiAskRegist(_ param:[String:Any]) {
         ApiManager.shared.requestAiAskRegist(param: param) { (response) in
             if let response = response, let code = response["code"] as? Int, code == 200 , let message = response["message"] as? String,
-               let last_chu = response["last_chu"] as? String {
-                SharedData.instance.memChu = Float(last_chu)!
-                SharedData.setObjectForKey(last_chu, kMemChu)
+               let last_chu = response["last_chu"] as? NSNumber {
+                SharedData.instance.memChu = "\(last_chu)"
+                SharedData.setObjectForKey("\(last_chu)", kMemChu)
                 self.updateChuNaviBarItem()
                 do {
                     let attr = try NSAttributedString.init(htmlString: message)
@@ -353,7 +365,12 @@ class QnaViewController: BaseViewController {
         let vc = CameraViewController.init()
         vc.delegate = self
         vc.sourceType = sourceType
-        vc.maxCount = 10
+        if (type == .aiQna) {
+            vc.maxCount = 1
+        }
+        else {
+            vc.maxCount = 10
+        }
         self.navigationController?.pushViewController(vc, animated: false)
     }
 }
@@ -372,8 +389,15 @@ extension QnaViewController: CameraViewControllerDelegate {
             return
         }
         let count = svPhoto.subviews.count
-        if count >= 10 {
-            return
+        if type == .aiQna {
+            if count >= 1 {
+                return
+            }
+        }
+        else {
+            if count >= 10 {
+                return
+            }
         }
         
         scrollViewPhototo.isHidden = false
@@ -391,8 +415,15 @@ extension QnaViewController: CameraViewControllerDelegate {
         self.scrollViewPhototo.isHidden = false
         
         var count = svPhoto.subviews.count
-        if count >= 10 {
-            return
+        if type == .aiQna {
+            if count >= 1 {
+                return
+            }
+        }
+        else {
+            if count >= 10 {
+                return
+            }
         }
         
         for asset in assets {

@@ -44,7 +44,7 @@ class ApiManager: NSObject {
     }
     ///회원 가입
     func requestMemberSignUp(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
-        NetworkManager.shared.request(.post, "/\(hostUrl)/sign/up", param) { (response) in
+        NetworkManager.shared.requestFileUpload(.post, "/\(hostUrl)/sign/up", param) { (response) in
             success?(response)
         } failure: { (error) in
             failure?(error)
@@ -221,9 +221,10 @@ class ApiManager: NSObject {
         }
     }
     /// 내 정보 수정
+    /// 츄설정및 1:1 알림설정
     /// - parameter: token, mem_nickname, mem_profile_content, mem_receive_email
     func requestModifyMyInfo(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
-        NetworkManager.shared.request(.post, "/\(hostUrl)/user/save", param) { (response) in
+        NetworkManager.shared.requestFileUpload(.post, "/\(hostUrl)/user/save", param) { (response) in
             success?(response)
         } failure: { (error) in
             failure?(error)
@@ -302,7 +303,14 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
-    
+    /// 픽 등록
+    func requestPickRegist(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/expert/mypick", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
     /// 내픽
     /// - parameter: token, page, per_page
     func requestMyPickList(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
@@ -348,6 +356,15 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
+    /// 전문가 1:1 글 신고하기
+    /// - parameter: token, post_id
+    func requestAnswerBlame(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/answer/blame", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
     /// 댓글 신고하기
     /// - parameter: token, cmt_id
     func requestPostCommentWarning(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
@@ -357,6 +374,7 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
+    
     /// 댓글 작성
     /// - parameter: token, post_id, cmt_conent, cmt_id, mode:c =>생성, cu=> 업데이트
     func requestCommentWrite(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
@@ -387,7 +405,7 @@ class ApiManager: NSObject {
     /// 1:1 질문, 뷰티 질문, 메이크업 진단
     /// - parameter: token, post_title, post_content, post_category:1:1,메이크업진단,뷰티질문 , post_file,
     /// recv_mem_id: 1:1 질문일때, post_tag: 아티스트, 셀럽(뷰티, 메이크업) 질문할때
-    func requestAskRegist(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+    func requestAskWrite(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
         NetworkManager.shared.requestFileUpload(.post, "/\(hostUrl)/ask/write", param) { (response) in
             success?(response)
         } failure: { (error) in
@@ -518,6 +536,37 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
-    
+    /// CHU 선물
+    func requestGiveChu(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/expert/give", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
+    /// 유저의 댓글, 문의내역갯수 뱃지
+    func requestUserBadge(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/user/badge", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
+    ///환전 요청 정보, 계좌리스트, 약관
+    func requestExchangeInfo(success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/app/excinfo", nil) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
+    ///환전요청
+    func requestExchageChu(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/mypage/exchange", nil) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
 }
 

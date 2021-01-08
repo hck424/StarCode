@@ -16,7 +16,7 @@ class MakeupExpertCell: UITableViewCell {
     }
     var arrData:Array<[String:Any]>?
     var didSelectedClosure:((_ selData:[String:Any]?, _ index:Int) -> Void)?
-    var sectionType:SectionType = .makeupExport
+    var sectionType:SectionType = .makeupExpert
     override func awakeFromNib() {
         super.awakeFromNib()
     }

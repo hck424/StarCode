@@ -15,6 +15,7 @@
                 <outlet property="btnArtist" destination="4Qq-Sl-YTP" id="cdU-i2-S85"/>
                 <outlet property="btnCeleb" destination="Mpr-Jn-RVR" id="se4-L1-uaX"/>
                 <outlet property="btnRegist" destination="rFY-Bb-bAk" id="UFd-Zk-8xN"/>
+                <outlet property="lbPhotoCnt" destination="QAE-0y-zql" id="1dQ-40-asO"/>
                 <outlet property="lbSelectTitle" destination="yS3-2a-oTf" id="ax9-Y2-7q1"/>
                 <outlet property="lbTitle" destination="d9x-uM-BMQ" id="u6y-n0-KeF"/>
                 <outlet property="scrollViewPhototo" destination="mmD-7j-wVp" id="nRy-Zy-buf"/>

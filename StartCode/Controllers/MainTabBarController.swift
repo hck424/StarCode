@@ -138,12 +138,12 @@ class MainTabBarController: UITabBarController {
     
     //츄 잔액 조회 없으면 충전하기로 넘긴다.
     func checkChuBalance(index:Int) {
-        if SharedData.instance.memChu > 0 {
+        if let chu = Double(SharedData.instance.memChu), chu > 0  {
             self.changeTabMenuIndex(2, index)
         }
         else {
             let coin = SharedData.instance.memChu
-            let tmpStr = "ea"
+            let tmpStr = "CHU"
             let coinStr = "\(coin)".addComma()
             let result = "\(coinStr) \(tmpStr)"
 

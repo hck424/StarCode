@@ -24,7 +24,7 @@ class ExBeautyQnaDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CNavigationBar.drawBackButton(self, "뷰티질문", #selector(actionPopViewCtrl))
+        CNavigationBar.drawBackButton(self, "뷰티질문", #selector(onClickedBtnActions(_:)))
         
         self.requestAnswerDetail()
         textView.inputAccessoryView = accessoryView
@@ -66,7 +66,18 @@ class ExBeautyQnaDetailViewController: BaseViewController {
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        if sender == btnFile {
+        if sender.tag == TAG_NAVI_BACK {
+            let vc = PopupViewController.init(type: .alert, message:"답변을 취소할 경우 1CHU가 차감됩니다.") { (vcs, selData, index) in
+                vcs.dismiss(animated: false, completion: nil)
+                if index == 1 {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            vc.addAction(.cancel, "취소")
+            vc.addAction(.ok, "확인")
+            self.present(vc, animated: true, completion: nil)
+        }
+        else if sender == btnFile {
             let list = ["갤러리에서 사진 가져오기", "카메라로 사진 촬영하기"]
             let vc = PopupViewController.init(type: .list, data: list, completion: { (vcs, selItem, index) in
                 vcs.dismiss(animated: false, completion: nil)
@@ -112,10 +123,9 @@ class ExBeautyQnaDetailViewController: BaseViewController {
                 return
             }
             
-            
             var param: [String:Any] = [:]
             param["post_category"] = "뷰티질문"
-            param["post_content"] = content
+            param["cmt_content"] = content
             param["token"] = token
             param["post_id"] = post_id
             param["mode"] = "c"
@@ -129,11 +139,14 @@ class ExBeautyQnaDetailViewController: BaseViewController {
                     arrImg.append(img)
                 }
             }
-            param["post_file"] = arrImg
+            if arrImg.isEmpty == false {
+                param["post_file"] = arrImg
+            }
+            
             ApiManager.shared.requestAnswerComment(param: param) { (response) in
                 if let response = response, let code = response["code"] as? NSNumber, let message = response["message"] as? String  {
                     if code.intValue == 200 {
-                        self.showToastMainView(message)
+                        self.showToast(message)
                         self.navigationController?.popViewController(animated: true)
                     }
                     else {

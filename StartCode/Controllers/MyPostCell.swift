@@ -43,7 +43,7 @@ class MyPostCell: UITableViewCell {
             let df = CDateFormatter.init()
             df.dateFormat = "yyyy-MM-dd HH.mm.ss"
             if let date = df.date(from: post_datetime) {
-                df.dateFormat = "yyyy.MM.dd HH.mm"
+                df.dateFormat = "yyyy.MM.dd HH.mm.ss"
                 lbDate.text = df.string(from: date)
             }
         }

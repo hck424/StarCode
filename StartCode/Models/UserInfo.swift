@@ -17,14 +17,14 @@ class UserInfo:  Mappable {
     var mem_nickname: String?
     var mem_profile_content: String?
     var mem_birthday: String?
-    var mem_sex: Int?
+    var mem_sex: String?
     var mem_phone: String?
     var authkey: String?
     var map_id: String?
-    var mem_is_14_agree: Bool?
-    var mem_is_termsservice_agree: Bool?
-    var mem_is_privacy_agree: Bool?
-    var mem_is_marketing_agree: Bool?
+    var mem_is_14_agree: String?
+    var mem_is_termsservice_agree: String?
+    var mem_is_privacy_agree: String?
+    var mem_is_marketing_agree: String?
     var platform: String?
     var push_token: String?
     
@@ -62,14 +62,14 @@ class UserInfo:  Mappable {
         des.append("mem_nickname: \(mem_nickname ?? "")\n")
         des.append("mem_profile_content: \(mem_profile_content ?? "")\n")
         des.append("mem_birthday: \(mem_birthday ?? "")\n")
-        des.append("mem_sex: \(mem_sex ?? 0)\n")
+        des.append("mem_sex: \(mem_sex ?? "")\n")
         des.append("mem_phone: \(mem_phone ?? "")\n")
         des.append("authkey: \(authkey ?? "")\n")
         des.append("map_id: \(map_id ?? "")\n")
-        des.append("mem_is_14_agree: \(mem_is_14_agree ?? false)\n")
-        des.append("mem_is_termsservice_agree: \(mem_is_termsservice_agree ?? false)\n")
-        des.append("mem_is_privacy_agree: \(mem_is_privacy_agree ?? false)\n")
-        des.append("mem_is_marketing_agree: \(mem_is_marketing_agree ?? false)\n")
+        des.append("mem_is_14_agree: \(mem_is_14_agree ?? "")\n")
+        des.append("mem_is_termsservice_agree: \(mem_is_termsservice_agree ?? "")\n")
+        des.append("mem_is_privacy_agree: \(mem_is_privacy_agree ?? "")\n")
+        des.append("mem_is_marketing_agree: \(mem_is_marketing_agree ?? "")\n")
         des.append("platform: \(platform ?? "")\n")
         des.append("push_token: \(push_token ?? "")\n")
         return des

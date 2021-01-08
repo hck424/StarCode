@@ -28,7 +28,6 @@ class ExHomeViewController: BaseViewController {
         tblView.tableHeaderView = headerView!
         tblView.tableFooterView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tblView.bounds.width, height: 190))
         self.reqeustBannerList()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,7 +40,8 @@ class ExHomeViewController: BaseViewController {
         }
     }
     func dataReset() {
-        self.requestMyAnswerList()
+//        self.requestMyAnswerList()
+        self.requestAskList(type: .oneToQna)
         self.requestAskList(type: .makeupQna)
         self.requestAskList(type: .beautyQna)
         self.requestTalkListPopular()
@@ -61,29 +61,29 @@ class ExHomeViewController: BaseViewController {
             self.showErrorAlertView(error)
         }
     }
-    func requestMyAnswerList() {
-        guard let token = SharedData.instance.token else {
-            return
-        }
-        let param:[String:Any] = ["token":token, "page":1, "category_id":"1:1", "state":0]
-        ApiManager.shared.requestMyAnswerList(param: param) { (response) in
-            if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as? Array<[String:Any]>, list.isEmpty == false {
-                self.arrAnswer = list
-            }
-            else {
-                self.arrAnswer.removeAll()
-            }
-            self.makeSectionData()
-        } failure: { (error) in
-            self.showErrorAlertView(error)
-        }
-    }
+//    func requestMyAnswerList() {
+//        guard let token = SharedData.instance.token else {
+//            return
+//        }
+//        let param:[String:Any] = ["token":token, "page":1, "category_id":"1:1", "state":0]
+//        ApiManager.shared.requestMyAnswerList(param: param) { (response) in
+//            if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as? Array<[String:Any]>, list.isEmpty == false {
+//                self.arrAnswer = list
+//            }
+//            else {
+//                self.arrAnswer.removeAll()
+//            }
+//            self.makeSectionData()
+//        } failure: { (error) in
+//            self.showErrorAlertView(error)
+//        }
+//    }
     func requestAskList(type:QnaType) {
         guard let token = SharedData.instance.token else {
             return
         }
         var category_id = ""
-        var per_page = 5
+        var per_page = 6
         if type == .makeupQna {
             category_id = "메이크업진단"
             per_page = 6
@@ -91,6 +91,10 @@ class ExHomeViewController: BaseViewController {
         else if type == .beautyQna {
             category_id = "뷰티질문"
             per_page = 6
+        }
+        else if type == .oneToQna {
+            category_id = "1:1"
+            per_page = 5
         }
         else {
             return
@@ -105,6 +109,9 @@ class ExHomeViewController: BaseViewController {
                 else if type == .beautyQna {
                     self.arrBeauty = list
                 }
+                else if type == .oneToQna {
+                    self.arrAnswer = list
+                }
             }
             else {
                 if type == .makeupQna {
@@ -113,8 +120,10 @@ class ExHomeViewController: BaseViewController {
                 else if type == .beautyQna {
                     self.arrBeauty.removeAll()
                 }
+                else if type == .oneToQna {
+                    self.arrAnswer.removeAll()
+                }
             }
-            
             self.makeSectionData()
         } failure: { (error) in
             self.showErrorAlertView(error)
@@ -264,12 +273,39 @@ extension ExHomeViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let selData = selData else {
                     return
                 }
-                let vc = ExpertDetailViewController.init()
-                vc.data = selData
-                self.navigationController?.pushViewController(vc, animated: true)
+                
+                guard let token = SharedData.instance.token, let post_id = selData["post_id"] else {
+                    return
+                }
+                
+                let param = ["token":token, "post_id":post_id]
+                ApiManager.shared.requestAnswerOpenCheck(param) { (response) in
+                    if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200 {
+                        if let mem_chu = response["mem_chu"] as? NSNumber {
+                            SharedData.setObjectForKey("\(mem_chu)", kMemChu)
+                            SharedData.instance.memChu = "\(mem_chu)"
+                            self.updateChuNaviBarItem()
+                        }
+                        
+                        if secType == .askMakeup {
+                            let vc = ExMakeupQnaDetailViewController.init()
+                            vc.data = selData
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                        else if secType == .askBeauty {
+                            let vc = ExBeautyQnaDetailViewController.init()
+                            vc.data = selData
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                    else {
+                        self.showErrorAlertView(response)
+                    }
+                } failure: { (error) in
+                    self.showErrorAlertView(error)
+                }
             }
         }
-        
         else if secType == .popularPost {
             var tmpCell = tableView.dequeueReusableCell(withIdentifier: "PopularPostCell") as? PopularPostCell
             if tmpCell == nil {
@@ -303,7 +339,6 @@ extension ExHomeViewController: UITableViewDelegate, UITableViewDataSource {
                 tmpCell?.configurationData(item)
             }
             cell = tmpCell
-            
         }
         
         if cell == nil {
@@ -319,8 +354,10 @@ extension ExHomeViewController: UITableViewDelegate, UITableViewDataSource {
         if secType == .button || secType == .ad {
             return 30
         }
-        
         return 70
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -387,6 +424,31 @@ extension ExHomeViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = ExpertLifeDetailViewController.init()
             vc.data = item
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if type == .askAnswer {
+            guard let token = SharedData.instance.token, let post_id = item["post_id"] else {
+                return
+            }
+            let param = ["token":token, "post_id":post_id]
+            
+            ApiManager.shared.requestAnswerOpenCheck(param) { (response) in
+                if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200 {
+                    if let mem_chu = response["mem_chu"] as? NSNumber {
+                        SharedData.setObjectForKey("\(mem_chu)", kMemChu)
+                        SharedData.instance.memChu = "\(mem_chu)"
+                        self.updateChuNaviBarItem()
+                    }
+                    
+                    let vc = ExOneToQnaDetailViewController.init()
+                    vc.data = item
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                else {
+                    self.showErrorAlertView(response)
+                }
+            } failure: { (error) in
+                self.showErrorAlertView(error)
+            }
         }
     }
 

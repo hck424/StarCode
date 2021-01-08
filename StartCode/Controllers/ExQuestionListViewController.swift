@@ -114,7 +114,7 @@ extension ExQuestionListViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuestionColCell", for: indexPath) as! QuestionColCell
         if let item = listData[indexPath.row] as? [String:Any] {
-            cell.configurationData(item)
+            cell.configurationData(type, item)
         }
         return cell
     }
@@ -129,6 +129,12 @@ extension ExQuestionListViewController: UICollectionViewDelegate, UICollectionVi
             
             ApiManager.shared.requestAnswerOpenCheck(param) { (response) in
                 if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200 {
+                    if let mem_chu = response["mem_chu"] as? String {
+                        SharedData.setObjectForKey(mem_chu, kMemChu)
+                        SharedData.instance.memChu = mem_chu
+                        self.updateChuNaviBarItem()
+                    }
+                    
                     if self.type == .oneToQna {
                         let vc = ExOneToQnaDetailViewController.init()
                         vc.data = item

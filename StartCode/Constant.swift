@@ -57,7 +57,7 @@ let kToken = "Token"
 
 enum SectionType {
     case button
-    case makeupExport
+    case makeupExpert
     case popularPost
     case ad
     case expertLife

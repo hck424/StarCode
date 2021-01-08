@@ -83,8 +83,45 @@ class MyQnaDetailViewController: BaseViewController {
         questionView.configurationData(data, .question)
         
         
-        if let comment = data["comment"] as? [String:Any], let list = comment["list"] as? Array<[String:Any]> {
-            
+        if let comment = data["comment"] as? [String:Any], let list = comment["list"] as? Array<[String:Any]>, list.isEmpty == false {
+            for item in list {
+                let questionView = Bundle.main.loadNibNamed("MyQnaView", owner: self, options: nil)?.first as! MyQnaView
+                svContent.addArrangedSubview(questionView)
+                questionView.questionType = type
+                questionView.configurationData(item, .answer)
+                questionView.didClickedClosure = {(selData, actionIndex) -> () in
+                    guard let selData = selData, let cmt_id = selData["cmt_id"] as? String else {
+                        return
+                    }
+                    if actionIndex == 100 {
+                        //패스
+                    }
+                    else if actionIndex == 101 {
+                        //경고
+                        let token = SharedData.instance.token!
+                        let param = ["token":token, "cmt_id": cmt_id]
+                        ApiManager.shared.requestPostCommentWarning(param: param) { (response) in
+                            if let response = response, let message = response["message"] as? String {
+                                self.showToast(message)
+                            }
+                        } failure: { (error) in
+                            self.showErrorAlertView(error)
+                        }
+                    }
+                    else if actionIndex == 102 {
+                        //채택
+                        let token = SharedData.instance.token!
+                        let param = ["token":token, "cmt_id": cmt_id]
+                        ApiManager.shared.requestAskChoose(param: param) { (response) in
+                            if let response = response, let message = response["message"] as? String {
+                                self.showToast(message)
+                            }
+                        } failure: { (error) in
+                            self.showErrorAlertView(error)
+                        }
+                    }
+                }
+            }
         }
     }
 }

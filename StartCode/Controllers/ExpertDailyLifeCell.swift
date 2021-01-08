@@ -8,8 +8,7 @@
 import UIKit
 
 class ExpertDailyLifeCell: UITableViewCell {
-    
-    @IBOutlet weak var btnCell: UIButton!
+
     @IBOutlet weak var ivThumb: UIImageView!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var ivProfile: UIImageView!
@@ -18,7 +17,6 @@ class ExpertDailyLifeCell: UITableViewCell {
     @IBOutlet weak var lbCommentCnt: UILabel!
     
     var data:[String:Any] = [:]
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +27,7 @@ class ExpertDailyLifeCell: UITableViewCell {
         
         ivProfile.layer.cornerRadius = ivProfile.bounds.height/2
         ivProfile.clipsToBounds = true
-        ivProfile.layer.borderWidth = 1
+        ivProfile.layer.borderWidth = 0.5
         ivProfile.layer.borderColor = RGB(236, 236, 236).cgColor
     }
 
@@ -81,6 +79,9 @@ class ExpertDailyLifeCell: UITableViewCell {
         if let post_comment_count = data["post_comment_count"] {
             let commentStr = "\(post_comment_count)".addComma()
             lbCommentCnt.text = commentStr
+        }
+        if let mem_photo = data["mem_photo"] as? String, mem_photo.isEmpty == false {
+            ivProfile.setImageCache(url: mem_photo, placeholderImgName: nil)
         }
      }
 }

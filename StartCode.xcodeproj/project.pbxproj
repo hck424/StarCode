@@ -33,6 +33,10 @@
 		E907AA802564EC6500EFFB0E /* ExpertLifeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA7D2564EC6500EFFB0E /* ExpertLifeDetailViewController.xib */; };
 		E907AA812564EC6500EFFB0E /* ExpertLifeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E907AA7D2564EC6500EFFB0E /* ExpertLifeDetailViewController.xib */; };
 		E907AA842564EC6F00EFFB0E /* ExpertLifeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907AA782564E66F00EFFB0E /* ExpertLifeListViewController.swift */; };
+		E9353CD1259C26EE008FD69E /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9353CD0259C26EE008FD69E /* CSlider.swift */; };
+		E9353CD2259C26EE008FD69E /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9353CD0259C26EE008FD69E /* CSlider.swift */; };
+		E9353CD6259C4B0A008FD69E /* CToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9353CD5259C4B0A008FD69E /* CToast.swift */; };
+		E9353CD7259C4B0A008FD69E /* CToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9353CD5259C4B0A008FD69E /* CToast.swift */; };
 		E945C487255E535200C1C334 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C486255E535200C1C334 /* Constant.swift */; };
 		E945C48E255E58D800C1C334 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C48C255E58D800C1C334 /* HomeViewController.swift */; };
 		E945C48F255E58D800C1C334 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E945C48D255E58D800C1C334 /* HomeViewController.xib */; };
@@ -407,6 +411,8 @@
 		E907AA782564E66F00EFFB0E /* ExpertLifeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertLifeListViewController.swift; sourceTree = "<group>"; };
 		E907AA7C2564EC6500EFFB0E /* ExpertLifeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertLifeDetailViewController.swift; sourceTree = "<group>"; };
 		E907AA7D2564EC6500EFFB0E /* ExpertLifeDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertLifeDetailViewController.xib; sourceTree = "<group>"; };
+		E9353CD0259C26EE008FD69E /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
+		E9353CD5259C4B0A008FD69E /* CToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CToast.swift; sourceTree = "<group>"; };
 		E945C486255E535200C1C334 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		E945C48C255E58D800C1C334 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E945C48D255E58D800C1C334 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -967,6 +973,8 @@
 				E945C4DD255E7CEF00C1C334 /* CView.swift */,
 				E9626A0C255F70F20080FE97 /* CToolbar.swift */,
 				E9A21F1E258F430D00670D35 /* CustomColFlowLayout.swift */,
+				E9353CD0259C26EE008FD69E /* CSlider.swift */,
+				E9353CD5259C4B0A008FD69E /* CToast.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1442,6 +1450,7 @@
 				E907AA592564A3E100EFFB0E /* ExpertCommentCell.swift in Sources */,
 				E945C4F5255E808700C1C334 /* Extension.swift in Sources */,
 				E9988B96255E1CD200D60D68 /* TutorialViewController.swift in Sources */,
+				E9353CD6259C4B0A008FD69E /* CToast.swift in Sources */,
 				E99870AF256102860067CD44 /* FSPagerViewCell.swift in Sources */,
 				E945C494255E590200C1C334 /* LoginViewController.swift in Sources */,
 				E945C4E5255E7CF000C1C334 /* CView.swift in Sources */,
@@ -1474,6 +1483,7 @@
 				E94DFDA7256A4E02009FD953 /* MyPostListViewController.swift in Sources */,
 				E99870AD256102860067CD44 /* FSPageViewTransformer.swift in Sources */,
 				E94DFE4A256A83C8009FD953 /* ContactUsListViewController.swift in Sources */,
+				E9353CD1259C26EE008FD69E /* CSlider.swift in Sources */,
 				E9873690256F760C0085223B /* WritePopupViewController.swift in Sources */,
 				E94DFE52256A86EA009FD953 /* ContactUsDetailViewController.swift in Sources */,
 				E9626A3A255FCF410080FE97 /* DateExtension.swift in Sources */,
@@ -1586,6 +1596,7 @@
 				E945C4F6255E808700C1C334 /* Extension.swift in Sources */,
 				E945C4C4255E686A00C1C334 /* TalkListViewController.swift in Sources */,
 				E907AA5A2564A3E100EFFB0E /* ExpertCommentCell.swift in Sources */,
+				E9353CD7259C4B0A008FD69E /* CToast.swift in Sources */,
 				E907AA532564A3AC00EFFB0E /* ExpertImageCell.swift in Sources */,
 				E97313F5259793D300EDF82F /* ExQuestionView.swift in Sources */,
 				E982A6F5256403F10019CB09 /* TalkDetailViewController.swift in Sources */,
@@ -1600,6 +1611,7 @@
 				E945C4BA255E680000C1C334 /* QnaViewController.swift in Sources */,
 				E945C4CE255E68A400C1C334 /* SettingViewController.swift in Sources */,
 				E95652AA25617D40000E3CE8 /* ButtonCell.swift in Sources */,
+				E9353CD2259C26EE008FD69E /* CSlider.swift in Sources */,
 				E95B65D7259088370039D37B /* ExQuestionListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1749,12 +1761,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QB33R9MCL;
+				CURRENT_PROJECT_VERSION = 3.0.0.3;
+				DEVELOPMENT_TEAM = 3HPGCY6853;
 				INFOPLIST_FILE = StartCode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				OTHER_SWIFT_FLAGS = "-D Cust";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ohguohgu.app.userapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1770,12 +1784,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QB33R9MCL;
+				CURRENT_PROJECT_VERSION = 3.0.0.3;
+				DEVELOPMENT_TEAM = 3HPGCY6853;
 				INFOPLIST_FILE = StartCode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				OTHER_SWIFT_FLAGS = "-D Cust";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ohguohgu.app.userapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1791,12 +1807,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QB33R9MCL;
+				CURRENT_PROJECT_VERSION = 3.0.0;
+				DEVELOPMENT_TEAM = 3HPGCY6853;
 				INFOPLIST_FILE = StartCode/InfoPro.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				OTHER_SWIFT_FLAGS = "-D Pro";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ohguohgu.app.expert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1812,12 +1830,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QB33R9MCL;
+				CURRENT_PROJECT_VERSION = 3.0.0;
+				DEVELOPMENT_TEAM = 3HPGCY6853;
 				INFOPLIST_FILE = StartCode/InfoPro.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				OTHER_SWIFT_FLAGS = "-D Pro";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ohguohgu.app.expert;
 				PRODUCT_NAME = "$(TARGET_NAME)";

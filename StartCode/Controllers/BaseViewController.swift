@@ -6,9 +6,7 @@
 //
 
 import UIKit
-import Toast_Swift
 import JWTDecode
-//import SystemConfiguration.CaptiveNetwork
 import Photos
 
 enum SessionType: String {
@@ -40,7 +38,7 @@ class BaseViewController: UIViewController {
     
     public func addRightChuNaviItem() {
         let memChu = SharedData.instance.memChu
-        let chu = "\(memChu)".addComma()
+        let chu = memChu.addComma()
         CNavigationBar.drawRight(self, chu, UIImage(named: "ic_chu"), TAG_NAVI_RIGHT_CHU, #selector(actionShowChuVc))
     }
     public func addRightSettingNaviItem() {
@@ -48,7 +46,7 @@ class BaseViewController: UIViewController {
     }
     
     public func removeRightChuNaviItem() {
-        guard var items = self.navigationItem.rightBarButtonItems else {
+        guard var items = self.navigationItem.rightBarButtonItems, items.isEmpty == false else {
             return
         }
         
@@ -56,7 +54,7 @@ class BaseViewController: UIViewController {
         self.navigationItem.setRightBarButtonItems(items, animated: true)
     }
     public func removeRightSettingNaviItem() {
-        guard var items = self.navigationItem.rightBarButtonItems else {
+        guard var items = self.navigationItem.rightBarButtonItems, items.isEmpty == false else {
             return
         }
         items.removeFirst()
@@ -67,7 +65,7 @@ class BaseViewController: UIViewController {
             return
         }
         let memChu = SharedData.instance.memChu
-        let chu = "\(memChu)".addComma()
+        let chu = memChu.addComma()
         btn.setTitle(chu, for: .normal)
     }
     func checkSession(completion:@escaping(_ type:SessionType) ->Void) {
@@ -97,32 +95,27 @@ class BaseViewController: UIViewController {
         guard let message = message, message.isEmpty == false else {
             return
         }
-        
-//        var selView: UIView?
-//        if let subView = self.view.subviews.first as? UIScrollView {
-//            selView = subView
-//        }
-//        else if let subView = self.view.subviews.first as? UITableView {
-//            selView = subView
-//        }
-//        else if let subView = self.view.subviews.first as? UICollectionView {
-//            selView = subView
-//        }
-//        else {
-//            selView = self.view
-//        }
-        AppDelegate.instance()?.window?.rootViewController?.view.makeToast(message)
-//        guard let findView = selView else {
-//            return
-//        }
-//        self.view.layoutIfNeeded()
-//        findView.makeToast(message)
-    }
-    func showToastMainView(_ message:String?) {
-        guard let message = message, message.isEmpty == false else {
-            return
+        var findView:UIView = self.view
+        if let subView = self.view.subviews.first as? UIScrollView {
+            findView = subView
         }
-        AppDelegate.instance()?.window?.rootViewController?.view.makeToast(message)
+        else if let subView = self.view.subviews.first as? UITableView {
+            findView = subView
+        }
+        
+        if message.contains("<") {
+            do {
+                let attr = try NSMutableAttributedString.init(htmlString: message)
+                attr.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, attr.string.length))
+                findView.makeToast(attr)
+            }
+            catch {
+                
+            }
+        }
+        else {
+            findView.makeToast(message)
+        }
     }
     func showLoginPopupWithCheckSession() {
         self.checkSession { (type) in

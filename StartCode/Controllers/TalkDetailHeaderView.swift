@@ -48,7 +48,7 @@ class TalkDetailHeaderView: UIView {
             let df = CDateFormatter.init()
             df.dateFormat = "yyyy-MM-dd HH:mm:ss"
             if let date = df.date(from: post_datetime) {
-                df.dateFormat = "yyyy.MM.dd HH.mm"
+                df.dateFormat = "yyyy.MM.dd HH.mm.ss"
                 lbDate.text = df.string(from: date)
             }
         }
@@ -91,12 +91,17 @@ class TalkDetailHeaderView: UIView {
             collectionView.delegate = self
             collectionView.dataSource = self
             
-            let layout = UICollectionViewFlowLayout.init()
+            let layout = CustomColFlowLayout.init()
             layout.scrollDirection = .horizontal
-            layout.itemSize = CGSize(width: collectionView.bounds.width-40, height: collectionView.bounds.height)
-            layout.minimumLineSpacing = 8
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+            
+            let width = collectionView.bounds.width-40
+            collectionView.decelerationRate = .fast
+            
+            layout.itemSize = CGSize(width: width, height: width)
+            layout.minimumLineSpacing = 10
+            collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
             collectionView.collectionViewLayout = layout
+            layout.delegate = self
             
             collectionView.reloadData()
         }
@@ -141,6 +146,11 @@ extension TalkDetailHeaderView: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+}
+extension TalkDetailHeaderView: CustomColFlowLayoutDelegate {
+    func didEndDecelatedFloawLayout(_ indexPath: IndexPath, _ point: CGPoint) {
         
     }
 }

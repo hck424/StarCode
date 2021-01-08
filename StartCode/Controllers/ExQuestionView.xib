@@ -18,10 +18,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="344" height="500"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gCS-4E-7i7">
-                            <rect key="frame" x="0.0" y="0.0" width="344" height="73.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="344" height="69"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="y6S-WO-Fae">
-                                    <rect key="frame" x="20" y="29.5" width="190" height="39"/>
+                                    <rect key="frame" x="20" y="27" width="190" height="39"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="장유리님의 뷰티질문" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adL-2X-x9T">
                                             <rect key="frame" x="0.0" y="0.0" width="190" height="19.5"/>
@@ -49,7 +49,7 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRO-F5-LdQ">
-                                    <rect key="frame" x="222" y="26.5" width="45" height="45"/>
+                                    <rect key="frame" x="222" y="24" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="sRO-F5-LdQ" secondAttribute="height" multiplier="1:1" priority="999" id="XTa-4y-uPm"/>
                                         <constraint firstAttribute="height" priority="999" constant="45" id="sZr-Gu-NF5"/>
@@ -60,7 +60,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0B-RG-54P">
-                                    <rect key="frame" x="279" y="26.5" width="45" height="45"/>
+                                    <rect key="frame" x="279" y="24" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="width" priority="999" constant="45" id="gAC-cx-UEa"/>
                                     </constraints>
@@ -76,7 +76,7 @@
                             <edgeInsets key="layoutMargins" top="24" left="20" bottom="0.0" right="20"/>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J4C-Kh-xO9">
-                            <rect key="frame" x="0.0" y="89.5" width="344" height="1"/>
+                            <rect key="frame" x="0.0" y="85" width="344" height="1"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g54-rX-K0f">
                                     <rect key="frame" x="20" y="0.0" width="304" height="1"/>
@@ -88,11 +88,20 @@
                             </subviews>
                             <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="0.0" right="20"/>
                         </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="fc4-9B-EKY">
+                            <rect key="frame" x="0.0" y="102" width="344" height="22"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3gw-YY-ji7">
+                                    <rect key="frame" x="0.0" y="0.0" width="344" height="22"/>
+                                    <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="0.0" right="20"/>
+                                </stackView>
+                            </subviews>
+                        </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9DF-Zr-A2d">
-                            <rect key="frame" x="0.0" y="106.5" width="344" height="33.5"/>
+                            <rect key="frame" x="0.0" y="140" width="344" height="0.0"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="속쌍커풀 안번지는 메이크업 방법 있을까요?? 오전에 출근해서 점심 시간쯤 되면 팬더가 되어있어요 ㅠㅠ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="207-qD-Csp">
-                                    <rect key="frame" x="20" y="0.0" width="304" height="33.5"/>
+                                    <rect key="frame" x="20" y="0.0" width="304" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -141,6 +150,8 @@
                 <outlet property="lbRemaindTime" destination="KFJ-PV-dIv" id="Prz-Ge-aPp"/>
                 <outlet property="lbTitle" destination="adL-2X-x9T" id="oea-Jm-rWq"/>
                 <outlet property="seperatorView" destination="cH0-DG-aYO" id="A2p-q8-3dg"/>
+                <outlet property="svTag" destination="3gw-YY-ji7" id="SL5-Fk-POh"/>
+                <outlet property="svTagContainer" destination="fc4-9B-EKY" id="l2o-s0-dqS"/>
             </connections>
             <point key="canvasLocation" x="-17.39130434782609" y="20.758928571428569"/>
         </view>

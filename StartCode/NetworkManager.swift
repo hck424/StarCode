@@ -85,24 +85,22 @@ class NetworkManager: NSObject {
         
         AppDelegate.instance()?.startIndicator()
         let startTime = CACurrentMediaTime()
-        let header: HTTPHeaders = [.contentType(ContentType.urlencoded.rawValue), .accept(ContentType.json.rawValue)]
+        let header: HTTPHeaders = [.contentType(ContentType.formdata.rawValue), .accept(ContentType.json.rawValue)]
         
         AF.upload(multipartFormData: { (multipartFormData) in
             for (key, value) in param {
-                if key == "post_file" {
-                    if let value = value as? Array<UIImage> {
-                        for img in value {
-                            if let imgData = img.jpegData(compressionQuality: 0.9) {
-                                multipartFormData.append(imgData, withName: "\(key)[]", fileName: "\(Date().timeIntervalSince1970).jpeg", mimeType: "image/jpeg")
-                                print(" == imgData byte: \(ByteCountFormatter().string(fromByteCount: Int64(imgData.count)))")
-                            }
+                if let value = value as? Array<UIImage> {
+                    for img in value {
+                        if let imgData = img.jpegData(compressionQuality: 0.9) {
+                            multipartFormData.append(imgData, withName: "\(key)[]", fileName: "\(Date().timeIntervalSince1970).jpg", mimeType: "image/jpg")
+                            print(" == imgData byte: \(ByteCountFormatter().string(fromByteCount: Int64(imgData.count)))")
                         }
                     }
                 }
                 else {
                     if let value = value as? UIImage {
                         if let imgData = value.jpegData(compressionQuality: 0.9) {
-                            multipartFormData.append(imgData, withName: "\(key)", fileName: "\(key).jpeg", mimeType: "image/jpeg")
+                            multipartFormData.append(imgData, withName: "\(key)", fileName: "\(key).jpg", mimeType: "image/jpg")
                             print(" == imgData byte: \(ByteCountFormatter().string(fromByteCount: Int64(imgData.count)))")
                         }
                     }

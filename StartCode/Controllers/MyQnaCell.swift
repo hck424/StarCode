@@ -68,12 +68,12 @@ class MyQnaCell: UITableViewCell {
                 let df = CDateFormatter.init()
                 df.dateFormat = "yyyy-MM-dd HH.mm.ss"
                 if let date = df.date(from: post_datetime) {
-                    df.dateFormat = "yyyy.MM.dd HH.mm"
+                    df.dateFormat = "yyyy.MM.dd HH.mm.ss"
                     lbDate.text = df.string(from: date)
                 }
             }
 
-            if let post_reply = data["post_reply"] as? String, post_reply.isEmpty == false {
+            if let post_comment_count = data["post_comment_count"] as? String, let count = Int(post_comment_count), count > 0 {
                 btnAnswer.backgroundColor = RGB(128, 0, 255)
                 btnAnswer.setTitle("답볍", for: .normal)
             }
@@ -94,7 +94,7 @@ class MyQnaCell: UITableViewCell {
                 let df = CDateFormatter.init()
                 df.dateFormat = "yyyy-MM-dd HH.mm.ss"
                 if let date = df.date(from: post_datetime) {
-                    df.dateFormat = "yyyy.MM.dd HH.mm"
+                    df.dateFormat = "yyyy.MM.dd HH.mm.ss"
                     lbDate.text = df.string(from: date)
                 }
             }
@@ -103,7 +103,7 @@ class MyQnaCell: UITableViewCell {
                 ivThumb.setImageCache(url: thumb_url, placeholderImgName: nil)
             }
             
-            if let post_reply = data["post_reply"] as? String, post_reply.isEmpty == false {
+            if let post_comment_count = data["post_comment_count"] as? String, let count = Int(post_comment_count), count > 0 {
                 btnAnswer2.backgroundColor = RGB(128, 0, 255)
                 btnAnswer2.setTitle("답볍", for: .normal)
             }

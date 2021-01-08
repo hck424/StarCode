@@ -81,7 +81,7 @@ class SettingViewController: BaseViewController {
     #else
     let listData:[CellId] = [.myPost, .myQna, .chuUsingHistory, .myScrap, .accountManage, .configuration, .notice, .event, .contactus, .faq]
     #endif
-    
+    var badgeInfo:[String:Any]?
     override func viewDidLoad() {
         super.viewDidLoad()
         if appType == .user {
@@ -103,11 +103,15 @@ class SettingViewController: BaseViewController {
             btnChuChange.isHidden = false
         }
         self.decorationUi()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.requestMyInfo()
-        self.tblView.reloadData()
+        self.requestUserBadge()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         self.tblView.reloadData()
     }
     override func viewDidLayoutSubviews() {
@@ -116,6 +120,7 @@ class SettingViewController: BaseViewController {
             let height = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             header.frame = CGRect(x: header.frame.origin.x, y: header.frame.origin.y, width: header.bounds.width, height: height)
         }
+        
         if let footer = tblView.tableFooterView {
             if appType == .user {
                 footer.frame = CGRect(x: footer.frame.origin.x, y: footer.frame.origin.y, width: footer.bounds.width, height: 24)
@@ -137,10 +142,32 @@ class SettingViewController: BaseViewController {
             lbUserName.text = "환영합니다."
         }
         
-        if let hartCnt = SharedData.objectForKey(kMemHart) {
-            
+        if let hartCnt = SharedData.objectForKey(kMemHart) as? String {
+            btnHart.setTitle(hartCnt, for: .normal)
+        }
+        if let likeCnt = SharedData.objectForKey(kMemStar) as? String {
+            btnStar.setTitle(likeCnt, for: .normal)
+        }
+        
+    }
+    func requestUserBadge() {
+        guard let token = SharedData.instance.token, let mem_id = SharedData.instance.memId else {
+            return
+        }
+        let param = ["token":token, "mem_id":mem_id]
+        ApiManager.shared.requestUserBadge(param: param) { (response) in
+            if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200, let data = response["data"] as? [String:Any] {
+                self.badgeInfo = data
+                self.tblView.reloadData()
+            }
+            else {
+                self.showErrorAlertView(response)
+            }
+        } failure: { (error) in
+            self.showErrorAlertView(error)
         }
     }
+    
     func requestMyInfo() {
         guard let token = SharedData.instance.token else {
             return
@@ -157,7 +184,6 @@ class SettingViewController: BaseViewController {
         } failure: { (error) in
             self.showErrorAlertView(error)
         }
-
     }
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnLogout {
@@ -185,8 +211,10 @@ class SettingViewController: BaseViewController {
             present(vc, animated: true, completion: nil)
         }
         else if sender == btnChuChange {
+            #if Pro
             let vc = ChuExportViewController.init()
             self.navigationController?.pushViewController(vc, animated: true)
+            #endif
         }
     }
     
@@ -206,10 +234,26 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let cellId = listData[indexPath.row] as? CellId {
             cell?.lbTitle.text = cellId.displayName()
-//            if let count = item["count"] as? Int {
-//                cell?.btnNoticeCnt.isHidden = false
-//                cell?.btnNoticeCnt.setTitle("\(count)", for: .normal)
-//            }
+            if cellId == .myPost {
+                if let badge = badgeInfo, let new_post = badge["new_post"] as? NSNumber {
+                    cell?.btnNoticeCnt.isHidden = false
+                    cell?.btnNoticeCnt.setTitle("\(new_post)", for: .normal)
+                }
+            }
+            else if cellId == .myQna {
+                if appType == .user {
+                    if let badge = badgeInfo, let qna = badge["qna"] as? NSNumber {
+                        cell?.btnNoticeCnt.isHidden = false
+                        cell?.btnNoticeCnt.setTitle("\(qna)", for: .normal)
+                    }
+                }
+                else {
+                    if let badge = badgeInfo, let answer = badge["answer"] as? NSNumber {
+                        cell?.btnNoticeCnt.isHidden = false
+                        cell?.btnNoticeCnt.setTitle("\(answer)", for: .normal)
+                    }
+                }
+            }
         }
         return cell!
     }

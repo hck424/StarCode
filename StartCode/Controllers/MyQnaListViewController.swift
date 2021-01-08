@@ -63,36 +63,71 @@ class MyQnaListViewController: BaseViewController {
             return
         }
         
-        let param:[String:Any] = ["token":token, "page":page, "category_id":selCagegory, "per_page":perPage]
-        ApiManager.shared.requestMyQnaList(param: param) { (response) in
-            self.isRequest = false
-            if let response = response, let data = response["data"] as?[String:Any], let list = data["list"] as?Array<[String:Any]> {
-                
-                if list.count == 0 {
-                    self.isPageEnd = true
-                }
-                
-                if self.page == 1 {
-                    self.listData = list
+        if appType == .user {
+            let param:[String:Any] = ["token":token, "page":page, "category_id":selCagegory, "per_page":perPage]
+            ApiManager.shared.requestMyQnaList(param: param) { (response) in
+                self.isRequest = false
+                if let response = response, let data = response["data"] as?[String:Any], let list = data["list"] as?Array<[String:Any]> {
+                    
+                    if list.count == 0 {
+                        self.isPageEnd = true
+                    }
+                    
+                    if self.page == 1 {
+                        self.listData = list
+                    }
+                    else {
+                        self.listData.append(contentsOf: list)
+                    }
+                    
+                    if self.listData.isEmpty == true {
+                        self.tblView.isHidden = true
+                    }
+                    else {
+                        self.tblView.isHidden = false
+                    }
+                    self.tblView.reloadData()
+                    self.page += 1
                 }
                 else {
-                    self.listData.append(contentsOf: list)
+                    self.showErrorAlertView(response)
                 }
-                
-                if self.listData.isEmpty == true {
-                    self.tblView.isHidden = true
+            } failure: { (error) in
+                self.showErrorAlertView(error)
+            }
+        }
+        else {
+            let param:[String:Any] = ["token":token, "page":page, "category_id":selCagegory, "per_page":perPage]
+            ApiManager.shared.requestAskList(param: param) { (response) in
+                self.isRequest = false
+                if let response = response, let data = response["data"] as?[String:Any], let list = data["list"] as?Array<[String:Any]> {
+                    
+                    if list.count == 0 {
+                        self.isPageEnd = true
+                    }
+                    
+                    if self.page == 1 {
+                        self.listData = list
+                    }
+                    else {
+                        self.listData.append(contentsOf: list)
+                    }
+                    
+                    if self.listData.isEmpty == true {
+                        self.tblView.isHidden = true
+                    }
+                    else {
+                        self.tblView.isHidden = false
+                    }
+                    self.tblView.reloadData()
+                    self.page += 1
                 }
                 else {
-                    self.tblView.isHidden = false
+                    self.showErrorAlertView(response)
                 }
-                self.tblView.reloadData()
-                self.page += 1
+            } failure: { (error) in
+                self.showErrorAlertView(error)
             }
-            else {
-                self.showErrorAlertView(response)
-            }
-        } failure: { (error) in
-            self.showErrorAlertView(error)
         }
     }
     
