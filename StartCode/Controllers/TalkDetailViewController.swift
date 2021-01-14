@@ -212,8 +212,7 @@ class TalkDetailViewController: BaseViewController {
         }
         
         ApiManager.shared.requestCommentWrite(param: param) { (response) in
-            if let response = response, let code = response["code"] as? Int, code == 200, let message = response["message"] as? String {
-                self.showToast(message)
+            if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200 {
                 self.requestTalkDetail()
             }
             else {
@@ -251,7 +250,7 @@ extension TalkDetailViewController: UITableViewDelegate, UITableViewDataSource {
                 else if action == .delete {
                     let param:[String:Any] = ["cmt_id":cmt_id, "token":token]
                     ApiManager.shared.requestDeleteComment(param: param) { (response) in
-                        if let response = response, let message = response["message"] as? String, let code = response["code"] as? Int, code == 200 {
+                        if let response = response, let message = response["message"] as? String, let code = response["code"] as? NSNumber, code.intValue == 200 {
                             self.showToast(message)
                             self.requestTalkDetail()
                         }
@@ -265,7 +264,7 @@ extension TalkDetailViewController: UITableViewDelegate, UITableViewDataSource {
                 else if action == .warning {
                     let param:[String:Any] = ["cmt_id":cmt_id, "token":token]
                     ApiManager.shared.requestPostCommentWarning(param: param) { (response) in
-                        if let response = response, let message = response["message"] as? String, let code = response["code"] as? Int, code == 200 {
+                        if let response = response, let message = response["message"] as? String, let code = response["code"] as? NSNumber, code.intValue == 200 {
                             self.showToast(message)
                             self.requestTalkDetail()
                         }

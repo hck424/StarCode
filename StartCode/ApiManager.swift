@@ -568,5 +568,19 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
+    
+    func requestAiAnalysisResult(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        var url = "http://3.35.104.151:5001/predict?"
+        for (key, value) in param {
+            url.append("\(key)=\(value)&")
+        }
+        url = String(url.dropLast())
+        
+        NetworkManager.shared.request(.get, url, nil) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
 }
 

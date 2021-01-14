@@ -422,27 +422,7 @@ class MrJoinInfoViewController: BaseViewController {
                     }
                 }
                 
-                ApiManager.shared.requestMemberSignUp(param: param) { (response) in
-                    if let response = response, let code = response["code"] as? Int {
-                        if code == 200 {
-                            
-                            if let memInfo = response["user"] as? [String:Any] {
-                                SharedData.setObjectForKey(user.mem_password!, kMemPassword)
-                                SharedData.instance.saveUserInfo(user: memInfo)
-                            }
-                            
-                            let vc = MrCompleteViewController.init()
-                            self.navigationController?.pushViewController(vc, animated:true)
-                        }
-                        else {
-                            if let message = response["message"] as? String {
-                                self.showToast(message)
-                            }
-                        }
-                    }
-                } failure: { (error) in
-                    self.showErrorAlertView(error)
-                }
+                self.requestMemberSignUp(param)
             }
             else {
                 if tfNickName.text?.isEmpty == true {
@@ -472,9 +452,60 @@ class MrJoinInfoViewController: BaseViewController {
                 if isOk == false {
                     return
                 }
-             
+                
+                //회원가입 진행
+                user?.mem_nickname = tfNickName.text!
+                user?.mem_birthday = tfBirthday.text!
+                if let essay = tvEssay.text, essay.isEmpty == false {
+                    user?.mem_profile_content = essay
+                }
+                if btnMail.isSelected {
+                    user?.mem_sex = "1"
+                }
+                else {
+                    user?.mem_sex = "2"
+                }
+                if let token = Messaging.messaging().fcmToken {
+                    user?.push_token = token
+                }
+                user?.platform = "ios"
+                user?.mem_device_id = Utility.getUUID()
+                user?.akey = akey
+                user?.push_token = Messaging.messaging().fcmToken
+                
+                guard let user = user, var param = user.toJSON() as?[String:Any] else {
+                    print("object mapper convert to diction error")
+                    return
+                }
+                
+                self.requestMemberSignUp(param)
                 
             }
+        }
+    }
+    
+    func requestMemberSignUp(_ param:[String:Any]) {
+        let mem_password = param["mem_password"]
+        ApiManager.shared.requestMemberSignUp(param: param) { (response) in
+            if let response = response, let code = response["code"] as? Int {
+                if code == 200 {
+                    
+                    if let memInfo = response["user"] as? [String:Any] {
+                        SharedData.setObjectForKey(mem_password, kMemPassword)
+                        SharedData.instance.saveUserInfo(user: memInfo)
+                    }
+                    
+                    let vc = MrCompleteViewController.init()
+                    self.navigationController?.pushViewController(vc, animated:true)
+                }
+                else {
+                    if let message = response["message"] as? String {
+                        self.showToast(message)
+                    }
+                }
+            }
+        } failure: { (error) in
+            self.showErrorAlertView(error)
         }
     }
     func showCamera(_ sourceType: UIImagePickerController.SourceType) {
@@ -546,6 +577,20 @@ extension MrJoinInfoViewController: UITextFieldDelegate {
         else if let textField = textField as? CTextField {
             textField.borderColor = ColorBorderDefault
         }
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text as NSString? else {
+            return false
+        }
+//        let newString = text.replacingCharacters(in: range, with: string)
+        if textField == tfNickName {
+            btnCheckNickName.isSelected = false
+        }
+        else if textField == tfEmail {
+            tfEmail.isSelected = false
+        }
+        
+        return true
     }
 }
 

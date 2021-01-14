@@ -9,7 +9,12 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import JWTDecode
-
+import CoreData
+import FBSDKLoginKit
+import FBSDKCoreKit
+import KakaoSDKAuth
+import KakaoSDKCommon
+import NaverThirdPartyLogin
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -25,13 +30,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         FirebaseApp.configure()
+        if #available(iOS 13, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
+        
+        #if Cust
+        KakaoSDKCommon.initSDK(appKey: KAKAO_NATIVE_APP_KEY)
+        
+        //네이버
+        //네이버
+        let naverThirdPartyLoginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+        // 네이버 앱으로 인증하는 방식을 활성화하려면 앱 델리게이트에 다음 코드를 추가합니다.
+        naverThirdPartyLoginInstance?.isNaverAppOauthEnable = true
+        // SafariViewContoller에서 인증하는 방식을 활성화하려면 앱 델리게이트에 다음 코드를 추가합니다.
+        naverThirdPartyLoginInstance?.isInAppOauthEnable = true
+        // 인증 화면을 iPhone의 세로 모드에서만 사용하려면 다음 코드를 추가합니다.
+        naverThirdPartyLoginInstance?.setOnlyPortraitSupportInIphone(true)
+        // 애플리케이션 이름
+//        let applicationname = (Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String) ?? ""
+        naverThirdPartyLoginInstance?.appName = "스타코드"
+        // 콜백을 받을 URL Scheme
+        naverThirdPartyLoginInstance?.serviceUrlScheme = NAVER_URL_SCHEME
+        // 애플리케이션에서 사용하는 클라이언트 아이디
+        
+        naverThirdPartyLoginInstance?.consumerKey = NAVER_CONSUMER_KEY
+        // 애플리케이션에서 사용하는 클라이언트 시크릿
+        naverThirdPartyLoginInstance?.consumerSecret = NAVER_CONSUMER_SECRET
+        
+        #endif
+        
+        
         let dfs = UserDefaults.standard
         print("==== apptype: \(appType)")
         
-        let pushFlag = SharedData.objectForKey(kPushSetting)
-        if let _ = pushFlag {
-            self.registApnsPushKey()
-        }
+        
+        self.registApnsPushKey()
+        
         SharedData.instance.token = SharedData.objectForKey(kToken) as? String
         SharedData.instance.memUserId = SharedData.objectForKey(kMemUserid) as? String
         SharedData.instance.memId = SharedData.objectForKey(kMemId) as? String
@@ -39,8 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let chu = SharedData.objectForKey(kMemChu) as? String {
             SharedData.instance.memChu = chu
         }
-//        첫째 멤버에 id가 있으면 메인으로 간다.
-        if let _ = dfs.object(forKey: kMemUserid) as? String, let _ = SharedData.objectForKey(kToken) {
+        //        첫째 멤버에 id가 있으면 메인으로 간다.
+        if let _ = SharedData.objectForKey(kToken) {
             let expired = self.checkExpireToken()
             if expired {
                 if appType == .user {
@@ -63,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.callLoginVc()
             }
         }
-    
+        
         return true
     }
     
@@ -87,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
     }
-
+    
     func callTutorialVc() {
         let vc: TutorialViewController = TutorialViewController.init()
         window?.rootViewController = vc;
@@ -187,6 +221,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+            return AuthController.handleOpenUrl(url: url)
+        }
+        
+        if let scheme = url.scheme {
+            if scheme.contains("com.ohguohgu.app.userapp") {
+                let result = NaverThirdPartyLoginConnection.getSharedInstance()?.receiveAccessToken(url)
+                if result == CANCELBYUSER {
+                    print("result: \(String(describing: result))")
+                }
+                return true
+            }
+        }
+        return true
+    }
+    
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         if deviceToken.count == 0 {
@@ -233,8 +286,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return
         }
         
-//        AlertView.showWithOk(title: title, message: msg) { (index) in
-//        }
+        //        AlertView.showWithOk(title: title, message: msg) { (index) in
+        //        }
     }
     
     //앱이 백그라운드 들어갔을때 푸쉬온것을 누르면 여기 탄다.
@@ -255,25 +308,25 @@ extension AppDelegate: MessagingDelegate {
             print("===== error: fcm token key not receive")
             return
         }
-//        //uniqe한 키이다. 장비 바뀌면 바뀜, 앱지웠다 설치해다 키는 항상 같다 키체인에 저장
-//        guard let udid = SharedData.objectForKey(kAPPLECATION_UUID) else {
-//            return
-//        }
-//
-//        print("==== fcm token: \(fcmToken)")
-//        //앱서버에 fcmkey 올려준다.
-//
-//        let param = ["deviceUID":udid, "p_token":fcmToken]
-//        ApiManager.shared.requestUpdateFcmToken(param: param) { (response) in
-//            if let response = response as? [String:Any], let success = response["success"] as? Bool, success == true {
-//                print("===== success: fcm token app server upload")
-//            }
-//            else {
-//                print("===== fail: fcm token app server upload")
-//            }
-//        } failure: { (error) in
-//            print("===== fail: fcm token app server upload")
-//        }
+        //        //uniqe한 키이다. 장비 바뀌면 바뀜, 앱지웠다 설치해다 키는 항상 같다 키체인에 저장
+        //        guard let udid = SharedData.objectForKey(kAPPLECATION_UUID) else {
+        //            return
+        //        }
+        //
+        //        print("==== fcm token: \(fcmToken)")
+        //        //앱서버에 fcmkey 올려준다.
+        //
+        //        let param = ["deviceUID":udid, "p_token":fcmToken]
+        //        ApiManager.shared.requestUpdateFcmToken(param: param) { (response) in
+        //            if let response = response as? [String:Any], let success = response["success"] as? Bool, success == true {
+        //                print("===== success: fcm token app server upload")
+        //            }
+        //            else {
+        //                print("===== fail: fcm token app server upload")
+        //            }
+        //        } failure: { (error) in
+        //            print("===== fail: fcm token app server upload")
+        //        }
     }
 }
 

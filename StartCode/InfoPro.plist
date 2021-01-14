@@ -30,7 +30,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>카메라 사용을 허용해주세요.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>갤러리 접근을 허용해주세요.</string>
+	<string>카메라 및 갤러리 접근을 허용해주세요.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>갤러리 접근을 허용해주세요.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -56,5 +56,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 </dict>
 </plist>

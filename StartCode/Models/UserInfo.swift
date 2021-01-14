@@ -13,6 +13,7 @@ class UserInfo:  Mappable {
     var mem_device_id: String?
     var join_type: String?
     var mem_userid: String?
+    var mem_email: String?
     var mem_password: String?
     var mem_nickname: String?
     var mem_profile_content: String?

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginSelectViewController" customModule="StartCode" customModuleProvider="target">
             <connections>
+                <outlet property="btnApple" destination="z07-fV-yFd" id="7Z1-ll-Gno"/>
                 <outlet property="btnFacebook" destination="isJ-9W-wYB" id="QGe-oR-AB6"/>
                 <outlet property="btnKakao" destination="msg-dF-Eod" id="HYa-jZ-9zI"/>
                 <outlet property="btnNaver" destination="sTp-U9-3TJ" id="MrU-T5-lke"/>
@@ -54,7 +55,7 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="OPf-4L-Ueh">
-                    <rect key="frame" x="109.66666666666669" y="539.66666666666663" width="156" height="44"/>
+                    <rect key="frame" x="81.666666666666686" y="539.66666666666663" width="212" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isJ-9W-wYB">
                             <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -81,6 +82,20 @@
                             <state key="normal" image="kakao"/>
                             <connections>
                                 <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="Hg9-kb-OBE"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z07-fV-yFd" customClass="CButton" customModule="StartCode" customModuleProvider="target">
+                            <rect key="frame" x="168" y="0.0" width="44" height="44"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" image="apple"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onClickedBtnActions:" destination="-1" eventType="touchUpInside" id="s0h-NJ-R22"/>
                             </connections>
                         </button>
                     </subviews>
@@ -122,6 +137,7 @@
         </view>
     </objects>
     <resources>
+        <image name="apple" width="22" height="22"/>
         <image name="bg_login" width="375" height="667"/>
         <image name="facebook" width="44" height="44"/>
         <image name="kakao" width="44" height="44"/>

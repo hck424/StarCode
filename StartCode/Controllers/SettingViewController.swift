@@ -193,11 +193,7 @@ class SettingViewController: BaseViewController {
                 if index == 1 {
                     SharedData.removeObjectForKey(kToken)
                     SharedData.instance.token = nil
-                    SharedData.removeObjectForKey(kMemId)
-                    SharedData.removeObjectForKey(kMemUserid)
-                    SharedData.removeObjectForKey(kMemPassword)
-                    SharedData.instance.memUserId = nil
-                    SharedData.instance.memId = nil
+
                     if appType == .user {
                         AppDelegate.instance()?.callLgoinSelectVc()
                     }

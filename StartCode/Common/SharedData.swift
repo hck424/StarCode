@@ -26,7 +26,22 @@ class SharedData: NSObject {
             SharedData.instance.memJoinType = mem_join_type
             SharedData.setObjectForKey(mem_join_type, kMemJoinType)
         }
-        if let mem_userid = user["mem_userid"] as? String {
+        if var mem_userid = user["mem_userid"] as? String {
+            var join_type = ""
+            if mem_userid.hasPrefix("kakao") {
+                join_type = "kakao"
+            }
+            else if mem_userid.hasPrefix("naver") {
+                join_type = "naver"
+            }
+            else if mem_userid.hasPrefix("facebook") {
+                join_type = "facebook"
+            }
+            else if mem_userid.hasPrefix("apple") {
+                join_type = "apple"
+            }
+            
+            mem_userid = mem_userid.deletingPrefix("\(join_type)_")
             SharedData.instance.memUserId = mem_userid
             SharedData.setObjectForKey(mem_userid, kMemUserid)
         }

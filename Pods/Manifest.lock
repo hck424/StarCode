@@ -4,6 +4,20 @@ PODS:
     - Alamofire (~> 5.1)
   - BSImagePicker (3.3.1)
   - CryptoSwift (1.3.7)
+  - FBSDKCoreKit (8.2.0):
+    - FBSDKCoreKit/Basics (= 8.2.0)
+    - FBSDKCoreKit/Core (= 8.2.0)
+  - FBSDKCoreKit/Basics (8.2.0)
+  - FBSDKCoreKit/Core (8.2.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (8.2.0):
+    - FBSDKLoginKit/Login (= 8.2.0)
+  - FBSDKLoginKit/Login (8.2.0):
+    - FBSDKCoreKit (~> 8.2.0)
+  - FBSDKShareKit (8.2.0):
+    - FBSDKShareKit/Share (= 8.2.0)
+  - FBSDKShareKit/Share (8.2.0):
+    - FBSDKCoreKit (~> 8.2.0)
   - Firebase/Analytics (7.1.0):
     - Firebase/Core
   - Firebase/Auth (7.1.0):
@@ -95,12 +109,20 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
   - JWTDecode (2.5.0)
+  - KakaoSDKAuth (2.0.4):
+    - KakaoSDKCommon (= 2.0.4)
+  - KakaoSDKCommon (2.0.4):
+    - Alamofire (~> 5.1)
+  - KakaoSDKUser (2.0.4):
+    - KakaoSDKAuth (= 2.0.4)
+    - KakaoSDKCommon (= 2.0.4)
   - Mantis (1.4.7)
   - nanopb (2.30906.0):
     - nanopb/decode (= 2.30906.0)
     - nanopb/encode (= 2.30906.0)
   - nanopb/decode (2.30906.0)
   - nanopb/encode (2.30906.0)
+  - naveridlogin-sdk-ios (4.1.3)
   - ObjectMapper (3.5.3)
   - PhoneNumberKit (3.3.1):
     - PhoneNumberKit/PhoneNumberKitCore (= 3.3.1)
@@ -116,12 +138,19 @@ DEPENDENCIES:
   - AlamofireImage (~> 4.1)
   - BSImagePicker (~> 3.1)
   - CryptoSwift
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Crashlytics
   - Firebase/Messaging
   - JWTDecode (~> 2.4)
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
   - Mantis (~> 1.4.1)
+  - naveridlogin-sdk-ios
   - ObjectMapper (~> 3.5)
   - PhoneNumberKit (~> 3.3)
   - SwiftKeychainWrapper
@@ -132,6 +161,9 @@ SPEC REPOS:
     - AlamofireImage
     - BSImagePicker
     - CryptoSwift
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -146,8 +178,12 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - JWTDecode
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
     - Mantis
     - nanopb
+    - naveridlogin-sdk-ios
     - ObjectMapper
     - PhoneNumberKit
     - PromisesObjC
@@ -158,6 +194,9 @@ SPEC CHECKSUMS:
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   BSImagePicker: 0fe04b574d4d6b81093785d2af6c26227efc8428
   CryptoSwift: b6faad405e69964740422daf121918b5b1870f2b
+  FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
+  FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
+  FBSDKShareKit: 0c0d51b3af47075a85ed9bea0e28b2fc70e3594b
   Firebase: 78e8dd2e39d653de6270432ad84fe8b59f7bf4e8
   FirebaseAnalytics: 7f165a56dea86ddd5b8ce02af3bee982c683405c
   FirebaseAuth: f82c2cfcc1c107bb0a97735cdbce4eb2a601f710
@@ -172,13 +211,17 @@ SPEC CHECKSUMS:
   GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   JWTDecode: d4c176a28a29f7e6f9abf5c90ad3002f69b98c7c
+  KakaoSDKAuth: 3a88e4a110243f8c6b9948c5ec85670c7acaebf6
+  KakaoSDKCommon: 070472d0638ea6b28684a23c195e47015349e51b
+  KakaoSDKUser: 7951e09f9e6de3908ae2d7f8486290c8607c217a
   Mantis: 9cdf60d973503125bc140558b29c2cf7d0ecebe5
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
+  naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   PhoneNumberKit: ff153d5e299f6da566cb73c6aa71e354933b2932
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: 3a449a2afffb20fe507fe8571ddced21d25b3e3d
+PODFILE CHECKSUM: 4d23423c3ac004033c7f44f98aa465062c8d18e9
 
 COCOAPODS: 1.9.3

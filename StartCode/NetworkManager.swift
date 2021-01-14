@@ -25,11 +25,16 @@ enum ContentType: String {
 
 class NetworkManager: NSObject {
     static let shared = NetworkManager()
+    
+    
     func getFullUrl(_ url:String) -> String {
         return "\(baseUrl)\(url)"
     }
     func request(_ method: HTTPMethod, _ url: String, _ param:[String:Any]?, success:ResSuccess?, failure:ResFailure?) {
-        let fullUrl = self.getFullUrl(url)
+        var fullUrl = self.getFullUrl(url)
+        if url.hasPrefix("http://3.35.104.151:5001") {
+            fullUrl = url
+        }
         guard let encodedUrl = fullUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             return
         }

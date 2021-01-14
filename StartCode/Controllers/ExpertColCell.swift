@@ -76,7 +76,11 @@ class ExpertColCell: UICollectionViewCell {
         if let mem_nickname = data["mem_nickname"] as? String {
             lbName.text = mem_nickname
         }
-        if let mem_star = data["mem_star"] as? Int {
+        if let mem_star = data["mem_star"] as? String {
+            let starCntStr = "\(mem_star)".addComma()
+            lbCountStar.text = starCntStr
+        }
+        else if let mem_star = data["mem_star"] as? NSNumber {
             let starCntStr = "\(mem_star)".addComma()
             lbCountStar.text = starCntStr
         }

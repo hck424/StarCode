@@ -337,21 +337,40 @@ class QnaViewController: BaseViewController {
     }
     func requestAiAskRegist(_ param:[String:Any]) {
         ApiManager.shared.requestAiAskRegist(param: param) { (response) in
-            if let response = response, let code = response["code"] as? Int, code == 200 , let message = response["message"] as? String,
-               let last_chu = response["last_chu"] as? NSNumber {
+            if let response = response, let code = response["code"] as? NSNumber, code == 200 , let message = response["message"] as? String {
+                
+                guard let last_chu = response["last_chu"] as? String else {
+                    return
+                }
+                
                 SharedData.instance.memChu = "\(last_chu)"
                 SharedData.setObjectForKey("\(last_chu)", kMemChu)
                 self.updateChuNaviBarItem()
-                do {
-                    let attr = try NSAttributedString.init(htmlString: message)
-                    let vc = PopupViewController.init(type: .alert, title: nil, message: attr) { (vcs, selItem, index) in
-                        vcs.dismiss(animated: false, completion: nil)
-                        AppDelegate.instance()?.mainTabbarCtrl()?.selectedIndex = 0
+                
+                guard let data = response["data"] as? [String:Any], let files = data["files"] as? [Any], let file = files[0] as? [String:Any], let pfi_filename = file["pfi_filename"] as? String, pfi_filename.isEmpty == false else {
+                    return
+                }
+                
+                print(pfi_filename)
+//                http://3.35.104.151:5001/predict?user_id=test1&sex=man&face_img=https://api.ohguohgu.com/uploads/cache/post/2020/12/thumb-73000c996aaadc0ee901e0ad9b552f88_640x0.jpg
+                
+                guard let nickName = SharedData.objectForKey(kMemNickname), let mem_sex = response["mem_sex"], let post_id = data["post_id"] else {
+                    return
+                }
+                let param:[String:Any] = ["user_id":nickName, "sex": mem_sex, "face_img":pfi_filename, "post_id":post_id]
+                ApiManager.shared.requestAiAnalysisResult(param: param) { (response) in
+                    if let response = response, let result = response["result"] as? [String:Any] {
+                        let vc = MyAiQnaDetailViewController.init()
+                        vc.data = data
+                        vc.type = .aiQna
+                        vc.aiResult = result
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }
-                    vc.addAction(.ok, "확인")
-                    self.present(vc, animated: false, completion: nil)
-                } catch {
-                    
+                    else {
+                        self.showErrorAlertView(response)
+                    }
+                } failure: { (error) in
+                    self.showErrorAlertView(error)
                 }
             }
             else {

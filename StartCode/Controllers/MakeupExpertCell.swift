@@ -26,7 +26,7 @@ class MakeupExpertCell: UITableViewCell {
     }
     
     
-    func configurationData(_ data: Array<[String:Any]>?, _ type:SectionType) {
+    func configurationData(_ data: Array<[String:Any]>?, _ type:SectionType = .makeupExpert) {
         self.arrData = data
         self.sectionType = type
         self.collectionVeiw.delegate = self

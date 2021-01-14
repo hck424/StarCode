@@ -110,31 +110,49 @@ class MyQnaView: UIView {
         }
         else if type == .answer {
             seperatorView.isHidden = false
+            
             ivType.image = UIImage(named: "ic_answer")
             
             lbContent.text = ""
-            if let cmt_content = data["cmt_content"] as? String {
-                lbContent.text = cmt_content
-            }
-            lbDate.text = ""
-            if let cmt_datetime = data["cmt_datetime"] as? String {
-                let df = CDateFormatter.init()
-                df.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                if let date = df.date(from: cmt_datetime) {
-                    df.dateFormat = "yyyy.MM.dd HH:mm"
-                    lbDate.text = df.string(from: date)
+            
+            if questionType == .aiQna {
+                if let reco_text = data["reco_text"] as? String {
+                    lbContent.text = reco_text
                 }
-            }
-            
-            if let cmt_nickname = data["cmt_nickname"] as? String {
-                nickname = cmt_nickname
+                
+                nickname = "AI"
                 result.append(nickname)
+                tmpStr = " 의 답변"
+                lbDate.text = ""
+                let df = CDateFormatter.init()
+                df.dateFormat = "yyyy.MM.dd HH:mm"
+                lbDate.text = df.string(from: Date())
             }
-            tmpStr = "전문가님의 답변"
-            
-            if questionType == .makeupQna {
-                svContent.isHidden = true
-                svAdopt.isHidden = false
+            else {
+                if let cmt_content = data["cmt_content"] as? String {
+                    lbContent.text = cmt_content
+                }
+                
+                lbDate.text = ""
+                if let cmt_datetime = data["cmt_datetime"] as? String {
+                    let df = CDateFormatter.init()
+                    df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    if let date = df.date(from: cmt_datetime) {
+                        df.dateFormat = "yyyy.MM.dd HH:mm"
+                        lbDate.text = df.string(from: date)
+                    }
+                }
+                
+                if let cmt_nickname = data["cmt_nickname"] as? String {
+                    nickname = cmt_nickname
+                    result.append(nickname)
+                }
+                tmpStr = "전문가님의 답변"
+                
+                if questionType == .makeupQna {
+                    svContent.isHidden = true
+                    svAdopt.isHidden = false
+                }
             }
         }
         

@@ -53,8 +53,10 @@ class ExHomeViewController: BaseViewController {
         ApiManager.shared.requestAdvertisement(param: param) { (response) in
             if let response = response, let banner = response["banner"] as?[String:Any], let list = banner["list"] as? Array<[String:Any]>, list.isEmpty == false {
                 self.arrBanner.append(contentsOf: list)
+                let saveOffset = self.tblView.contentOffset
                 self.tblView.reloadData {
                     self.headerView?.configurationData(self.arrBanner)
+                    self.tblView.setContentOffset(saveOffset, animated: false)
                 }
             }
         } failure: { (error) in
@@ -199,9 +201,10 @@ class ExHomeViewController: BaseViewController {
             let section = ["sec_title":"전문가 일상", "sec_type":SectionType.expertLife, "sec_list":arrExpertLife] as [String : Any]
             listData.append(section)
         }
-        
+        let saveOffset = self.tblView.contentOffset
         self.tblView.reloadData {
-            self.tblView.reloadData()
+//            self.tblView.reloadData()
+            self.tblView.setContentOffset(saveOffset, animated: false)
         }
     }
 }

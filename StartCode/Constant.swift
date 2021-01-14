@@ -19,6 +19,14 @@ let akey = "5XpADsQTqF8hXqnekIKpyKamGUNdui1p"
 let hostUrl = "v2"
 let hostAiUrl = "ai"
 let appType:AppType = .user
+
+let KAKAO_NATIVE_APP_KEY = "1701501d7f2ee45ff29ea74521695127"
+
+let NAVER_URL_SCHEME = "com.ohguohgu.app.userapp"
+let NAVER_CONSUMER_KEY = "rnNl9hhTZq0P1VpJCDrb"
+let NAVER_CONSUMER_SECRET = "4xDRWRsVmw"
+
+
 #elseif Pro
 let hostUrl = "m2"
 let hostAiUrl = "ai"
