@@ -199,6 +199,7 @@ class TalkDetailViewController: BaseViewController {
         }
     }
     
+    
     func requestWriteComent(_ content:String, _ images:[UIImage]?, _ cmtId:String?) {
         guard let token = SharedData.instance.token else {
             return
@@ -210,7 +211,9 @@ class TalkDetailViewController: BaseViewController {
         if let cmtId = cmtId {
             param["cmt_id"] = cmtId
         }
-        
+        self.requestWriteComment(param)
+    }
+    func requestWriteComment(_ param: [String:Any]) {
         ApiManager.shared.requestCommentWrite(param: param) { (response) in
             if let response = response, let code = response["code"] as? NSNumber, code.intValue == 200 {
                 self.requestTalkDetail()
@@ -245,7 +248,27 @@ extension TalkDetailViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 if action == .modify {
-                    
+                    let vc = WritePopupViewController.init(.commentModify) { (vcs, content, images, index) in
+                        vcs.dismiss(animated: false, completion: nil)
+                        guard let content = content as? String, let cmt_id = selData["cmt_id"], let post_id = self.data["post_id"] else {
+                            return
+                        }
+                        
+                        var param:[String:Any] = [:]
+                        param["token"] = SharedData.instance.token as! String
+                        param["post_id"] = post_id
+                        param["cmt_id"] = cmt_id
+                        param["cmt_content"] = content
+                        param["mode"] = "cu"
+                        if let images = images, images.isEmpty == false {
+                            param["post_file"] = images
+                        }
+                        
+                        self.requestWriteComment(param)
+                        
+                    }
+                    vc.data = selData
+                    self.present(vc, animated: false, completion: nil)
                 }
                 else if action == .delete {
                     let param:[String:Any] = ["cmt_id":cmt_id, "token":token]

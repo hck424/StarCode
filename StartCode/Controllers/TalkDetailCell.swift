@@ -37,14 +37,26 @@ class TalkDetailCell: UITableViewCell {
         btnWarning.isHidden = false
         btnLikeCnt.isHidden = false
         
-        lbContent.text = nil
-        lbExpertName.text = nil
-        lbDate.text = nil
+        lbContent.text = ""
+        lbExpertName.text = ""
+        lbDate.text = ""
         photoScrollView.isHidden = true
+        lbExpertName.isHidden = true
         
         if let cmt_content = data["cmt_content"] as? String{
             lbContent.text = cmt_content
         }
+        
+        if let mem_is_manager = data["mem_is_manager"] as? String, mem_is_manager == "1", let cmt_nickname = data["mem_nickname"] as? String  {
+            lbExpertName.isHidden = false
+            let tmpStr:String = "[전문가]"
+            let result:String = "\(tmpStr) \(cmt_nickname)"
+            
+            let attr = NSMutableAttributedString.init(string: result)
+            attr.addAttribute(.foregroundColor, value: RGB(150, 0, 255), range: ((result as? NSString)!.range(of: tmpStr)))
+            lbExpertName.attributedText = attr
+        }
+        
         if let mem_id = data["mem_id"] as? String{
             if mem_id == SharedData.instance.memId {
                 btnModify.isHidden = false
@@ -55,14 +67,6 @@ class TalkDetailCell: UITableViewCell {
                 btnDelete.setNeedsDisplay()
             }
         }
-        
-        if let cmt_class = data["cmt_class"] as? String, let cmt_nickname = data["cmt_nickname"] as? String {
-            let result:String = "\(cmt_class) \(cmt_nickname)"
-            let attr = NSMutableAttributedString.init(string: result)
-            attr.addAttribute(.foregroundColor, value: RGB(150, 0, 255), range: ((result as? NSString)!.range(of: cmt_class)))
-            lbExpertName.attributedText = attr
-        }
-        
         if let cmt_datetime = data["cmt_datetime"] as? String {
             let df = CDateFormatter.init()
             df.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -82,6 +86,15 @@ class TalkDetailCell: UITableViewCell {
         
         guard let files = data["files"] as? [[String:Any]], files.isEmpty == false else {
             return
+        }
+        
+        btnLikeCnt.isSelected = false
+        btnWarning.isSelected = false
+        if let is_like = data["is_like"] as? Bool, is_like == true {
+            btnLikeCnt.isSelected = true
+        }
+        if let is_blame = data["is_blame"] as? Bool, is_blame == true {
+            btnWarning.isSelected = true
         }
         
         photoScrollView.isHidden = false

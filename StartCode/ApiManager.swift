@@ -248,6 +248,14 @@ class ApiManager: NSObject {
             failure?(error)
         }
     }
+    func requestMyScrapList(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {
+        NetworkManager.shared.request(.post, "/\(hostUrl)/mypage/scrap_list", param) { (response) in
+            success?(response)
+        } failure: { (error) in
+            failure?(error)
+        }
+    }
+    
     /// 나의 스크랩 삭제
     /// - parameter: token, scr_id
     func requestMyScrapDelete(param:[String:Any], success:ResSuccess?, failure:ResFailure?) {

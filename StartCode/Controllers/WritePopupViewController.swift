@@ -40,6 +40,7 @@ class WritePopupViewController: BaseViewController {
     var isKeyboardDown = false
     var starCnt = 0
     var data:[String:Any]?
+    
     convenience init(_ type:WritePopupType, _ data:[String:Any]? = nil, completion:WritePopupClosure?) {
         self.init()
         self.type = type
@@ -74,6 +75,26 @@ class WritePopupViewController: BaseViewController {
                 let attr = NSMutableAttributedString.init(string: result)
                 attr.addAttribute(.foregroundColor, value: RGB(128, 0, 255), range: (result as NSString).range(of: mem_nickname))
                 lbExpertStar.attributedText = attr
+            }
+        }
+        else if type == .commentModify {
+            guard let data = data else {
+                return
+            }
+            if let cmt_content = data["cmt_content"] as? String {
+                textView.text = cmt_content
+            }
+            
+            if let files = data["files"] as? [[String:Any]], files.isEmpty == false {
+                scrollView.isHidden = false
+                for file in files {
+                    if let file = file as? [String:Any], let cfi_filename = file["cfi_filename"] as? String {
+                        let photoView = Bundle.main.loadNibNamed("PhotoView", owner: self, options: nil)?.first as! PhotoView
+                        self.svPhoto.addArrangedSubview(photoView)
+                        photoView.ivThumb.setImageCache(url: cfi_filename, placeholderImgName: nil)
+                        photoView.delegate = self
+                    }
+                }
             }
         }
     }

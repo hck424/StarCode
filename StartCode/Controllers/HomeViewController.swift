@@ -255,6 +255,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             if let secList = secList, let item = secList[indexPath.row] as? [String:Any] {
                 tmpCell?.configurationData(item)
             }
+            tmpCell?.didSelectedClosure = nil
             tmpCell?.ivArrow.isHidden = true
             cell = tmpCell
         }
@@ -350,9 +351,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if type == .expertLife {
-//            let vc = TalkDetailViewController.init()
-//            vc.data = item
-//            self.navigationController?.pushViewController(vc, animated:true)
             let vc = ExpertLifeDetailViewController.init()
             vc.data = item
             self.navigationController?.pushViewController(vc, animated: true)

@@ -8,7 +8,7 @@
 import UIKit
 enum MyQnaCellType {
 //    type1:나의문의내역(1:1, ai), type2:내문의내역(메이크업진단, 뷰티질문)
-    case type1, type2, type3
+    case type1, type2, type3, scrap
 }
 
 
@@ -46,6 +46,7 @@ class MyQnaCell: UITableViewCell {
         lbTitle.text = ""
         lbDate.text = ""
         lbCommentCnt.text = "0"
+        
         guard let data = data else {
             return
         }
@@ -82,6 +83,29 @@ class MyQnaCell: UITableViewCell {
                 btnAnswer.setTitle("미답볍", for: .normal)
             }
         }
+        else if type == .scrap {
+            btnAnswer.isHidden = true
+            btnAnswer2.isHidden = true
+            ivThumb.isHidden = true
+            lbDate.isHidden = false
+            
+            if let post_title = data["post_title"] as? String {
+                lbTitle.text = post_title
+            }
+            
+            if let scr_datetime = data["scr_datetime"] as? String {
+                let df = CDateFormatter.init()
+                df.dateFormat = "yyyy-MM-dd HH.mm.ss"
+                if let date = df.date(from: scr_datetime) {
+                    df.dateFormat = "yyyy.MM.dd HH.mm.ss"
+                    lbDate.text = df.string(from: date)
+                }
+            }
+            if let post_category = data["post_category"] as? String {
+                lbSubTitle.text = post_category
+            }
+        }
+        
         else  {
             ivThumb.isHidden = false
             btnAnswer2.isHidden = false

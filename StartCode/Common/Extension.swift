@@ -24,7 +24,11 @@ extension UITableView {
 
 //FIXME:: UIViewController
 extension UIViewController {
-    
+    func setUserInterfaceStyle(_ interfaceStyle: UIUserInterfaceStyle) {
+        if #available(iOS 13.0, *) {
+            self.setValue(overrideUserInterfaceStyle, forKey:"overrideUserInterfaceStyle")
+        }
+    }
     func showErrorAlertView(_ data: Any?) {
         if let data = data as? Dictionary<String, Any> {
             

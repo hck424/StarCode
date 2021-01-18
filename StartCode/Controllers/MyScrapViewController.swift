@@ -43,7 +43,7 @@ class MyScrapViewController: BaseViewController {
         }
         
         let param:[String:Any] = ["token":token, "page":page, "per_page":perPage]
-        ApiManager.shared.requestMyScrap(param: param) { (response) in
+        ApiManager.shared.requestMyScrapList(param: param) { (response) in
             self.canRequest = true
             if let response = response, let data = response["data"] as? [String:Any], let list = data["list"] as? Array<[String:Any]> {
                 
@@ -83,19 +83,22 @@ extension MyScrapViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         var cell = tblView.dequeueReusableCell(withIdentifier: "MyQnaCell") as? MyQnaCell
         
         if cell == nil {
             cell = Bundle.main.loadNibNamed("MyQnaCell", owner: self, options: nil)?.first as? MyQnaCell
         }
-        cell?.configurationData(nil, .type1, indexPath.row)
-        
+        if let item = listData[indexPath.row] as? [String:Any] {
+            cell?.configurationData(item, .scrap, indexPath.row)
+        }
         return cell!
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated:false)
+        guard let item = listData[indexPath.row] as? [String:Any], let scr_id = item["scr_id"] as? String else {
+            return
+        }
         
     }
 }

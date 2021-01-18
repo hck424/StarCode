@@ -176,13 +176,13 @@ extension ExpertLifeListViewController: UITableViewDelegate, UITableViewDataSour
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tblView.deselectRow(at: indexPath, animated: true)
-        let vc = TalkDetailViewController.init()
-        vc.data = listData[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated:true)
-//        let vc = ExpertLifeDetailViewController.init()
-//        vc.passData = listData[indexPath.row]
-//        self.navigationController?.pushViewController(vc, animated: true)
+        tblView.deselectRow(at: indexPath, animated: false)
+        guard let item = listData[indexPath.row] as? [String:Any] else {
+            return
+        }
+        let vc = ExpertLifeDetailViewController.init()
+        vc.data = item
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 extension ExpertLifeListViewController: UITextFieldDelegate {

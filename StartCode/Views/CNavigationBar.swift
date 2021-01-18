@@ -71,9 +71,9 @@ class CNavigationBar: UINavigationBar {
         
         let naviBar = controller.navigationController?.navigationBar
         naviBar?.isTranslucent = true
-        let img = UIImage.image(from: UIColor.systemBackground)!
-        naviBar?.tintColor = UIColor.systemBackground
-        naviBar?.barTintColor = UIColor.systemBackground
+        let img = UIImage.image(from: UIColor.white)!
+        naviBar?.tintColor = UIColor.white
+        naviBar?.barTintColor = UIColor.white
         naviBar?.setBackgroundImage(img, for: UIBarMetrics.default)
         naviBar?.shadowImage = UIImage.init()
         UINavigationBar.appearance().shadowImage = UIImage.init()

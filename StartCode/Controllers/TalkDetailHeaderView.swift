@@ -109,6 +109,18 @@ class TalkDetailHeaderView: UIView {
             collectionView.isHidden = true
         }
         
+        btnLike.isSelected = false
+        btnScript.isSelected = false
+        btnWarning.isSelected = false
+        if let is_like = data["is_like"] as? Bool, is_like == true {
+            btnLike.isSelected = true
+        }
+        if let is_scrap = data["is_scrap"] as? Bool, is_scrap == true {
+            btnScript.isSelected = true
+        }
+        if let is_blame = data["is_blame"] as? Bool, is_blame == true {
+            btnWarning.isSelected = true
+        }
         completion()
     }
     

@@ -212,6 +212,15 @@ class SettingViewController: BaseViewController {
             self.navigationController?.pushViewController(vc, animated: true)
             #endif
         }
+        else if sender.tag == 101010 {
+            sender.isSelected = !sender.isSelected
+            if sender.isSelected {
+                SharedData.setObjectForKey("Y", kPushSetting)
+            }
+            else {
+                SharedData.removeObjectForKey(kPushSetting)
+            }
+        }
     }
     
 }
@@ -227,7 +236,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell?.btnNoticeCnt.isHidden = true
         cell?.btnPush.isHidden = true
-        
+        cell?.btnPush.tag = 101010
         if let cellId = listData[indexPath.row] as? CellId {
             cell?.lbTitle.text = cellId.displayName()
             if cellId == .myPost {
@@ -248,6 +257,15 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                         cell?.btnNoticeCnt.isHidden = false
                         cell?.btnNoticeCnt.setTitle("\(answer)", for: .normal)
                     }
+                }
+            }
+            else if appType == .user && cellId == .configuration {
+                cell?.btnPush.isHidden = false
+                cell?.btnPush.addTarget(self, action: #selector(onClickedBtnActions(_:)), for: .touchUpInside)
+                
+                cell?.btnPush.isSelected = false
+                if let _ = SharedData.objectForKey(kPushSetting)  {
+                    cell?.btnPush.isSelected = true
                 }
             }
         }
